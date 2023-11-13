@@ -190,4 +190,4 @@
   </div>
 </nav>
 <div class="main-panel">
-  <div class="content-wrapper">
+  <div class="content-wrapper py-5">
