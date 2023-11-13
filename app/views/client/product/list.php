@@ -317,7 +317,6 @@
                 </div>
 
                 <div class="contentBx">
-
                   <h2>Others</h2>
 
                   <!-- <div class="size">

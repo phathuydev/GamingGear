@@ -38,7 +38,7 @@
       <div class="most-popular">
         <div class="row">
           <div class="col-lg-12">
-            <div class="heading-section text-center">
+            <div class="heading-section text-center mt-5">
               <h4><em>Product</em> New</h4>
             </div>
             <div class="row">
