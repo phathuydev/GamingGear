@@ -1,0 +1,1 @@
+<h1>Detail Category Pages</h1>
