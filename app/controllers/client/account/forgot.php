@@ -1,5 +1,5 @@
 <?php
-class Fogot extends Controller
+class Forgot extends Controller
 {
   public $province;
   public $data = [];
