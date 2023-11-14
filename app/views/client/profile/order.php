@@ -1,11 +1,11 @@
-<section class="rounded" style="background-color:dark;">
-    <div class="container py-5">
+<section class="rounded " style="background-color:dark;">
+    <div class="container py-5 ">
         <div class="row">
             <div class="col">
-                <nav aria-label="breadcrumb" class="bg-dark rounded-3 p-3 mb-4">
-                    <ol class="breadcrumb mb-0 bg-dark">
+                <nav aria-label="breadcrumb" class=" card bg-dark rounded-3 p-3 mb-4 border-light">
+                    <ol class="breadcrumb mb-0 bg-dark border-light">
                         <li class="breadcrumb-item text-light"><a href="home">Home</a></li>
-                        <li class="breadcrumb-item text-light active" aria-current="page">Profile</li>
+                        <li class="breadcrumb-item text-light active" aria-current="page">Order</li>
                     </ol>
                 </nav>
             </div>
@@ -19,7 +19,7 @@
                              class="rounded-circle img-fluid" style="width: 150px;">
                     </div>
                 </div>
-                <div class="card mb-4 mb-lg-0 bg-dark">
+                <div class="card mb-4 mb-lg-0 bg-light">
                     <div class="card-body p-0 bg-dark ">
                         <ul class="list-group list-group-flush rounded-3">
                             <li class="list-group-item d-flex justify-content-between align-items-center p-3 bg-dark">
@@ -35,14 +35,14 @@
                 </div>
             </div>
             <div class="col-lg-8  ">
-                <div class="card mb-5 bg-dark">
+                <div class="card mb-5 bg-dark border-light">
                     <div class="card-body">
                         <div class="row">
                             <h3 class="text-light">Quản lý đơn hàng</h3>
                             <nav class="navbar navbar-expand-lg navbar-light bg-dark">
                                 <div class="container-fluid">
                                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 bg-dark text-light">
+                                        <ul class="navbar-nav   bg-dark text-light ">
                                             <li class="nav-item">
                                                 <a class="nav-link active  text-light" aria-current="page" href="#">Tất
                                                     cả</a>
@@ -89,7 +89,10 @@
                             <div class="message">
                                 <i class="fa fa-store-slash fa-2xl text-light"></i><br> <br>
                                 <p class="text-light">Quý khách chưa có đơn hàng nào.</p><br>
-                                <button class="bg-danger text-white border-danger rounded">Tiếp tục mua hàng</button>
+                                <a href="products">
+                                    <button class="bg-danger text-white border-danger rounded">Tiếp tục mua hàng
+                                    </button>
+                                </a>
                             </div>
                         </div>
                     </div>

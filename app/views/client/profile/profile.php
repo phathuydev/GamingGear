@@ -2,8 +2,8 @@
     <div class="container py-5">
         <div class="row">
             <div class="col">
-                <nav aria-label="breadcrumb" class="bg-dark rounded-3 p-3 mb-4">
-                    <ol class="breadcrumb mb-0 bg-dark">
+                <nav aria-label="breadcrumb" class=" card bg-dark rounded-3 p-3 mb-4 border-light">
+                    <ol class="breadcrumb mb-0 bg-dark border-light">
                         <li class="breadcrumb-item text-light"><a href="home">Home</a></li>
                         <li class="breadcrumb-item text-light active" aria-current="page">Profile</li>
                     </ol>
@@ -14,12 +14,12 @@
         <div class="row ">
             <div class="col-lg-4">
                 <div class="card mb-4">
-                    <div class="card-body text-center bg-dark border-dark">
+                    <div class="card-body text-center bg-dark ">
                         <img src="https://i.pinimg.com/474x/19/05/b5/1905b5aa12fceb753fb75cdc0cd21764.jpg" alt="avatar"
                              class="rounded-circle img-fluid" style="width: 150px;">
                     </div>
                 </div>
-                <div class="card mb-4 mb-lg-0 bg-light">
+                <div class="card mb-4 mb-lg-0 ">
                     <div class="card-body p-0 bg-dark ">
                         <ul class="list-group list-group-flush rounded-3">
                             <li class="list-group-item d-flex justify-content-between align-items-center p-3 bg-dark">
@@ -34,11 +34,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8 bg-dark rounded ">
-                <div class="card-body">
-                    <div class="row bg-dark text-light">
+            <div class=" card col-lg-8 bg-dark rounded border-light ">
+                <div class="card-body border-light">
+                    <div class="row text-light  ">
                         <form action="#" method="POST">
-                            <h4 class="text-light">Thông tin tài khoản</h4><br>
+                            <h3 class="text-light">Thông tin tài khoản</h3><br><br>
                             <div class="form-row pl-5">
                                 <div class="form-group col-8 d-flex align-items-center">
                                     <label for="full_name" class="col-form-label mr-5">Họ và tên </label>
