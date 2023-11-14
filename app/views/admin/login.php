@@ -41,10 +41,6 @@
                 <?php HtmlHelper::submit('Login', 'btn btn-primary btn-block enter-btn'); ?>
               </div>
               <div class="d-flex">
-                <button class="btn btn-google col d-flex justify-content-center">
-                  <i class="mdi mdi-google-plus"></i> Google plus </button>
-              </div>
-              <div class="d-flex">
                 <a href="<?php echo _WEB_ROOT ?>/home" class="text-white mt-3 col d-flex justify-content-center"><i class="mdi mdi-arrow-left"></i> Return Website</a>
               </div>
               <?php HtmlHelper::formClose(); ?>

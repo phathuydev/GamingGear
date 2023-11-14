@@ -2,7 +2,7 @@
 // Kế thừa từ class Model
 class HomeModel extends Model
 {
-  private $__table = "category";
+  private $__table = "product";
 
   // Định nghĩa table trong Model
   function tableFill()
@@ -27,19 +27,6 @@ class HomeModel extends Model
     return $data[$id];
   }
 
-  public function getNameCategory()
-  {
-    // $data = $this->db->table('category')->select('category_id, category_name')->limit(3, 1)->orderBy('category_id', 'ASC')->get();
-    // $data = $this->db->table('products')->join('category', 'products.category = category.id')->select('category.name as ten_danh_muc, products.product_name as ten_san_pham')->get();
-
-    // return $data;
-  }
-
-  public function getAllCategory()
-  {
-    $data = $this->db->table('category')->select('*')->get();
-    return $data;
-  }
   public function getAllUser()
   {
     $data = $this->db->table('user')->select('*')->get();

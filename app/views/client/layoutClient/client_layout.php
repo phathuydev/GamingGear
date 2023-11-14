@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <!-- Additional CSS Files -->
   <link rel="stylesheet" href="<?php echo _WEB_ROOT; ?>/public/assets/client/css/style.css">
+  <link rel="stylesheet" href="<?php echo (isset($css_checkout) ? $css_checkout : false); ?>">
   <link rel="stylesheet" href="<?php echo _WEB_ROOT; ?>/public/assets/client/css/templatemo-cyborg-gaming.css">
   <link rel="stylesheet" href="<?php echo _WEB_ROOT; ?>/public/assets/client/css/owl.css">
   <link rel="stylesheet" href="<?php echo _WEB_ROOT; ?>/public/assets/client/css/animate.css">

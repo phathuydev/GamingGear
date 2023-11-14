@@ -5,7 +5,7 @@
         <div class="col-md-8">
           <div class="most-popular mt-0">
             <div class="card-header py-3">
-              <h4 class="mb-0">Cart - 2 items</h4>
+              <h4 class="mb-0 ms-0">Cart - 2 items</h4>
             </div>
             <div class="card-body">
               <!-- Single item -->
@@ -152,7 +152,7 @@
         <div class="col-md-4">
           <div class="mb-4 most-popular mt-0">
             <div class="card-header py-3">
-              <h4 class="mb-0">Summary</h4>
+              <h4 class="mb-0 ms-0">Summary</h4>
             </div>
             <div class="card-body">
               <div class="d-flex justify-content-between align-items-center mb-3 text-white">
@@ -172,16 +172,16 @@
                 </div>
                 <span><strong>$53.98</strong></span>
               </div>
-              <button type="button" class="btn btn-lg btn-block" style="background-color: #ec6090; color: #fff;">
+              <a href="<?php echo _WEB_ROOT; ?>/checkout" class="btn btn-lg btn-block" style="background-color: #ec6090; color: #fff;">
                 Go to checkout
-              </button>
+              </a>
             </div>
           </div>
           <div class="mt-4 mb-lg-0 most-popular p-0">
             <div class="card-body">
               <h6 class="mb-3" style="color: #ec6090;"><strong>We accept</strong></h6>
-              <i class="fa-brands fa-cc-paypal me-1" style="color: #548fff; font-size: 24px;"></i>
-              <i class="fa-brands fa-cc-visa" style="color: #548fff; font-size: 24px;"></i>
+              <i class="fa-solid fa-credit-card me-1" style="color: #548fff; font-size: 24px;"></i>
+              <i class="fa-solid fa-money-bill" style="color: #548fff; font-size: 24px;"></i>
               <i></i>
             </div>
           </div>

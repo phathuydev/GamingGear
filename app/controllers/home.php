@@ -14,22 +14,6 @@ class Home extends Controller
     $this->data['sub_content']['role'] = [];
     $this->data['content'] = 'client/home/home';
     $this->render('client/layoutClient/client_layout', $this->data);
-    // $getAllCategory = $this->province->getNameCategory();
-    // $title = 'Sản phẩm mới';
-    // $this->data['sub_content']['product_list'] = $getAllCategory;
-    // $this->data['sub_content']['pages_title'] = $title;
-    // $this->data['pages_title'] = $title;
-    // $this->data['content'] = 'home/index';
-    // // Render view
-    // $this->render('layouts/client_layout', $this->data);
-    // print_r($getAllCategory);
-    // $data = [
-    //   'name' => 'Haha'
-    // ];
-    // $id = $this->province->insertCategory($data);
-    // $data = $this->db->table('category')->get();
-    // $check = $this->db->table('category')->insert($data);
-    // var_dump($check);
   }
 
   public function get_user()
@@ -67,7 +51,7 @@ class Home extends Controller
 
       $validate = $request->validate();
       if (!$validate) {
-        Session::flash('msg', 'Da co loi xay ra. Vui long kiem tra lai!');
+        Session::flash('msg', 'Đã có lỗi xảy ra, vui lòng kiểm tra lại!');
       }
     }
     $response = new Response();

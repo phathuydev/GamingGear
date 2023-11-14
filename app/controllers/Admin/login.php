@@ -28,7 +28,7 @@ class Login extends Controller
       }
     }
     $response = new Response();
-    $response->redirect('gg-login/get_login/');
+    $response->redirect('lgAdmin/get_login');
   }
 
   public function get_login()

@@ -2,6 +2,13 @@
 echo $title;
 #echo toSlug('Phat Huy');
 ?>
+public function getNameCategory()
+  {
+    $data = $this->db->table('category')->select('category_id, category_name')->limit(3, 1)->orderBy('category_id', 'ASC')->get();
+    $data = $this->db->table('products')->join('category', 'products.category = category.id')->select('category.name as ten_danh_muc, products.product_name as ten_san_pham')->get();
+
+    return $data;
+  }
 <h1>Trang Chủ</h1>
 <h3>Sản Phẩm Mới</h3>
 <p>Tên người dùng: <?php echo !empty($userInfo['user_name']) ? $userInfo['user_name'] : false; ?></p>

@@ -28,12 +28,5 @@ class Controller
     if (file_exists(_DIR_ROOT . '/app/views/' . $view . '.php')) {
       require_once _DIR_ROOT . '/app/views/' . $view . '.php';
     }
-    // ob_start();
-
-    // $contentView = ob_get_contents();
-    // ob_end_clean();
-
-    // $template = new Template();
-    // $template->run($contentView, $data);
   }
 }

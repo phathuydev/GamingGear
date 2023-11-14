@@ -3,7 +3,7 @@
   <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
       <a class="sidebar-brand brand-logo" href="<?php echo _ADMIN_DEFAULT ?>/dashboard"><img src="<? echo _WEB_ROOT ?>/public/assets/admin/img/logo2.jpg" alt="logo" /></a>
-      <a class="sidebar-brand brand-logo-mini" href="<?php echo _ADMIN_DEFAULT ?>/dashboard"><img src="<? echo _WEB_ROOT ?>/public/assets/admin/img/logo4.jpg" alt="logo" style="width: 30px !important; height: 30px !important;"/></a>
+      <a class="sidebar-brand brand-logo-mini" href="<?php echo _ADMIN_DEFAULT ?>/dashboard"><img src="<? echo _WEB_ROOT ?>/public/assets/admin/img/logo4.jpg" alt="logo" style="width: 30px !important; height: 30px !important;" /></a>
     </div>
     <ul class="nav">
       <li class="nav-item profile">
