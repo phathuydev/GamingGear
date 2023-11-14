@@ -1,10 +1,10 @@
 <?php
 class AppServiceProvider extends ServiceProvider {
   public function boot(){
-    $dataUser = $this->db->table('user')->where('user_id', '=' , 1)->first();
-    $categoryAll = $this->db->table('category')->get();
-    $data['categoryAll'] = $categoryAll;
-    $data['userInfo'] = $dataUser;
+    // $dataUser = $this->db->table('user')->where('user_id', '=' , 1)->first();
+    // $categoryAll = $this->db->table('category')->get();
+    // $data['categoryAll'] = $categoryAll;
+    // $data['userInfo'] = $dataUser;
     $data['role'] = [
       'managerAdmin' => 'Website Manager'
     ];

@@ -7,7 +7,7 @@ class Profile extends Controller
   {
     $this->province = $this->model('');
   }
-  public function index($idUser)
+  public function index($idUser=0)
   {
     $title = 'Profile';
     $this->data['pages_title'] = $title;

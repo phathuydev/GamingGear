@@ -7,7 +7,7 @@ class ProductSearch extends Controller
   {
     $this->province = $this->model('');
   }
-  public function index($keyWord)
+  public function index($keyWord='')
   {
     $title = 'Product Search';
     $this->data['pages_title'] = $title;

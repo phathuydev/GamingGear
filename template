@@ -1,21 +1,58 @@
 <?php
 echo $title;
 #echo toSlug('Phat Huy');
+class ProductTest extends Controller
+{
+    public $province;
+    public $data = [];
+    public function __construct()
+    {
+        $this->province = $this->model('ProductModel');
+    }
+    public function index()
+    {
+        echo 'Danh sách sản phẩm';
+    }
+    public function list()
+    {
+        $dataProduct = $this->province->getProductList();
+        $title = 'Danh sách sản phẩm';
+        $this->data['sub_content']['product_list'] = $dataProduct;
+        $this->data['sub_content']['pages_title'] = [
+            'Hi' => 'Hello'
+        ];
+        $this->data['pages_title'] = $title;
+        $this->data['content'] = 'products/list';
+        // Render view
+        $this->render('layouts/client_layout', $this->data);
+    }
+    public function detail($id = 0)
+    {
+        $product = $this->model('ProductModel');
+        // Lấy dữ liệu
+        $this->data['sub_content']['info'] = $product->getDetailProduct($id);
+        $this->data['sub_content']['title'] = 'Chi tiết sản phẩm';
+        $this->data['pages_title'] = 'Chi tiết sản phẩm';
+        $this->data['content'] = 'Products/detail';
+        // Show dữ liệu
+        $this->render('layouts/client_layout', $this->data);
+    }
+}
 ?>
 public function getNameCategory()
-  {
-    $data = $this->db->table('category')->select('category_id, category_name')->limit(3, 1)->orderBy('category_id', 'ASC')->get();
-    $data = $this->db->table('products')->join('category', 'products.category = category.id')->select('category.name as ten_danh_muc, products.product_name as ten_san_pham')->get();
+{
+$data = $this->db->table('category')->select('category_id, category_name')->limit(3, 1)->orderBy('category_id', 'ASC')->get();
+$data = $this->db->table('products')->join('category', 'products.category = category.id')->select('category.name as ten_danh_muc, products.product_name as ten_san_pham')->get();
 
-    return $data;
-  }
+return $data;
+}
 <h1>Trang Chủ</h1>
 <h3>Sản Phẩm Mới</h3>
 <p>Tên người dùng: <?php echo !empty($userInfo['user_name']) ? $userInfo['user_name'] : false; ?></p>
 <p>Email người dùng: <?php echo !empty($userInfo['email']) ? $userInfo['email'] : false; ?></p>
 <hr>
 <?php foreach ($categoryAll as $item) : ?>
-  <p>Tên danh mục: <?php echo $item['category_name'] ?></p>
+    <p>Tên danh mục: <?php echo $item['category_name'] ?></p>
 <?php endforeach; ?>
 <?php
 class Template
@@ -32,7 +69,7 @@ class Template
         $this->printRaw();
 
         $this->ifCondition();
-        
+
         eval('?>' . $this->__content . '<?php');
     }
 

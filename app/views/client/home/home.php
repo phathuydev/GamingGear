@@ -1,7 +1,3 @@
-<div class="row">
-  <div class="col-lg-12 p-0">
-    <div class="page-content p-5">
-
       <!-- ***** Banner Start ***** -->
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -64,7 +60,7 @@
                     <!-- <a href="#" class="active"><i class="fas fa-heart"></i></a> -->
                   </div>
                 </div>
-                
+
                 <div class="item">
                   <div class="thumb">
                     <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
@@ -844,6 +840,3 @@
 
         </div>
       </div>
-    </div>
-  </div>
-</div>

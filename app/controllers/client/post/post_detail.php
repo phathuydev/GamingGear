@@ -7,7 +7,7 @@ class PostDetail extends Controller
   {
     $this->province = $this->model('');
   }
-  public function category($idPost)
+  public function category($idPost=0)
   {
     $title = 'Post Detail';
     $this->data['pages_title'] = $title;

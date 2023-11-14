@@ -7,7 +7,7 @@ class Order extends Controller
   {
     $this->province = $this->model('');
   }
-  public function index($idUser)
+  public function index($idUser=0)
   {
     $title = 'Order History';
     $this->data['pages_title'] = $title;
@@ -15,7 +15,7 @@ class Order extends Controller
     $this->data['content'] = 'client/profile/order';
     $this->render('client/layoutClient/client_layout', $this->data);
   }
-  public function orderfail($idUser)
+  public function orderfail($idUser=0)
   {
     $title = 'Order Fail';
     $this->data['pages_title'] = $title;

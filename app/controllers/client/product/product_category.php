@@ -7,7 +7,7 @@ class ProductCategory extends Controller
   {
     $this->province = $this->model('');
   }
-  public function index($idCategory)
+  public function index($idCategory=0)
   {
     $title = 'Product Category';
     $this->data['pages_title'] = $title;
