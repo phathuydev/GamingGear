@@ -42,7 +42,7 @@
             </li>
             <div class="dropdown-menu rounded-3 mt-2">
               <a class="dropdown-item" style="font-size: 17px;" href="profile">Profile</a>
-              <a class="dropdown-item" style="font-size: 17px;" href="lgUser">Login</a>
+                <a class="dropdown-item" style="font-size: 17px;" href="login">lgUser</a>
               <a class="dropdown-item" style="font-size: 17px;" href="">Logout</a>
               <a class="dropdown-item" style="font-size: 17px;" href="gg-admin">Admin Manager</a>
             </div>
@@ -56,6 +56,3 @@
     </div>
   </div>
 </header>
-<div class="row">
-  <div class="col-lg-12 p-0">
-    <div class="page-content p-5">

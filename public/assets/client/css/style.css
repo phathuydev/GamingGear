@@ -575,3 +575,33 @@ input {
     padding: 0;
   }
 }
+
+.img-login {
+    width: 70px;
+}
+
+body .page-content-login {
+    margin-top: 110px;
+    background-color: #27292a;
+    border-radius: 23px;
+}
+
+.banner_register {
+    background-image: url('/public/assets/client/images/banner_register.jpg');
+    height: 300px;
+}
+
+.cascading-right {
+    margin-right: -50px;
+}
+
+@media (max-width: 991.98px) {
+    .cascading-right {
+        margin-right: 0;
+    }
+}
+
+.banner-reset {
+    width: 100%;
+    height: 435px;
+}
