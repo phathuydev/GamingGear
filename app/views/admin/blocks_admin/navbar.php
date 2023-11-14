@@ -155,19 +155,9 @@
             <i class="mdi mdi-menu-down d-none d-sm-block"></i>
           </div>
         </a>
-        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
-          <h6 class="p-3 mb-0">Profile</h6>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item preview-item">
-            <div class="preview-thumbnail">
-              <div class="preview-icon bg-dark rounded-circle">
-                <i class="mdi mdi-settings text-success"></i>
-              </div>
-            </div>
-            <div class="preview-item-content">
-              <p class="preview-subject mb-1">Settings</p>
-            </div>
-          </a>
+          <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list mt-1"
+               aria-labelledby="profileDropdown">
+              <h6 class="p-1 mb-0"></h6>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item preview-item">
             <div class="preview-thumbnail">
@@ -180,16 +170,17 @@
             </div>
           </a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item preview-item" href="<?php echo _WEB_ROOT ?>/home">
+              <a class="dropdown-item preview-item border-bottom" href="<?php echo _WEB_ROOT ?>/home">
             <div class="preview-thumbnail">
               <div class="preview-icon bg-dark rounded-circle">
-                <i class="mdi mdi-arrow-left text-danger"></i>
+                  <i class="mdi mdi-arrow-left text-primary"></i>
               </div>
             </div>
             <div class="preview-item-content">
               <p class="preview-subject mb-1">Return Website</p>
             </div>
           </a>
+              <h6 class="p-0 mt-0"></h6>
         </div>
       </li>
     </ul>

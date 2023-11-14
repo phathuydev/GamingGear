@@ -1,7 +1,7 @@
 <?php
 $config['database'] = [
-    'db' => 'gaming_gear',
+    'db' => 'gg',
   'host' => 'localhost',
   'user' => 'root',
-    'pass' => '123456'
+    'pass' => 'mysql'
 ];
