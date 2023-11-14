@@ -129,11 +129,10 @@
       <div class="most-popular">
         <div class="row">
           <div class="col-lg-12">
-            <div class="heading-section text-center">
+            <div class="heading-section text-center mt-4">
               <h4>Keyboard Product</h4>
             </div>
             <div class="row">
-
               <div class="col-lg-3 col-sm-6">
                 <div class="item">
                   <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
@@ -260,7 +259,7 @@
       <div class="most-popular">
         <div class="row">
           <div class="col-lg-12">
-            <div class="heading-section text-center">
+            <div class="heading-section text-center mt-4">
               <h4>Mouse Product</h4>
             </div>
             <div class="row">
@@ -394,7 +393,7 @@
       <div class="most-popular">
         <div class="row">
           <div class="col-lg-12">
-            <div class="heading-section text-center">
+            <div class="heading-section text-center mt-4">
               <h4>Gaming Headset Product</h4>
             </div>
             <div class="row">
@@ -526,7 +525,7 @@
       <div class="most-popular">
         <div class="row">
           <div class="col-lg-12">
-            <div class="heading-section text-center">
+            <div class="heading-section text-center mt-4">
               <h4>Gaming Speaker Product</h4>
             </div>
             <div class="row">
@@ -657,7 +656,7 @@
       <div class="most-popular">
         <div class="row">
           <div class="col-lg-12">
-            <div class="heading-section text-center">
+            <div class="heading-section text-center mt-4">
               <h4>Gamepad Product</h4>
             </div>
             <div class="row">
@@ -787,7 +786,7 @@
       </div>
       <div class="live-stream">
         <div class="col-lg-12">
-          <div class="heading-section text-center">
+          <div class="heading-section text-center mt-4">
             <h4>Youtube Review</h4>
           </div>
         </div>
