@@ -37,8 +37,10 @@
             <li><a href="contact" class="active">Contact</a></li>
             <li><a href="post" class="active">Post</a></li>
             <li><a href="cart" class="active"><i class="fa fa-shopping-basket"></i></a></li>
-            <li data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="d-flex align-items-center justify-content-center p-2">
-              <img src="<?php echo _WEB_ROOT ?>/public/assets/admin/img/avatar.jpg" style="width: 40px !important; border-radius: 30px;" alt="avatar">
+              <li data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                  class="d-flex align-items-center justify-content-center p-2">
+                  <img src="<?php echo _WEB_ROOT ?>/public/assets/admin/img/avatar.jpg"
+                       style="width: 40px !important; border-radius: 30px;" alt="avatar">
             </li>
             <div class="dropdown-menu rounded-3 mt-2">
               <a class="dropdown-item" style="font-size: 17px;" href="profile">Profile</a>
@@ -56,3 +58,6 @@
     </div>
   </div>
 </header>
+<div class="row">
+    <div class="col-lg-12 p-0">
+        <div class="page-content p-5">
