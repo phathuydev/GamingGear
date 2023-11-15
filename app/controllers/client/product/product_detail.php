@@ -1,5 +1,6 @@
 <?php
-class ProductDetail extends Controller
+
+class Product_detail extends Controller
 {
   public $province;
   public $data = [];

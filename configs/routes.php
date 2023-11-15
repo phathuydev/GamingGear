@@ -7,6 +7,9 @@ $routes['gg-admin'] = 'admin/dashboard';
 // Client
 $routes['home'] = 'home';
 $routes['products'] = 'client/product/product';
+$routes['product-detail'] = 'client/product/product_detail';
+$routes['product-search'] = 'client/product/product_search';
+$routes['product-category'] = 'client/product/product_category';
 $routes['cart'] = 'client/cart/cart';
 $routes['contact'] = 'client/contact/contact';
 $routes['checkout'] = 'client/cart/checkout';

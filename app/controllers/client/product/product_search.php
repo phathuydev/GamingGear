@@ -1,5 +1,6 @@
 <?php
-class ProductSearch extends Controller
+
+class Product_search extends Controller
 {
   public $province;
   public $data = [];
