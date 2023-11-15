@@ -43,8 +43,7 @@
 
                                     <a class="small text-white" href="<?php echo _WEB_ROOT ?>/forgot">Forgot
                                         password?</a>
-                                    <a href="<?php echo _WEB_ROOT ?>/register" class="h6"
-                                       style="color: #ec6090;">Register
+                                    <a href="<?php echo _WEB_ROOT ?>/register" class="h6" style="color: #ec6090;">Register
                                         here</a></p>
                                     <button class="btn btn-lg btn-block btn-primary mt-5"
                                             style="background-color: #dd4b39;" type="submit"><i

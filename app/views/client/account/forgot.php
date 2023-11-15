@@ -11,7 +11,7 @@
                                     <input type="email" id="typeEmailX-2" class="form-control form-control-lg"
                                            placeholder="Email address"/>
                                 </div>
-                                <button class="btn btn-lg btn-block mb-3" type="submit"
+                                <button class="btn btn-lg btn-block mb-2" type="submit"
                                         style="background-color: #ec6090; color: #fff;">Submit
                                 </button>
                                 <a class="float-start small text-white" href="<?php echo _WEB_ROOT ?>/lgUser"><i
