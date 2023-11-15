@@ -19,7 +19,7 @@
                                     <div class="form-outline mb-4">
                                         <label class="form-label" for="form2Example17" style="color: #ec6090;">Username
                                         </label>
-                                        <input type="email" id="form2Example17" class="form-control form-control-lg"/>
+                                        <input type="text" id="form2Example17" class="form-control form-control-lg"/>
                                     </div>
 
                                     <div class="form-outline mb-4">

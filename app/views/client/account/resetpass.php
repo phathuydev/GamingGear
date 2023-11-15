@@ -37,12 +37,12 @@
                                     <form method="post" class="card-body text-cente d-inline-block">
                                         <h3 class="mb-4 h4" style="color: #ec6090;">Reset Password</h3><br>
                                         <div class="form-outline mb-4">
-                                            <input type="email" id="typeEmailX-2" class="form-control form-control-lg"
-                                                   placeholder="Password"/>
+                                            <input type="password" id="typeEmailX-2" name="password"
+                                                   class="form-control form-control-lg" placeholder="Password"/>
                                         </div>
                                         <div class="form-outline mb-4">
-                                            <input type="email" id="typeEmailX-2" class="form-control form-control-lg"
-                                                   placeholder="Confirm Password"/>
+                                            <input type="password" id="typeEmailX-2" name="cpassword"
+                                                   class="form-control form-control-lg" placeholder="Confirm Password"/>
                                         </div>
                                         <button class="btn btn-lg btn-block mb-2" type="submit"
                                                 style="background-color: #ec6090; color: #fff;">Reset
