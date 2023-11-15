@@ -12,7 +12,6 @@ class Resetpass extends Controller
     $title = 'Product List';
     $this->data['pages_title'] = $title;
     $this->data['sub_content']['product'] = [];
-    $this->data['content'] = 'client/account/resetpass';
-    $this->render('client/layoutClient/client_layout', $this->data);
+      $this->render('client/account/resetpass', $this->data);
   }
 }
