@@ -1,3 +1,6 @@
+<div class="heading-section text-center">
+    <h4><em>All</em> Post new</h4>
+</div>
 <div class="container-post">
   <div class="card-post">
     <div class="card__header">
@@ -7,7 +10,9 @@
       <span class="tag tag-blue">Technology</span>
       <h4>What's new in 2022 Tech</h4>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perferendis molestiae non nemo doloribus. Doloremque, nihil! At ea atque quidem!</p>
+
     </div>
+      <input class="btn-post" type="button" value="read more"></input>
     <div class="card__footer">
       <div class="user-post">
         <img src="https://i.pravatar.cc/100?img=1" alt="user__image" class="user__image">
@@ -26,12 +31,14 @@
       <span class="tag tag-brown">Food</span>
       <h4>Delicious Food</h4>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perferendis molestiae non nemo doloribus. Doloremque, nihil! At ea atque quidem!</p>
+
     </div>
+      <input class="btn-post" type="button" value="read more"></input>
     <div class="card__footer">
       <div class="user-post">
         <img src="https://i.pravatar.cc/100?img=2" alt="user__image" class="user__image">
         <div class="user__info">
-          <h5>Jony Doe</h5>
+            <h5>Jony Ryan</h5>
           <small>Yesterday</small>
         </div>
       </div>
@@ -46,8 +53,9 @@
       <h4>Race to your heart content</h4>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perferendis molestiae non nemo doloribus. Doloremque, nihil! At ea atque quidem!</p>
     </div>
+      <input class="btn-post" type="button" value="read more"></input>
     <div class="card__footer">
-    <div class="user-post">
+        <div class="user-post">
         <img src="https://i.pravatar.cc/100?img=3" alt="user__image" class="user__image">
         <div class="user__info">
           <h5>John Doe</h5>
@@ -64,10 +72,12 @@
       <span class="tag tag-red">Automobile</span>
       <h4>Race to your heart content</h4>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perferendis molestiae non nemo doloribus. Doloremque, nihil! At ea atque quidem!</p>
+
     </div>
+      <input class="btn-post" type="button" value="read more"></input>
     <div class="card__footer">
-    <div class="user-post">
-    <img src="https://i.pravatar.cc/100?img=3" alt="user__image" class="user__image">
+        <div class="user-post">
+            <img src="https://i.pravatar.cc/100?img=3" alt="user__image" class="user__image">
         <div class="user__info">
           <h5>John Doe</h5>
           <small>2d ago</small>
@@ -83,10 +93,12 @@
       <span class="tag tag-red">Automobile</span>
       <h4>Race to your heart content</h4>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perferendis molestiae non nemo doloribus. Doloremque, nihil! At ea atque quidem!</p>
+
     </div>
+      <input class="btn-post" type="button" value="read more"></input>
     <div class="card__footer">
-    <div class="user-post">
-    <img src="https://i.pravatar.cc/100?img=3" alt="user__image" class="user__image">
+        <div class="user-post">
+            <img src="https://i.pravatar.cc/100?img=3" alt="user__image" class="user__image">
         <div class="user__info">
           <h5>John Doe</h5>
           <small>5d ago</small>
@@ -102,10 +114,12 @@
       <span class="tag tag-red">Automobile</span>
       <h4>Race to your heart content</h4>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perferendis molestiae non nemo doloribus. Doloremque, nihil! At ea atque quidem!</p>
+
     </div>
+      <input class="btn-post" type="button" value="read more"></input>
     <div class="card__footer">
-    <div class="user-post">
-    <img src="https://i.pravatar.cc/100?img=3" alt="user__image" class="user__image">
+        <div class="user-post">
+            <img src="https://i.pravatar.cc/100?img=3" alt="user__image" class="user__image">
         <div class="user__info">
           <h5>John Doe</h5>
           <small>2d ago</small>

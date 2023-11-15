@@ -11,6 +11,7 @@ $routes['product-detail'] = 'client/product/product_detail';
 $routes['product-search'] = 'client/product/product_search';
 $routes['product-category'] = 'client/product/product_category';
 $routes['cart'] = 'client/cart/cart';
+$routes['contact'] = 'client/contact/contact';
 $routes['profile'] = 'client/profile/profile';
 $routes['order'] = 'client/profile/order';
 $routes['post'] = 'client/post/post';

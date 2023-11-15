@@ -36,7 +36,7 @@
             <li><a href="products" class="active">Product</a></li>
             <li><a href="contact" class="active">Contact</a></li>
             <li><a href="post" class="active">Post</a></li>
-            <li><a href="cart" class="active"><i class="fa fa-shopping-basket"></i></a></li>
+              <li><a href="cart.php" class="active"><i class="fa fa-shopping-cart"></i></a></li>
               <li data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                   class="d-flex align-items-center justify-content-center p-2">
                   <img src="<?php echo _WEB_ROOT ?>/public/assets/admin/img/avatar.jpg"
@@ -44,7 +44,7 @@
             </li>
             <div class="dropdown-menu rounded-3 mt-2">
               <a class="dropdown-item" style="font-size: 17px;" href="profile">Profile</a>
-                <a class="dropdown-item" style="font-size: 17px;" href="login">lgUser</a>
+                <a class="dropdown-item" style="font-size: 17px;" href="lgUser">Login</a>
               <a class="dropdown-item" style="font-size: 17px;" href="">Logout</a>
               <a class="dropdown-item" style="font-size: 17px;" href="gg-admin">Admin Manager</a>
             </div>
