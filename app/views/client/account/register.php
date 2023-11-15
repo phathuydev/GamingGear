@@ -43,19 +43,19 @@
                                     </div>
 
                                     <div class="pt-1 mb-4">
-                                        <button class="btn btn-dark btn-lg btn-block" type="button"
+                                        <button class="btn btn-dark btn-lg btn-block " type="button"
                                                 style="background-color: #ec6090; color: #fff;">Register
                                         </button>
                                     </div>
 
-                                    <a class="small text-white" href="<?php echo _WEB_ROOT ?>/forgot">Forgot
-                                        password?</a>
-                                    <a href="<?php echo _WEB_ROOT ?>/register" class="h6" style="color: #ec6090;">Register
-                                        here</a></p>
+                                    <a class="float-start small text-white mb-4"
+                                       href="<?php echo _WEB_ROOT ?>/lgUser"><i
+                                                class="fa-solid fa-arrow-left"></i> Return Login</a>
                                     <button class="btn btn-lg btn-block btn-primary mt-5"
                                             style="background-color: #dd4b39;" type="submit"><i
-                                                class="fab fa-google me-2"></i> Sign in with google
+                                                class="fab fa-google me-2 "></i> Sign in with google
                                     </button>
+
                                 </form>
 
                             </div>
