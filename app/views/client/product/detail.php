@@ -288,13 +288,13 @@
                                 <div class="flex-grow-1 flex-shrink-1">
                                     <div>
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <p class="mb-1">
+                                            <p class="mb-1 text-white">
                                                 Maria Smantha <span class="small">- 2 hours ago</span>
                                             </p>
                                             <a href="#!"><i class="fas fa-reply fa-xs"></i><span
                                                         class="small"> reply</span></a>
                                         </div>
-                                        <p class="small mb-0">
+                                        <p class="small mb-0 text-white">
                                             It is a long established fact that a reader will be distracted by
                                             the readable content of a page.
                                         </p>
@@ -309,11 +309,11 @@
                                         <div class="flex-grow-1 flex-shrink-1">
                                             <div>
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <p class="mb-1">
+                                                    <p class="mb-1 text-white">
                                                         Simona Disa <span class="small">- 3 hours ago</span>
                                                     </p>
                                                 </div>
-                                                <p class="small mb-0">
+                                                <p class="small mb-0 text-white">
                                                     letters, as opposed to using 'Content here, content here',
                                                     making it look like readable English.
                                                 </p>
@@ -330,11 +330,11 @@
                                         <div class="flex-grow-1 flex-shrink-1">
                                             <div>
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <p class="mb-1">
+                                                    <p class="mb-1 text-white">
                                                         John Smith <span class="small">- 4 hours ago</span>
                                                     </p>
                                                 </div>
-                                                <p class="small mb-0">
+                                                <p class="small mb-0 text-white">
                                                     the majority have suffered alteration in some form, by
                                                     injected humour, or randomised words.
                                                 </p>
@@ -348,13 +348,13 @@
                                 <div class="flex-grow-1 flex-shrink-1">
                                     <div>
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <p class="mb-1">
+                                            <p class="mb-1 text-white">
                                                 Natalie Smith <span class="small">- 2 hours ago</span>
                                             </p>
                                             <a href="#!"><i class="fas fa-reply fa-xs"></i><span
                                                         class="small"> reply</span></a>
                                         </div>
-                                        <p class="small mb-0">
+                                        <p class="small mb-0 text-white">
                                             The standard chunk of Lorem Ipsum used since the 1500s is
                                             reproduced below for those interested. Sections 1.10.32 and
                                             1.10.33.
@@ -370,11 +370,11 @@
                                         <div class="flex-grow-1 flex-shrink-1">
                                             <div>
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <p class="mb-1">
+                                                    <p class="mb-1 text-white">
                                                         Lisa Cudrow <span class="small">- 4 hours ago</span>
                                                     </p>
                                                 </div>
-                                                <p class="small mb-0">
+                                                <p class="small mb-0 text-white">
                                                     Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
                                                     scelerisque ante sollicitudin commodo. Cras purus odio,
                                                     vestibulum in vulputate at, tempus viverra turpis.
@@ -392,11 +392,11 @@
                                         <div class="flex-grow-1 flex-shrink-1">
                                             <div>
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <p class="mb-1">
+                                                    <p class="mb-1 text-white">
                                                         Maggie McLoan <span class="small">- 5 hours ago</span>
                                                     </p>
                                                 </div>
-                                                <p class="small mb-0">
+                                                <p class="small mb-0 text-white">
                                                     a Latin professor at Hampden-Sydney College in Virginia,
                                                     looked up one of the more obscure Latin words, consectetur
                                                 </p>
@@ -413,11 +413,11 @@
                                         <div class="flex-grow-1 flex-shrink-1">
                                             <div>
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <p class="mb-1">
+                                                    <p class="mb-1 text-white">
                                                         John Smith <span class="small">- 6 hours ago</span>
                                                     </p>
                                                 </div>
-                                                <p class="small mb-0">
+                                                <p class="small mb-0 text-white">
                                                     Autem, totam debitis suscipit saepe sapiente magnam officiis
                                                     quaerat necessitatibus odio assumenda, perferendis quae iusto
                                                     labore laboriosam minima numquam impedit quam dolorem!
