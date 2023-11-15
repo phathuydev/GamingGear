@@ -2,7 +2,7 @@
 // Kế thừa từ class Model
 class HomeModel extends Model
 {
-  private $__table = "product";
+    private $__table = "category";
 
   // Định nghĩa table trong Model
   function tableFill()
@@ -27,11 +27,24 @@ class HomeModel extends Model
     return $data[$id];
   }
 
-  public function getAllUser()
+    public function getNameCategory()
   {
-    $data = $this->db->table('user')->select('*')->get();
+      // $data = $this->db->table('category')->select('category_id, category_name')->limit(3, 1)->orderBy('category_id', 'ASC')->get();
+      // $data = $this->db->table('products')->join('category', 'products.category = category.id')->select('category.name as ten_danh_muc, products.product_name as ten_san_pham')->get();
+
+      // return $data;
+  }
+
+    public function getAllCategory()
+    {
+        $data = $this->db->table('category')->select('*')->get();
     return $data;
   }
+    // public function getAllUser()
+    // {
+    //   $data = $this->db->table('user')->select('*')->get();
+    //   return $data;
+    // }
   public function getDetailCategory($name)
   {
     $data = $this->db->table('category')->where('category_id', '>', 0)->where('category_name', '=', $name)->select('category_id, category_name')->first();
@@ -44,7 +57,7 @@ class HomeModel extends Model
     return $this->db->lastID();
   }
 
-  public function selectEmail($email){
-      $this->db->table('user')->where('email', '=', $email)->get();
-  }
+    // public function selectEmail($email){
+    //     $this->db->table('user')->where('email', '=', $email)->get();
+    // }
 }
