@@ -41,10 +41,11 @@
           <div class="col-lg-12">
             <div class="featured-games header-text">
               <div class="owl-features owl-carousel">
-
                 <div class="item">
                   <div class="thumb">
-                    <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
+                      <a href="<?= _WEB_ROOT ?>/product-detail"><img
+                                  src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg"
+                                  alt=""></a>
                     <div class="hover-effect">
                       <h6>100k sold</h6>
                     </div>
@@ -263,7 +264,6 @@
               <h4>Mouse Product</h4>
             </div>
             <div class="row">
-
               <div class="col-lg-3 col-sm-6">
                 <div class="item">
                   <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/popular-mouse.jpg" alt="">

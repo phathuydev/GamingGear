@@ -46,16 +46,12 @@
                 </h4>
                 <div class="d-flex flex-row my-3">
                     <div class="text-warning mb-1 me-2">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <span class="ms-1">
-                  4.5
+                <span class="ms-1">
+                  5
                 </span>
+                        <i class="fa fa-star"></i>
                     </div>
-                    <span class="text-muted"><i class="fas fa-shopping-basket fa-sm mx-1"></i>154 orders</span>
+                    <span class="text-muted"><i class="fas fa-shopping-basket fa-sm mx-1"></i>154 products</span>
                     <span class="text-success ms-2">In stock</span>
                 </div>
 
@@ -263,166 +259,82 @@
         </div>
     </div>
 </div>
-<div class="d-flex align-items-center justify-content-start ms-2 mb-2 mt-5">
-    <img class="rounded-circle shadow-1-strong me-3" src="<?php echo _WEB_ROOT ?>/public/assets/admin/img/avatar.jpg"
-         alt="avatar" style="width: 50px !important; border-radius: 30px;"/>
-    <form method="post" class="w-100 d-flex slidebar">
-        <input type="text" name="content" class="rounded-5 ps-3 w-100 p-1" placeholder="">
-        <input type="hidden" name="id_users" value="">
-        <input type="hidden" name="id_product" value="">
-        <button type="submit" name="submit_comment" class="border-0 w-auto ms-3 text-white"
-                style="font-size: 24px; background-color:#27292a;"><i class="fa fa-paper-plane" title="Gửi"></i>
-        </button>
-
-    </form>
-</div>
+<hr class="border border-white mt-5">
 <div class="container">
+    <h4 class="h6 mt-3" style="color: #ec6090; font-size: 24px;">Đánh giá và bình luận</h4>
     <div class="row d-flex justify-content-center">
         <div class="col-md-12 col-lg-10 col-xl-8">
-            <div class="">
-                <div class="card-body p-4">
-                    <h4 class="text-center mb-4 pb-2">Nested comments section</h4>
-                    <div class="row">
-                        <div class="col">
-                            <div class="d-flex flex-start">
-                                <div class="flex-grow-1 flex-shrink-1">
-                                    <div>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <p class="mb-1 text-white">
-                                                Maria Smantha <span class="small">- 2 hours ago</span>
-                                            </p>
-                                            <a href="#!"><i class="fas fa-reply fa-xs"></i><span
-                                                        class="small"> reply</span></a>
-                                        </div>
-                                        <p class="small mb-0 text-white">
-                                            It is a long established fact that a reader will be distracted by
-                                            the readable content of a page.
+            <div class="card-body p-0">
+                <div class="d-flex align-items-center justify-content-start mb-5 mt-5">
+                    <img class="rounded-circle shadow-1-strong me-3"
+                         src="<?php echo _WEB_ROOT ?>/public/assets/admin/img/avatar.jpg" alt="avatar"
+                         style="width: 50px !important; border-radius: 30px;"/>
+                    <form method="post" class="w-100 d-flex slidebar">
+                        <input type="text" name="content" class="rounded-5 ps-3 w-100" placeholder="">
+                        <input type="hidden" name="id_users" value="">
+                        <input type="hidden" name="id_product" value="">
+                        <button type="submit" name="submit_comment" class="border-0 w-auto ms-3 text-white"
+                                style="font-size: 24px; background-color:#27292a;"><i class="fa fa-paper-plane"
+                                                                                      title="Gửi"></i></button>
+                    </form>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="d-flex flex-start">
+                            <img src="<?php echo _WEB_ROOT ?>/public/assets/admin/img/avatar.jpg" alt="" class="me-3"
+                                 style="width: 45px !important; height: 40px !important; border-radius: 30px;">
+                            <div class="flex-grow-1 flex-shrink-1">
+                                <div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p class="mb-1 text-white">
+                                            Maria Smantha <span class="small">- 2 hours ago</span>
                                         </p>
+                                        <a href="#!"><i class="fas fa-reply fa-xs"></i><span class="small"> reply</span></a>
                                     </div>
+                                    <p class="small mb-0 text-white">
+                                        It is a long established fact that a reader will be distracted by
+                                        the readable content of a page.
+                                    </p>
+                                </div>
 
-                                    <div class="d-flex flex-start mt-4">
-                                        <a class="me-3" href="#">
-                                            <img class="rounded-circle shadow-1-strong"
-                                                 src="<?php echo _WEB_ROOT ?>/public/assets/admin/img/avatar.jpg"
-                                                 alt="avatar" style="width: 40px !important; border-radius: 30px;"/>
-                                        </a>
-                                        <div class="flex-grow-1 flex-shrink-1">
-                                            <div>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <p class="mb-1 text-white">
-                                                        Simona Disa <span class="small">- 3 hours ago</span>
-                                                    </p>
-                                                </div>
-                                                <p class="small mb-0 text-white">
-                                                    letters, as opposed to using 'Content here, content here',
-                                                    making it look like readable English.
+                                <div class="d-flex flex-start mt-4">
+                                    <a class="me-3" href="#">
+                                        <img class="rounded-circle shadow-1-strong"
+                                             src="<?php echo _WEB_ROOT ?>/public/assets/admin/img/avatar.jpg"
+                                             alt="avatar" style="width: 40px !important; border-radius: 30px;"/>
+                                    </a>
+                                    <div class="flex-grow-1 flex-shrink-1">
+                                        <div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <p class="mb-1 text-white">
+                                                    Simona Disa <span class="small">- 3 hours ago</span>
                                                 </p>
                                             </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex flex-start mt-4">
-                                        <a class="me-3" href="#">
-                                            <img class="rounded-circle shadow-1-strong"
-                                                 src="<?php echo _WEB_ROOT ?>/public/assets/admin/img/avatar.jpg"
-                                                 alt="avatar" style="width: 40px !important; border-radius: 30px;"/>
-                                        </a>
-                                        <div class="flex-grow-1 flex-shrink-1">
-                                            <div>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <p class="mb-1 text-white">
-                                                        John Smith <span class="small">- 4 hours ago</span>
-                                                    </p>
-                                                </div>
-                                                <p class="small mb-0 text-white">
-                                                    the majority have suffered alteration in some form, by
-                                                    injected humour, or randomised words.
-                                                </p>
-                                            </div>
+                                            <p class="small mb-0 text-white">
+                                                letters, as opposed to using 'Content here, content here',
+                                                making it look like readable English.
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="d-flex flex-start mt-4">
-                                <div class="flex-grow-1 flex-shrink-1">
-                                    <div>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <p class="mb-1 text-white">
-                                                Natalie Smith <span class="small">- 2 hours ago</span>
+                                <div class="d-flex flex-start mt-4">
+                                    <a class="me-3" href="#">
+                                        <img class="rounded-circle shadow-1-strong"
+                                             src="<?php echo _WEB_ROOT ?>/public/assets/admin/img/avatar.jpg"
+                                             alt="avatar" style="width: 40px !important; border-radius: 30px;"/>
+                                    </a>
+                                    <div class="flex-grow-1 flex-shrink-1">
+                                        <div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <p class="mb-1 text-white">
+                                                    John Smith <span class="small">- 4 hours ago</span>
+                                                </p>
+                                            </div>
+                                            <p class="small mb-0 text-white">
+                                                the majority have suffered alteration in some form, by
+                                                injected humour, or randomised words.
                                             </p>
-                                            <a href="#!"><i class="fas fa-reply fa-xs"></i><span
-                                                        class="small"> reply</span></a>
-                                        </div>
-                                        <p class="small mb-0 text-white">
-                                            The standard chunk of Lorem Ipsum used since the 1500s is
-                                            reproduced below for those interested. Sections 1.10.32 and
-                                            1.10.33.
-                                        </p>
-                                    </div>
-
-                                    <div class="d-flex flex-start mt-4">
-                                        <a class="me-3" href="#">
-                                            <img class="rounded-circle shadow-1-strong"
-                                                 src="<?php echo _WEB_ROOT ?>/public/assets/admin/img/avatar.jpg"
-                                                 alt="avatar" style="width: 40px !important; border-radius: 30px;"/>
-                                        </a>
-                                        <div class="flex-grow-1 flex-shrink-1">
-                                            <div>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <p class="mb-1 text-white">
-                                                        Lisa Cudrow <span class="small">- 4 hours ago</span>
-                                                    </p>
-                                                </div>
-                                                <p class="small mb-0 text-white">
-                                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-                                                    scelerisque ante sollicitudin commodo. Cras purus odio,
-                                                    vestibulum in vulputate at, tempus viverra turpis.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex flex-start mt-4">
-                                        <a class="me-3" href="#">
-                                            <img class="rounded-circle shadow-1-strong"
-                                                 src="<?php echo _WEB_ROOT ?>/public/assets/admin/img/avatar.jpg"
-                                                 alt="avatar" style="width: 40px !important; border-radius: 30px;"/>
-                                        </a>
-                                        <div class="flex-grow-1 flex-shrink-1">
-                                            <div>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <p class="mb-1 text-white">
-                                                        Maggie McLoan <span class="small">- 5 hours ago</span>
-                                                    </p>
-                                                </div>
-                                                <p class="small mb-0 text-white">
-                                                    a Latin professor at Hampden-Sydney College in Virginia,
-                                                    looked up one of the more obscure Latin words, consectetur
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex flex-start mt-4">
-                                        <a class="me-3" href="#">
-                                            <img class="rounded-circle shadow-1-strong"
-                                                 src="<?php echo _WEB_ROOT ?>/public/assets/admin/img/avatar.jpg"
-                                                 alt="avatar" style="width: 40px !important; border-radius: 30px;"/>
-                                        </a>
-                                        <div class="flex-grow-1 flex-shrink-1">
-                                            <div>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <p class="mb-1 text-white">
-                                                        John Smith <span class="small">- 6 hours ago</span>
-                                                    </p>
-                                                </div>
-                                                <p class="small mb-0 text-white">
-                                                    Autem, totam debitis suscipit saepe sapiente magnam officiis
-                                                    quaerat necessitatibus odio assumenda, perferendis quae iusto
-                                                    labore laboriosam minima numquam impedit quam dolorem!
-                                                </p>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
