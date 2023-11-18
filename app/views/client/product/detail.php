@@ -1,74 +1,80 @@
-<h4 style="color: #ec6090; font-size: 30px;" class="mb-5 text-center">Product Detail</h4>
-<div class="container">
-    <div class="row gx-5">
-        <aside class="col-lg-6 mt-4">
+<?php foreach ($getProductDetail as $item) : ?>
+    <h4 style="color: #ec6090; font-size: 30px;" class="mb-5 text-center">Product Detail</h4>
+    <div class="container">
+        <div class="row gx-5">
+            <aside class="col-lg-6 mt-4">
             <div class="rounded-4 mb-4 d-flex justify-content-center">
                 <a data-fslightbox="mygalley" class="rounded-4 border" target="_blank" data-type="image"
-                   href="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-1.png">
-                    <img style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit"
-                         src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-1.png"/>
+                   href="<?php echo _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>">
+                    <img style="width: 400px; height: 400px; margin: auto;" class="rounded-4 fit"
+                         src="<?php echo _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>"/>
                 </a>
             </div>
             <div class="d-flex justify-content-center mb-3">
                 <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank" data-type="image"
-                   href="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-1.png" class="item-thumb">
-                    <img width="60" height="60" class="rounded-2"
-                         src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-1.png"/>
+                   href="<?php echo _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>"
+                   class="item-thumb">
+                    <img width="70" height="70" class="rounded-2"
+                         src="<?php echo _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>"/>
                 </a>
                 <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank" data-type="image"
-                   href="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-1.png" class="item-thumb">
-                    <img width="60" height="60" class="rounded-2"
-                         src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-1.png"/>
+                   href="<?php echo _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>"
+                   class="item-thumb">
+                    <img width="70" height="70" class="rounded-2"
+                         src="<?php echo _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>"/>
                 </a>
                 <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank" data-type="image"
-                   href="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-1.png" class="item-thumb">
-                    <img width="60" height="60" class="rounded-2"
-                         src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-1.png"/>
+                   href="<?php echo _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>"
+                   class="item-thumb">
+                    <img width="70" height="70" class="rounded-2"
+                         src="<?php echo _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>"/>
                 </a>
                 <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank" data-type="image"
-                   href="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-1.png" class="item-thumb">
-                    <img width="60" height="60" class="rounded-2"
-                         src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-1.png"/>
+                   href="<?php echo _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>"
+                   class="item-thumb">
+                    <img width="70" height="70" class="rounded-2"
+                         src="<?php echo _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>"/>
                 </a>
                 <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank" data-type="image"
-                   href="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-1.png" class="item-thumb">
-                    <img width="60" height="60" class="rounded-2"
-                         src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-1.png"/>
+                   href="<?php echo _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>"
+                   class="item-thumb">
+                    <img width="70" height="70" class="rounded-2"
+                         src="<?php echo _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>"/>
                 </a>
             </div>
             <!-- thumbs-wrap.// -->
             <!-- gallery-wrap .end// -->
-        </aside>
-        <main class="col-lg-6 mt-4">
+            </aside>
+            <main class="col-lg-6 mt-4">
             <div class="ps-lg-3">
                 <h4 class="title m-0" style="color: #ec6090; font-size: 24px;">
-                    Mouseeeeeee
+                    <?= $item['product_name'] ?>
                 </h4>
-                <div class="d-flex flex-row my-3">
-                    <div class="text-warning mb-1 me-2">
-                <span class="ms-1">
-                  5
-                </span>
-                        <i class="fa fa-star"></i>
+                <div class="flex-row my-3">
+                    <div class="text-warning">
+                        <i class="fa fa-eye"></i>
+                        <span class="ms-1">
+                    <?= $item['product_view'] ?>
+                  </span>
                     </div>
-                    <span class="text-muted"><i class="fas fa-shopping-basket fa-sm mx-1"></i>154 products</span>
-                    <span class="text-success ms-2">In stock</span>
+                    <div class="mt-3 p-0">
+                        <span class="text-muted"><i
+                                    class="fas fa-shopping-basket fa-sm mx-1"></i><?= $item['product_quantity'] ?> products</span>
+                        <span class="text-success ms-2">In stock</span>
+                </div>
                 </div>
 
                 <div class="mb-3">
-                    <span class="h5 text-white">$75.00</span>
+                    <span class="h5 text-danger"><?= $item['product_sale'] == null ? '$' . $item['product_price'] : '$' . $item['product_sale'] ?></span>
                 </div>
 
                 <p class="text-white mb-2">
-                    Modern look and quality demo item is a streetwear-inspired collection that continues to break away
-                    from the conventions of mainstream fashion. Made in Italy, these black and brown clothing low-top
-                    shirts for
-                    men.
+                    <?= $item['product_describe'] ?>
                 </p>
 
                 <div class="row mb-3">
                     <dt class="col-3 text-white">Category:</dt>
-                    <dd class="col-9 text-white">Mouse</dd>
+                    <dd class="col-9 text-white"><?= $item['category_name'] ?></dd>
                 </div>
 
                 <div class="row mb-4">
@@ -91,177 +97,52 @@
                 <a href="#" class="btn shadow-0" style="background-color: #ec6090; color: #fff;"> <i
                             class="me-1 fa fa-shopping-basket"></i> Add to cart </a>
             </div>
-        </main>
-    </div>
-</div>
-<hr>
-<div class="container mt-5">
-    <div class="row gx-4">
-        <div class="col-lg-8 mb-4">
-            <div class="border rounded-2 px-3 py-2">
-                <!-- Pills navs -->
-                <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
-                    <li class="nav-item d-flex" role="presentation">
-                        <a style="background-color: #ec6090; color: #fff;"
-                           class="nav-link text-white d-flex align-items-center justify-content-center w-100 active"
-                           id="ex1-tab-1" data-mdb-toggle="pill" href="#ex1-pills-1" role="tab"
-                           aria-controls="ex1-pills-1" aria-selected="true">Specification</a>
-                    </li>
-                    <li class="nav-item d-flex" role="presentation">
-                        <a class="nav-link text-white d-flex align-items-center justify-content-center w-100"
-                           id="ex1-tab-2" data-mdb-toggle="pill" href="#ex1-pills-2" role="tab"
-                           aria-controls="ex1-pills-2" aria-selected="false">Warranty info</a>
-                    </li>
-                    <li class="nav-item d-flex" role="presentation">
-                        <a class="nav-link text-white d-flex align-items-center justify-content-center w-100"
-                           id="ex1-tab-3" data-mdb-toggle="pill" href="#ex1-pills-3" role="tab"
-                           aria-controls="ex1-pills-3" aria-selected="false">Shipping info</a>
-                    </li>
-                    <li class="nav-item d-flex" role="presentation">
-                        <a class="nav-link text-white d-flex align-items-center justify-content-center w-100"
-                           id="ex1-tab-4" data-mdb-toggle="pill" href="#ex1-pills-4" role="tab"
-                           aria-controls="ex1-pills-4" aria-selected="false">Seller profile</a>
-                    </li>
-                </ul>
-                <!-- Pills navs -->
-
-                <!-- Pills content -->
-                <div class="tab-content" id="ex1-content">
-                    <div class="tab-pane fade show active" id="ex1-pills-1" role="tabpanel" aria-labelledby="ex1-tab-1">
-                        <p class="text-white">
-                            With supporting text below as a natural lead-in to additional content. Lorem ipsum dolor sit
-                            amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                            magna aliqua. Ut
-                            enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                            dolore eu fugiat nulla
-                            pariatur.
-                        </p>
-                        <table class="table border mt-3 mb-2 text-white">
-                            <tr>
-                                <th class="py-2">Display:</th>
-                                <td class="py-2">13.3-inch LED-backlit display with IPS</td>
-                            </tr>
-                            <tr>
-                                <th class="py-2">Processor capacity:</th>
-                                <td class="py-2">2.3GHz dual-core Intel Core i5</td>
-                            </tr>
-                            <tr>
-                                <th class="py-2">Camera quality:</th>
-                                <td class="py-2">720p FaceTime HD camera</td>
-                            </tr>
-                            <tr>
-                                <th class="py-2">Memory</th>
-                                <td class="py-2">8 GB RAM or 16 GB RAM</td>
-                            </tr>
-                            <tr>
-                                <th class="py-2">Graphics</th>
-                                <td class="py-2">Intel Iris Plus Graphics 640</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="tab-pane fade mb-2" id="ex1-pills-2" role="tabpanel" aria-labelledby="ex1-tab-2">
-                        Tab content or sample information now <br/>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut
-                        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                        culpa qui
-                        officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                        veniam, quis
-                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    </div>
-                    <div class="tab-pane fade mb-2" id="ex1-pills-3" role="tabpanel" aria-labelledby="ex1-tab-3">
-                        Another tab content or sample information now <br/>
-                        Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-                        eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                        officia deserunt
-                        mollit anim id est laborum.
-                    </div>
-                    <div class="tab-pane fade mb-2" id="ex1-pills-4" role="tabpanel" aria-labelledby="ex1-tab-4">
-                        Some other tab content or sample information now <br/>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut
-                        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                        culpa qui
-                        officia deserunt mollit anim id est laborum.
-                    </div>
-                </div>
-                <!-- Pills content -->
-            </div>
+            </main>
         </div>
-        <div class="col-lg-4">
+    </div>
+    <hr>
+    <div class="container mt-5">
+        <div class="row gx-4">
+            <div class="col-lg-12">
             <div class="px-0 border rounded-2 shadow-0">
-                <div class="">
-                    <div class="card-body">
-                        <h5 class="card-title">Similar items</h5>
-                        <div class="d-flex mb-3">
-                            <a href="#" class="me-3">
-                                <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-1.png"
-                                     style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>
-                            </a>
-                            <div class="info">
-                                <a href="#" class="nav-link mb-1 text-white p-0">
-                                    Rucksack Backpack Large <br/>
-                                    Line Mounts
-                                </a>
-                                <strong class="text-white"> $38.90</strong>
+                <div class="card-body">
+                    <h5 class="card-title mb-0">Similar items</h5>
+                    <div class="row">
+                        <?php foreach ($getProductCategory as $data) : ?>
+                            <div class="bg-transparent featured-games header-text col-md-3 col-sm-12">
+                                <div class="card-pd" style="height: 100%;">
+                                    <div class="imgBox">
+                                        <a href="<?= _PRODUCT_DEFAULT ?>/product_detail/<?= $data['product_id'] . '/' . $item['category_id'] ?>"><img
+                                                    src="<?php echo _WEB_ROOT . '/' . $data['product_image_path'] . $item['product_image'] ?>"
+                                                    alt="mouse corsair"
+                                                    style="width: 200px !important; height: 200px !important;"
+                                                    class="mouse"></a>
+                                    </div>
+                                    <div class="contentBox">
+                                        <p class="h4 text-white text-uppercase font-weight-bold m-0"
+                                           style="font-size: 15px;"><?= $data['product_name'] ?></p>
+                                        <div class="d-flex align-items-center mt-1">
+                                            <h3 class="mr-2 text-danger"
+                                                style="font-size: 15px;"><?= $data['product_sale'] == null ? $data['product_price'] . '$' : $data['product_sale'] . '$' ?></h3>
+                                            <s class="text-white"
+                                               style="font-size: 15px;"><?= $data['product_sale'] == null ? '' : $data['product_price'] . '$' ?></s>
+                                        </div>
+                                        <a href="#" class="buy" style="font-size: 10px; padding: 5px 15px 5px 15px;">Add
+                                            to cart</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="d-flex mb-3">
-                            <a href="#" class="me-3">
-                                <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-1.png"
-                                     style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>
-                            </a>
-                            <div class="info">
-                                <a href="#" class="nav-link mb-1 text-white p-0">
-                                    Summer New Men's Denim <br/>
-                                    Jeans Shorts
-                                </a>
-                                <strong class="text-white"> $29.50</strong>
-                            </div>
-                        </div>
-
-                        <div class="d-flex mb-3">
-                            <a href="#" class="me-3">
-                                <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-1.png"
-                                     style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>
-                            </a>
-                            <div class="info">
-                                <a href="#" class="nav-link mb-1 text-white p-0"> T-shirts with multiple colors, for men
-                                    and lady </a>
-                                <strong class="text-white"> $120.00</strong>
-                            </div>
-                        </div>
-
-                        <div class="d-flex">
-                            <a href="#" class="me-3">
-                                <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-1.png"
-                                     style="min-width: 96px; height: 96px;" class="img-md img-thumbnail"/>
-                            </a>
-                            <div class="info">
-                                <a href="#" class="nav-link mb-1 text-white p-0"> Blazer Suit Dress Jacket for Men, Blue
-                                    color </a>
-                                <strong class="text-white"> $339.90</strong>
-                            </div>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
+            </div>
         </div>
     </div>
-</div>
+<?php endforeach; ?>
 <hr class="border border-white mt-5">
 <div class="container">
-    <h4 class="h6 mt-3" style="color: #ec6090; font-size: 24px;">Đánh giá và bình luận</h4>
+    <h4 class="h6 mt-3" style="color: #ec6090; font-size: 24px;">Reviews And Comments</h4>
     <div class="row d-flex justify-content-center">
         <div class="col-md-12 col-lg-10 col-xl-8">
             <div class="card-body p-0">

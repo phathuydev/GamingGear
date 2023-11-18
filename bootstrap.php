@@ -18,6 +18,8 @@ $web_root = $web_root.$folder;
 define('_WEB_ROOT', $web_root);
 define('_ADMIN_DEFAULT', _WEB_ROOT. '/admin');
 define('_MANAGE_DEFAULT', _WEB_ROOT. '/admin/manage');
+define('_PRODUCT_DEFAULT', _WEB_ROOT . '/client/product/product');
+define('_POST_DEFAULT', _WEB_ROOT . '/client/post/post');
 
 // Tự động load configs
 $configs_dir = scandir('configs');

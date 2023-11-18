@@ -128,7 +128,7 @@
         <img src="https://theme.hstatic.net/200000722513/1001090675/14/headblog_banner.jpg?v=2092" alt="">
       </div>
       <div class="most-popular">
-        <div class="row">
+          <div class="row" style="padding: 0 40px 0 40px;">
           <div class="col-lg-12">
             <div class="heading-section text-center mt-4">
               <h4>Keyboard Product</h4>
@@ -258,7 +258,7 @@
         </div>
       </div>
       <div class="most-popular">
-        <div class="row">
+          <div class="row" style="padding: 0 40px 0 40px;">
           <div class="col-lg-12">
             <div class="heading-section text-center mt-4">
               <h4>Mouse Product</h4>
@@ -391,7 +391,7 @@
         <img src="https://www.vortez.net/contentteller.php?ct=news&action=file&id=8347" alt="">
       </div>
       <div class="most-popular">
-        <div class="row">
+          <div class="row" style="padding: 0 40px 0 40px;">
           <div class="col-lg-12">
             <div class="heading-section text-center mt-4">
               <h4>Gaming Headset Product</h4>
@@ -523,7 +523,7 @@
         </div>
       </div>
       <div class="most-popular">
-        <div class="row">
+          <div class="row" style="padding: 0 40px 0 40px;">
           <div class="col-lg-12">
             <div class="heading-section text-center mt-4">
               <h4>Gaming Speaker Product</h4>
@@ -654,7 +654,7 @@
         </div>
       </div>
       <div class="most-popular">
-        <div class="row">
+          <div class="row" style="padding: 0 40px 0 40px;">
           <div class="col-lg-12">
             <div class="heading-section text-center mt-4">
               <h4>Gamepad Product</h4>

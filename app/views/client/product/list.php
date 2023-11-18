@@ -3,198 +3,54 @@
 </div>
 <!-- ***** Featured Games Start ***** -->
 <div class="row">
-  <div class="bg-transparent featured-games header-text col-md-4 col-sm-12">
-    <div class="card-pd">
-      <div class="imgBox">
-        <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-1.png" alt="mouse corsair" class="mouse">
-      </div>
-      <div class="contentBox">
-        <h3>Mouse Corsair M65</h3>
-        <h2 class="price">61.<small>98</small> $</h2>
-        <a href="#" class="buy">Add to cart</a>
-      </div>
-    </div>
-  </div>
-  <div class="bg-transparent featured-games header-text col-md-4 col-sm-12">
-    <div class="card-pd">
-      <div class="imgBox">
-        <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-1.png" alt="mouse corsair" class="mouse">
-      </div>
-      <div class="contentBox">
-        <h3>Mouse Corsair M65</h3>
-        <h2 class="price">61.<small>98</small> $</h2>
-        <a href="#" class="buy">Add to cart</a>
-      </div>
-    </div>
-  </div>
-  <div class="bg-transparent featured-games header-text col-md-4 col-sm-12">
-    <div class="card-pd">
-      <div class="imgBox">
-        <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-1.png" alt="mouse corsair" class="mouse">
-      </div>
-      <div class="contentBox">
-        <h3>Mouse Corsair M65</h3>
-        <h2 class="price">61.<small>98</small> $</h2>
-        <a href="#" class="buy">Add to cart</a>
-      </div>
-    </div>
-  </div>
-  <div class="bg-transparent featured-games header-text col-md-4 col-sm-12">
-    <div class="card-pd">
-      <div class="imgBox">
-        <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-1.png" alt="mouse corsair" class="mouse">
-      </div>
-      <div class="contentBox">
-        <h3>Mouse Corsair M65</h3>
-        <h2 class="price">61.<small>98</small> $</h2>
-        <a href="#" class="buy">Add to cart</a>
-      </div>
-    </div>
-  </div>
-  <div class="bg-transparent featured-games header-text col-md-4 col-sm-12">
-    <div class="card-pd">
-      <div class="imgBox">
-        <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-1.png" alt="mouse corsair" class="mouse">
-      </div>
-      <div class="contentBox">
-        <h3>Mouse Corsair M65</h3>
-        <h2 class="price">61.<small>98</small> $</h2>
-        <a href="#" class="buy">Add to cart</a>
-      </div>
-    </div>
-  </div>
-  <div class="bg-transparent featured-games header-text col-md-4 col-sm-12">
-    <div class="card-pd">
-      <div class="imgBox">
-        <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-1.png" alt="mouse corsair" class="mouse">
-      </div>
-      <div class="contentBox">
-        <h3>Mouse Corsair M65</h3>
-        <h2 class="price">61.<small>98</small> $</h2>
-        <a href="#" class="buy">Add to cart</a>
-      </div>
-    </div>
-  </div>
-  <div class="bg-transparent featured-games header-text col-md-4 col-sm-12">
-    <div class="card-pd">
-      <div class="imgBox">
-        <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-1.png" alt="mouse corsair" class="mouse">
-      </div>
-      <div class="contentBox">
-        <h3>Mouse Corsair M65</h3>
-        <h2 class="price">61.<small>98</small> $</h2>
-        <a href="#" class="buy">Add to cart</a>
-      </div>
-    </div>
-  </div>
-  <div class="bg-transparent featured-games header-text col-md-4 col-sm-12">
-    <div class="card-pd">
-      <div class="imgBox">
-        <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-1.png" alt="mouse corsair" class="mouse">
-      </div>
-      <div class="contentBox">
-        <h3>Mouse Corsair M65</h3>
-        <h2 class="price">61.<small>98</small> $</h2>
-        <a href="#" class="buy">Add to cart</a>
-      </div>
-    </div>
-  </div>
-  <div class="bg-transparent featured-games header-text col-md-4 col-sm-12">
-    <div class="card-pd">
-      <div class="imgBox">
-        <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-1.png" alt="mouse corsair" class="mouse">
-      </div>
-      <div class="contentBox">
-        <h3>Mouse Corsair M65</h3>
-        <h2 class="price">61.<small>98</small> $</h2>
-        <a href="#" class="buy">Add to cart</a>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
+    <?php foreach ($getAllProduct as $item) : ?>
+        <div class="bg-transparent featured-games header-text col-md-3 col-sm-12">
+            <div class="card-pd" style="height: 100%;">
+                <div class="imgBox">
+                    <a href="<?php echo _PRODUCT_DEFAULT; ?>/product_detail/<?= $item['product_id'] . '/' . $item['product_category'] ?>"><img
+                                src="<?= $item['product_image_path'] . $item['product_image'] ?>" alt="mouse corsair"
+                                style="width: 200px !important; height: 200px !important;" class="mouse"></a>
+                </div>
+                <div class="contentBox">
+                    <p class="h4 text-white text-uppercase font-weight-bold m-0"
+                       style="font-size: 15px;"><?= $item['product_name'] ?></p>
+                    <div class="d-flex align-items-center mt-1">
+                        <h3 class="mr-2 text-danger"
+                            style="font-size: 15px;"><?= $item['product_sale'] == null ? $item['product_price'] . '$' : $item['product_sale'] . '$' ?></h3>
+                        <s class="text-white"
+                           style="font-size: 15px;"><?= $item['product_sale'] == null ? '' : $item['product_price'] . '$' ?></s>
+                    </div>
+                    <a href="#" class="buy" style="font-size: 10px; padding: 5px 15px 5px 15px;">Add to cart</a>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
 </div>
 
 <div class="most-popular">
   <div class="col-lg-12">
-    <div class="heading-section text-center">
+      <div class="heading-section text-center mt-5">
       <h4><em>All</em> Category</h4>
     </div>
     <div class="featured-games header-text">
       <div class="owl-features owl-carousel mb-5">
-
-        <div class="container">
-          <div class="card">
-            <div class="imgBx">
-              <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-category.png" alt="headphone">
-            </div>
-            <div class="contentBx">
-              <h2>Game Pad</h2>
-              <a href="#" class="mt-5">View Now</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="container">
-          <div class="card">
-            <div class="imgBx">
-              <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-category-2.png" alt="keyboard">
-            </div>
-            <div class="contentBx">
-              <h2>Game Pad</h2>
-              <a href="#" class="mt-5">View Now</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="container">
-          <div class="card">
-            <div class="imgBx">
-              <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-category-3.png" alt="mouse">
-            </div>
-            <div class="contentBx">
-              <h2>Game Pad</h2>
-              <a href="#" class="mt-5">View Now</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="container">
-          <div class="card">
-            <div class="imgBx">
-              <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-category-5.png" alt="card">
-            </div>
-            <div class="contentBx">
-              <h2>Game Pad</h2>
-              <a href="#" class="mt-5">View Now</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="container">
-          <div class="card">
-            <div class="imgBx">
-              <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/product-category-6.png" alt="nike-air-shoe">
-            </div>
-            <div class="contentBx">
-              <h2>Game Pad</h2>
-              <a href="#" class="mt-5">View Now</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="container">
-          <div class="card">
-            <div class="imgBx">
-              <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/gaming-logo.png" alt="nike-air-shoe">
-            </div>
-            <div class="contentBx">
-              <h2>Game Pad</h2>
-              <a href="#" class="mt-5">View Now</a>
-            </div>
-          </div>
-        </div>
-
+          <?php foreach ($getAllCategory as $item) : ?>
+              <div class="container">
+                  <div class="card">
+                      <div class="imgBx">
+                          <a href="<?php echo _PRODUCT_DEFAULT ?>/product_category/<?= $item['category_id'] ?>"><img
+                                      src="<?php echo _WEB_ROOT . '/' . $item['category_image_path'] . $item['category_image'] ?>"
+                                      alt="headphone" style="width: 230px !important; height: 230px !important;"></a>
+                      </div>
+                      <div class="contentBx">
+                          <h2 style="font-size: 25px;"><?= $item['category_name'] ?></h2>
+                          <a href="<?php echo _PRODUCT_DEFAULT ?>/product_category/<?= $item['category_id'] ?>"
+                             class="mt-5" style="padding: 5px 15px 5px 15px">View Now</a>
+                      </div>
+                  </div>
+              </div>
+          <?php endforeach; ?>
       </div>
     </div>
   </div>
+</div>
