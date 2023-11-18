@@ -24,22 +24,22 @@
               <div class="form-group">
                 <div class="d-flex">Email<p class="text-danger">*</p>
                 </div>
-                <?php HtmlHelper::input('<div>', form_error('email', '<span style="color: red;">', '</span>') . '</div>', 'email', 'email', 'form-control p_input', '', 'Email', ''); ?>
+                  <?php HtmlHelper::input('<div>', form_error('email', '<span style="color: red;">', '</span>') . '</div>', 'email', 'email', '', 'form-control p_input', '', 'Email', ''); ?>
               </div>
               <div class="form-group">
                 <div class="d-flex">Password<p class="text-danger">*</p>
                 </div>
-                <?php HtmlHelper::input('<div>', form_error('password', '<span style="color: red;">', '</span>') . '</div>', 'password', 'password', 'form-control p_input', '', 'Password', ''); ?>
+                  <?php HtmlHelper::input('<div>', form_error('password', '<span style="color: red;">', '</span>') . '</div>', 'password', 'password', '', 'form-control p_input', '', 'Password', ''); ?>
               </div>
               <div class="form-group d-flex align-items-center justify-content-between">
                 <div class="form-check">
+                    <input type="checkbox" class="form-check-input" checked>
                   <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" checked> Remember me </label>
+                      Remember me
+                  </label>
                 </div>
               </div>
-              <div class="text-center">
-                <?php HtmlHelper::submit('Login', 'btn btn-primary btn-block enter-btn'); ?>
-              </div>
+                <?php HtmlHelper::submit('<div class="text-center">', '</div>', 'lgAdmin', 'Login', 'btn btn-primary btn-block enter-btn'); ?>
               <div class="d-flex">
                 <a href="<?php echo _WEB_ROOT ?>/home" class="text-white mt-3 col d-flex justify-content-center"><i class="mdi mdi-arrow-left"></i> Return Website</a>
               </div>

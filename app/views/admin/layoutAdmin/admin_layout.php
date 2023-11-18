@@ -18,6 +18,7 @@
 
 <body>
   <?php
+  date_default_timezone_set('Asia/Ho_Chi_Minh'); // Set default time zone
   $this->render('./admin/blocks_admin/sidebar');
   $this->render('./admin/blocks_admin/navbar');
   $this->render($body, $sub_content);
@@ -30,6 +31,7 @@
   <script src="<? echo _WEB_ROOT ?>/public/assets/admin/vendors/owl-carousel-2/owl.carousel.min.js"></script>
   <script src="<? echo _WEB_ROOT ?>/public/assets/admin/vendors/js/vendor.bundle.base.js"></script>
   <script src="<? echo _WEB_ROOT ?>/public/assets/admin/js/off-canvas.js"></script>
+  <script src="<? echo _WEB_ROOT ?>/public/assets/admin/js/script.js"></script>
   <script src="<? echo _WEB_ROOT ?>/public/assets/admin/js/hoverable-collapse.js"></script>
   <script src="<? echo _WEB_ROOT ?>/public/assets/admin/js/sidebar.js"></script>
   <script src="<? echo _WEB_ROOT ?>/public/assets/admin/js/chart.js"></script>

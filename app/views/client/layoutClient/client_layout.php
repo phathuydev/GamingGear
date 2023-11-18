@@ -25,6 +25,7 @@
   <section class="h-100 gradient-custom m-0">
     <div class="container p-0">
       <?php
+      date_default_timezone_set('Asia/Ho_Chi_Minh'); // Set default time zone
       $this->render('./client/blocks_client/navbar');
       $this->render($content, $sub_content);
       $this->render('./client/blocks_client/footer');

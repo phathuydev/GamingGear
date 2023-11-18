@@ -2,14 +2,18 @@
   <div class="card">
     <div class="card-body">
       <h4 class="card-title">Add User</h4>
-      <form class="forms-sample">
-        <div class="form-group">
-          <label for="exampleInputUsername1">Update Status</label>
-          <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Status">
-        </div>
-        <button type="submit" class="btn btn-primary mr-2">Submit</button>
-        <a href="<? echo _MANAGE_DEFAULT ?>/user" class="btn btn-dark">Cancel</a>
-      </form>
+        <?php
+        $item = $firstUser;
+        echo (!empty($msg)) ? $msg : false;
+        HtmlHelper::formOpen('post', '', '', 'return validateUsers()');
+        HtmlHelper::selectOption('<div class="form-group">' . '<label>Status</label>', '</div>', 'user_locked', 'form-control text-white', 'd-none', $item['user_locked'], $item['user_locked'] == 0 ? 'Action' : 'Locked', '', '0', 'Action', '', '1', 'Locked', 'd-none', '', '', 'd-none', '', '');
+        HtmlHelper::input('<div>', '</div>', 'hidden', 'create_at', '', '', '', '', $item['create_at']);
+        HtmlHelper::input('<div>', '</div>', 'hidden', 'update_at', '', '', '', '', date("Y-m-d H:i:s"));
+        HtmlHelper::input('<div>', '</div>', 'hidden', 'user_create', '', '', '', '', $item['user_create']);
+        HtmlHelper::input('<div>', '</div>', 'hidden', 'user_update', '', '', '', '', '1');
+        HtmlHelper::submit('<div class="mt-4">', '<a class="btn btn-dark" href="' . _MANAGE_DEFAULT . '/user">Cancel</a>' . '</div>', 'updateUser', 'Submit', 'btn btn-primary mr-2');
+        HtmlHelper::formClose();
+        ?>
     </div>
   </div>
 </div>

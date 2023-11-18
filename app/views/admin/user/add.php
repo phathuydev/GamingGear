@@ -2,30 +2,21 @@
   <div class="card">
     <div class="card-body">
       <h4 class="card-title">Add User</h4>
-      <form class="forms-sample">
-        <div class="form-group">
-          <label for="exampleInputUsername1">Username</label>
-          <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Username">
-        </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-        </div>
-        <div class="form-group">
-          <label for="exampleInputConfirmPassword1">Confirm Password</label>
-          <input type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Password">
-        </div>
-        <div class="form-check form-check-flat form-check-primary">
-          <label class="form-check-label">
-            <input type="checkbox" class="form-check-input"> Remember me </label>
-        </div>
-        <button type="submit" class="btn btn-primary mr-2">Submit</button>
-        <a class="btn btn-dark" href="<? echo _MANAGE_DEFAULT ?>/user">Cancel</a>
-      </form>
+        <?php
+        echo (!empty($msg)) ? $msg : false;
+        HtmlHelper::formOpen('post', '', 'multipart/form-data', 'return validateUsers()');
+        HtmlHelper::input('<div class="form-group">' . '<label>Username</label>', '</div>', 'text', 'user_name', '', 'form-control', '', 'Username', '');
+        HtmlHelper::input('<div class="form-group">' . '<label>Email</label>' . '<em class="text-danger"> * </em>', '<p class="text-danger m-2" id="error_user_email"></p>' . '</div>', 'email', 'user_email', '', 'form-control text-white', 'user_email', 'Email', '');
+        HtmlHelper::input('<div class="form-group">' . '<label>Password</label>' . '<em class="text-danger"> * </em>', '<p class="text-danger m-2" id="error_user_password"></p>' . '</div>', 'password', 'user_password', '', 'form-control text-white', 'user_password', 'Password', '');
+        HtmlHelper::input('<div class="form-group">' . '<label>Phone</label>', '</div>', 'num', 'user_phone', '', 'form-control text-white', '', 'Phone', '');
+        HtmlHelper::input('<div class="form-group">' . '<label>Image</label>' . '<div class="custom-file form-control">', '<label class="custom-file-label bg-transparent border text-muted d-flex align-items-center">Choose file</label>' . '</div>' . '</div>', 'file', 'user_image', 'image/png, image/jpeg, image/jpg', 'custom-file-input text-white', '', '', '');
+        HtmlHelper::input('<div class="form-group">' . '<label>Address</label>', '</div>', 'text', 'user_address', '', 'form-control text-white', '', 'Address', '');
+        HtmlHelper::selectOption('<div class="form-group">' . '<label>Role</label>', '</div>', 'user_role', 'form-control text-white', '', '0', 'Client', '', '1', 'Admin', 'd-none', '', '', 'd-none', '', '', 'd-none', '', '');
+        HtmlHelper::input('<div>', '</div>', 'hidden', 'user_create', '', '', '', '', '1');
+        HtmlHelper::input('<div>', '</div>', 'hidden', 'user_update', '', '', '', '', '1');
+        HtmlHelper::submit('<div class="mt-4">', '<a class="btn btn-dark" href="' . _MANAGE_DEFAULT . '/user">Cancel</a>' . '</div>', 'insertUser', 'Submit', 'btn btn-primary mr-2');
+        HtmlHelper::formClose();
+        ?>
     </div>
   </div>
 </div>
