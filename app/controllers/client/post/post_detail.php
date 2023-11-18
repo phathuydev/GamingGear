@@ -1,5 +1,5 @@
 <?php
-class PostDetail extends Controller
+class post_detail extends Controller
 {
   public $province;
   public $data = [];
@@ -7,7 +7,7 @@ class PostDetail extends Controller
   {
     $this->province = $this->model('');
   }
-  public function category($idPost=0)
+  public function index($idPost=0)
   {
     $title = 'Post Detail';
     $this->data['pages_title'] = $title;
