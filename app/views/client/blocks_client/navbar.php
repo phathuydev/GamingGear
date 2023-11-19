@@ -45,8 +45,6 @@
             <div class="dropdown-menu rounded-3 mt-2">
                 <a class="dropdown-item" style="font-size: 17px;" href="<?= _WEB_ROOT; ?>/profile">Profile</a>
                 <a class="dropdown-item" style="font-size: 17px;" href="<?= _WEB_ROOT; ?>/lgUser">Login</a>
-                <a class="dropdown-item" style="font-size: 17px;" href="<?= _WEB_ROOT; ?>/">Logout</a>
-                <a class="dropdown-item" style="font-size: 17px;" href="<?= _WEB_ROOT; ?>/gg-admin">Admin Manager</a>
             </div>
           </ul>
           <a class='menu-trigger'>

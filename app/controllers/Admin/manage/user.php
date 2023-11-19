@@ -42,7 +42,6 @@ class User extends Controller
     $title = 'Add User';
     $this->data['sub_content']['pages_title'] = $title;
     $this->data['pages_title'] = $title;
-      $this->data['msg'] = Session::flash('msg');
       if (isset($_POST['insertUser'])) {
           $user_name = $_POST['user_name'];
           $user_email = $_POST['user_email'];

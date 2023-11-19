@@ -5,12 +5,13 @@ class Comment extends Controller
   public $data = [];
   public function __construct()
   {
-    $this->province = $this->model('');
+      $this->province = $this->model('CommentModel');
   }
   public function index()
   {
+      $getCommentProduct = $this->province->getCommentProduct();
     $title = 'List Comment';
-    $this->data['sub_content']['pages_title'] = $title;
+      $this->data['sub_content']['getCommentProduct'] = $getCommentProduct;
     $this->data['pages_title'] = $title;
     $this->data['body'] = 'admin/comment/list';
     $this->render('admin/layoutAdmin/admin_layout', $this->data);

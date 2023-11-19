@@ -1,5 +1,4 @@
 <?php
-
 class Auth extends Controller
 {
     public $province;
@@ -12,16 +11,29 @@ class Auth extends Controller
 
     public function index()
     {
-        $title = 'Product List';
+        $title = 'Login';
         $this->data['pages_title'] = $title;
         $this->data['sub_content']['product'] = [];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $user_email = $_POST['user_email'];
+            $user_password = $_POST['user_password'];
+            $getUser = $this->province->getUserLoginClient($user_email, $user_password);
+            if ($getUser) {
+                Session::data('client_login', $getUser['user_id']);
+                $response = new Response();
+                $response->redirect('home');
+            } else {
+                Session::flash('msg_lgClient', 'Email or password is incorrect');
+            }
+        }
+        $this->data['sub_content']['msg_lgClient'] = Session::flash('msg_lgClient');
         $this->data['content'] = 'client/account/login';
         $this->render('client/layoutClient/client_layout', $this->data);
     }
 
     public function register()
     {
-        $title = 'Product List';
+        $title = 'Register';
         $this->data['pages_title'] = $title;
         $this->data['sub_content']['product'] = [];
         $this->data['content'] = 'client/account/register';
@@ -30,7 +42,7 @@ class Auth extends Controller
 
     public function forgot()
     {
-        $title = 'Product List';
+        $title = 'Forgot';
         $this->data['pages_title'] = $title;
         $this->data['sub_content']['product'] = [];
         $this->data['content'] = 'client/account/forgot';
@@ -39,10 +51,8 @@ class Auth extends Controller
 
     public function logout()
     {
-        $title = 'Product List';
-        $this->data['pages_title'] = $title;
-        $this->data['sub_content']['product'] = [];
-        $this->data['content'] = 'client/account/logout';
-        $this->render('client/layoutClient/client_layout', $this->data);
+        Session::delete('client_login');
+        $response = new Response();
+        $response->redirect('lgUser');
     }
 }

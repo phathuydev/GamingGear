@@ -10,7 +10,7 @@ class Product extends Controller
   public function index()
   {
     $title = 'List Product';
-    $this->data['sub_content']['pages_title'] = $title;
+      $this->data['sub_content']['pages_title'] = [];
     $this->data['pages_title'] = $title;
     $this->data['body'] = 'admin/product/list';
     $this->render('admin/layoutAdmin/admin_layout', $this->data);
@@ -18,7 +18,7 @@ class Product extends Controller
   public function product_add()
   {
     $title = 'Add Product';
-    $this->data['sub_content']['pages_title'] = $title;
+      $this->data['sub_content']['pages_title'] = [];
     $this->data['pages_title'] = $title;
     $this->data['body'] = 'admin/product/add';
     $this->render('admin/layoutAdmin/admin_layout', $this->data);
@@ -26,7 +26,7 @@ class Product extends Controller
   public function product_edit()
   {
     $title = 'Edit Product';
-    $this->data['sub_content']['pages_title'] = $title;
+      $this->data['sub_content']['pages_title'] = [];
     $this->data['pages_title'] = $title;
     $this->data['body'] = 'admin/product/edit';
     $this->render('admin/layoutAdmin/admin_layout', $this->data);

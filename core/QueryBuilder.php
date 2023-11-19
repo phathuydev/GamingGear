@@ -8,6 +8,7 @@ trait QueryBuilder
   public $selectField = '*';
   public $limit = '';
   public $orderBy = '';
+    public $groupBy = '';
   public $innerJoin = '';
   public function table($tableName)
   {
@@ -18,33 +19,33 @@ trait QueryBuilder
   public function where($field, $compare, $value)
   {
     if (empty($this->where)) {
-      $this->operator = ' WHERE ';
+        $this->operator = 'WHERE';
     } else {
-      $this->operator = ' AND ';
+        $this->operator = 'AND';
     }
-    $this->where .= "$this->operator $field $compare ' $value '";
+      $this->where .= "$this->operator $field $compare '$value'";
     return $this;
   }
 
   public function orWhere($field, $compare, $value)
   {
     if (empty($this->where)) {
-      $this->operator = ' WHERE ';
+        $this->operator = 'WHERE';
     } else {
-      $this->operator = ' OR ';
+        $this->operator = 'OR';
     }
-    $this->where .= "$this->operator $field $compare ' $value '";
+      $this->where .= "$this->operator $field $compare '$value'";
     return $this;
   }
 
   public function whereLike($field, $value)
   {
     if (empty($this->where)) {
-      $this->operator = ' WHERE ';
+        $this->operator = 'WHERE';
     } else {
-      $this->operator = ' AND ';
+        $this->operator = 'AND';
     }
-    $this->where .= "$this->operator $field LIKE ' $value '";
+      $this->where .= "$this->operator $field LIKE '$value'";
     return $this;
   }
 
@@ -60,7 +61,7 @@ trait QueryBuilder
 
   public function get()
   {
-    $sqlQuery = "SELECT $this->selectField FROM $this->tableName $this->innerJoin $this->where $this->orderBy $this->limit";
+      $sqlQuery = "SELECT $this->selectField FROM $this->tableName $this->innerJoin $this->where $this->orderBy $this->groupBy $this->limit";
     $sqlQuery = trim($sqlQuery);
     $query = $this->query($sqlQuery);
     $this->resetQuery();
@@ -73,7 +74,7 @@ trait QueryBuilder
 
   public function first()
   {
-    $sqlQuery = "SELECT $this->selectField FROM $this->tableName $this->where $this->limit";
+      $sqlQuery = "SELECT $this->selectField FROM $this->tableName $this->where $this->groupBy $this->limit";
     $query = $this->query($sqlQuery);
 
     $this->resetQuery();
@@ -136,6 +137,11 @@ trait QueryBuilder
     return $this;
   }
 
+    public function groupBy($field)
+    {
+        $this->groupBy = " GROUP BY $field";
+        return $this;
+    }
   public function resetQuery()
   {
     $this->tableName = '';
@@ -144,6 +150,7 @@ trait QueryBuilder
     $this->selectField = '*';
     $this->limit = '';
     $this->orderBy = '';
+      $this->groupBy = '';
     $this->innerJoin = '';
   }
 }

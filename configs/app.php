@@ -4,7 +4,7 @@ $config['app'] = [
         HtmlHelper::class
     ],
     'routeMiddleware' => [
-        'product' => AuthMiddleware::class
+        'gg-admin' => AuthMiddleware::class
     ],
     'globalMiddleware' => [
         ParamsMiddleware::class

@@ -159,7 +159,7 @@
                aria-labelledby="profileDropdown">
               <h6 class="p-1 mb-0"></h6>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item preview-item">
+              <a href="<?php echo _WEB_ROOT ?>/admin/login/logout" class="dropdown-item preview-item">
             <div class="preview-thumbnail">
               <div class="preview-icon bg-dark rounded-circle">
                 <i class="mdi mdi-logout text-danger"></i>

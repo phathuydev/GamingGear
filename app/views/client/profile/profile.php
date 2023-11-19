@@ -19,15 +19,18 @@
                     <div class="list-group list-group-flush">
                         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                              aria-orientation="vertical">
-                            <button class="nav-link active" id="v-pills-home-tab" data-toggle="pill"
+                            <button class="nav-link active mb-2 text-white" id="v-pills-home-tab" data-toggle="pill"
                                     data-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
                                     aria-selected="true"><i class="fa fa-user text-light me-2"></i> Profile
                             </button>
-                            <button class="nav-link" id="v-pills-profile-tab" data-toggle="pill"
+                            <button class="nav-link mb-2 text-white" id="v-pills-profile-tab" data-toggle="pill"
                                     data-target="#v-pills-profile" type="button" role="tab"
                                     aria-controls="v-pills-profile" aria-selected="false"><i
                                         class="fa fa-shopping-basket text-light me-2"></i> Order History
                             </button>
+                            <a href="<?php echo _WEB_ROOT ?>/client/account/auth/logout"
+                               class="nav-link text-center text-white"><i
+                                        class="fa fa-right-from-bracket text-light me-2"></i> Logout</a>
                         </div>
                     </div>
                 </div>

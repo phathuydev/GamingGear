@@ -20,7 +20,7 @@
           </div>
           <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
           <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
-              <a href="" class="dropdown-item preview-item border-bottom">
+              <a href="<?php echo _WEB_ROOT ?>/admin/login/logout" class="dropdown-item preview-item border-bottom">
                   <div class="preview-thumbnail">
                       <div class="preview-icon bg-dark rounded-circle">
                           <i class="mdi mdi-logout text-danger"></i>

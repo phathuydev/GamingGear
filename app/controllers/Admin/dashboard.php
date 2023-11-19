@@ -10,7 +10,7 @@ class Dashboard extends Controller
   public function index()
   {
     $title = 'Dashboard';
-    $this->data['sub_content']['pages_title'] = $title;
+      $this->data['sub_content']['pages_title'] = [];
     $this->data['pages_title'] = $title;
     $this->data['body'] = 'admin/dashboard';
     $this->render('admin/layoutAdmin/admin_layout', $this->data);

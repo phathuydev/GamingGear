@@ -11,5 +11,5 @@ $routes['contacts'] = 'client/contact/contact';
 $routes['posts'] = 'client/post/post';
 $routes['carts'] = 'client/cart/cart';
 $routes['profile'] = 'client/profile/profile';
-$routes['lgUser'] = 'client/account/login';
+$routes['lgUser'] = 'client/account/auth';
 $routes['profile'] = 'client/profile/profile';

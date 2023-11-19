@@ -3,7 +3,6 @@
     <div class="card-body">
       <h4 class="card-title">Add User</h4>
         <?php
-        echo (!empty($msg)) ? $msg : false;
         HtmlHelper::formOpen('post', '', 'multipart/form-data', 'return validateUsers()');
         HtmlHelper::input('<div class="form-group">' . '<label>Username</label>', '</div>', 'text', 'user_name', '', 'form-control', '', 'Username', '');
         HtmlHelper::input('<div class="form-group">' . '<label>Email</label>' . '<em class="text-danger"> * </em>', '<p class="text-danger m-2" id="error_user_email"></p>' . '</div>', 'email', 'user_email', '', 'form-control text-white', 'user_email', 'Email', '');
