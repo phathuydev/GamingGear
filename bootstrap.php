@@ -13,11 +13,11 @@ $documentRoot = str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
 
 $folder = str_replace(strtolower($documentRoot), '', strtolower($dirRoot));
 
-$web_root = $web_root.$folder;
+$web_root = $web_root . $folder;
 
 define('_WEB_ROOT', $web_root);
-define('_ADMIN_DEFAULT', _WEB_ROOT. '/admin');
-define('_MANAGE_DEFAULT', _WEB_ROOT. '/admin/manage');
+define('_ADMIN_DEFAULT', _WEB_ROOT . '/admin');
+define('_MANAGE_DEFAULT', _WEB_ROOT . '/admin/manage');
 define('_PRODUCT_DEFAULT', _WEB_ROOT . '/client/product/product');
 define('_POST_DEFAULT', _WEB_ROOT . '/client/post/post');
 

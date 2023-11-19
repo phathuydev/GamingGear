@@ -5,35 +5,13 @@ class Login extends Controller
   public $data = [];
   public function __construct()
   {
-    $this->province = $this->model('LoginModel');
+      $this->province = $this->model('AuthModel');
   }
   public function index()
   {
-    $request = new Request();
-    if ($request->isPost()) {
-      $request->rules([
-        'email' => 'required|email',
-        'password' => 'required'
-      ]);
-      //Set message
-      $request->message([
-        'email.required' => 'Email không để trống!',
-        'email.email' => 'Email sai định dạng!',
-        'password.required' => 'Mật khẩu không để trống!'
-      ]);
-
-      $validate = $request->validate();
-      if (!$validate) {
-        Session::flash('msg', 'Tài khoản không tồn tại!');
-      }
-    }
-    $response = new Response();
-    $response->redirect('lgAdmin/get_login');
-  }
-
-  public function get_login()
-  {
-    $this->data['msg'] = Session::flash('msg');
+      $title = 'Login Admin';
+      $this->data['sub_content']['pages_title'] = [];
+      $this->data['pages_title'] = $title;
     $this->render('admin/login', $this->data);
   }
 }

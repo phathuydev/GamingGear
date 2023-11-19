@@ -20,30 +20,32 @@
           <div class="card col-lg-4 mx-auto">
             <div class="card-body px-5 py-5">
               <h3 class="card-title text-left mb-4 h2">Login</h3>
-              <?php HtmlHelper::formOpen('post', _ADMIN_DEFAULT . '/dashboard'); ?>
-              <div class="form-group">
-                <div class="d-flex">Email<p class="text-danger">*</p>
-                </div>
-                  <?php HtmlHelper::input('<div>', form_error('email', '<span style="color: red;">', '</span>') . '</div>', 'email', 'email', '', 'form-control p_input', '', 'Email', ''); ?>
-              </div>
-              <div class="form-group">
-                <div class="d-flex">Password<p class="text-danger">*</p>
-                </div>
-                  <?php HtmlHelper::input('<div>', form_error('password', '<span style="color: red;">', '</span>') . '</div>', 'password', 'password', '', 'form-control p_input', '', 'Password', ''); ?>
-              </div>
-              <div class="form-group d-flex align-items-center justify-content-between">
-                <div class="form-check">
+                <form method="post">
+                    <div class="form-group">
+                        <div class="d-flex">Email<p class="text-danger">*</p>
+                        </div>
+                        <input type="email" class="form-control" name="user_email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <div class="d-flex">Password<p class="text-danger">*</p>
+                        </div>
+                        <input type="password" class="form-control" name="user_password" placeholder="Password">
+                    </div>
+                    <div class="form-group d-flex align-items-center justify-content-between">
+                        <div class="form-check">
                     <input type="checkbox" class="form-check-input" checked>
-                  <label class="form-check-label">
+                            <label class="form-check-label">
                       Remember me
-                  </label>
-                </div>
-              </div>
-                <?php HtmlHelper::submit('<div class="text-center">', '</div>', 'lgAdmin', 'Login', 'btn btn-primary btn-block enter-btn'); ?>
-              <div class="d-flex">
-                <a href="<?php echo _WEB_ROOT ?>/home" class="text-white mt-3 col d-flex justify-content-center"><i class="mdi mdi-arrow-left"></i> Return Website</a>
-              </div>
-              <?php HtmlHelper::formClose(); ?>
+                            </label>
+                        </div>
+                    </div>
+                    <input type="submit" name="lgAdmin" value="Login" class="btn btn-primary btn-block enter-btn p-3">
+                    <div class="d-flex">
+                        <a href="<?php echo _WEB_ROOT ?>/home"
+                           class="text-white mt-3 col d-flex justify-content-center"><i class="mdi mdi-arrow-left"></i>
+                            Return Website</a>
+                    </div>
+                </form>
             </div>
           </div>
         </div>

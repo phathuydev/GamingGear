@@ -160,7 +160,6 @@
         <div class="collapse" id="banner">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="<?php echo _MANAGE_DEFAULT ?>/banner">List</a></li>
-            <li class="nav-item"> <a class="nav-link" href="<?php echo _MANAGE_DEFAULT ?>/banner/banner_add">Add</a></li>
           </ul>
         </div>
       </li>
