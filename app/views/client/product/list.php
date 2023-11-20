@@ -13,12 +13,12 @@
                 </div>
                 <div class="contentBox">
                     <p class="h4 text-white text-uppercase font-weight-bold m-0"
-                       style="font-size: 15px;"><?= $item['product_name'] ?></p>
+                       style="font-size: 15px;"><?= $item['product_name'] ?> </p>
                     <div class="d-flex align-items-center mt-1">
                         <h3 class="mr-2 text-danger"
-                            style="font-size: 15px;"><?= $item['product_sale'] == null ? $item['product_price'] . '$' : $item['product_sale'] . '$' ?></h3>
+                            style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? $item['product_price'] . '$' : $item['product_price_reduce'] . '$' ?></h3>
                         <s class="text-white"
-                           style="font-size: 15px;"><?= $item['product_sale'] == null ? '' : $item['product_price'] . '$' ?></s>
+                           style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? '' : $item['product_price'] . '$' ?></s>
                     </div>
                     <a href="#" class="buy" style="font-size: 10px; padding: 5px 15px 5px 15px;">Add to cart</a>
                 </div>

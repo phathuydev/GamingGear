@@ -51,12 +51,6 @@
                     <?= $item['product_name'] ?>
                 </h4>
                 <div class="flex-row my-3">
-                    <div class="text-warning">
-                        <i class="fa fa-eye"></i>
-                        <span class="ms-1">
-                    <?= $item['product_view'] ?>
-                  </span>
-                    </div>
                     <div class="mt-3 p-0">
                         <span class="text-muted"><i
                                     class="fas fa-shopping-basket fa-sm mx-1"></i><?= $item['product_quantity'] ?> products</span>
@@ -65,7 +59,9 @@
                 </div>
 
                 <div class="mb-3">
-                    <span class="h5 text-danger"><?= $item['product_sale'] == null ? '$' . $item['product_price'] : '$' . $item['product_sale'] ?></span>
+                    <span class="h5 text-danger"><?= $item['product_price_reduce'] == null ? '$' . $item['product_price'] : '$' . $item['product_price_reduce'] ?></span>
+                    <s class="text-white"
+                       style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? '' : $item['product_price'] . '$' ?></s>
                 </div>
 
                 <p class="text-white mb-2">
@@ -123,9 +119,9 @@
                                            style="font-size: 15px;"><?= $data['product_name'] ?></p>
                                         <div class="d-flex align-items-center mt-1">
                                             <h3 class="mr-2 text-danger"
-                                                style="font-size: 15px;"><?= $data['product_sale'] == null ? $data['product_price'] . '$' : $data['product_sale'] . '$' ?></h3>
+                                                style="font-size: 15px;"><?= $data['product_price_reduce'] == null ? $data['product_price'] . '$' : $data['product_price_reduce'] . '$' ?></h3>
                                             <s class="text-white"
-                                               style="font-size: 15px;"><?= $data['product_sale'] == null ? '' : $data['product_price'] . '$' ?></s>
+                                               style="font-size: 15px;"><?= $data['product_price_reduce'] == null ? '' : $data['product_price'] . '$' ?></s>
                                         </div>
                                         <a href="#" class="buy" style="font-size: 10px; padding: 5px 15px 5px 15px;">Add
                                             to cart</a>
