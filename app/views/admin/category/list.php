@@ -6,7 +6,6 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th class="text-white">#</th>
                         <th class="text-white">Id</th>
                         <th class="text-white">Image</th>
                         <th class="text-white">Name</th>
@@ -16,7 +15,6 @@
                     <tbody>
                     <?php foreach ($listCategory as $key => $item) : ?>
                         <tr>
-                            <td class="text-white"><?= $key + 1; ?></td>
                             <td class="text-white"><?= $item['category_id']; ?></td>
                             <td class="text-white"><img
                                         src="<?= $item['category_image'] == true ? _WEB_ROOT . '/' . $item['category_image_path'] . $item['category_image'] : _WEB_ROOT . '/' . $item['category_image_path'] . 'default_img.jpg'; ?>"

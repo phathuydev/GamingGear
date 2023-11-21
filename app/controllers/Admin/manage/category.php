@@ -13,13 +13,13 @@ class Category extends Controller
     $title = 'List Category';
       $this->data['sub_content']['listCategory'] = $listCategory;
       $this->data['pages_title'] = $title;
-      if (isset($_POST['updateIsdelete'])) {
-          $category_id = $_POST['category_id'];
-          $create_at = $_POST['create_at'];
-          $update_at = $_POST['update_at'];
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+          $category_id = $_POST['user_id'];
+          $is_delete = $_POST['is_delete'];
+          $user_delete = Session::data('admin_login');
           $data = [
-              'create_at' => $create_at,
-              'update_at' => $update_at
+              'is_delete' => $is_delete,
+              'user_delete' => $user_delete,
           ];
           $this->province->updateIsdelete($data, $category_id);
           $response = new Response();
@@ -41,19 +41,22 @@ class Category extends Controller
     $title = 'Add Category';
     $this->data['sub_content']['pages_title'] = $title;
     $this->data['pages_title'] = $title;
-      if (isset($_POST['insertCategory'])) {
-          $category_id = $_POST['category_id'];
-          $category_image = $_POST['category_image']['name'];
-          $category_name = $_POST['category_name'];
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+          $image = $_FILES['image']['name'];
+          $name = $_POST['name'];
+          $user_create = Session::data('admin_login');
+          $user_update = Session::data('admin_login');
           $target_dir = 'public/assets/admin/uploaded_img/';
-          $target_file = $target_dir . basename($category_image);
-          move_uploaded_file($_FILES["category_image"]["tmp_name"], $target_file);
+          $target_file = $target_dir . $image;
+          move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
           $data = [
-              'category_id' => $category_id,
-              'category_image' => $category_image,
-              'category_name' => $category_name
+              'user_create' => $user_create,
+              'user_update' => $user_update,
+              'category_image_path' => $target_dir,
+              'category_image' => $image,
+              'category_name' => $name
           ];
-          $this->province->insertCaterogy($data);
+          $this->province->insertCategory($data);
           $response = new Response();
           $response->redirect('admin/manage/category');
       }
@@ -67,14 +70,20 @@ class Category extends Controller
     $title = 'Edit Category';
       $this->data['sub_content']['firstCategory'] = $firstCategory;
     $this->data['pages_title'] = $title;
-      if (isset($_POST['updateCategory'])) {
-          $create_at = $_POST['create_at'];
-          $update_at = $_POST['update_at'];
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+          $image = $_FILES['image']['name'];
+          $name = $_POST['name'];
+          $user_update = Session::data('admin_login');
+          $target_dir = 'public/assets/admin/uploaded_img/';
+          $target_file = $target_dir . $image;
+          move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
           $data = [
-              'create_at' => $create_at,
-              'update_at' => $update_at,
+              'user_update' => $user_update,
+              'category_image_path' => $target_dir == null ? $firstCategory['category_image_path'] : $target_dir,
+              'category_image' => $image == null ? $firstCategory['category_image'] : $image,
+              'category_name' => $name
           ];
-          $this->province->updateCategory($data);
+          $this->province->updateCategory($data, $category_id);
           $response = new Response();
           $response->redirect('admin/manage/category');
       }
