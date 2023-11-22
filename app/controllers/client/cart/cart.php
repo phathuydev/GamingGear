@@ -35,7 +35,8 @@ class Cart extends Controller
         $title = 'Product List';
         $this->data['pages_title'] = $title;
         $this->data['sub_content']['product'] = [];
-        $this->data['content'] = 'client/cart/thank';
+        $this->data['css_thanks'] = _WEB_ROOT . '/public/assets/client/css/cart.css';
+        $this->data['content'] = 'client/cart/thanks';
         // $this->data['content'] = 'client/product/list';
         $this->render('client/layoutClient/client_layout', $this->data);
     }

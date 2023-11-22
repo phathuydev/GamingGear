@@ -156,7 +156,8 @@
                 </tr>
               </tbody>
             </table>
-            <a href="<?php echo _WEB_ROOT; ?>/checkout" class="btn btn-lg btn-block mt-5" style="background-color: #ec6090; color: #fff; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
+              <a href="<?php echo _WEB_ROOT; ?>/carts/thanks" class="btn btn-lg btn-block mt-5"
+                 style="background-color: #ec6090; color: #fff; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
               Payment
             </a>
           </div>
