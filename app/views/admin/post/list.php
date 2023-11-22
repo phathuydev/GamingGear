@@ -6,7 +6,7 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th class="text-white">Id</th>
+                        <th class="text-white">#</th>
                         <th class="text-white">Image</th>
                         <th class="text-white">Title</th>
                         <th class="text-white">Describe</th>
@@ -17,13 +17,13 @@
                     <tbody>
                     <?php foreach ($listPost as $key => $item) : ?>
                         <tr>
-                            <td class="text-white"><?= $item['post_id']; ?></td>
+                            <td class="text-white"><?= $key + 1; ?></td>
                             <td class="text-white"><img
                                         src="<?= $item['post_image'] == true ? _WEB_ROOT . '/' . $item['post_image_path'] . $item['post_image'] : _WEB_ROOT . '/' . $item['post_image_path'] . 'default_img.jpg'; ?>"
                                         alt="" style="width: 50px !important; height: 50px !important;"></td>
                             <td class="text-white"><?= $item['post_title']; ?></td>
                             <td class="text-white"><?= $item['post_describe']; ?></td>
-                            <td class="text-white"><?= $item['post_category']; ?></td>
+                            <td class="text-white"><?= $item['category_name']; ?></td>
                             <td class="d-flex align-items-center pt-4">
                                 <a class="badge badge-primary mr-2"
                                    href="<? echo _MANAGE_DEFAULT ?>/post/post_edit/<?= $item['post_id'] ?>">Edit</a>

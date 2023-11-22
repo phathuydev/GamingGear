@@ -18,7 +18,7 @@ class CategoryModel extends Model
 
   public function getAllCategory()
   {
-      $data = $this->db->table('categories')->select('*')->get();
+      $data = $this->db->table('categories')->where('is_delete', '=', '0')->select('*')->get();
     return $data;
   }
 

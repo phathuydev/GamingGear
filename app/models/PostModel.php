@@ -92,7 +92,11 @@ class PostModel extends Model
     // }
     public function getAllPost()
     {
-        $data = $this->db->table('posts')->select('*')->get();
+        $data = $this->db->table('posts')
+            ->join('categories', 'posts.post_category = categories.category_id')
+            ->select('posts.post_id AS post_id, posts.post_image AS post_image, posts.post_image_path AS post_image_path, posts.post_title AS post_title, posts.post_describe AS post_describe,
+    categories.category_name AS category_name')
+            ->get();
         return $data;
     }
 }

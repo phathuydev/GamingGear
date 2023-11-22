@@ -14,12 +14,12 @@ class Category extends Controller
       $this->data['sub_content']['listCategory'] = $listCategory;
       $this->data['pages_title'] = $title;
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-          $category_id = $_POST['user_id'];
-          $is_delete = $_POST['is_delete'];
+          $category_id = $_POST['category_id'];
+          $is_delete = 1;
           $user_delete = Session::data('admin_login');
           $data = [
               'is_delete' => $is_delete,
-              'user_delete' => $user_delete,
+              'user_delete' => $user_delete
           ];
           $this->province->updateIsdelete($data, $category_id);
           $response = new Response();
