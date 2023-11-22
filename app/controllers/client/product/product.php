@@ -36,8 +36,6 @@ class Product extends Controller
         $this->data['sub_content']['getComment'] = $getComment;
         $getReplyComment = $this->model('CommentModel')->getReplyCommentProduct($product_id);
         $this->data['sub_content']['getReplyComment'] = $getReplyComment;
-        $countCommentProduct = $this->model('CommentModel')->countCommentProduct($product_id);
-        $this->data['sub_content']['countCommentProduct'] = $countCommentProduct;
         $this->data['sub_content']['client_login'] = Session::data('client_login');
         $title = 'Product Detail';
         $this->data['pages_title'] = $title;

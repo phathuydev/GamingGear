@@ -153,14 +153,14 @@
                                                                                       title="Gửi"></i></button>
                     </form>
                 </div>
-                    <p class="h6 text-white"><?= count($getComment) . ' Comment(s)' ?></p>
-                    <hr class="border border-white mb-5">
                 <?php else : ?>
                     <div class="mt-3 mb-5">
                         <h4 class="text-center h5 text-white"><a href="<?= _WEB_ROOT ?>/lgUser" class="text-danger">Sign
                                 in</a> to post a comment</h4>
                     </div>
                 <?php endif ?>
+                <p class="h6 text-white"><?= count($getComment) . ' Comment(s)' ?></p>
+                <hr class="border border-white mb-5">
                 <div class="row">
                     <div class="col">
                         <?php foreach ($getComment as $comment) : ?>
@@ -184,17 +184,17 @@
                                     <a href="" class="ml-3" title="Edit"><i class="fa fa-edit fa-xs"></i></a>
                                     <a href="" class="ml-3" title="Delete"><i class="fa fa-trash fa-xs"></i></a>
                                 <?php else : ?>
-                                    <a href="#ButtonComment_<?= $comment['comment_product_id']; ?>" class="ml-3"
-                                       id="#ButtonComment_<?= $comment['comment_product_id']; ?>"
-                                       data-id="<?= $comment['comment_product_id']; ?>" title="Repply"><i
-                                                class="fa fa-reply fa-xs"></i></a>
+                                    <?php if (isset($client_login)) : ?>
+                                        <a href="#ButtonComment_<?= $comment['comment_product_id']; ?>" class="ml-3"
+                                           id="#ButtonComment_<?= $comment['comment_product_id']; ?>"
+                                           data-id="<?= $comment['comment_product_id']; ?>" title="Repply"><i
+                                                    class="fa fa-reply fa-xs"></i></a>
+                                    <?php endif ?>
                                 <?php endif ?>
                                         </div>
                                     </div>
                                     <?php if ($comment['user_id'] != $client_login) : ?>
-                                        <div class="d-flex align-items-center justify-content-start mb-2 mt-3"
-                                             id="FormComment_<?= $comment['comment_product_id'] ?>"
-                                             data-id="<?= $comment['comment_product_id'] ?>"
+                                        <div class="d-flex align-items-center justify-content-start mb-2 mt-3" <?php if (isset($client_login)) : ?> id="FormComment_<?= $comment['comment_product_id'] ?>" data-id="<?= $comment['comment_product_id'] ?>" <?php endif ?>
                                              style="display: none !important;">
                                             <img class="rounded-circle shadow-1-strong me-3"
                                                  src="<?php echo _WEB_ROOT ?>/public/assets/admin/img/avatar.jpg"
@@ -239,10 +239,11 @@
                                           <a href="" class="ml-3" title="Edit"><i class="fa fa-edit fa-xs"></i></a>
                                           <a href="" class="ml-3" title="Delete"><i class="fa fa-trash fa-xs"></i></a>
                                       <?php else : ?>
-                                          <a href="#ButtonReply_<?= $reply['comment_product_id'] ?>" class="ml-3"
-                                             id="#ButtonReply_<?= $reply['comment_product_id'] ?>"
-                                             data-id="<?= $reply['comment_product_id']; ?>" title="Repply"><i
-                                                      class="fa fa-reply fa-xs"></i></a>
+                                          <?php if (isset($client_login)) : ?>
+                                              <a href="#ButtonReply_<?= $reply['comment_product_id'] ?>"
+                                                 class="ml-3" <?php if (isset($client_login)) : ?> id="#ButtonReply_<?= $reply['comment_product_id'] ?>" data-id="<?= $reply['comment_product_id']; ?>" <?php endif ?> title="Repply"><i
+                                                          class="fa fa-reply fa-xs"></i></a>
+                                          <?php endif ?>
                                       <?php endif ?>
                                                     </div>
                                                 </div>
