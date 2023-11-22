@@ -14,16 +14,16 @@ class Post extends Controller
       $this->data['sub_content']['listPost'] = $listPost;
     $this->data['pages_title'] = $title;
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-          $category_id = $_POST['user_id'];
+          $post_id = $_POST['user_id'];
           $is_delete = $_POST['is_delete'];
           $user_delete = Session::data('admin_login');
           $data = [
               'is_delete' => $is_delete,
               'user_delete' => $user_delete,
           ];
-          $this->province->updateIsdelete($data, $category_id);
+          $this->province->updateIsdelete($data, $post_id);
           $response = new Response();
-          $response->redirect('admin/manage/category');
+          $response->redirect('admin/manage/post');
       }
     $this->data['body'] = 'admin/post/list';
     $this->render('admin/layoutAdmin/admin_layout', $this->data);

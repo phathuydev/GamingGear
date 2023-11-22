@@ -1,5 +1,4 @@
 <?php
-
 // Kế thừa từ clASs Model
 class PostModel extends Model
 {
@@ -91,4 +90,9 @@ class PostModel extends Model
     //   $data = $this->db->table('comments_post_detail')->join('users', 'comments_post_detail.user_id = users.user_id')->select('users.user_name AS user_name, users.user_email AS user_email, users.user_image AS user_image, users.user_image_path AS user_image_path, comments_post_detail.id_comment AS id_comment, comments_post_detail.comments_post_content AS comments_post_content')->where('id_post', '=', $comment_post_id)->get();
     //   return $data;
     // }
+    public function getAllPost()
+    {
+        $data = $this->db->table('posts')->select('*')->get();
+        return $data;
+    }
 }
