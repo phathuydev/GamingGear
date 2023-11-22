@@ -79,11 +79,13 @@ class Product extends Controller
 
     public function product_edit($product_id = 0)
   {
-      $firstProduct = $this->province->getFirstProduct($product_id);
-    $title = 'Edit Product';
+      $firstProduct = $this->province->getAllProductEdit($product_id);
       $this->data['sub_content']['firstProduct'] = $firstProduct;
+      $getAllCategory = $this->province->getAllCategory();
+      $this->data['sub_content']['getAllCategory'] = $getAllCategory;
+    $title = 'Edit Product';
     $this->data['pages_title'] = $title;
-      if (isset($_POST['updateProduct'])) {
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $product_name = $_POST['product_name'];
           $product_image = $_FILES['product_image']['name'];
           $product_price = $_POST['product_price'];
@@ -92,16 +94,15 @@ class Product extends Controller
           $product_category = $_POST['product_category'];
           $product_special = $_POST['product_special'];
           $product_describe = $_POST['product_describe'];
-          $user_create = $_POST['user_create'];
-          $user_update = $_POST['user_update'];
           $create_at = $_POST['create_at'];
+          $user_update = 1;
           $update_at = $_POST['update_at'];
           $target_dir = 'public/assets/admin/uploaded_img/';
           $target_file = $target_dir . basename($product_image);
           move_uploaded_file($_FILES["product_image"]["tmp_name"], $target_file);
           $data = [
               'product_name' => $product_name,
-              'product_image' => $product_image,
+              'product_image' => $product_image == null ? $firstProduct['product_image'] : '',
               'product_image_path' => $target_dir,
               'product_price' => $product_price,
               'product_price_reduce' => $product_price_reduce,
@@ -109,12 +110,11 @@ class Product extends Controller
               'product_category' => $product_category,
               'product_special' => $product_special,
               'product_describe' => $product_describe,
-              'create_at' => $create_at,
               'update_at' => $update_at,
-              'user_create' => $user_create,
+              'create_at' => $create_at,
               'user_update' => $user_update
           ];
-          $this->province->updateProduct($product_id);
+          $this->province->updateProduct($data, $product_id);
           $response = new Response();
           $response->redirect('admin/manage/product');
       }

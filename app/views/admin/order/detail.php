@@ -11,7 +11,6 @@
                         <th class="text-white">Product name</th>
                         <th class="text-white">Quantity</th>
                         <th class="text-white">Product total</th>
-                        <th class="text-white border-bottom-0">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -25,19 +24,6 @@
                             <td class="text-white"><?= $item['orderquantity'] ?></td>
                             <td class="text-white"><?= $item['producttotal'] ?></td>
                             <td class="d-flex align-items-center pt-4">
-                                <a class="badge badge-primary mr-2"
-                                   href="<?php echo _MANAGE_DEFAULT ?>/product/product_edit">Edit</a>
-                                <form method="post" class="m-0">
-                                    <input type="hidden" name="user_id" value="">
-                                    <input type="hidden" name="is_delete" value="1">
-                                    <input type="hidden" name="user_delete" value="1">
-                                    <input type="hidden" name="create_at" value="">
-                                    <input type="hidden" name="update_at" value="">
-                                    <input type="hidden" name="user_create" value="">
-                                    <input type="hidden" name="user_update" value="">
-                                    <button type="submit" name="" class="badge badge-danger border-0"
-                                            onclick="return confirm('Delete product ...');">Delete
-                                    </button>
                                 </form>
                             </td>
                         </tr>

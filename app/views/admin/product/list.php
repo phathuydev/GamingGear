@@ -50,7 +50,7 @@
                             </td>
                             <td class="d-flex align-items-center pt-4">
                                 <a class="badge badge-primary mr-2"
-                                   href="<? echo _MANAGE_DEFAULT ?>/product/product_edit">Edit</a>
+                                   href="<? echo _MANAGE_DEFAULT ?>/product/product_edit/<?= $item['product_id'] ?>">Edit</a>
                                 <form action="" method="post" class="m-0">
                                     <input type="hidden" name="product_id" value="<?= $item['product_id'] ?>">
                                     <input type="hidden" name="is_delete" value="1">
