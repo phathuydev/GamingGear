@@ -13,7 +13,7 @@
                 </div>
                 <div class="contentBox">
                     <p class="h4 text-white text-uppercase font-weight-bold m-0"
-                       style="font-size: 15px;"><?= $item['product_name'] ?> </p>
+                       style="font-size: 15px;"><?= $item['product_name'] ?></p>
                     <div class="d-flex align-items-center mt-1">
                         <h3 class="mr-2 text-danger"
                             style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? $item['product_price'] . '$' : $item['product_price_reduce'] . '$' ?></h3>

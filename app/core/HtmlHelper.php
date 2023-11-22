@@ -31,10 +31,10 @@ class HtmlHelper
         echo $wrapAfter;
     }
 
-    static function submit($wrapBefore = '', $wrapAfter = '', $name, $label, $class = '')
+    static function submit($wrapBefore = '', $wrapAfter = '', $label, $class = '')
     {
         echo $wrapBefore;
-        echo '<button type="submit" name="' . $name . '" class="' . $class . '">' . $label . '</button>';
+        echo '<button type="submit" class="' . $class . '">' . $label . '</button>';
         echo $wrapAfter;
     }
 }

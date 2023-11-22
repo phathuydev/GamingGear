@@ -21,7 +21,7 @@ trait QueryBuilder
     if (empty($this->where)) {
         $this->operator = 'WHERE';
     } else {
-        $this->operator = 'AND';
+        $this->operator = ' AND ';
     }
       $this->where .= "$this->operator $field $compare '$value'";
     return $this;
@@ -32,7 +32,7 @@ trait QueryBuilder
     if (empty($this->where)) {
         $this->operator = 'WHERE';
     } else {
-        $this->operator = 'OR';
+        $this->operator = ' OR ';
     }
       $this->where .= "$this->operator $field $compare '$value'";
     return $this;
@@ -43,7 +43,7 @@ trait QueryBuilder
     if (empty($this->where)) {
         $this->operator = 'WHERE';
     } else {
-        $this->operator = 'AND';
+        $this->operator = ' AND ';
     }
       $this->where .= "$this->operator $field LIKE '$value'";
     return $this;

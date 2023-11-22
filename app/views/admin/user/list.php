@@ -23,7 +23,7 @@
                   <td class="text-white"><?= $key + 1; ?></td>
                   <td class="text-white"><?= $item['user_role'] == 1 ? 'Admin' : 'Client'; ?></td>
                   <td class="text-white"><img
-                              src="<?= $item['user_image'] == true ? _WEB_ROOT . '/' . $item['user_image_path'] . $item['user_image'] : _WEB_ROOT . '/' . $item['user_image_path'] . 'default_img.jpg'; ?>"
+                              src="<?= _WEB_ROOT . '/' . $item['user_image_path'] . ($item['user_image'] == null ? 'default_img.jpg' : $item['user_image']); ?>"
                               alt="" style="width: 50px !important; height: 50px !important;"></td>
                   <td class="text-white"><?= $item['user_name']; ?></td>
                   <td class="text-white"><?= $item['user_email']; ?></td>
@@ -41,7 +41,7 @@
                           <input type="hidden" name="update_at" value="<?= date("Y-m-d H:i:s") ?>">
                           <input type="hidden" name="user_create" value="<?= $item['user_create'] ?>">
                           <input type="hidden" name="user_update" value="<?= '1' ?>">
-                          <button type="submit" name="updateIsdelete" class="badge badge-danger border-0"
+                          <button type="submit" class="badge badge-danger border-0"
                                   onclick="return confirm('Delete user <?= $item['user_email'] ?>');">Delete
                           </button>
                       </form>

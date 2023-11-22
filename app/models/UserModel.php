@@ -71,12 +71,4 @@ class UserModel extends Model
     {
         $this->db->table('users')->where('user_id', '=', $user_id)->update($data);
     }
-
-    public function getUserSession()
-    {
-        $this->db->table('users')->where(Session::data('user_id'), '=', 'user_id')->select('user_id')->get();
-    }
-    // public function selectEmail($user_email){
-    //     $this->db->table('users')->where('user_email', '=', $user_email)->get();
-    // }
 }

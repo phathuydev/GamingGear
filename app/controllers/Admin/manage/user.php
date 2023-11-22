@@ -14,7 +14,7 @@ class User extends Controller
     $title = 'List User';
       $this->data['sub_content']['listUser'] = $listUser;
     $this->data['pages_title'] = $title;
-      if (isset($_POST['updateIsdelete'])) {
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $user_id = $_POST['user_id'];
           $is_delete = $_POST['is_delete'];
           $user_delete = $_POST['user_delete'];
@@ -42,7 +42,7 @@ class User extends Controller
     $title = 'Add User';
     $this->data['sub_content']['pages_title'] = $title;
     $this->data['pages_title'] = $title;
-      if (isset($_POST['insertUser'])) {
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $user_name = $_POST['user_name'];
           $user_email = $_POST['user_email'];
           $user_password = $_POST['user_password'];
@@ -50,8 +50,8 @@ class User extends Controller
           $user_image = $_FILES['user_image']['name'];
           $user_address = $_POST['user_address'];
           $user_role = $_POST['user_role'];
-          $user_create = $_POST['user_create'];
-          $user_update = $_POST['user_update'];
+          $user_create = Session::data('admin_login');
+          $user_update = Session::data('admin_login');
           $target_dir = 'public/assets/admin/uploaded_img/';
           $target_file = $target_dir . basename($user_image);
           move_uploaded_file($_FILES["user_image"]["tmp_name"], $target_file);
@@ -81,12 +81,12 @@ class User extends Controller
       $title = 'Update User';
       $this->data['sub_content']['firstUser'] = $firstUser;
     $this->data['pages_title'] = $title;
-      if (isset($_POST['updateUser'])) {
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $user_locked = $_POST['user_locked'];
           $create_at = $_POST['create_at'];
           $update_at = $_POST['update_at'];
           $user_create = $_POST['user_create'];
-          $user_update = $_POST['user_update'];
+          $user_update = Session::data('admin_login');
           $data = [
               'user_locked' => $user_locked,
               'create_at' => $create_at,

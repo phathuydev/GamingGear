@@ -32,8 +32,26 @@ class Product extends Controller
         $this->data['sub_content']['getProductDetail'] = $getProductDetail;
         $getProductCategory = $this->province->getProductCategory($category_id);
         $this->data['sub_content']['getProductCategory'] = $getProductCategory;
+        $getComment = $this->model('CommentModel')->getCommentProduct($product_id);
+        $this->data['sub_content']['getComment'] = $getComment;
+        $getReplyComment = $this->model('CommentModel')->getReplyCommentProduct($product_id);
+        $this->data['sub_content']['getReplyComment'] = $getReplyComment;
+        $countCommentProduct = $this->model('CommentModel')->countCommentProduct($product_id);
+        $this->data['sub_content']['countCommentProduct'] = $countCommentProduct;
+        $this->data['sub_content']['client_login'] = Session::data('client_login');
         $title = 'Product Detail';
         $this->data['pages_title'] = $title;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $parent_id = $_POST['parent_id'];
+            $comment_content = $_POST['comment_content'];
+            $data = [
+                'parent_id' => $parent_id,
+                'product_id' => $product_id,
+                'user_id' => Session::data('client_login'),
+                'comment_content' => $comment_content,
+            ];
+            $this->province->addCommentProduct($data);
+        }
         $this->data['content'] = 'client/product/detail';
         $this->render('client/layoutClient/client_layout', $this->data);
     }

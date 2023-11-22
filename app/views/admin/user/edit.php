@@ -9,8 +9,7 @@
         HtmlHelper::input('<div>', '</div>', 'hidden', 'create_at', '', '', '', '', $item['create_at']);
         HtmlHelper::input('<div>', '</div>', 'hidden', 'update_at', '', '', '', '', date("Y-m-d H:i:s"));
         HtmlHelper::input('<div>', '</div>', 'hidden', 'user_create', '', '', '', '', $item['user_create']);
-        HtmlHelper::input('<div>', '</div>', 'hidden', 'user_update', '', '', '', '', '1');
-        HtmlHelper::submit('<div class="mt-4">', '<a class="btn btn-dark" href="' . _MANAGE_DEFAULT . '/user">Cancel</a>' . '</div>', 'updateUser', 'Submit', 'btn btn-primary mr-2');
+        HtmlHelper::submit('<div class="mt-4">', '<a class="btn btn-dark" href="' . _MANAGE_DEFAULT . '/user">Cancel</a>' . '</div>', 'Submit', 'btn btn-primary mr-2');
         HtmlHelper::formClose();
         ?>
     </div>

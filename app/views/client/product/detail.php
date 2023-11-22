@@ -60,8 +60,6 @@
 
                 <div class="mb-3">
                     <span class="h5 text-danger"><?= $item['product_price_reduce'] == null ? '$' . $item['product_price'] : '$' . $item['product_price_reduce'] ?></span>
-                    <s class="text-white"
-                       style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? '' : $item['product_price'] . '$' ?></s>
                 </div>
 
                 <p class="text-white mb-2">
@@ -103,9 +101,9 @@
             <div class="px-0 border rounded-2 shadow-0">
                 <div class="card-body">
                     <h5 class="card-title mb-0">Similar items</h5>
-                    <div class="row">
+                    <div class="rowreplies row">
                         <?php foreach ($getProductCategory as $data) : ?>
-                            <div class="bg-transparent featured-games header-text col-md-3 col-sm-12">
+                            <div class="bg-transparent featured-games d-flex justify-content-center header-text col-md-3 col-sm-12">
                                 <div class="card-pd" style="height: 100%;">
                                     <div class="imgBox">
                                         <a href="<?= _PRODUCT_DEFAULT ?>/product_detail/<?= $data['product_id'] . '/' . $item['category_id'] ?>"><img
@@ -135,13 +133,13 @@
             </div>
         </div>
     </div>
-<?php endforeach; ?>
-<hr class="border border-white mt-5">
-<div class="container">
-    <h4 class="h6 mt-3" style="color: #ec6090; font-size: 24px;">Reviews And Comments</h4>
-    <div class="row d-flex justify-content-center">
-        <div class="col-md-12 col-lg-10 col-xl-8">
+    <hr class="border border-white mt-5">
+    <div class="container">
+        <h4 class="h6 mt-3 text-center" style="color: #ec6090; font-size: 24px;">Comments</h4>
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-12 col-lg-10 col-xl-8">
             <div class="card-body p-0">
+                <?php if (isset($client_login)) : ?>
                 <div class="d-flex align-items-center justify-content-start mb-5 mt-5">
                     <img class="rounded-circle shadow-1-strong me-3"
                          src="<?php echo _WEB_ROOT ?>/public/assets/admin/img/avatar.jpg" alt="avatar"
@@ -155,71 +153,153 @@
                                                                                       title="Gửi"></i></button>
                     </form>
                 </div>
+                    <p class="h6 text-white"><?= count($getComment) . ' Comment(s)' ?></p>
+                    <hr class="border border-white mb-5">
+                <?php else : ?>
+                    <div class="mt-3 mb-5">
+                        <h4 class="text-center h5 text-white"><a href="<?= _WEB_ROOT ?>/lgUser" class="text-danger">Sign
+                                in</a> to post a comment</h4>
+                    </div>
+                <?php endif ?>
                 <div class="row">
                     <div class="col">
-                        <div class="d-flex flex-start">
-                            <img src="<?php echo _WEB_ROOT ?>/public/assets/admin/img/avatar.jpg" alt="" class="me-3"
-                                 style="width: 45px !important; height: 40px !important; border-radius: 30px;">
-                            <div class="flex-grow-1 flex-shrink-1">
-                                <div>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <p class="mb-1 text-white">
-                                            Maria Smantha <span class="small">- 2 hours ago</span>
+                        <?php foreach ($getComment as $comment) : ?>
+                            <div class="d-flex flex-start" id="ButtonComment_<?= $comment['comment_product_id']; ?>">
+                                <img src="<?= _WEB_ROOT . '/' . $comment['user_image_path'] . ($comment['user_image'] == null ? 'default_img.jpg' : $comment['user_image']) ?>"
+                                     alt="" class="me-3"
+                                     style="width: 45px !important; height: 45px !important; border-radius: 30px;">
+                                <div class="flex-grow-1 flex-shrink-1 mb-3">
+                                    <div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <p class="mb-1 text-white font-weight-bold">
+                                                <?= ($comment['user_name'] == null) ? $comment['user_email'] : $comment['user_name'] ?></span>
+                                            </p>
+                                        </div>
+                                        <p class="small mb-0 text-white">
+                                            <?= $comment['comment_content'] ?>
                                         </p>
-                                        <a href="#!"><i class="fas fa-reply fa-xs"></i><span class="small"> reply</span></a>
-                                    </div>
-                                    <p class="small mb-0 text-white">
-                                        It is a long established fact that a reader will be distracted by
-                                        the readable content of a page.
-                                    </p>
-                                </div>
-
-                                <div class="d-flex flex-start mt-4">
-                                    <a class="me-3" href="#">
-                                        <img class="rounded-circle shadow-1-strong"
-                                             src="<?php echo _WEB_ROOT ?>/public/assets/admin/img/avatar.jpg"
-                                             alt="avatar" style="width: 40px !important; border-radius: 30px;"/>
-                                    </a>
-                                    <div class="flex-grow-1 flex-shrink-1">
-                                        <div>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <p class="mb-1 text-white">
-                                                    Simona Disa <span class="small">- 3 hours ago</span>
-                                                </p>
-                                            </div>
-                                            <p class="small mb-0 text-white">
-                                                letters, as opposed to using 'Content here, content here',
-                                                making it look like readable English.
-                                            </p>
+                                        <div class="d-flex align-items-center">
+                            <span class="small text-white"><?= date("F j, Y - H:m", strtotime($comment["create_at"])); ?>
+                                <?php if ($comment['user_id'] == $client_login) : ?>
+                                    <a href="" class="ml-3" title="Edit"><i class="fa fa-edit fa-xs"></i></a>
+                                    <a href="" class="ml-3" title="Delete"><i class="fa fa-trash fa-xs"></i></a>
+                                <?php else : ?>
+                                    <a href="#ButtonComment_<?= $comment['comment_product_id']; ?>" class="ml-3"
+                                       id="#ButtonComment_<?= $comment['comment_product_id']; ?>"
+                                       data-id="<?= $comment['comment_product_id']; ?>" title="Repply"><i
+                                                class="fa fa-reply fa-xs"></i></a>
+                                <?php endif ?>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="d-flex flex-start mt-4">
-                                    <a class="me-3" href="#">
-                                        <img class="rounded-circle shadow-1-strong"
-                                             src="<?php echo _WEB_ROOT ?>/public/assets/admin/img/avatar.jpg"
-                                             alt="avatar" style="width: 40px !important; border-radius: 30px;"/>
-                                    </a>
-                                    <div class="flex-grow-1 flex-shrink-1">
-                                        <div>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <p class="mb-1 text-white">
-                                                    John Smith <span class="small">- 4 hours ago</span>
-                                                </p>
-                                            </div>
-                                            <p class="small mb-0 text-white">
-                                                the majority have suffered alteration in some form, by
-                                                injected humour, or randomised words.
-                                            </p>
+                                    <?php if ($comment['user_id'] != $client_login) : ?>
+                                        <div class="d-flex align-items-center justify-content-start mb-2 mt-3"
+                                             id="FormComment_<?= $comment['comment_product_id'] ?>"
+                                             data-id="<?= $comment['comment_product_id'] ?>"
+                                             style="display: none !important;">
+                                            <img class="rounded-circle shadow-1-strong me-3"
+                                                 src="<?php echo _WEB_ROOT ?>/public/assets/admin/img/avatar.jpg"
+                                                 alt="avatar" style="width: 45px !important; border-radius: 30px;"/>
+                                            <form method="post" class="w-100 d-flex slidebar">
+                                                <input type=" text" name="content" class="rounded-5 ps-3 w-100 small"
+                                                       placeholder=""
+                                                       value="<?= ($comment['user_name'] == null) ? '@' . $comment['user_email'] . ' ' : '@' . $comment['user_name'] . ' ' ?>">
+                                                <input type="hidden" name="id_users" value="">
+                                                <input type="hidden" name="id_product" value="">
+                                                <button type="submit" name="submit_comment"
+                                                        class="border-0 w-auto ms-3 text-white"
+                                                        style="font-size: 24px; background-color:#27292a;"><i
+                                                            class="fa fa-paper-plane" title="Gửi"></i></button>
+                                            </form>
                                         </div>
-                                    </div>
+                                    <?php endif ?>
+
+
+                                    <?php $replies = $this->model('CommentModel')->getReplyCommentProduct($comment['comment_product_id']); ?>
+                                    <?php foreach ($replies as $reply) : ?>
+                                        <div class="d-flex flex-start mt-4"
+                                             id="ButtonReply_<?= $reply['comment_product_id']; ?>">
+                                            <a class="me-3" href="">
+                                                <img class="rounded-circle shadow-1-strong"
+                                                     src="<?= _WEB_ROOT . '/' . $reply['user_image_path'] . ($reply['user_image'] == null ? 'default_img.jpg' : $reply['user_image']) ?>"
+                                                     alt="avatar" style="width: 40px !important; border-radius: 30px;"/>
+                                            </a>
+                                            <div class="flex-grow-1 flex-shrink-1">
+                                                <div>
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <p class="mb-1 text-white font-weight-bold">
+                                                            <?= ($reply['user_name'] == null) ? $reply['user_email'] : $reply['user_name'] ?></span>
+                                                        </p>
+                                                    </div>
+                                                    <p class="small mb-0 text-white">
+                                                        <?= $reply['comment_content'] ?>
+                                                    </p>
+                                                    <div class="d-flex align-items-center">
+                                  <span class="small text-white"><?= date("F j, Y - H:m", strtotime($reply["create_at"])); ?>
+                                      <?php if ($reply['user_id'] == $client_login) : ?>
+                                          <a href="" class="ml-3" title="Edit"><i class="fa fa-edit fa-xs"></i></a>
+                                          <a href="" class="ml-3" title="Delete"><i class="fa fa-trash fa-xs"></i></a>
+                                      <?php else : ?>
+                                          <a href="#ButtonReply_<?= $reply['comment_product_id'] ?>" class="ml-3"
+                                             id="#ButtonReply_<?= $reply['comment_product_id'] ?>"
+                                             data-id="<?= $reply['comment_product_id']; ?>" title="Repply"><i
+                                                      class="fa fa-reply fa-xs"></i></a>
+                                      <?php endif ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php if ($reply['user_id'] != $client_login) : ?>
+                                            <div class="d-flex align-items-center justify-content-start mb-2 mt-3"
+                                                 id="FormReply_<?= $reply['comment_product_id'] ?>"
+                                                 data-id="<?= $reply['comment_product_id'] ?>"
+                                                 style="margin-left: 55px; display: none !important;">
+                                                <img class="rounded-circle shadow-1-strong me-3"
+                                                     src="<?php echo _WEB_ROOT ?>/public/assets/admin/img/avatar.jpg"
+                                                     alt="avatar" style="width: 45px !important; border-radius: 30px;"/>
+                                                <form method="post" class="w-100 d-flex slidebar">
+                                                    <input type="text" name="content" class="rounded-5 ps-3 w-100 small"
+                                                           placeholder=""
+                                                           value="<?= ($reply['user_name'] == null) ? '@' . $reply['user_email'] . ' ' : '@' . $reply['user_name'] . ' ' ?>">
+                                                    <input type="hidden" name="id_users" value="">
+                                                    <input type="hidden" name="id_product" value="">
+                                                    <button type="submit" name="submit_comment"
+                                                            class="border-0 w-auto ms-3 text-white"
+                                                            style="font-size: 24px; background-color:#27292a;"><i
+                                                                class="fa fa-paper-plane" title="Gửi"></i></button>
+                                                </form>
+                                            </div>
+                                        <?php endif ?>
+                                    <?php endforeach; ?>
+
                                 </div>
                             </div>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
+            </div>
         </div>
     </div>
-</div>
+<?php endforeach; ?>
+<?php foreach ($getComment as $comment) : ?>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var ButtonComment = document.getElementById('ButtonComment_<?= $comment['comment_product_id']; ?>');
+            var FormComment = document.getElementById('FormComment_<?= $comment['comment_product_id'] ?>');
+            ButtonComment.addEventListener('click', function () {
+                if (FormComment.style.display === 'none' || FormComment.style.display === '') {
+                    FormComment.style.display = 'block';
+                } else {
+                    FormComment.style.display = 'none';
+                }
+            });
+            ButtonComment.addEventListener('click', function () {
+                if (FormComment.style.display === 'block') {
+                    FormComment.style.display = 'none';
+                } else {
+                    FormComment.style.display = 'block';
+                }
+            });
+        });
+    </script>
+<?php endforeach; ?>
