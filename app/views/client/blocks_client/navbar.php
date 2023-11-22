@@ -36,7 +36,7 @@
               <li><a href="<?php echo _WEB_ROOT; ?>/products" class="active">Product</a></li>
               <li><a href="<?php echo _WEB_ROOT; ?>/contacts" class="active">contact</a></li>
               <li><a href="<?php echo _WEB_ROOT; ?>/posts" class="active">post</a></li>
-              <li><a href="<?php echo _WEB_ROOT; ?>/cart" class="active"><i class="fa fa-shopping-basket"></i></a></li>
+              <li><a href="<?php echo _WEB_ROOT; ?>/carts" class="active"><i class="fa fa-shopping-basket"></i></a></li>
               <li data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                   class="d-flex align-items-center justify-content-center p-2">
                   <img src="<?php echo _WEB_ROOT ?>/public/assets/admin/img/avatar.jpg"

@@ -169,7 +169,8 @@
           </div>
           <span><strong>$53.98</strong></span>
         </div>
-        <a href="<?php echo _WEB_ROOT; ?>/checkout" class="btn btn-lg btn-block" style="background-color: #ec6090; color: #fff;">
+          <a href="<?php echo _WEB_ROOT; ?>/carts/checkout" class="btn btn-lg btn-block"
+             style="background-color: #ec6090; color: #fff;">
           Go to checkout
         </a>
       </div>
