@@ -3,10 +3,14 @@
         <div class="card-body">
             <h4 class="card-title">Add Category</h4>
             <form class="forms-sample" method="post" enctype='multipart/form-data'>
-                <div class="form-group">
+                <div class="form-group border-0">
                     <label>Image</label>
-                    <input type="file" class="form-control" name="image" placeholder="Image"
-                           accept='image/png, image/jpeg, image/jpg'>
+                    <div class="custom-file form-control">
+                        <input type="file" class="form-control custom-file-input text-white" name="image"
+                               placeholder="Image" accept='image/png, image/jpeg, image/jpg'>
+                        <label class="custom-file-label bg-transparent border text-muted d-flex align-items-center">Choose
+                            file</label>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>Name</label>
