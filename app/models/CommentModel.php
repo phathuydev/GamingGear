@@ -30,10 +30,10 @@ class CommentModel extends Model
     {
         $data = $this->db->table('comments_post')
             ->join('posts', 'comments_post.post_id = posts.post_id')
-            ->select('posts.post_id as post_id, posts.post_title AS post_title, posts.post_image_path AS 
+            ->select('posts.post_id as post_id, posts.post_image_path AS 
       post_image_path, posts.post_image AS post_image, COUNT(comments_post.post_id) AS count_comment_post')
             ->where('comments_post.is_delete', '=', 0)
-            ->groupBy('posts.post_id, posts.post_title, posts.post_image_path, posts.post_image')
+            ->groupBy('posts.post_id, posts.post_image_path, posts.post_image')
             ->get();
         return $data;
     }
@@ -122,24 +122,4 @@ class CommentModel extends Model
     {
         $this->db->table('replies_post')->where('reply_post_id', '=', $reply_post_id)->update($data);
     }
-    // public function getCommentProduct()
-    // {
-    //   $data = $this->db->table('comments_product')->join('products', 'comments_product.product_id = products.product_id')->join('users', 'comments_product.user_id = users.user_id')->select('products.product_name AS product_name, products.product_image AS product_image, products.product_image_path AS product_image_path, users.user_name AS user_name, users.user_email AS user_email, users.user_image_path AS user_image_path, users.user_image AS user_image, comments_product.product_id AS product_id, comments_product.comment_product_id AS comment_product_id, comments_product.create_at AS create_at')->where('comments_product.is_delete', '=', 0)->get();
-    //   return $data;
-    // }
-    // public function getCommentProductDetail($comment_product_id)
-    // {
-    //   $data = $this->db->table('comments_product_detail')->select('*')->where('id_comment', '=', $comment_product_id)->get();
-    //   return $data;
-    // }
-    //  public function getCommentPost()
-    // {
-    //   $data = $this->db->table('comments_post')->join('posts', 'comments_post.post_id = posts.post_id')->select('posts.post_title AS post_title, posts.post_image AS post_image, posts.post_image_path AS post_image_path, comments_post.post_id AS post_id, COUNT(comments_post.post_id) AS count_id_post')->groupBy('posts.post_title, posts.post_image, posts.post_image_path, posts.post_id')->get();
-    //   return $data;
-    // }
-    // public function getCommentPostDetail($comment_post_id)
-    // {
-    //   $data = $this->db->table('comments_post_detail')->join('users', 'comments_post_detail.user_id = users.user_id')->select('users.user_name AS user_name, users.user_email AS user_email, users.user_image AS user_image, users.user_image_path AS user_image_path, comments_post_detail.id_comment AS id_comment, comments_post_detail.comments_post_content AS comments_post_content')->where('id_post', '=', $comment_post_id)->get();
-    //   return $data;
-    // }
 }

@@ -5,6 +5,10 @@ class Order extends Controller
   public $data = [];
   public function __construct()
   {
+      if (Session::data('admin_login') === null) {
+          $response = new Response();
+          $response->redirect('lgAdmin');
+      }
       $this->province = $this->model('OrderModel');
   }
   public function index()
@@ -33,6 +37,16 @@ class Order extends Controller
       $getAllStatusOrder = $this->province->getAllStatusOrder();
       $this->data['sub_content']['getAllStatusOrder'] = $getAllStatusOrder;
       $this->data['sub_content']['order_status'] = $order_status;
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+          $order_status = $_POST['order_status'];
+          $data = [
+              'order_status' => $order_status,
+              'update_at' => date("Y-m-d H:i:s")
+          ];
+          $this->province->updateOrder($data, $order_id);
+          $response = new Response();
+          $response->redirect('admin/manage/order');
+      }
     $title = 'Update Status';
     $this->data['sub_content']['pages_title'] = $title;
     $this->data['pages_title'] = $title;

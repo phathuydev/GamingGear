@@ -1,6 +1,6 @@
 <?php
 
-// Kế thừa từ class Model
+// Kế thừa từ clASs Model
 class OrderModel extends Model
 {
     private $__table = "orders";
@@ -9,7 +9,6 @@ class OrderModel extends Model
     {
         return 'orders';
     }
-
     function fieldFill()
     {
         return '*';
@@ -21,51 +20,35 @@ class OrderModel extends Model
             ->join('users', 'orders.user_id = users.user_id')
             ->join('order_status', 'orders.order_status = order_status.order_status_id')
             ->join('order_payment', 'orders.order_payment = order_payment.order_payment_id')
-            ->select('orders.order_id as orderid, orders.order_note as ordernote, orders.order_total as ordertotal, 
-            orders.order_payment as orderpayment, orders.order_status as orderstatus,
-            users.user_name as username, users.user_email as useremail, users.user_phone as userphone, 
-            users.user_address as useraddress, users.user_image as userimage, users.user_image_path as userimagepath,
-            order_status.order_name as orderstatusname,
-            order_payment.order_payment_name as orderpaymentname')
+            ->select('orders.order_id AS order_id, orders.order_note AS order_note, orders.order_total AS order_total, 
+            orders.order_payment AS order_payment, orders.order_status AS order_status,
+            users.user_image AS user_image, users.user_image_path AS user_image_path,
+            orders.user_name AS user_name, order_payment.order_payment_name AS order_payment_name, order_status.order_name AS order_name,
+            orders.user_email AS user_email, orders.user_phone AS user_phone, orders.user_address AS user_address')
             ->where('orders.is_delete', '=', 0)
             ->orderBy('orders.create_at', 'DESC')
             ->get();
         return $data;
     }
-
-    public function getFirstOrder($order_id)
-    {
-        $data = $this->db->table('orders')
-            ->select('order_id, order_name, order_image, order_image_path, order_price, order_price_reduce, order_quantity, order_category, order_special, order_describe, create_at, user_create')->where('order_id', '=', $order_id)->first();
-        return $data;
-    }
-
-    public function insertOrder($data)
-    {
-        $this->db->table('orders')->insert($data);
-    }
-
     public function updateIsDelete($data, $order_id)
     {
         $this->db->table('orders')->where('orders_id', '=', $order_id)->update($data);
     }
 
-    public function updateOrder($data, $product_id)
+    public function updateOrder($data, $order_id)
     {
-        $this->db->table('orders')->where('order_id', '=', $product_id)->update($data);
+        $this->db->table('orders')->where('order_id', '=', $order_id)->update($data);
     }
-
     public function getOrderDetail($order_id)
     {
         $data = $this->db->table('orders_detail')
             ->join('products', 'orders_detail.product_id = products.product_id')
-            ->select('orders_detail.order_quantity as orderquantity, orders_detail.order_total_product as producttotal,
-        products.product_name as productname, products.product_image as productimage, products.product_image_path as productimagepath')
-            ->where('order_id', '=', $order_id)
+            ->select('orders_detail.order_quantity AS order_quantity, orders_detail.order_total_product AS product_total,
+        products.product_name AS product_name, products.product_image AS product_image, products.product_image_path AS product_image_path')
+            ->where('orders_detail.id_order', '=', $order_id)
             ->get();
         return $data;
     }
-
     public function getAllStatusOrder()
     {
         $data = $this->db->table('order_status')
@@ -74,5 +57,3 @@ class OrderModel extends Model
         return $data;
     }
 }
-
-?>

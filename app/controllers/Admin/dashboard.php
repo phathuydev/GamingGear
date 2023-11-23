@@ -5,6 +5,10 @@ class Dashboard extends Controller
   public $data = [];
   public function __construct()
   {
+      if (Session::data('admin_login') === null) {
+          $response = new Response();
+          $response->redirect('lgAdmin');
+      }
     $this->province = $this->model('');
   }
   public function index()

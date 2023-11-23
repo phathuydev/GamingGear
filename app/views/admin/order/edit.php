@@ -2,12 +2,12 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Update Status</h4>
-            <form class="form-semple">
+            <form class="form-semple" method="post">
                 <div class="form-group">
                     <label for="exampleInputUsername1">Status</label>
-                    <select class="form-control" name="order_status">
+                    <select class="form-control text-white" name="order_status">
                         <?php foreach ($getAllStatusOrder as $item) : ?>
-                            <option class="text-black" <?= (isset($item['order_status_id'])) && $item['order_status_id'] == $order_status ? 'selected' : '' ?>
+                            <option class="text-white" <?= (isset($item['order_status_id'])) && $item['order_status_id'] == $order_status ? 'selected' : '' ?>
                                     value="<?= $item['order_status_id'] ?>">
                                 <?= $item['order_name'] ?>
                             </option>

@@ -56,7 +56,6 @@
                             <tr>
                                 <th class="text-white">#</th>
                                 <th class="text-white">Image Post</th>
-                                <th class="text-white">Name Post</th>
                                 <th class="text-white">Total Comment</th>
                                 <th class="text-white">Action</th>
                             </tr>
@@ -70,7 +69,6 @@
                                                 alt=""
                                                 style="width: 100px !important; height: 50px !important; border-radius: 0px;">
                                     </td>
-                                    <td class="text-white"><?= $item['post_title'] ?></td>
                                     <td class="text-white"><?= $item['count_comment_post'] ?></td>
                                     <td class="text-white">
                                         <a class="badge badge-primary mr-2"

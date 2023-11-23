@@ -51,12 +51,6 @@ class HomeModel extends Model
     return $data;
   }
 
-  public function insertCategory($data)
-  {
-    $this->db->table('category')->insert($data);
-    return $this->db->lastID();
-  }
-
     // public function selectEmail($email){
     //     $this->db->table('user')->where('email', '=', $email)->get();
     // }

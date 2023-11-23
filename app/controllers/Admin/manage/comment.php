@@ -5,6 +5,10 @@ class Comment extends Controller
   public $data = [];
   public function __construct()
   {
+      if (Session::data('admin_login') === null) {
+          $response = new Response();
+          $response->redirect('lgAdmin');
+      }
       $this->province = $this->model('CommentModel');
   }
   public function index()
@@ -26,11 +30,10 @@ class Comment extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $comment_product_id = $_POST['comment_product_id'];
             $product_id = $_POST['product_id'];
-            $is_delete = 1;
-            $user_delete = Session::data('admin_login');
             $data = [
-                'is_delete' => $is_delete,
-                'user_delete' => $user_delete
+                'is_delete' => 1,
+                'user_delete' => Session::data('admin_login'),
+                'update_at' => date("Y-m-d H:i:s"),
             ];
             $this->province->updateIsdeleteCommentProduct($data, $comment_product_id);
             $response = new Response();
@@ -50,11 +53,10 @@ class Comment extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $reply_product_id = $_POST['reply_product_id'];
             $comment_product_id = $_POST['comment_product_id'];
-            $is_delete = 1;
-            $user_delete = Session::data('admin_login');
             $data = [
-                'is_delete' => $is_delete,
-                'user_delete' => $user_delete
+                'is_delete' => 1,
+                'user_delete' => Session::data('admin_login'),
+                'update_at' => date("Y-m-d H:i:s"),
             ];
             $this->province->updateIsdeleteReplyCommentProduct($data, $reply_product_id);
             $response = new Response();
@@ -73,11 +75,10 @@ class Comment extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $comment_post_id = $_POST['comment_post_id'];
             $post_id = $_POST['post_id'];
-            $is_delete = 1;
-            $user_delete = Session::data('admin_login');
             $data = [
-                'is_delete' => $is_delete,
-                'user_delete' => $user_delete
+                'is_delete' => 1,
+                'user_delete' => Session::data('admin_login'),
+                'update_at' => date("Y-m-d H:i:s")
             ];
             $this->province->updateIsdeleteCommentPost($data, $comment_post_id);
             $response = new Response();
@@ -97,11 +98,10 @@ class Comment extends Controller
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $reply_post_id = $_POST['reply_post_id'];
           $comment_post_id = $_POST['comment_post_id'];
-          $is_delete = 1;
-          $user_delete = Session::data('admin_login');
           $data = [
-              'is_delete' => $is_delete,
-              'user_delete' => $user_delete
+              'is_delete' => 1,
+              'user_delete' => Session::data('admin_login'),
+              'update_at' => date("Y-m-d H:i:s"),
           ];
           $this->province->updateIsdeleteReplyCommentPost($data, $reply_post_id);
           $response = new Response();

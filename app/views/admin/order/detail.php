@@ -18,14 +18,11 @@
                         <tr>
                             <td class="text-white"><?= $key + 1 ?></td>
                             <td class="text-white"><img
-                                        src="<?= _WEB_ROOT . '/' . $item['productimagepath'] . $item['productimage'] ?>"
+                                        src="<?= _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>"
                                         alt="" style="width: 50px !important; height: 50px !important;"></td>
-                            <td class="text-white"><?= $item['productname'] ?></td>
-                            <td class="text-white"><?= $item['orderquantity'] ?></td>
-                            <td class="text-white"><?= $item['producttotal'] ?></td>
-                            <td class="d-flex align-items-center pt-4">
-                                </form>
-                            </td>
+                            <td class="text-white"><?= $item['product_name'] ?></td>
+                            <td class="text-white"><?= $item['order_quantity'] ?></td>
+                            <td class="text-white"><?= '$' . $item['product_total'] ?></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>

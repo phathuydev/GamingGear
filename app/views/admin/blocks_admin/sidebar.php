@@ -10,12 +10,14 @@
         <div class="profile-desc">
           <div class="profile-pic">
             <div class="count-indicator">
-              <img class="img-xs rounded-circle " src="<?php echo _WEB_ROOT ?>/public/assets/admin/img/avatar.jpg" alt="">
+                <img class="img-xs rounded-circle "
+                     src="<?php echo _WEB_ROOT . '/' . $getUserSession['user_image_path'] . $getUserSession['user_image']; ?>"
+                     alt="">
               <span class="count bg-success"></span>
             </div>
             <div class="profile-name">
-              <h5 class="mb-0 font-weight-normal">Lu Phat Huy</h5>
-              <span>Admin</span>
+                <h5 class="mb-0 font-weight-normal text-uppercase"><?= $getUserSession['user_name'] ?></h5>
+                <span><?= $getUserSession['user_role'] == 1 ? 'ADMIN' : ''; ?></span>
             </div>
           </div>
           <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
@@ -159,14 +161,10 @@
         </a>
         <div class="collapse" id="banner">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="<?php echo _MANAGE_DEFAULT ?>/banner">List</a></li>
-              <li class="nav-item"><a class="nav-link" href="<?php echo _MANAGE_DEFAULT ?>/banner/bannerPD_add">Add
-                      Banner Product</a></li>
-              <li class="nav-item"><a class="nav-link" href="<?php echo _MANAGE_DEFAULT ?>/banner/bannerhome_add">Add
-                      Banner Home</a></li>
-
+              <li class="nav-item"><a class="nav-link" href="<?php echo _MANAGE_DEFAULT ?>/banner">List</a></li>
+              <li class="nav-item"><a class="nav-link"
+                                      href="<?php echo _MANAGE_DEFAULT ?>/banner/banner_home_add">Home</a></li>
           </ul>
-
         </div>
       </li>
     </ul>

@@ -14,7 +14,7 @@
                 <th class="text-white">Phone</th>
                 <th class="text-white">Address</th>
               <th class="text-white">Status</th>
-                <th class="text-white border-bottom-0">Action</th>
+                <th class="text-white">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -35,12 +35,7 @@
                          href="<? echo _MANAGE_DEFAULT ?>/user/user_edit/<?= $item['user_id'] ?>">Edit</a>
                       <form method="post" class="m-0">
                           <input type="hidden" name="user_id" value="<?= $item['user_id'] ?>">
-                          <input type="hidden" name="is_delete" value="1">
-                          <input type="hidden" name="user_delete" value="1">
                           <input type="hidden" name="create_at" value="<?= $item['create_at'] ?>">
-                          <input type="hidden" name="update_at" value="<?= date("Y-m-d H:i:s") ?>">
-                          <input type="hidden" name="user_create" value="<?= $item['user_create'] ?>">
-                          <input type="hidden" name="user_update" value="<?= '1' ?>">
                           <button type="submit" class="badge badge-danger border-0"
                                   onclick="return confirm('Delete user <?= $item['user_email'] ?>');">Delete
                           </button>

@@ -24,7 +24,6 @@ class Database
       $valueStr = rtrim($valueStr, ',');
 
       $sql = "INSERT INTO $table($fieldStr) VALUES ($valueStr)";
-
       $status = $this->query($sql);
       if ($status) {
         return true;

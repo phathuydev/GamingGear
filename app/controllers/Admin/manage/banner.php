@@ -5,68 +5,156 @@ class Banner extends Controller
   public $data = [];
   public function __construct()
   {
+      if (Session::data('admin_login') === null) {
+          $response = new Response();
+          $response->redirect('lgAdmin');
+      }
       $this->province = $this->model('BannerModel');
   }
   public function index()
   {
-    $title = 'List banner';
-    $this->data['sub_content']['pages_title'] = $title;
+      $getBannerHome = $this->province->getBannerHome();
+      $this->data['sub_content']['getBannerHome'] = $getBannerHome;
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+          $banner_home_id = $_POST['banner_home_id'];
+          $this->province->deleteBannerHome($banner_home_id);
+          $response = new Response();
+          $response->redirect('admin/manage/banner');
+      }
+      $getBannerProduct = $this->province->getBannerProduct();
+      $this->data['sub_content']['getBannerProduct'] = $getBannerProduct;
+      $title = 'List Banner';
     $this->data['pages_title'] = $title;
     $this->data['body'] = 'admin/banner/list';
     $this->render('admin/layoutAdmin/admin_layout', $this->data);
   }
 
-    public function bannerhome_add()
+    public function banner_product_detail($product_id)
     {
-        $title = 'Add banner';
-        $this->data['sub_content']['pages_title'] = $title;
+        $getBannerProductDetail = $this->province->getBannerProductDetail($product_id);
+        $this->data['sub_content']['getBannerProductDetail'] = $getBannerProductDetail;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $banner_product_id = $_POST['banner_product_id'];
+            $product_id = $_POST['product_id'];
+            $this->province->deleteBannerProduct($banner_product_id);
+            $response = new Response();
+            $response->redirect('admin/manage/banner/banner_product_detail/' . $product_id . '');
+        }
+        $title = 'Comment Product Detail';
         $this->data['pages_title'] = $title;
-        $this->data['body'] = 'admin/banner/addhome';
+        $this->data['body'] = 'admin/banner/banner_product_detail';
         $this->render('admin/layoutAdmin/admin_layout', $this->data);
     }
 
-    public function bannerhome_edit()
+    public function banner_home_add()
     {
-        $title = 'Edit banner';
-        $this->data['sub_content']['pages_title'] = $title;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $target_dir = 'public/assets/admin/uploaded_img/';
+            foreach ($_FILES['banner_home_image']['tmp_name'] as $key => $tmp_name) {
+                $file_name = $_FILES['banner_home_image']['name'][$key];
+                $file_tmp = $_FILES['banner_home_image']['tmp_name'][$key];
+                $target_file = $target_dir . basename($file_name);
+                move_uploaded_file($file_tmp, $target_file);
+                $data = [
+                    'banner_home_image' => $file_name,
+                    'banner_home_path' => $target_dir,
+                    'user_create' => Session::data('admin_login'),
+                    'user_update' => Session::data('admin_login')
+                ];
+                $this->province->insertBannerHome($data);
+            }
+            $response = new Response();
+            $response->redirect('admin/manage/banner');
+        }
+        $title = 'Banner Home Add';
+        $this->data['sub_content']['pages_title'] = [];
         $this->data['pages_title'] = $title;
-        $this->data['body'] = 'admin/banner/edit';
+        $this->data['body'] = 'admin/banner/banner_home_add';
         $this->render('admin/layoutAdmin/admin_layout', $this->data);
     }
 
-    public function bannerPD_add()
+    public function banner_home_edit($banner_home_id = 0)
   {
-    $title = 'Add banner';
-    $this->data['sub_content']['pages_title'] = $title;
-    $this->data['pages_title'] = $title;
-      if (isset($_POST['insertBannerPD'])) {
-          $banner_product_image = $_FILES['banner_product_image']['name'];
-          // $user_create = $_POST['user_create'];
-          $user_update = $_POST['user_update'];
+      $getBannerEdit = $this->province->getBannerEdit($banner_home_id);
+      $this->data['sub_content']['getBannerEdit'] = $getBannerEdit;
+      $this->data['sub_content']['banner_home_id'] = $banner_home_id;
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+          $file_name = $_FILES['banner_home_image']['name'];
+          $banner_home_id = $_POST['banner_home_id'];
+          $banner_home_image = $_POST['banner_home_image'];
           $target_dir = 'public/assets/admin/uploaded_img/';
-          $target_file = $target_dir . basename($banner_product_image);
-          move_uploaded_file($_FILES["banner_product_image"]["tmp_name"], $target_file);
+          $target_file = $target_dir . basename($file_name);
+          move_uploaded_file($_FILES['banner_home_image']['tmp_name'], $target_file);
           $data = [
-
-              'banner_product_image' => $banner_product_image,
-              'banner_product_path' => $target_dir,
-              // 'user_create' => $user_create,
-              'user_update' => $user_update
+              'banner_home_image' => $file_name == null ? $banner_home_image : $file_name,
+              'banner_home_path' => $target_dir,
+              'user_update' => Session::data('admin_login'),
           ];
-          $this->province->insertBannerPD($data);
+          $this->province->updateBannerHome($data, $banner_home_id);
           $response = new Response();
           $response->redirect('admin/manage/banner');
       }
-    $this->data['body'] = 'admin/banner/add';
+      $title = 'Edit Banner Home';
+    $this->data['pages_title'] = $title;
+      $this->data['body'] = 'admin/banner/banner_home_edit';
+      $this->render('admin/layoutAdmin/admin_layout', $this->data);
+  }
+
+    public function banner_product_add($product_id)
+    {
+        $this->data['sub_content']['product_id'] = $product_id;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $target_dir = 'public/assets/admin/uploaded_img/';
+            $product_id = $_POST['product_id'];
+            foreach ($_FILES['banner_product_image']['tmp_name'] as $key => $tmp_name) {
+                $file_name = $_FILES['banner_product_image']['name'][$key];
+                $file_tmp = $_FILES['banner_product_image']['tmp_name'][$key];
+                $target_file = $target_dir . basename($file_name);
+                move_uploaded_file($file_tmp, $target_file);
+                $data = [
+                    'banner_product_image' => $file_name,
+                    'product_id' => $product_id,
+                    'banner_product_path' => $target_dir,
+                    'user_create' => Session::data('admin_login'),
+                    'user_update' => Session::data('admin_login')
+                ];
+                $this->province->insertBannerProduct($data, $product_id);
+            }
+            $response = new Response();
+            $response->redirect('admin/manage/banner');
+        }
+        $title = 'Banner Product Add';
+        $this->data['sub_content']['pages_title'] = [];
+        $this->data['pages_title'] = $title;
+        $this->data['body'] = 'admin/banner/banner_product_add';
     $this->render('admin/layoutAdmin/admin_layout', $this->data);
   }
 
-    public function bannerproduct_edit()
+    public function banner_product_edit($banner_product_id = 0)
   {
-    $title = 'Edit banner';
-    $this->data['sub_content']['pages_title'] = $title;
+      $getBannerProductEdit = $this->province->getBannerProductEdit($banner_product_id);
+      $this->data['sub_content']['getBannerProductEdit'] = $getBannerProductEdit;
+      $this->data['sub_content']['banner_product_id'] = $banner_product_id;
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+          $file_name = $_FILES['banner_product_image']['name'];
+          $banner_product_id = $_POST['banner_product_id'];
+          $product_id = $_POST['product_id'];
+          $banner_product_image = $_POST['banner_product_image'];
+          $target_dir = 'public/assets/admin/uploaded_img/';
+          $target_file = $target_dir . basename($file_name);
+          move_uploaded_file($_FILES['banner_product_image']['tmp_name'], $target_file);
+          $data = [
+              'banner_product_image' => $file_name == null ? $banner_product_image : $file_name,
+              'banner_product_path' => $target_dir,
+              'user_update' => Session::data('admin_login'),
+          ];
+          $this->province->updateBannerProduct($data, $banner_product_id);
+          $response = new Response();
+          $response->redirect('admin/manage/banner/banner_product_detail/' . $product_id . '');
+      }
+      $title = 'Edit Banner Product';
     $this->data['pages_title'] = $title;
-    $this->data['body'] = 'admin/banner/edit';
+      $this->data['body'] = 'admin/banner/banner_product_edit';
     $this->render('admin/layoutAdmin/admin_layout', $this->data);
   }
 }

@@ -150,8 +150,10 @@
       <li class="nav-item dropdown">
         <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
           <div class="navbar-profile">
-            <img class="img-xs rounded-circle" src="<? echo _WEB_ROOT ?>/public/assets/admin/img/avatar.jpg" alt="">
-            <p class="mb-0 d-none d-sm-block navbar-profile-name">Henry Klein</p>
+              <img class="img-xs rounded-circle"
+                   src="<?php echo _WEB_ROOT . '/' . $getUserSession['user_image_path'] . $getUserSession['user_image']; ?>"
+                   alt="">
+              <p class="mb-0 d-none d-sm-block navbar-profile-name text-uppercase"><?= $getUserSession['user_name'] ?></p>
             <i class="mdi mdi-menu-down d-none d-sm-block"></i>
           </div>
         </a>

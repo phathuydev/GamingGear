@@ -27,10 +27,6 @@
                                    href="<? echo _MANAGE_DEFAULT ?>/category/category_edit/<?= $item['category_id'] ?>">Edit</a>
                                 <form method="post" class="m-0">
                                     <input type="hidden" name="category_id" value="<?= $item['category_id'] ?>">
-                                    <input type="hidden" name="is_delete" value="1">
-                                    <input type="hidden" name="category_delete" value="1">
-                                    <input type="hidden" name="create_at" value="<?= $item['create_at'] ?>">
-                                    <input type="hidden" name="update_at" value="<?= date("Y-m-d H:i:s") ?>">
                                     <button type="submit" name="updateIsdelete" class="badge badge-danger border-0"
                                             onclick="return confirm('Delete category <?= $item['category_id'] ?>');">
                                         Delete

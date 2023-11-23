@@ -5,35 +5,29 @@ class Category extends Controller
   public $data = [];
   public function __construct()
   {
+      if (Session::data('admin_login') === null) {
+          $response = new Response();
+          $response->redirect('lgAdmin');
+      }
       $this->province = $this->model('CategoryModel');
   }
   public function index()
   {
       $listCategory = $this->province->getAllcategory();
-    $title = 'List Category';
       $this->data['sub_content']['listCategory'] = $listCategory;
+      $countPostCategory = $this->province->countPostCategory();
+      $this->data['sub_content']['countPostCategory'] = $countPostCategory;
+      $countProductCategory = $this->province->countProductCategory();
+      $this->data['sub_content']['countProductCategory'] = $countProductCategory;
+    $title = 'List Category';
       $this->data['pages_title'] = $title;
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $category_id = $_POST['category_id'];
-          $is_delete = 1;
-          $user_delete = Session::data('admin_login');
-          $data = [
-              'is_delete' => $is_delete,
-              'user_delete' => $user_delete
-          ];
-          $this->province->updateIsdelete($data, $category_id);
+          $this->province->deleteBannerHome($category_id);
           $response = new Response();
           $response->redirect('admin/manage/category');
       }
     $this->data['body'] = 'admin/category/list';
-    $this->render('admin/layoutAdmin/admin_layout', $this->data);
-  }
-  public function category_detail($id)
-  {
-    $title = 'Category Detail';
-    $this->data['sub_content']['pages_title'] = $title;
-    $this->data['pages_title'] = $title;
-    $this->data['body'] = 'admin/category/detail';
     $this->render('admin/layoutAdmin/admin_layout', $this->data);
   }
   public function category_add()
@@ -42,24 +36,30 @@ class Category extends Controller
     $this->data['sub_content']['pages_title'] = $title;
     $this->data['pages_title'] = $title;
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-          $image = $_FILES['image']['name'];
           $name = $_POST['name'];
-          $user_create = Session::data('admin_login');
-          $user_update = Session::data('admin_login');
-          $target_dir = 'public/assets/admin/uploaded_img/';
-          $target_file = $target_dir . $image;
-          move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
-          $data = [
-              'user_create' => $user_create,
-              'user_update' => $user_update,
-              'category_image_path' => $target_dir,
-              'category_image' => $image,
-              'category_name' => $name
-          ];
-          $this->province->insertCategory($data);
-          $response = new Response();
-          $response->redirect('admin/manage/category');
+          $checkNameCategory = $this->province->getNameCategory($name);
+          if ($checkNameCategory) {
+              Session::flash('nameExist', 'Name Already Exist');
+          } else {
+              $image = $_FILES['image']['name'];
+              $user_create = Session::data('admin_login');
+              $user_update = Session::data('admin_login');
+              $target_dir = 'public/assets/admin/uploaded_img/';
+              $target_file = $target_dir . $image;
+              move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+              $data = [
+                  'user_create' => $user_create,
+                  'user_update' => $user_update,
+                  'category_image_path' => $target_dir,
+                  'category_image' => $image,
+                  'category_name' => $name
+              ];
+              $this->province->insertCategory($data);
+              $response = new Response();
+              $response->redirect('admin/manage/category');
       }
+      }
+      $this->data['sub_content']['nameExist'] = Session::flash('nameExist');
     $this->data['body'] = 'admin/category/add';
     $this->render('admin/layoutAdmin/admin_layout', $this->data);
   }
@@ -71,22 +71,44 @@ class Category extends Controller
       $this->data['sub_content']['firstCategory'] = $firstCategory;
     $this->data['pages_title'] = $title;
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-          $image = $_FILES['image']['name'];
           $name = $_POST['name'];
+          $nameDefault = $_POST['nameDefault'];
+          if ($name === $nameDefault) {
+              $image = $_FILES['image']['name'];
+              $user_update = Session::data('admin_login');
+              $target_dir = 'public/assets/admin/uploaded_img/';
+              $target_file = $target_dir . $image;
+              move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+              $data = [
+                  'category_name' => $name,
+                  'category_image' => $image == null ? $firstCategory['category_image'] : $image,
+                  'user_update' => $user_update
+              ];
+              $this->province->updateCategory($data, $category_id);
+              $response = new Response();
+              $response->redirect('admin/manage/category');
+          } elseif ($name !== $nameDefault) {
+              $checkNameCategory = $this->province->getNameCategory($name);
+              if ($checkNameCategory) {
+                  Session::flash('nameExist', 'Name Already Exist');
+              } else {
+                  $image = $_FILES['image']['name'];
           $user_update = Session::data('admin_login');
           $target_dir = 'public/assets/admin/uploaded_img/';
           $target_file = $target_dir . $image;
           move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
           $data = [
-              'user_update' => $user_update,
-              'category_image_path' => $target_dir == null ? $firstCategory['category_image_path'] : $target_dir,
+              'category_name' => $name,
               'category_image' => $image == null ? $firstCategory['category_image'] : $image,
-              'category_name' => $name
+              'user_update' => $user_update
           ];
           $this->province->updateCategory($data, $category_id);
           $response = new Response();
           $response->redirect('admin/manage/category');
+              }
+          }
       }
+      $this->data['sub_content']['nameExist'] = Session::flash('nameExist');
     $this->data['body'] = 'admin/category/edit';
     $this->render('admin/layoutAdmin/admin_layout', $this->data);
   }

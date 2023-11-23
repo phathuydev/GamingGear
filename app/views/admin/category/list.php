@@ -6,7 +6,7 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th class="text-white">Id</th>
+                        <th class="text-white">#</th>
                         <th class="text-white">Image</th>
                         <th class="text-white">Name</th>
                         <th class="text-white border-bottom-0">Action</th>
@@ -15,7 +15,7 @@
                     <tbody>
                     <?php foreach ($listCategory as $key => $item) : ?>
                         <tr>
-                            <td class="text-white"><?= $item['category_id']; ?></td>
+                            <td class="text-white"><?= $key + 1; ?></td>
                             <td class="text-white"><img
                                         src="<?= $item['category_image'] == true ? _WEB_ROOT . '/' . $item['category_image_path'] . $item['category_image'] : _WEB_ROOT . '/' . $item['category_image_path'] . 'default_img.jpg'; ?>"
                                         alt="" style="width: 50px !important; height: 50px !important;"></td>
@@ -25,12 +25,8 @@
                                    href="<? echo _MANAGE_DEFAULT ?>/category/category_edit/<?= $item['category_id'] ?>">Edit</a>
                                 <form method="post" class="m-0">
                                     <input type="hidden" name="category_id" value="<?= $item['category_id'] ?>">
-                                    <input type="hidden" name="is_delete" value="1">
-                                    <input type="hidden" name="category_delete" value="1">
-                                    <input type="hidden" name="create_at" value="<?= $item['create_at'] ?>">
-                                    <input type="hidden" name="update_at" value="<?= date("Y-m-d H:i:s") ?>">
                                     <button type="submit" class="badge badge-danger border-0 "
-                                            onclick="return confirm('Delete category  <?= $item['category_name'] ?>');">
+                                            onclick="return confirm('Delete category <?= $item['category_name'] ?>');">
                                         Delete
                                     </button>
                                 </form>

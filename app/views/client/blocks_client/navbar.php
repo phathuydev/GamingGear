@@ -16,9 +16,9 @@
   <div class="container p-0">
     <div class="row">
       <div class="col-12">
-        <nav class="main-nav d-flex align-items-center">
+          <nav class="main-nav d-flex align-items-center pt-1">
           <!-- ***** Logo Start ***** -->
-            <a href="<?= _WEB_ROOT; ?>/home" class="logo">
+              <a href="<?= _WEB_ROOT; ?>/home" class="logo">
             <img src="<? echo _WEB_ROOT ?>/public/assets/admin/img/logo2.jpg" alt="">
           </a>
           <!-- ***** Logo End ***** -->
@@ -31,20 +31,33 @@
           </div>
           <!-- ***** Search End ***** -->
           <!-- ***** Menu Start ***** -->
-          <ul class="nav">
-              <li><a href="<?php echo _WEB_ROOT; ?>/home" class="active">home</a></li>
-              <li><a href="<?php echo _WEB_ROOT; ?>/products" class="active">Product</a></li>
-              <li><a href="<?php echo _WEB_ROOT; ?>/contacts" class="active">contact</a></li>
-              <li><a href="<?php echo _WEB_ROOT; ?>/posts" class="active">post</a></li>
-              <li><a href="<?php echo _WEB_ROOT; ?>/carts" class="active"><i class="fa fa-shopping-basket"></i></a></li>
-              <li data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                  class="d-flex align-items-center justify-content-center p-2">
-                  <img src="<?php echo _WEB_ROOT ?>/public/assets/admin/img/avatar.jpg"
-                       style="width: 40px !important; border-radius: 30px;" alt="avatar">
+              <ul class="nav align-items-center">
+                  <li><a href="<?php echo _WEB_ROOT; ?>/home" class="active">home</a></li>
+                  <li><a href="<?php echo _WEB_ROOT; ?>/products" class="active">Product</a></li>
+                  <li><a href="<?php echo _WEB_ROOT; ?>/contacts" class="active">contact</a></li>
+                  <li><a href="<?php echo _WEB_ROOT; ?>/posts" class="active">post</a></li>
+                  <li><a href="<?php echo _WEB_ROOT; ?>/carts" class="active"><i class="fa fa-shopping-basket"></i></a>
+                  </li>
+                  <?php if (empty(Session::data('client_login'))) : ?>
+                      <li>
+                          <img src="<?php echo _WEB_ROOT . '/' . 'public/assets/admin/uploaded_img/' . 'default_img.jpg'; ?>"
+                               style="width: 40px !important; border-radius: 30px;" alt="avatar"></li>
+                  <?php else : ?>
+                      <li><a href="<?= _WEB_ROOT ?>/profile"><img
+                                      src="<?php echo _WEB_ROOT . '/' . $getUserClient['user_image_path'] . $getUserClient['user_image']; ?>"
+                                      style="width: 40px !important; border-radius: 30px;" alt="avatar"></a></li>
+                  <?php endif ?>
+                  <li data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                      class="d-flex align-items-center justify-content-center">
+                      <i class="fa fa-caret-down text-white" style="font-size: 15px;"></i>
             </li>
-            <div class="dropdown-menu rounded-3 mt-2">
-                <a class="dropdown-item" style="font-size: 17px;" href="<?= _WEB_ROOT; ?>/profile">Profile</a>
+                  <div class="dropdown-menu rounded-3 mt-4 pt-1 pb-1 ps-0 pe-0">
+                      <?php if (empty(Session::data('client_login'))) : ?>
                 <a class="dropdown-item" style="font-size: 17px;" href="<?= _WEB_ROOT; ?>/lgUser">Login</a>
+                      <?php else : ?>
+                          <a class="dropdown-item" style="font-size: 17px;"
+                             href="<?= _WEB_ROOT ?>/client/account/auth/logout">Logout</a>
+                      <?php endif ?>
             </div>
           </ul>
           <a class='menu-trigger'>

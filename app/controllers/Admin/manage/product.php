@@ -6,6 +6,10 @@ class Product extends Controller
   public $data = [];
   public function __construct()
   {
+      if (Session::data('admin_login') === null) {
+          $response = new Response();
+          $response->redirect('lgAdmin');
+      }
       $this->province = $this->model('ProductModel');
   }
   public function index()
@@ -14,21 +18,13 @@ class Product extends Controller
     $title = 'List Product';
       $this->data['sub_content']['listProduct'] = $listProduct;
     $this->data['pages_title'] = $title;
-      if (isset($_POST['updateIsdelete'])) {
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $product_id = $_POST['product_id'];
-          $is_delete = $_POST['is_delete'];
-          $user_delete = $_POST['user_delete'];
-          $create_at = $_POST['create_at'];
-          $update_at = $_POST['update_at'];
-          $user_create = $_POST['user_create'];
-          $user_update = $_POST['user_update'];
           $data = [
-              'is_delete' => $is_delete,
-              'user_delete' => $user_delete,
-              'create_at' => $create_at,
-              'update_at' => $update_at,
-              'user_create' => $user_create,
-              'user_update' => $user_update
+              'is_delete' => 1,
+              'user_delete' => Session::data('admin_login'),
+              'update_at' => date("Y-m-d H:i:s"),
+              'user_update' => Session::data('admin_login')
           ];
           $this->province->updateIsDelete($data, $product_id);
           $response = new Response();
@@ -42,17 +38,15 @@ class Product extends Controller
     $title = 'Add Product';
       $this->data['sub_content']['pages_title'] = [];
     $this->data['pages_title'] = $title;
-      if (isset($_POST['insertProduct'])) {
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $product_name = $_POST['product_name'];
           $product_image = $_FILES['product_image']['name'];
           $product_price = $_POST['product_price'];
           $product_price_reduce = $_POST['product_price_reduce'];
           $product_quantity = $_POST['product_quantity'];
-          $product_category = $_POST['product_category'];
+          $category_id = $_POST['category_id'];
           $product_special = $_POST['product_special'];
           $product_describe = $_POST['product_describe'];
-          $user_create = $_POST['user_create'];
-          $user_update = $_POST['user_update'];
           $target_dir = 'public/assets/admin/uploaded_img/';
           $target_file = $target_dir . basename($product_image);
           move_uploaded_file($_FILES["product_image"]["tmp_name"], $target_file);
@@ -63,11 +57,11 @@ class Product extends Controller
               'product_price' => $product_price,
               'product_price_reduce' => $product_price_reduce,
               'product_quantity' => $product_quantity,
-              'product_category' => $product_category,
+              'category_id' => $category_id,
               'product_special' => $product_special,
               'product_describe' => $product_describe,
-              'user_create' => $user_create,
-              'user_update' => $user_update
+              'user_create' => Session::data('admin_login'),
+              'user_update' => Session::data('admin_login')
           ];
           $this->province->insertProduct($data);
           $response = new Response();
@@ -79,8 +73,8 @@ class Product extends Controller
 
     public function product_edit($product_id = 0)
   {
-      $firstProduct = $this->province->getAllProductEdit($product_id);
-      $this->data['sub_content']['firstProduct'] = $firstProduct;
+      $getFirstProduct = $this->province->getFirstProduct($product_id);
+      $this->data['sub_content']['getFirstProduct'] = $getFirstProduct;
       $getAllCategory = $this->province->getAllCategory();
       $this->data['sub_content']['getAllCategory'] = $getAllCategory;
     $title = 'Edit Product';
@@ -89,29 +83,27 @@ class Product extends Controller
           $product_name = $_POST['product_name'];
           $product_image = $_FILES['product_image']['name'];
           $product_price = $_POST['product_price'];
+          $imageDefault = $_POST['imageDefault'];
           $product_price_reduce = $_POST['product_price_reduce'];
           $product_quantity = $_POST['product_quantity'];
-          $product_category = $_POST['product_category'];
+          $category_id = $_POST['category_id'];
           $product_special = $_POST['product_special'];
           $product_describe = $_POST['product_describe'];
-          $create_at = $_POST['create_at'];
-          $user_update = 1;
-          $update_at = $_POST['update_at'];
+          $user_update = Session::data('admin_login');
           $target_dir = 'public/assets/admin/uploaded_img/';
           $target_file = $target_dir . basename($product_image);
           move_uploaded_file($_FILES["product_image"]["tmp_name"], $target_file);
           $data = [
               'product_name' => $product_name,
-              'product_image' => $product_image == null ? $firstProduct['product_image'] : '',
+              'product_image' => $product_image == null ? $imageDefault : $product_image,
               'product_image_path' => $target_dir,
               'product_price' => $product_price,
               'product_price_reduce' => $product_price_reduce,
               'product_quantity' => $product_quantity,
-              'product_category' => $product_category,
+              'category_id' => $category_id,
               'product_special' => $product_special,
               'product_describe' => $product_describe,
-              'update_at' => $update_at,
-              'create_at' => $create_at,
+              'update_at' => date("Y-m-d H:i:s"),
               'user_update' => $user_update
           ];
           $this->province->updateProduct($data, $product_id);
