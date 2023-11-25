@@ -2,6 +2,7 @@
   <div class="card">
     <div class="card-body">
       <h4 class="card-title">List User</h4>
+        <?php echo isset($checkForeignkey) ? '<p class="text-danger">' . $checkForeignkey . '</p>' : false; ?>
       <div class="table-responsive">
         <table class="table">
           <thead>
@@ -13,6 +14,7 @@
                 <th class="text-white">Email</th>
                 <th class="text-white">Phone</th>
                 <th class="text-white">Address</th>
+                <th class="text-white">Create Date</th>
               <th class="text-white">Status</th>
                 <th class="text-white">Action</th>
             </tr>
@@ -29,6 +31,7 @@
                   <td class="text-white"><?= $item['user_email']; ?></td>
                   <td class="text-white"><?= $item['user_phone']; ?></td>
                   <td class="text-white"><?= $item['user_address']; ?></td>
+                  <td class="text-white"><?= formatTimeAgo(strtotime($item['create_at'])); ?></td>
                   <td class="text-white"><?= $item['user_locked'] == 0 ? 'Action' : 'Locked' ?></td>
                   <td class="d-flex align-items-center pt-4">
                       <a class="badge badge-primary mr-2"

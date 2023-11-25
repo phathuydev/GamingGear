@@ -15,18 +15,30 @@ class Category extends Controller
   {
       $listCategory = $this->province->getAllcategory();
       $this->data['sub_content']['listCategory'] = $listCategory;
-      $countPostCategory = $this->province->countPostCategory();
-      $this->data['sub_content']['countPostCategory'] = $countPostCategory;
-      $countProductCategory = $this->province->countProductCategory();
-      $this->data['sub_content']['countProductCategory'] = $countProductCategory;
     $title = 'List Category';
       $this->data['pages_title'] = $title;
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $category_id = $_POST['category_id'];
-          $this->province->deleteBannerHome($category_id);
+          if (
+              $this->model('CheckForeignkeyModel')->isForeignKeyExist('posts', 'category_id', $category_id) == true
+              || $this->model('CheckForeignkeyModel')->isForeignKeyExist('products', 'category_id', $category_id) == true
+          ) {
+              Session::flash('checkForeignkey', 'Error Linking Foreign Keys.');
+          } else {
+              $data = [
+                  'is_delete' => 1,
+                  'user_delete' => Session::data('admin_login'),
+                  'update_at' => date("Y-m-d H:i:s"),
+                  'user_update' => Session::data('admin_login')
+              ];
+              $this->province->updateCategory($data, $category_id);
+              $response = new Response();
+              $response->redirect('admin/manage/category');
+          }
           $response = new Response();
           $response->redirect('admin/manage/category');
       }
+      $this->data['sub_content']['checkForeignkey'] = Session::flash('checkForeignkey');
     $this->data['body'] = 'admin/category/list';
     $this->render('admin/layoutAdmin/admin_layout', $this->data);
   }

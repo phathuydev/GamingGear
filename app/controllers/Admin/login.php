@@ -14,12 +14,17 @@ class Login extends Controller
       $this->data['pages_title'] = $title;
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $user_email = $_POST['user_email'];
-          $user_password = $_POST['user_password'];
-          $getUser = $this->province->getUserLoginAdmin($user_email, $user_password);
-          if ($getUser) {
-              Session::data('admin_login', $getUser['user_id']);
-              $response = new Response();
-              $response->redirect('gg-admin');
+          $user_entered_password = $_POST['user_password'];
+          $stored_user_data = $this->province->getUserLoginAdmin($user_email);
+          if ($stored_user_data) {
+              $stored_password = $stored_user_data['user_password'];
+              if (password_verify($user_entered_password, $stored_password)) {
+                  Session::data('admin_login', $stored_user_data['user_id']);
+                  $response = new Response();
+                  $response->redirect('gg-admin');
+              } else {
+                  Session::flash('msg', 'Email or password is incorrect');
+              }
           } else {
               Session::flash('msg', 'Email or password is incorrect');
           }

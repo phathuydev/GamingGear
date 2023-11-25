@@ -1,7 +1,7 @@
 <div class="col-md-12 grid-margin stretch-card">
   <div class="card">
     <div class="card-body">
-        <h4 class="card-title">Update product</h4>
+        <h4 class="card-title">Edit product <?= '#' . $product_id ?></h4>
         <?php $item = $getFirstProduct;
         if (isset($item)) {
             ?>

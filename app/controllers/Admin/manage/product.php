@@ -77,6 +77,7 @@ class Product extends Controller
       $this->data['sub_content']['getFirstProduct'] = $getFirstProduct;
       $getAllCategory = $this->province->getAllCategory();
       $this->data['sub_content']['getAllCategory'] = $getAllCategory;
+      $this->data['sub_content']['product_id'] = $product_id;
     $title = 'Edit Product';
     $this->data['pages_title'] = $title;
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {

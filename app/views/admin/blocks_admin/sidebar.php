@@ -2,8 +2,11 @@
   <!-- partial:partials/_sidebar.php -->
   <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-      <a class="sidebar-brand brand-logo" href="<?php echo _ADMIN_DEFAULT ?>/dashboard"><img src="<? echo _WEB_ROOT ?>/public/assets/admin/img/logo2.jpg" alt="logo" /></a>
-      <a class="sidebar-brand brand-logo-mini" href="<?php echo _ADMIN_DEFAULT ?>/dashboard"><img src="<? echo _WEB_ROOT ?>/public/assets/admin/img/logo4.jpg" alt="logo" style="width: 30px !important; height: 30px !important;" /></a>
+        <a class="sidebar-brand brand-logo" href="<?php echo _ADMIN_DEFAULT ?>/dashboard"><img
+                    src="<?php echo _WEB_ROOT ?>/public/assets/admin/img/logo2.jpg" alt="logo"/></a>
+        <a class="sidebar-brand brand-logo-mini" href="<?php echo _ADMIN_DEFAULT ?>/dashboard"><img
+                    src="<?php echo _WEB_ROOT ?>/public/assets/admin/img/logo4.jpg" alt="logo"
+                    style="width: 30px !important; height: 30px !important;"/></a>
     </div>
     <ul class="nav">
       <li class="nav-item profile">
@@ -16,32 +19,9 @@
               <span class="count bg-success"></span>
             </div>
             <div class="profile-name">
-                <h5 class="mb-0 font-weight-normal text-uppercase"><?= $getUserSession['user_name'] ?></h5>
+                <h5 class="mb-0 font-weight-normal"><?= $getUserSession['user_name'] ?></h5>
                 <span><?= $getUserSession['user_role'] == 1 ? 'ADMIN' : ''; ?></span>
             </div>
-          </div>
-          <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
-          <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
-              <a href="<?php echo _WEB_ROOT ?>/admin/login/logout" class="dropdown-item preview-item border-bottom">
-                  <div class="preview-thumbnail">
-                      <div class="preview-icon bg-dark rounded-circle">
-                          <i class="mdi mdi-logout text-danger"></i>
-                      </div>
-                  </div>
-                  <div class="preview-item-content">
-                      <p class="preview-subject ellipsis mb-1 text-small">Logout</p>
-                  </div>
-              </a>
-              <a href="<?php echo _WEB_ROOT ?>/home" class="dropdown-item preview-item">
-              <div class="preview-thumbnail">
-                <div class="preview-icon bg-dark rounded-circle">
-                    <i class="mdi mdi-arrow-left text-primary"></i>
-                </div>
-              </div>
-              <div class="preview-item-content">
-                  <p class="preview-subject ellipsis mb-1 text-small">Return Webstie</p>
-              </div>
-            </a>
           </div>
         </div>
       </li>
@@ -76,7 +56,7 @@
       <li class="nav-item menu-items">
         <a class="nav-link" data-toggle="collapse" href="#product" aria-expanded="false" aria-controls="product">
           <span class="menu-icon">
-            <i class="mdi mdi-shopping"></i>
+            <i class="mdi mdi-tag-multiple"></i>
           </span>
           <span class="menu-title">Product</span>
           <i class="menu-arrow"></i>
@@ -138,7 +118,7 @@
       <li class="nav-item menu-items">
         <a class="nav-link" data-toggle="collapse" href="#post" aria-expanded="false" aria-controls="post">
           <span class="menu-icon">
-            <i class="mdi mdi-account"></i>
+            <i class="mdi mdi-postage-stamp"></i>
           </span>
           <span class="menu-title">Post</span>
           <i class="menu-arrow"></i>

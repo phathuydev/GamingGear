@@ -23,7 +23,7 @@
                                         alt="" style="width: 50px !important; height: 50px !important;"></td>
                             <td class="text-white"><?= ($item['user_name'] == null) ? $item['user_email'] : $item['user_name'] ?></td>
                             <td class="text-white"><?= $item['comment_content'] ?></td>
-                            <td class="text-white"><?= date("F j, Y - H:m", strtotime($item["create_at"])); ?></td>
+                            <td class="text-white"><?= formatTimeAgo(strtotime($item['create_at'])); ?></td>
                             <td class="d-flex align-items-center pt-4">
                                 <a class="badge badge-primary mr-2"
                                    href="<?php echo _MANAGE_DEFAULT ?>/comment/comment_post_reply/<?= $item['comment_post_id'] ?>">See

@@ -1,16 +1,16 @@
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Detail Product</h4>
+            <h4 class="card-title">Detail Orders</h4>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
                     <tr>
                         <th class="text-white">#</th>
                         <th class="text-white">Image</th>
-                        <th class="text-white">Product name</th>
+                        <th class="text-white">Product Name</th>
                         <th class="text-white">Quantity</th>
-                        <th class="text-white">Product total</th>
+                        <th class="text-white">Total Product</th>
                     </tr>
                     </thead>
                     <tbody>

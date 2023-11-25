@@ -2,6 +2,7 @@
   <div class="card">
     <div class="card-body">
       <h4 class="card-title">Add User</h4>
+        <?php echo isset($checkEmailExist) ? '<p class="text-danger">' . $checkEmailExist . '</p>' : false; ?>
         <?php
         HtmlHelper::formOpen('post', '', 'multipart/form-data', 'return validateUsers()');
         HtmlHelper::input('<div class="form-group">' . '<label>Username</label>', '</div>', 'text', 'user_name', '', 'form-control', '', 'Username', '');

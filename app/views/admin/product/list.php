@@ -13,6 +13,7 @@
                         <th class="text-white">Sale</th>
                         <th class="text-white">Quantity</th>
                         <th class="text-white">Category</th>
+                        <th class="text-white">Create Date</th>
                         <th class="text-white">Special</th>
                         <th class="text-white pl-4">Action</th>
                     </tr>
@@ -41,6 +42,7 @@
                             <td class="text-white">
                                 <?= $item['category_name'] ?>
                             </td>
+                            <td class="text-white"><?= formatTimeAgo(strtotime($item['create_at'])); ?></td>
                             <td class="text-white">
                                 <?= $item['product_special'] == 0 ? 'Nornal' : 'Special' ?>
                             </td>

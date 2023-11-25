@@ -19,6 +19,7 @@ class CategoryModel extends Model
   {
       $data = $this->db->table('categories')
           ->select('category_id, category_name, category_image_path, create_at, category_image')
+          ->where('categories.is_delete', '=', 0)
           ->get();
       return $data;
   }
@@ -68,10 +69,5 @@ class CategoryModel extends Model
     public function updateCategory($data, $category_id)
     {
         $this->db->table('categories')->where('category_id', '=', $category_id)->update($data);
-    }
-
-    public function deleteBannerHome($category_id)
-    {
-        $this->db->table('categories')->where('category_id', '=', $category_id)->delete();
     }
 }

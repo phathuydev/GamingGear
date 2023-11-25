@@ -20,7 +20,7 @@
                                         src="<?= _WEB_ROOT . '/' . $item['banner_product_path'] . ($item['banner_product_image']); ?>"
                                         alt=""
                                         style="width: 50px !important; height: 50px !important;border-radius: 0;"></td>
-                            <td class="text-white"><?= date("F j, Y - H:m", strtotime($item["create_at"])); ?></td>
+                            <td class="text-white"><?= formatTimeAgo(strtotime($item['create_at'])); ?></td>
                             <td class="d-flex align-items-center pt-4">
                                 <a class="badge badge-primary mr-2"
                                    href="<? echo _MANAGE_DEFAULT ?>/banner/banner_product_edit/<?= $item['banner_product_id'] ?>">Edit</a>

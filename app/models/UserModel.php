@@ -27,6 +27,12 @@ class UserModel extends Model
         return $data;
     }
 
+    public function getUserEmail($user_email)
+    {
+        $data = $this->db->table('users')->select('user_id, user_email')->where('user_email', '=', $user_email)->first();
+        return $data;
+    }
+
     public function insertUser($data)
     {
         $this->db->table('users')->insert($data);
