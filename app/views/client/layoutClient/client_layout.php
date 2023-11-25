@@ -13,6 +13,7 @@
   <!-- Additional CSS Files -->
   <link rel="stylesheet" href="<?php echo _WEB_ROOT; ?>/public/assets/client/css/style.css">
   <link rel="stylesheet" href="<?php echo (isset($css_checkout) ? $css_checkout : false); ?>">
+    <link rel="stylesheet" href="<?php echo(isset($css_thanks) ? $css_thanks : false); ?>">
     <link rel="stylesheet" href="<?php echo(isset($css_post) ? $css_post : false); ?>">
   <link rel="stylesheet" href="<?php echo _WEB_ROOT; ?>/public/assets/client/css/templatemo-cyborg-gaming.css">
   <link rel="stylesheet" href="<?php echo _WEB_ROOT; ?>/public/assets/client/css/owl.css">

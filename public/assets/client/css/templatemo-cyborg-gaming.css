@@ -139,7 +139,7 @@ hgroup {
 
 html,
 body {
-    font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 400;
   background-color: #1e1e1e;
   font-size: 16px;
@@ -149,12 +149,12 @@ body {
 }
 
 a {
-    color: #ffffff;
+  color: #ffffff;
   text-decoration: none !important;
   font-size: 20px;
 }
 a:hover {
-    color: rgb(9, 227, 243);
+  color: rgb(9, 227, 243);
 }
 
 h1,
@@ -192,7 +192,7 @@ Global Styles
 html,
 body {
   background: #1f2122;
-    font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 body .page-content {
@@ -220,8 +220,8 @@ p {
 }
 
 .templatemo-item {
-    max-width: 80px;
-    border-radius: 23px;
+  max-width: 80px;
+  border-radius: 23px;
 }
 
 .main-button a {
@@ -234,7 +234,7 @@ p {
   font-weight: 400;
   text-transform: capitalize;
   letter-spacing: 0.5px;
-    transition: all 0.3s;
+  transition: all 0.3s;
   position: relative;
   overflow: hidden;
 }
@@ -255,7 +255,7 @@ p {
   font-weight: 400;
   text-transform: capitalize;
   letter-spacing: 0.5px;
-    transition: all 0.3s;
+  transition: all 0.3s;
   position: relative;
   overflow: hidden;
 }
@@ -287,7 +287,6 @@ section {
   text-decoration: none;
   margin-bottom: 30px;
 }
-
 h4 {
   color: #ec6090;
   font-size: 34px;
@@ -305,7 +304,6 @@ h1 {
   text-decoration: none;
   margin-bottom: 30px;
 }
-
 h1 {
   color: #ffffff;
   font-size: 50px;
@@ -337,7 +335,7 @@ Pre-loader Style
   left: 0;
   right: 0;
   bottom: 0;
-    background-color: rgba(0, 0, 0, 0.99);
+  background-color: rgba(0, 0, 0, 0.99);
   display: -webkit-box;
   display: flex;
   -webkit-box-align: center;
@@ -359,29 +357,29 @@ Pre-loader Style
 
 @-webkit-keyframes dot {
   50% {
-      -webkit-transform: translateX(96px);
-      transform: translateX(96px);
+    -webkit-transform: translateX(96px);
+    transform: translateX(96px);
   }
 }
 
 @keyframes dot {
   50% {
-      -webkit-transform: translateX(96px);
-      transform: translateX(96px);
+    -webkit-transform: translateX(96px);
+    transform: translateX(96px);
   }
 }
 
 @-webkit-keyframes dots {
   50% {
-      -webkit-transform: translateX(-31px);
-      transform: translateX(-31px);
+    -webkit-transform: translateX(-31px);
+    transform: translateX(-31px);
   }
 }
 
 @keyframes dots {
   50% {
-      -webkit-transform: translateX(-31px);
-      transform: translateX(-31px);
+    -webkit-transform: translateX(-31px);
+    transform: translateX(-31px);
   }
 }
 
@@ -433,16 +431,16 @@ Header Style
 
 .background-header {
   background-color: #fff !important;
-    height: 70px !important;
-    position: fixed !important;
-    top: 0 !important;
+  height: 70px !important;
+  position: fixed !important;
+  top: 0 !important;
   left: 0;
   right: 0;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15) !important;
-    -webkit-transition: all 0.5s ease 0s;
-    -moz-transition: all 0.5s ease 0s;
-    -o-transition: all 0.5s ease 0s;
-    transition: all 0.5s ease 0s;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15) !important;
+  -webkit-transition: all 0.5s ease 0s;
+  -moz-transition: all 0.5s ease 0s;
+  -o-transition: all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
   display: none;
 }
 
@@ -454,10 +452,10 @@ Header Style
   left: 0;
   right: 0;
   z-index: 100;
-    -webkit-transition: all 0.5s ease 0s;
-    -moz-transition: all 0.5s ease 0s;
-    -o-transition: all 0.5s ease 0s;
-    transition: all 0.5s ease 0s;
+  -webkit-transition: all 0.5s ease 0s;
+  -moz-transition: all 0.5s ease 0s;
+  -o-transition: all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
 }
 
 .header-area .main-nav {
@@ -475,7 +473,7 @@ Header Style
 
 .header-area .main-nav #search {
 
-    position: relative;
+  position: relative;
 
 }
 
@@ -557,7 +555,7 @@ Header Style
   border: transparent;
   padding: 13px 10px;
   border-radius: 18px;
-    letter-spacing: 0.3px;
+  letter-spacing: 0.3px;
 }
 
 .header-area .main-nav .nav li:last-child a {
@@ -762,7 +760,7 @@ Header Style
   }
   .header-area.header-sticky .nav li a:hover,
   .header-area.header-sticky .nav li a.active {
-      color: #e75e8d !important;
+    color: #e75e8d !important;
     opacity: 1;
   }
   .header-area.header-sticky .nav li.search-icon a {
@@ -824,7 +822,7 @@ Header Style
   }
   .header-area .main-nav .nav li a:hover {
     background: #fff !important;
-      color: #e75e8d !important;
+    color: #e75e8d !important;
   }
   .header-area .main-nav .nav li:last-child a img {
     display: none;
@@ -856,14 +854,14 @@ Header Style
     height: auto;
   }
   .header-area .main-nav .nav li.has-sub:after {
-      color: #3b566e;
+    color: #3b566e;
     right: 30px;
     font-size: 14px;
     top: 15px;
   }
 
-    .header-area .main-nav .nav li.submenu:hover ul,
-    .header-area .main-nav .nav li.submenu:focus ul {
+  .header-area .main-nav .nav li.submenu:hover ul,
+  .header-area .main-nav .nav li.submenu:focus ul {
     height: 0px;
   }
 }
@@ -1051,7 +1049,7 @@ footer p {
 
 footer p a {
   color: #fff;
-    transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 footer p a:hover {
@@ -1066,10 +1064,10 @@ Featured Games Style
 
 .featured-games {
   display: flex;
-    border-radius: 23px;
-    background-color: #1f2122;
-    padding: 30px;
-    justify-content: space-between;
+  border-radius: 23px;
+  background-color: #1f2122;
+  padding: 30px;
+  justify-content: space-between;
 }
 
 .featured-games .item .thumb {
@@ -1084,7 +1082,7 @@ Featured Games Style
   width: 100%;
   opacity: 0;
   visibility: hidden;
-    transition: all 0.4s;
+  transition: all 0.4s;
 }
 
 .featured-games .item .thumb:hover .hover-effect {
@@ -1094,7 +1092,7 @@ Featured Games Style
 }
 
 .featured-games .item .thumb .hover-effect h6 {
-    background-color: rgba(31, 33, 34, 0.95);
+  background-color: rgba(31, 33, 34, 0.95);
   display: inline-block;
   color: #ec6090;
   font-weight: 600;
@@ -1161,7 +1159,7 @@ Featured Games Style
   display: inline-block;
   color: #666;
   opacity: 1;
-    transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 .featured-games .owl-nav .owl-prev span:hover,
@@ -1292,7 +1290,7 @@ Live Stream Style
 }
 
 .live-stream .thumb img {
-    border-radius: 23px;
+  border-radius: 23px;
 }
 
 .live-stream .thumb:hover .hover-effect {
@@ -1303,7 +1301,7 @@ Live Stream Style
 .live-stream .hover-effect {
   opacity: 0;
   visibility: hidden;
-    transition: all 0.4s;
+  transition: all 0.4s;
 }
 
 .live-stream .hover-effect .live a {
@@ -1381,7 +1379,7 @@ Featured Banner Style
   position: relative;
   max-height: 305px;
   overflow: hidden;
-    border-radius: 23px;
+  border-radius: 23px;
 }
 
 .feature-banner .thumb a {
@@ -1702,17 +1700,17 @@ Profile Style
 
 .clips .item .thumb a {
   position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-23px, -23px);
-    width: 46px;
-    height: 46px;
-    background-color: #fff;
-    border-radius: 50%;
-    display: inline-block;
-    text-align: center;
-    line-height: 46px;
-    color: #ec6090;
+  left: 50%;
+  top: 50%;
+  transform: translate(-23px, -23px);
+  width: 46px;
+  height: 46px;
+  background-color: #fff;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  line-height: 46px;
+  color: #ec6090;
 }
 
 .clips .item h4 {
@@ -1734,12 +1732,6 @@ Profile Style
   margin-top: 10px;
   text-align: center;
 }
-
-/* 
----------------------------------------------
-Responsive Style
---------------------------------------------- 
-*/
 
 body {
   overflow-x: hidden;
@@ -1796,7 +1788,7 @@ body {
 
 @media (max-width: 992px) {
   .background-header {
-      display: inline-block;
+    display: inline-block;
   }
   .header-area .main-nav #search {
     display: none;
@@ -1839,106 +1831,9 @@ body {
 }
 
 :root {
-    --color-primary: #f6aca2;
-    --color-secondary: #f49b90;
-    --color-tertiary: #f28b7d;
-    --color-quaternary: #f07a6a;
-    --color-quinary: #ee6352;
+  --color-primary: #f6aca2;
+  --color-secondary: #f49b90;
+  --color-tertiary: #f28b7d;
+  --color-quaternary: #f07a6a;
+  --color-quinary: #ee6352;
 }
-
-/* body {
-  min-height: 100vh;
-  font-weight: 300;
-  font-size: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
-  background-color: #eff8e2;
-} */
-
-.content-thanks {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-.content-thk {
-    color: #fff;
-    text-align: center;
-
-}
-
-.text-shadows-thanks {
-    text-shadow: 3px 3px 0 var(--color-secondary), 6px 6px 0 var(--color-tertiary),
-    9px 9px var(--color-quaternary), 12px 12px 0 var(--color-quinary);
-    font-family: bungee, sans-serif;
-    font-weight: 400;
-    text-transform: uppercase;
-    font-size: calc(2rem + 5vw);
-    text-align: center;
-    margin: 0;
-    color: var(--color-primary);
-    animation: shadows 1.2s ease-in infinite;
-    letter-spacing: 0.4rem;
-}
-
-@keyframes shadows {
-    0% {
-        text-shadow: none;
-    }
-    10% {
-        transform: translate(-3px, -3px);
-        text-shadow: 3px 3px 0 var(--color-secondary);
-    }
-    20% {
-        transform: translate(-6px, -6px);
-        text-shadow: 3px 3px 0 var(--color-secondary),
-        6px 6px 0 var(--color-tertiary);
-    }
-    30% {
-        transform: translate(-9px, -9px);
-        text-shadow: 3px 3px 0 var(--color-secondary),
-        6px 6px 0 var(--color-tertiary), 9px 9px var(--color-quaternary);
-    }
-    40% {
-        transform: translate(-12px, -12px);
-        text-shadow: 3px 3px 0 var(--color-secondary),
-        6px 6px 0 var(--color-tertiary), 9px 9px var(--color-quaternary),
-        12px 12px 0 var(--color-quinary);
-    }
-    50% {
-        transform: translate(-12px, -12px);
-        text-shadow: 3px 3px 0 var(--color-secondary),
-        6px 6px 0 var(--color-tertiary), 9px 9px var(--color-quaternary),
-        12px 12px 0 var(--color-quinary);
-    }
-    60% {
-        text-shadow: 3px 3px 0 var(--color-secondary),
-        6px 6px 0 var(--color-tertiary), 9px 9px var(--color-quaternary),
-        12px 12px 0 var(--color-quinary);
-    }
-    70% {
-        text-shadow: 3px 3px 0 var(--color-secondary),
-        6px 6px 0 var(--color-tertiary), 9px 9px var(--color-quaternary);
-    }
-    80% {
-        text-shadow: 3px 3px 0 var(--color-secondary),
-        6px 6px 0 var(--color-tertiary);
-    }
-    90% {
-        text-shadow: 3px 3px 0 var(--color-secondary);
-    }
-    100% {
-        text-shadow: none;
-    }
-}
-
-/*
-  --color-primary: #5192ED;
-  --color-secondary: #69A1F0;
-  --color-tertiary: #7EAEF2;
-  --color-quaternary: #90BAF5;
-  --color-quinary: #A2C4F5;
-*/
