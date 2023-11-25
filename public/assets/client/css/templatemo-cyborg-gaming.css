@@ -474,8 +474,11 @@ Header Style
 }
 
 .header-area .main-nav #search {
-  position: relative;
+
+    position: relative;
+
 }
+
 
 .header-area .main-nav #search input {
   background-color: #27292a;
