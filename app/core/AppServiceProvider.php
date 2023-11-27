@@ -231,7 +231,7 @@ class AppServiceProvider extends ServiceProvider
             ->join('order_status', 'orders.order_status = order_status.order_status_id')
             ->select('users.user_image_path as user_image_path, users.user_image as user_image, orders.user_name as user_name, 
       orders.user_email as user_email, orders.user_phone as user_phone, orders.user_address as user_address, orders.create_at as create_at,
-      orders.order_total, order_payment.order_payment_name as order_payment_name, order_status.order_status_name as order_status_name')
+      orders.order_total, order_payment.order_payment_name as order_payment_name, order_status.order_name as order_name')
             ->where('orders.is_delete', '=', 0)
             ->where('users.is_delete', '=', 0)
             ->orderBy('orders.create_at', 'DESC')
@@ -245,7 +245,7 @@ class AppServiceProvider extends ServiceProvider
             ->join('order_status', 'orders.order_status = order_status.order_status_id')
             ->select('users.user_image_path as user_image_path, users.user_image as user_image, orders.user_name as user_name, 
       orders.user_email as user_email, orders.user_phone as user_phone, orders.user_address as user_address, orders.create_at as create_at,
-      orders.order_total, order_payment.order_payment_name as order_payment_name, order_status.order_status_name as order_status_name')
+      orders.order_total, order_payment.order_payment_name as order_payment_name, order_status.order_name as order_name')
             ->where('orders.is_delete', '=', 0)
             ->where('orders.create_at', '>', $today)
             ->where('users.is_delete', '=', 0)
