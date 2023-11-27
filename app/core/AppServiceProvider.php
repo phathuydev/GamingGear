@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Asia/Ho_Chi_Minh'); // Set default time zone
 class AppServiceProvider extends ServiceProvider
 {
     public function boot()
@@ -50,7 +51,7 @@ class AppServiceProvider extends ServiceProvider
         $data['getUserClient'] = $getUserClient;
 
         // count user yesterday
-        $yesterday = date('Y-m-d', strtotime('-7 day'));
+        $yesterday = date('Y-m-d', strtotime('-1 day'));
         $countUserYesterDay = $this->db->table('users')
             ->select('COUNT(user_id) as countUserYesterDay')
             ->where('create_at', '>=', $yesterday)
@@ -67,10 +68,10 @@ class AppServiceProvider extends ServiceProvider
         $data['countAllUser'] = $countAllUser;
 
         // count product yesterday
-        $yesterday = date('Y-m-d', strtotime('-7 day'));
+        $today = date('Y-m-d 00:00:00');
         $countProductYesterDay = $this->db->table('products')
             ->select('COUNT(product_id) as countProductYesterDay')
-            ->where('create_at', '>=', $yesterday)
+            ->where('create_at', '>=', $today)
             ->where('is_delete', '=', 0)
             ->first();
         $data['countProductYesterDay'] = $countProductYesterDay;
@@ -82,10 +83,9 @@ class AppServiceProvider extends ServiceProvider
         $data['countAllProduct'] = $countAllProduct;
 
         // count order yesterday
-        $yesterday = date('Y-m-d', strtotime('-7 day'));
         $countOrderYesterDay = $this->db->table('orders')
             ->select('COUNT(order_id) as countOrderYesterDay')
-            ->where('create_at', '>=', $yesterday)
+            ->where('create_at', '>=', $today)
             ->where('is_delete', '=', 0)
             ->first();
         $data['countOrderYesterDay'] = $countOrderYesterDay;
@@ -97,10 +97,9 @@ class AppServiceProvider extends ServiceProvider
         $data['countAllOrder'] = $countAllOrder;
 
         // count category yesterday
-        $yesterday = date('Y-m-d', strtotime('-7 day'));
         $countCategoryYesterDay = $this->db->table('categories')
             ->select('COUNT(category_id) as countCategoryYesterDay')
-            ->where('create_at', '>=', $yesterday)
+            ->where('create_at', '>=', $today)
             ->where('is_delete', '=', 0)
             ->first();
         $data['countCategoryYesterDay'] = $countCategoryYesterDay;
@@ -112,10 +111,9 @@ class AppServiceProvider extends ServiceProvider
         $data['countAllCategory'] = $countAllCategory;
 
         // count comment products yesterday
-        $yesterday = date('Y-m-d', strtotime('-7 day'));
         $countCommentProductYesterDay = $this->db->table('comments_product')
             ->select('COUNT(comment_product_id) as countCommentProductYesterDay')
-            ->where('create_at', '>=', $yesterday)
+            ->where('create_at', '>=', $today)
             ->where('is_delete', '=', 0)
             ->first();
         $data['countCommentProductYesterDay'] = $countCommentProductYesterDay;
@@ -127,11 +125,10 @@ class AppServiceProvider extends ServiceProvider
         $data['countAllCommentProduct'] = $countAllCommentProduct;
 
         // count comment posts yesterday
-        $yesterday = date('Y-m-d', strtotime('-7 day'));
         $countCommentPostYesterDay = $this->db->table('comments_post')
             ->select('COUNT(comment_post_id) as countCommentPostYesterDay')
             ->where('is_delete', '=', 0)
-            ->where('create_at', '>=', $yesterday)
+            ->where('create_at', '>=', $today)
             ->first();
         $data['countCommentPostYesterDay'] = $countCommentPostYesterDay;
         // count user
@@ -142,11 +139,10 @@ class AppServiceProvider extends ServiceProvider
         $data['countAllCommentPost'] = $countAllCommentPost;
 
         // count post yesterday
-        $yesterday = date('Y-m-d', strtotime('-7 day'));
         $countPostYesterDay = $this->db->table('posts')
             ->select('COUNT(post_id) as countPostYesterDay')
             ->where('is_delete', '=', 0)
-            ->where('create_at', '>=', $yesterday)
+            ->where('create_at', '>=', $today)
             ->first();
         $data['countPostYesterDay'] = $countPostYesterDay;
         // count post
@@ -157,7 +153,6 @@ class AppServiceProvider extends ServiceProvider
         $data['countAllPost'] = $countAllPost;
 
         // Total revenue today for order
-        $today = date('Y-m-d 00:00:00');
         // total revenue today
         $totalRevenueToday = $this->db->table('orders')
             ->select('SUM(order_total) as totalRevenueToday')
@@ -165,6 +160,20 @@ class AppServiceProvider extends ServiceProvider
             ->where('is_delete', '=', 0)
             ->first();
         $data['totalRevenueToday'] = $totalRevenueToday;
+        // total order today
+        $countOrderToday = $this->db->table('orders')
+            ->select('COUNT(order_id) as countOrderToday')
+            ->where('create_at', '>', $today)
+            ->where('is_delete', '=', 0)
+            ->first();
+        $data['countOrderToday'] = $countOrderToday;
+        // total revenue order 1 years
+        $countOrderYear = $this->db->table('orders')
+            ->select('SUM(order_total) as countOrderYear')
+            ->where('create_at', '>', date('Y-01-01 00:00:00'))
+            ->where('is_delete', '=', 0)
+            ->first();
+        $data['countOrderYear'] = $countOrderYear;
         // total revenu month
         $totalRevenueMonth = $this->db->table('orders')
             ->select('SUM(order_total) as totalRevenueMonth')
@@ -186,6 +195,9 @@ class AppServiceProvider extends ServiceProvider
         if ($totalRevenueLastMonth != 0) {
             $percent = (($totalRevenueMonth['totalRevenueMonth'] - $totalRevenueLastMonth) / $totalRevenueLastMonth) * 100;
             $data['percent'] = round($percent, 2);
+            // if ($data['percent'] >= 100) {
+            //   $data['percent'] = '100';
+            // }
         } else {
             $percent = 0;
             $data['percent'] = round($percent, 2);
@@ -219,7 +231,7 @@ class AppServiceProvider extends ServiceProvider
             ->join('order_status', 'orders.order_status = order_status.order_status_id')
             ->select('users.user_image_path as user_image_path, users.user_image as user_image, orders.user_name as user_name, 
       orders.user_email as user_email, orders.user_phone as user_phone, orders.user_address as user_address, orders.create_at as create_at,
-      orders.order_total, order_payment.order_payment_name as order_payment_name, order_status.order_name as order_name')
+      orders.order_total, order_payment.order_payment_name as order_payment_name, order_status.order_status_name as order_status_name')
             ->where('orders.is_delete', '=', 0)
             ->where('users.is_delete', '=', 0)
             ->orderBy('orders.create_at', 'DESC')
@@ -233,7 +245,7 @@ class AppServiceProvider extends ServiceProvider
             ->join('order_status', 'orders.order_status = order_status.order_status_id')
             ->select('users.user_image_path as user_image_path, users.user_image as user_image, orders.user_name as user_name, 
       orders.user_email as user_email, orders.user_phone as user_phone, orders.user_address as user_address, orders.create_at as create_at,
-      orders.order_total, order_payment.order_payment_name as order_payment_name, order_status.order_name as order_name')
+      orders.order_total, order_payment.order_payment_name as order_payment_name, order_status.order_status_name as order_status_name')
             ->where('orders.is_delete', '=', 0)
             ->where('orders.create_at', '>', $today)
             ->where('users.is_delete', '=', 0)
@@ -275,6 +287,92 @@ class AppServiceProvider extends ServiceProvider
             ->limit('5')
             ->get();
         $data['getCommentPostDashboard'] = $getCommentPostDashboard;
+
+        // Get banner home
+        $getBannerHome = $this->db->table('banners_home')
+            ->select('banner_home_id, banner_home_image, banner_home_path, create_at, update_at')
+            ->get();
+        $data['getBannerHome'] = $getBannerHome;
+
+        // get products special
+        $getProductSpecial = $this->db->table('products')
+            ->join('categories', 'products.category_id = categories.category_id')
+            ->select('products.product_id AS product_id, products.product_name AS product_name, products.product_image AS product_image, 
+       products.product_image_path AS product_image_path, products.product_price AS product_price,
+       products.product_price_reduce AS product_price_reduce, products.product_quantity AS product_quantity, 
+       products.category_id AS category_id, products.product_special AS product_special, products.product_describe AS product_describe, 
+       products.create_at AS create_at, categories.category_id AS category_id, categories.category_name AS category_name')
+            ->where('products.is_delete', '=', 0)
+            ->where('products.product_special', '=', 1)
+            ->get();
+        $data['getProductSpecial'] = $getProductSpecial;
+
+        // get products category headset
+        $getProductHeadset = $this->db->table('products')
+            ->join('categories', 'products.category_id = categories.category_id')
+            ->select('products.product_id AS product_id, products.product_name AS product_name, products.product_image AS product_image, 
+         products.product_image_path AS product_image_path, products.product_price AS product_price,
+         products.product_price_reduce AS product_price_reduce, products.product_quantity AS product_quantity, 
+         products.category_id AS category_id, products.product_special AS product_special, products.product_describe AS product_describe, 
+         products.create_at AS create_at, categories.category_id AS category_id, categories.category_name AS category_name')
+            ->where('products.is_delete', '=', 0)
+            ->where('products.category_id', '=', 1)
+            ->get();
+        $data['getProductHeadset'] = $getProductHeadset;
+
+        // get products category keyboard
+        $getProductKeyboard = $this->db->table('products')
+            ->join('categories', 'products.category_id = categories.category_id')
+            ->select('products.product_id AS product_id, products.product_name AS product_name, products.product_image AS product_image, 
+         products.product_image_path AS product_image_path, products.product_price AS product_price,
+         products.product_price_reduce AS product_price_reduce, products.product_quantity AS product_quantity, 
+         products.category_id AS category_id, products.product_special AS product_special, products.product_describe AS product_describe, 
+         products.create_at AS create_at, categories.category_id AS category_id, categories.category_name AS category_name')
+            ->where('products.is_delete', '=', 0)
+            ->where('products.category_id', '=', 2)
+            ->get();
+        $data['getProductKeyboard'] = $getProductKeyboard;
+
+        // get products category mouse
+        $getProductMouse = $this->db->table('products')
+            ->join('categories', 'products.category_id = categories.category_id')
+            ->select('products.product_id AS product_id, products.product_name AS product_name, products.product_image AS product_image, 
+         products.product_image_path AS product_image_path, products.product_price AS product_price,
+         products.product_price_reduce AS product_price_reduce, products.product_quantity AS product_quantity, 
+         products.category_id AS category_id, products.product_special AS product_special, products.product_describe AS product_describe, 
+         products.create_at AS create_at, categories.category_id AS category_id, categories.category_name AS category_name')
+            ->where('products.is_delete', '=', 0)
+            ->where('products.category_id', '=', 3)
+            ->get();
+        $data['getProductMouse'] = $getProductMouse;
+
+        // get products category gamepad
+        $getProductGamepad = $this->db->table('products')
+            ->join('categories', 'products.category_id = categories.category_id')
+            ->select('products.product_id AS product_id, products.product_name AS product_name, products.product_image AS product_image, 
+         products.product_image_path AS product_image_path, products.product_price AS product_price,
+         products.product_price_reduce AS product_price_reduce, products.product_quantity AS product_quantity, 
+         products.category_id AS category_id, products.product_special AS product_special, products.product_describe AS product_describe, 
+         products.create_at AS create_at, categories.category_id AS category_id, categories.category_name AS category_name')
+            ->where('products.is_delete', '=', 0)
+            ->where('products.category_id', '=', 4)
+            ->get();
+        $data['getProductGamepad'] = $getProductGamepad;
+
+        // get products category tv
+        $getProductTv = $this->db->table('products')
+            ->join('categories', 'products.category_id = categories.category_id')
+            ->select('products.product_id AS product_id, products.product_name AS product_name, products.product_image AS product_image, 
+         products.product_image_path AS product_image_path, products.product_price AS product_price,
+         products.product_price_reduce AS product_price_reduce, products.product_quantity AS product_quantity, 
+         products.category_id AS category_id, products.product_special AS product_special, products.product_describe AS product_describe, 
+         products.create_at AS create_at, categories.category_id AS category_id, categories.category_name AS category_name')
+            ->where('products.is_delete', '=', 0)
+            ->where('products.category_id', '=', 5)
+            ->get();
+        $data['getProductTv'] = $getProductTv;
+
+        // Phân trang
 
         $getAllCategory = $this->db->table('categories')
             ->select('*')

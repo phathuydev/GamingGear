@@ -1,6 +1,10 @@
-<?php foreach ($getProductDetail as $item) : ?>
-    <h4 style="color: #ec6090; font-size: 30px;" class="mb-5 text-center">Product Detail</h4>
-    <div class="container">
+<div class="container w-auto">
+    <div class="most-popular">
+        <?php foreach ($getProductDetail
+
+        as $item) : ?>
+        <h4 style="color: #ec6090; font-size: 30px;" class="mt-5 mb-5 text-center">Product Detail</h4>
+        <div class="container">
         <div class="row gx-5">
             <aside class="col-lg-6 mt-4">
             <div class="rounded-4 mb-4 d-flex justify-content-center">
@@ -10,6 +14,7 @@
                          src="<?php echo _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>"/>
                 </a>
             </div>
+
             <div class="d-flex justify-content-center mb-3">
                 <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank" data-type="image"
                    href="<?php echo _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>"
@@ -93,48 +98,66 @@
             </div>
             </main>
         </div>
-    </div>
-    <hr>
-    <div class="container mt-5">
+        </div>
+        <hr>
+        <div class="container mt-5">
         <div class="row gx-4">
             <div class="col-lg-12">
-            <div class="px-0 border rounded-2 shadow-0">
-                <div class="card-body">
-                    <h5 class="card-title mb-0">Similar items</h5>
-                    <div class="rowreplies row">
-                        <?php foreach ($getProductCategory as $data) : ?>
-                            <div class="bg-transparent featured-games d-flex justify-content-center header-text col-md-3 col-sm-12">
-                                <div class="card-pd" style="height: 100%;">
-                                    <div class="imgBox">
-                                        <a href="<?= _PRODUCT_DEFAULT ?>/product_detail/<?= $data['product_id'] . '/' . $item['category_id'] ?>"><img
-                                                    src="<?php echo _WEB_ROOT . '/' . $data['product_image_path'] . $item['product_image'] ?>"
-                                                    alt="mouse corsair"
-                                                    style="width: 200px !important; height: 200px !important;"
-                                                    class="mouse"></a>
-                                    </div>
-                                    <div class="contentBox">
-                                        <p class="h4 text-white text-uppercase font-weight-bold m-0"
-                                           style="font-size: 15px;"><?= $data['product_name'] ?></p>
-                                        <div class="d-flex align-items-center mt-1">
-                                            <h3 class="mr-2 text-danger"
-                                                style="font-size: 15px;"><?= $data['product_price_reduce'] == null ? $data['product_price'] . '$' : $data['product_price_reduce'] . '$' ?></h3>
-                                            <s class="text-white"
-                                               style="font-size: 15px;"><?= $data['product_price_reduce'] == null ? '' : $data['product_price'] . '$' ?></s>
+                <div class="px-0 rounded-2 shadow-0">
+                    <div class="card-body">
+                        <h5 class="card-title mb-0">Similar items</h5>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-end pagination-sm me-3 mb-2">
+                                <li class="page-item <?= $pages < 3 ? 'd-none' : false; ?>"><a
+                                            class="page-link text-black"
+                                            href="<?= _PRODUCT_DEFAULT ?>/product_detail/<?= $data['product_id'] . '/' . $data['category_id'] ?>/<?= $per_pages; ?>/<?= 1; ?>"
+                                            tabindex="-1">Previous</a></li>
+                                <?php for ($num = 1; $num <= $totalPages; $num++) { ?>
+                                    <li class="page-item <?= $num == $pages ? 'disabled' : false; ?>"><a
+                                                class="page-link text-black <?= $num == $pages ? 'bg-black text-white' : false; ?>"
+                                                href="<?= _PRODUCT_DEFAULT ?>/product_detail/<?= $data['product_id'] . '/' . $data['category_id'] ?>/<?= $per_pages; ?>/<?= $num; ?>"><?= $num; ?></a>
+                                    </li>
+                                <?php } ?>
+                                <li class="page-item <?= $pages > ($totalPages - 1) ? 'd-none' : false; ?>"><a
+                                            class="page-link text-black"
+                                            href="<?= _PRODUCT_DEFAULT ?>/product_detail/<?= $data['product_id'] . '/' . $data['category_id'] ?>/<?= $per_pages; ?>/<?= $pages + 1; ?>">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="rowreplies row">
+                            <?php foreach ($getProductCategory as $data) : ?>
+                                <div class="bg-transparent featured-games d-flex justify-content-center header-text col-md-3 col-sm-12">
+                                    <div class="card-pd" style="height: 100%;">
+                                        <div class="imgBox">
+                                            <a href="<?= _PRODUCT_DEFAULT ?>/product_detail/<?= $data['product_id'] . '/' . $data['category_id'] ?>"><img
+                                                        src="<?php echo _WEB_ROOT . '/' . $data['product_image_path'] . $data['product_image'] ?>"
+                                                        alt="mouse corsair"
+                                                        style="width: 200px !important; height: 200px !important;"
+                                                        class="mouse"></a>
                                         </div>
-                                        <a href="#" class="buy" style="font-size: 10px; padding: 5px 15px 5px 15px;">Add
-                                            to cart</a>
+                                        <div class="contentBox">
+                                            <p class="h4 text-white text-uppercase font-weight-bold m-0"
+                                               style="font-size: 15px;"><?= $data['product_name'] ?></p>
+                                            <div class="d-flex align-items-center mt-1">
+                                                <h3 class="mr-2 text-danger"
+                                                    style="font-size: 15px;"><?= $data['product_price_reduce'] == null ? $data['product_price'] . '$' : $data['product_price_reduce'] . '$' ?></h3>
+                                                <s class="text-white"
+                                                   style="font-size: 15px;"><?= $data['product_price_reduce'] == null ? '' : $data['product_price'] . '$' ?></s>
+                                            </div>
+                                            <a href="#" class="buy"
+                                               style="font-size: 10px; padding: 5px 15px 5px 15px;">Add to cart</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        <?php endforeach; ?>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
-                </div>
             </div>
             </div>
         </div>
-    </div>
-    <hr class="border border-white mt-5">
-    <div class="container">
+        </div>
+        <hr class="border border-white mt-5">
+        <div class="container">
         <h4 class="h6 mt-3 text-center" style="color: #ec6090; font-size: 24px;">Comments</h4>
         <div class="row d-flex justify-content-center">
             <div class="col-md-12 col-lg-10 col-xl-8">
@@ -149,7 +172,7 @@
                         <input type="hidden" name="id_users" value="">
                         <input type="hidden" name="id_product" value="">
                         <button type="submit" name="submit_comment" class="border-0 w-auto ms-3 text-white"
-                                style="font-size: 24px; background-color:#27292a;"><i class="fa fa-paper-plane"
+                                style="font-size: 24px; background-color:#1f2122;"><i class="fa fa-paper-plane"
                                                                                       title="Gửi"></i></button>
                     </form>
                 </div>
@@ -162,7 +185,7 @@
                 <p class="h6 text-white"><?= count($getComment) . ' Comment(s)' ?></p>
                 <hr class="border border-white mb-5">
                 <div class="row">
-                    <div class="col">
+                    <div class="col mb-5">
                         <?php foreach ($getComment as $comment) : ?>
                             <div class="d-flex flex-start" id="ButtonComment_<?= $comment['comment_product_id']; ?>">
                                 <img src="<?= _WEB_ROOT . '/' . $comment['user_image_path'] . ($comment['user_image'] == null ? 'default_img.jpg' : $comment['user_image']) ?>"
@@ -171,7 +194,7 @@
                                 <div class="flex-grow-1 flex-shrink-1 mb-3">
                                     <div>
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <p class="mb-1 text-white font-weight-bold">
+                                            <p class="m-0 p-0 text-white font-weight-bold">
                                                 <?= ($comment['user_name'] == null) ? $comment['user_email'] : $comment['user_name'] ?></span>
                                             </p>
                                         </div>
@@ -181,7 +204,10 @@
                                         <div class="d-flex align-items-center">
                             <span class="small text-white"><?= date("F j, Y - H:m", strtotime($comment["create_at"])); ?>
                                 <?php if ($comment['user_id'] == $client_login) : ?>
-                                    <a href="" class="ml-3" title="Edit"><i class="fa fa-edit fa-xs"></i></a>
+                                    <a href="#ButtonEdit_<?= $comment['comment_product_id']; ?>" class="ml-3"
+                                       id="#ButtonEdit_<?= $comment['comment_product_id']; ?>"
+                                       data-id="<?= $comment['comment_product_id']; ?>" title="Edit"><i
+                                                class="fa fa-edit fa-xs"></i></a>
                                     <a href="" class="ml-3" title="Delete"><i class="fa fa-trash fa-xs"></i></a>
                                 <?php else : ?>
                                     <?php if (isset($client_login)) : ?>
@@ -212,8 +238,6 @@
                                             </form>
                                         </div>
                                     <?php endif ?>
-
-
                                     <?php $replies = $this->model('CommentModel')->getReplyCommentProduct($comment['comment_product_id']); ?>
                                     <?php foreach ($replies as $reply) : ?>
                                         <div class="d-flex flex-start mt-4"
@@ -226,7 +250,7 @@
                                             <div class="flex-grow-1 flex-shrink-1">
                                                 <div>
                                                     <div class="d-flex justify-content-between align-items-center">
-                                                        <p class="mb-1 text-white font-weight-bold">
+                                                        <p class="m-0 p-0  text-white font-weight-bold">
                                                             <?= ($reply['user_name'] == null) ? $reply['user_email'] : $reply['user_name'] ?></span>
                                                         </p>
                                                     </div>
@@ -271,7 +295,6 @@
                                             </div>
                                         <?php endif ?>
                                     <?php endforeach; ?>
-
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -280,7 +303,9 @@
             </div>
             </div>
         </div>
+        </div>
     </div>
+</div>
 <?php endforeach; ?>
 <?php foreach ($getComment as $comment) : ?>
     <script>

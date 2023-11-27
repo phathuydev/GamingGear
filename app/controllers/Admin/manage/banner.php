@@ -88,7 +88,8 @@ class Banner extends Controller
           $data = [
               'banner_home_image' => $file_name == null ? $banner_home_image : $file_name,
               'banner_home_path' => $target_dir,
-              'user_update' => Session::data('admin_login'),
+              'update_at' => date('Y-m-d H:i:s'),
+              'user_update' => Session::data('admin_login')
           ];
           $this->province->updateBannerHome($data, $banner_home_id);
           $response = new Response();
@@ -146,7 +147,8 @@ class Banner extends Controller
           $data = [
               'banner_product_image' => $file_name == null ? $banner_product_image : $file_name,
               'banner_product_path' => $target_dir,
-              'user_update' => Session::data('admin_login'),
+              'update_at' => date('Y-m-d H:i:s'),
+              'user_update' => Session::data('admin_login')
           ];
           $this->province->updateBannerProduct($data, $banner_product_id);
           $response = new Response();

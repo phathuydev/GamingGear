@@ -54,7 +54,7 @@ class BannerModel extends Model
     public function getBannerProductDetail($product_id)
     {
         $data = $this->db->table('banners_product')
-            ->select('banner_product_id, product_id, banner_product_image, banner_product_path, create_at')
+            ->select('banner_product_id, product_id, banner_product_image, banner_product_path, create_at, update_at')
             ->where('product_id', '=', $product_id)
             ->orderBy('create_at', 'DESC')
             ->get();

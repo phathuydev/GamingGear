@@ -28,7 +28,7 @@ class Category extends Controller
               $data = [
                   'is_delete' => 1,
                   'user_delete' => Session::data('admin_login'),
-                  'update_at' => date("Y-m-d H:i:s"),
+                  'update_at' => date('Y-m-d H:i:s'),
                   'user_update' => Session::data('admin_login')
               ];
               $this->province->updateCategory($data, $category_id);
@@ -94,6 +94,7 @@ class Category extends Controller
               $data = [
                   'category_name' => $name,
                   'category_image' => $image == null ? $firstCategory['category_image'] : $image,
+                  'update_at' => date('Y-m-d H:i:s'),
                   'user_update' => $user_update
               ];
               $this->province->updateCategory($data, $category_id);

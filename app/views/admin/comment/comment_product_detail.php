@@ -6,7 +6,6 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th class="text-white">#</th>
                         <th class="text-white">Image</th>
                         <th class="text-white">Name</th>
                         <th class="text-white">Content</th>
@@ -17,7 +16,6 @@
                     <tbody>
                     <?php foreach ($getCommentProduct as $key => $item) : ?>
                         <tr>
-                            <td class="text-white"><?= $key + 1; ?></td>
                             <td class="text-white"><img
                                         src="<?= _WEB_ROOT . '/' . $item['user_image_path'] . ($item['user_image'] == null ? 'default_img.jpg' : $item['user_image']); ?>"
                                         alt="" style="width: 50px !important; height: 50px !important;"></td>

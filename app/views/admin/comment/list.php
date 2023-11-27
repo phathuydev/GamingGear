@@ -22,7 +22,6 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th class="text-white">#</th>
                                 <th class="text-white">Image Product</th>
                                 <th class="text-white">Name Product</th>
                                 <th class="text-white">Total Comment</th>
@@ -32,7 +31,6 @@
                             <tbody>
                             <?php foreach ($getAllCommentProduct as $key => $item) : ?>
                                 <tr>
-                                    <td class="text-white"><?= $key + 1; ?></td>
                                     <td class="text-white"><img
                                                 src="<?= _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>"
                                                 alt="" style="width: 50px !important; height: 50px !important;"></td>
@@ -54,7 +52,6 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th class="text-white">#</th>
                                 <th class="text-white">Image Post</th>
                                 <th class="text-white">Total Comment</th>
                                 <th class="text-white">Action</th>
@@ -63,7 +60,6 @@
                             <tbody>
                             <?php foreach ($getAllCommentPost as $key => $item) : ?>
                                 <tr>
-                                    <td class="text-white"><?= $key + 1; ?></td>
                                     <td class="text-white"><img
                                                 src="<?= _WEB_ROOT . '/' . $item['post_image_path'] . $item['post_image'] ?>"
                                                 alt=""

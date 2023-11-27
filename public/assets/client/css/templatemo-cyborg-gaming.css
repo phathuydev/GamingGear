@@ -429,7 +429,7 @@ Header Style
 --------------------------------------------- 
 */
 
-.background-header {
+/* .background-header {
   background-color: #fff !important;
   height: 70px !important;
   position: fixed !important;
@@ -442,13 +442,12 @@ Header Style
   -o-transition: all 0.5s ease 0s;
   transition: all 0.5s ease 0s;
   display: none;
-}
+} */
 
 .header-area {
-  background-color: transparent;
-  position: absolute;
-  height: 70px;
-  top: 15px;
+  background-color: #000000;
+  position: fixed;
+  height: 95px;
   left: 0;
   right: 0;
   z-index: 100;
@@ -459,16 +458,11 @@ Header Style
 }
 
 .header-area .main-nav {
-  min-height: 80px;
+  min-height: 95px;
   background: transparent;
   display: flex;
   padding: 15px 0px;
   border-radius: 50px;
-}
-
-.background-header .main-nav {
-  padding: 0px;
-  background-color: transparent;
 }
 
 .header-area .main-nav #search {
@@ -499,7 +493,7 @@ Header Style
 }
 
 .header-area .main-nav .logo {
-  border-right: 1px solid #27292a;
+  border-right: 1px solid #ffffff;
   flex-basis: 25%;
   margin-right: 5%;
   -webkit-transition: all 0.3s ease 0s;
@@ -512,13 +506,13 @@ Header Style
   width: 191px;
 }
 
-.background-header .main-nav .logo {
+/* .background-header .main-nav .logo {
   margin-top: 8px;
-}
+} */
 
-.background-header .main-nav .logo img {
+/* .background-header .main-nav .logo img {
   width: 180px;
-}
+} */
 
 .header-area .main-nav .nav {
   display: inline-flex;
@@ -570,15 +564,15 @@ Header Style
   margin-left: 5px;
 }
 
-.header-area .main-nav .nav li.has-sub ul.sub-menu li:last-child a:hover,
+/* .header-area .main-nav .nav li.has-sub ul.sub-menu li:last-child a:hover,
 .background-header .main-nav .nav li.has-sub ul.sub-menu li:last-child a:hover {
   padding-left: 25px !important;
-}
+} */
 
-.header-area .main-nav .nav li:hover a,
+/* .header-area .main-nav .nav li:hover a,
 .header-area .main-nav .nav li a.active {
   color: #e75e8d !important;
-}
+} */
 
 .header-area .main-nav .nav li:last-child:hover a,
 .header-area .main-nav .nav li:last-child a.active {
@@ -586,11 +580,11 @@ Header Style
   background-color: #e75e8d !important;
 }
 
-.background-header .main-nav .nav li:hover a,
+/* .background-header .main-nav .nav li:hover a,
 .background-header .main-nav .nav li a.active {
   color: #fff;
   opacity: 1;
-}
+} */
 
 .header-area .main-nav .nav li.has-sub {
   position: relative;
@@ -610,9 +604,9 @@ Header Style
   display: none;
 }
 
-.background-header .main-nav .menu-trigger {
+/* .background-header .main-nav .menu-trigger {
   top: 17px;
-}
+} */
 
 .header-area .main-nav .menu-trigger span,
 .header-area .main-nav .menu-trigger span:before,
@@ -629,11 +623,11 @@ Header Style
   left: 0;
 }
 
-.background-header .main-nav .menu-trigger span,
+/* .background-header .main-nav .menu-trigger span,
 .background-header .main-nav .menu-trigger span:before,
 .background-header .main-nav .menu-trigger span:after {
   background-color: #e75e8d;
-}
+} */
 
 .header-area .main-nav .menu-trigger span:before,
 .header-area .main-nav .menu-trigger span:after {
@@ -650,10 +644,10 @@ Header Style
   width: 75%;
 }
 
-.background-header .main-nav .menu-trigger span:before,
+/* .background-header .main-nav .menu-trigger span:before,
 .background-header .main-nav .menu-trigger span:after {
   background-color: #e75e8d;
-}
+} */
 
 .header-area .main-nav .menu-trigger span:before,
 .header-area .main-nav .menu-trigger span:after {
@@ -696,9 +690,9 @@ Header Style
   background-color: #e75e8d;
 }
 
-.background-header .main-nav .menu-trigger.active span:before {
+/* .background-header .main-nav .menu-trigger.active span:before {
   background-color: #e75e8d;
-}
+} */
 
 .header-area .main-nav .menu-trigger.active span:after {
   -moz-transform: translateY(-6px) translateX(1px) rotate(-45deg);
@@ -708,9 +702,9 @@ Header Style
   background-color: #e75e8d;
 }
 
-.background-header .main-nav .menu-trigger.active span:after {
+/* .background-header .main-nav .menu-trigger.active span:after {
   background-color: #e75e8d;
-}
+} */
 
 .header-area.header-sticky {
   min-height: 70px;
@@ -747,12 +741,13 @@ Header Style
     left: 30px;
     top: 15px;
   }
-  .background-header .main-nav .logo {
+
+  /* .background-header .main-nav .logo {
     top: 0px;
   }
   .background-header .main-nav .border-button {
     top: 0px !important;
-  }
+  } */
   .header-area .main-nav .border-button {
     position: absolute;
     top: 15px;
@@ -767,7 +762,7 @@ Header Style
     width: 100%;
   }
   .header-area {
-    background-color: #f7f7f7;
+    background-color: #000000;
     padding: 0px 15px;
     height: 80px;
     box-shadow: none;
@@ -799,16 +794,13 @@ Header Style
     margin-top: 65px !important;
     text-align: center;
   }
-  .background-header.header-sticky .nav {
+
+  /* .background-header.header-sticky .nav {
     margin-top: 70px !important;
-  }
-  .header-area .main-nav .nav li:first-child {
-    border-top: 1px solid #eee;
-  }
+  } */
   .header-area .main-nav .nav li {
     width: 100%;
-    background: #fff;
-    border-bottom: 1px solid #eee;
+    background: #000000;
     padding-left: 0px !important;
     padding-right: 0px !important;
   }
@@ -817,7 +809,7 @@ Header Style
     line-height: 50px !important;
     padding: 0px !important;
     border: none !important;
-    background: #fff !important;
+    background: #000000 !important;
     color: #1e1e1e !important;
   }
   .header-area .main-nav .nav li a:hover {
@@ -907,7 +899,6 @@ Most Popular Style
 
 .most-popular {
   margin-top: 60px;
-  padding: 1px;
   background-color: #1f2122;
   border-radius: 23px;
 }
@@ -1141,7 +1132,7 @@ Featured Games Style
 .featured-games .owl-nav {
   position: absolute;
   margin: 0 auto;
-  top: -70px;
+  top: -80px;
   right: 0;
 }
 
@@ -1787,9 +1778,9 @@ body {
 }
 
 @media (max-width: 992px) {
-  .background-header {
+  /* .background-header {
     display: inline-block;
-  }
+  } */
   .header-area .main-nav #search {
     display: none;
   }

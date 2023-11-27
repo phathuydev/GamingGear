@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Asia/Ho_Chi_Minh'); // Set default time zone
 // Kế thừa từ class Model
 class ProductModel extends Model
 {
@@ -14,7 +15,7 @@ class ProductModel extends Model
     return '*';
   }
 
-    public function getAllProduct()
+    public function getAllProduct($per_pages, $pages)
     {
         $data = $this->db->table('products')
             ->join('categories', 'products.category_id = categories.category_id')
@@ -23,7 +24,27 @@ class ProductModel extends Model
      products.category_id AS category_id, products.product_special AS product_special, products.product_describe AS product_describe, 
      products.create_at AS create_at, categories.category_id AS category_id, categories.category_name AS category_name')
             ->where('products.is_delete', '=', 0)
+            ->limit($per_pages, $pages)
             ->get();
+        return $data;
+    }
+
+    public function countProductId()
+    {
+        $data = $this->db->table('products')
+            ->select('COUNT(product_id) as countProductId')
+            ->where('is_delete', '=', 0)
+            ->first();
+        return $data;
+    }
+
+    public function countProductCategory($category_id)
+    {
+        $data = $this->db->table('products')
+            ->select('COUNT(product_id) as countProductCategory')
+            ->where('category_id', '=', $category_id)
+            ->where('is_delete', '=', 0)
+            ->first();
         return $data;
     }
 
@@ -48,9 +69,14 @@ class ProductModel extends Model
         $this->db->table('products')->where('product_id', '=', $product_id)->update($data);
     }
 
-    public function getProductCategory($category_id)
+    public function getProductCategory($category_id, $per_pages, $pages)
     {
-        $data = $this->db->table('products')->select('*')->where('category_id', '=', $category_id)->where('is_delete', '=', '0')->get();
+        $data = $this->db->table('products')
+            ->select('*')
+            ->where('category_id', '=', $category_id)
+            ->where('is_delete', '=', '0')
+            ->limit($per_pages, $pages)
+            ->get();
         return $data;
     }
 

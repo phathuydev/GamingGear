@@ -104,7 +104,7 @@
                           ctx.textBaseline = "middle";
                           ctx.fillStyle = "#6c7293";
 
-                          var texts = "Total Revenue",
+                          var texts = "<?= $countOrderToday['countOrderToday'] ? $countOrderToday['countOrderToday'] : 0 ?> Order Today",
                               textsX = Math.round((width - ctx.measureText(text).width) / 2.4),
                               textsY = height / 1.7;
 
@@ -130,7 +130,7 @@
           var data = {
               labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
               datasets: [{
-                  label: 'Revenue - Currency Unit: $',
+                  label: 'Total $',
                   data: [<?php
                       // total revenue 12 month
                       $twelveMonth = [];

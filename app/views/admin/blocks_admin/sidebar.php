@@ -63,8 +63,10 @@
         </a>
         <div class="collapse" id="product">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="<?php echo _MANAGE_DEFAULT ?>/product">List</a></li>
-            <li class="nav-item"> <a class="nav-link" href="<?php echo _MANAGE_DEFAULT ?>/product/product_add">Add</a></li>
+              <li class="nav-item"><a class="nav-link" href="<?php echo _MANAGE_DEFAULT ?>/product/list/8/1">List</a>
+              </li>
+              <li class="nav-item"><a class="nav-link"
+                                      href="<?php echo _MANAGE_DEFAULT ?>/product/product_add/8/1">Add</a></li>
           </ul>
         </div>
       </li>

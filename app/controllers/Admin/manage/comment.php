@@ -101,7 +101,7 @@ class Comment extends Controller
           $data = [
               'is_delete' => 1,
               'user_delete' => Session::data('admin_login'),
-              'update_at' => date("Y-m-d H:i:s"),
+              'update_at' => date("Y-m-d H:i:s")
           ];
           $this->province->updateIsdeleteReplyCommentPost($data, $reply_post_id);
           $response = new Response();

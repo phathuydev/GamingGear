@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Name</label>
+                    <label>Name<em class="text-danger"> * </em></label>
                     <input type="text" class="form-control" name="name" id="name" placeholder="Name"
                            value="<?= $item['category_name'] ?>">
                     <p class="text-danger m-2" id="error_name"></p>

@@ -6,7 +6,6 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th class="text-white">#</th>
                         <th class="text-white">Image Representing</th>
                         <th class="text-white">Category</th>
                         <th class="text-white">Create Date</th>
@@ -16,14 +15,14 @@
                     <tbody>
                     <?php foreach ($listPost as $key => $item) : ?>
                         <tr>
-                            <td class="text-white"><?= $key + 1; ?></td>
                             <td class="text-white"><img
                                         src="<?= $item['post_image'] == true ? _WEB_ROOT . '/' . $item['post_image_path'] . $item['post_image'] : _WEB_ROOT . '/' . $item['post_image_path'] . 'default_img.jpg'; ?>"
                                         alt=""
                                         style="width: 100px !important; height: 50px !important; border-radius: 0;">
                             </td>
                             <td class="text-white"><?= $item['category_name']; ?></td>
-                            <td class="text-white"><?= date("F j, Y - H:m", strtotime($item["create_at"])); ?></td>
+                            <td class="text-white"><?= formatTimeAgo(strtotime($item['create_at'])); ?></td>
+                            <td class="text-white"><?= formatTimeAgo(strtotime($item['update_at'])); ?></td>
                             <td class="d-flex align-items-center pt-4">
                                 <a class="badge badge-primary mr-2"
                                    href="<? echo _MANAGE_DEFAULT ?>/post/post_detail/<?= $item['post_id'] ?>">See

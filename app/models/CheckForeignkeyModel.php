@@ -1,5 +1,5 @@
 <?php
-
+date_default_timezone_set('Asia/Ho_Chi_Minh'); // Set default time zone
 // Kế thừa từ class Model
 class CheckForeignkeyModel extends Model
 {

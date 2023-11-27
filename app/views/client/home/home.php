@@ -1,23 +1,24 @@
       <!-- ***** Banner Start ***** -->
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <?php
+            foreach ($getBannerHome as $key => $item) :
+                ?>
+                <li data-target="#carouselExampleIndicators" data-slide-to="<?= $key; ?>"
+                    class="<?= $key == 0 ? 'active' : false; ?>"></li>
+            <?php endforeach; ?>
         </ol>
         <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img class="d-block w-100" src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/banner-bg4.jpg" alt="First slide">
-
-          </div>
-
-          <div class="carousel-item">
-            <img class="d-block w-100" src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/banner-bg7.jpg" alt="Second slide">
-          </div>
-
-          <div class="carousel-item">
-            <img class="d-block w-100" src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/banner-bg5.jpg" alt="Third slide">
-          </div>
+            <?php
+            $descriptions = ['First slide', 'Second slide', 'Third slide', 'Fourth slide', 'Fifth slide'];
+            foreach ($getBannerHome as $key => $item) :
+                ?>
+                <div class="carousel-item <?= $key == 0 ? 'active' : false; ?>">
+                    <img class="d-block w-100"
+                         src="<?php echo _WEB_ROOT . '/' . $item['banner_home_path'] . $item['banner_home_image'] ?>"
+                         alt="<?= $descriptions[$key]; ?> slide">
+                </div>
+            <?php endforeach; ?>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -31,807 +32,318 @@
       <!-- ***** Banner End ***** -->
 
       <!-- ***** Most Popular Start ***** -->
-      <div class="most-popular">
-        <div class="heading-section text-center mt-5">
-          <h4><em>Product</em> New</h4>
+      <div class="container w-auto">
+          <div class="most-popular mb-5">
+              <div class="heading-section text-center">
+                  <h4 class="mb-0 mt-4"><em>Products</em> New</h4>
+              </div>
+              <!-- ***** Featured Games Start ***** -->
+              <div class="row">
+                  <div class="col-lg-12">
+                      <div class="featured-games header-text">
+                          <div class="owl-features owl-carousel">
+                              <?php foreach ($getProductSpecial as $item) : ?>
+                                  <div class="item p-5">
+                                      <div class="thumb p-4">
+                                          <a href="<?= _WEB_ROOT ?>/details/<?= $item['product_id'] ?>/<?= $item['category_id'] ?>"><img
+                                                      src="<?= _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>"
+                                                      alt=""></a>
+                                      </div>
+                                      <?php if ($item['product_price_reduce'] > 0) : ?>
+                                          <label class="top-0 mt-4 position-absolute start-0 rounded-circle bg-danger text-white ps-1 pt-2 pe-1 pb-2"><?= $item['product_price_reduce'] > 0 ? '-' . number_format((($item['product_price'] - $item['product_price_reduce']) / $item['product_price'] * 100), 0) . '%' : false; ?></label>
+                                      <?php endif ?>
+                                      <h4 class="d-flex justify-content-center align-items-center mt-2 mb-0 m-0"
+                                          style="font-size: 15px; line-height: 25px !important;"><?= $item['product_name'] ?></h4>
+                                      <div class="d-flex justify-content-center align-items-center mt-2">
+                                          <h3 class="mr-2 text-danger"
+                                              style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? $item['product_price'] . '$' : $item['product_price_reduce'] . '$' ?></h3>
+                                          <s class="text-white"
+                                             style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? '' : $item['product_price'] . '$' ?></s>
+                                      </div>
+                                      <div class="d-flex justify-content-center  align-items-center mt-2">
+                                          <button class="buy">Add To Cart</button>
+                                      </div>
+                                  </div>
+                              <?php endforeach; ?>
+                </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="header-text">
+              <img src="https://theme.hstatic.net/200000722513/1001090675/14/headblog_banner.jpg?v=2092" alt=""
+                   class="rounded-3">
+          </div>
+          <div class="most-popular mb-5">
+              <div class="heading-section text-center">
+                  <h4 class="mb-0 mt-4">Headset</h4>
+              </div>
+              <!-- ***** Featured Games Start ***** -->
+              <div class="row">
+                  <div class="col-lg-12">
+                      <div class="featured-games header-text">
+                          <div class="owl-features owl-carousel">
+                              <?php foreach ($getProductHeadset as $item) : ?>
+                                  <div class="item p-5">
+                                      <div class="thumb p-4">
+                                          <a href="<?= _WEB_ROOT ?>/detail/<?= $item['product_id'] ?>/<?= $item['category_id'] ?>"><img
+                                                      src="<?= _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>"
+                                                      alt=""></a>
+                                      </div>
+                                      <?php if ($item['product_price_reduce'] > 0) : ?>
+                                          <label class="top-0 mt-4 position-absolute start-0 rounded-circle bg-danger text-white ps-1 pt-2 pe-1 pb-2"><?= $item['product_price_reduce'] > 0 ? '-' . number_format((($item['product_price'] - $item['product_price_reduce']) / $item['product_price'] * 100), 0) . '%' : false; ?></label>
+                                      <?php endif ?>
+                                      <h4 class="d-flex justify-content-center align-items-center mt-2 mb-0 m-0"
+                                          style="font-size: 15px; line-height: 25px !important;"><?= $item['product_name'] ?></h4>
+                                      <div class="d-flex justify-content-center align-items-center mt-2">
+                                          <h3 class="mr-2 text-danger"
+                                              style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? $item['product_price'] . '$' : $item['product_price_reduce'] . '$' ?></h3>
+                                          <s class="text-white"
+                                             style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? '' : $item['product_price'] . '$' ?></s>
+                                      </div>
+                                      <div class="d-flex justify-content-center  align-items-center mt-2">
+                                          <button class="buy">Add To Cart</button>
+                                      </div>
+                                  </div>
+                              <?php endforeach; ?>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="header-text">
+              <img src="https://theme.hstatic.net/200000722513/1001090675/14/headblog_banner.jpg?v=2092" alt=""
+                   class="rounded-3">
+          </div>
+          <div class="most-popular mb-5">
+              <div class="heading-section text-center">
+                  <h4 class="mb-0 mt-4">Keyboard</h4>
+              </div>
+              <!-- ***** Featured Games Start ***** -->
+              <div class="row">
+                  <div class="col-lg-12">
+                      <div class="featured-games header-text">
+                          <div class="owl-features owl-carousel">
+                              <?php foreach ($getProductKeyboard as $item) : ?>
+                                  <div class="item p-5">
+                                      <div class="thumb p-4">
+                                          <a href="<?= _WEB_ROOT ?>/detail/<?= $item['product_id'] ?>/<?= $item['category_id'] ?>"><img
+                                                      src="<?= _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>"
+                                                      alt=""></a>
+                                      </div>
+                                      <?php if ($item['product_price_reduce'] > 0) : ?>
+                                          <label class="top-0 mt-4 position-absolute start-0 rounded-circle bg-danger text-white ps-1 pt-2 pe-1 pb-2"><?= $item['product_price_reduce'] > 0 ? '-' . number_format((($item['product_price'] - $item['product_price_reduce']) / $item['product_price'] * 100), 0) . '%' : false; ?></label>
+                                      <?php endif ?>
+                                      <h4 class="d-flex justify-content-center align-items-center mt-2 mb-0 m-0"
+                                          style="font-size: 15px; line-height: 25px !important;"><?= $item['product_name'] ?></h4>
+                                      <div class="d-flex justify-content-center align-items-center mt-2">
+                                          <h3 class="mr-2 text-danger"
+                                              style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? $item['product_price'] . '$' : $item['product_price_reduce'] . '$' ?></h3>
+                                          <s class="text-white"
+                                             style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? '' : $item['product_price'] . '$' ?></s>
+                                      </div>
+                                      <div class="d-flex justify-content-center  align-items-center mt-2">
+                                          <button class="buy">Add To Cart</button>
+                                      </div>
+                                  </div>
+                              <?php endforeach; ?>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="header-text">
+              <img src="https://theme.hstatic.net/200000722513/1001090675/14/headblog_banner.jpg?v=2092" alt=""
+                   class="rounded-3">
+          </div>
+          <div class="most-popular mb-5">
+              <div class="heading-section text-center">
+                  <h4 class="mb-0 mt-4">Mouse</h4>
+              </div>
+              <!-- ***** Featured Games Start ***** -->
+              <div class="row">
+                  <div class="col-lg-12">
+                      <div class="featured-games header-text">
+                          <div class="owl-features owl-carousel">
+                              <?php foreach ($getProductMouse as $item) : ?>
+                                  <div class="item p-5">
+                                      <div class="thumb p-4">
+                                          <a href="<?= _WEB_ROOT ?>/detail/<?= $item['product_id'] ?>/<?= $item['category_id'] ?>"><img
+                                                      src="<?= _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>"
+                                                      alt=""></a>
+                                      </div>
+                                      <?php if ($item['product_price_reduce'] > 0) : ?>
+                                          <label class="top-0 mt-4 position-absolute start-0 rounded-circle bg-danger text-white ps-1 pt-2 pe-1 pb-2"><?= $item['product_price_reduce'] > 0 ? '-' . number_format((($item['product_price'] - $item['product_price_reduce']) / $item['product_price'] * 100), 0) . '%' : false; ?></label>
+                                      <?php endif ?>
+                                      <h4 class="d-flex justify-content-center align-items-center mt-2 mb-0 m-0"
+                                          style="font-size: 15px; line-height: 25px !important;"><?= $item['product_name'] ?></h4>
+                                      <div class="d-flex justify-content-center align-items-center mt-2">
+                                          <h3 class="mr-2 text-danger"
+                                              style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? $item['product_price'] . '$' : $item['product_price_reduce'] . '$' ?></h3>
+                                          <s class="text-white"
+                                             style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? '' : $item['product_price'] . '$' ?></s>
+                                      </div>
+                                      <div class="d-flex justify-content-center  align-items-center mt-2">
+                                          <button class="buy">Add To Cart</button>
+                                      </div>
+                                  </div>
+                              <?php endforeach; ?>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="header-text">
+              <img src="https://theme.hstatic.net/200000722513/1001090675/14/headblog_banner.jpg?v=2092" alt=""
+                   class="rounded-3">
         </div>
-        <!-- ***** Featured Games Start ***** -->
-
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="featured-games header-text">
-              <div class="owl-features owl-carousel">
-                <div class="item">
-                  <div class="thumb">
-                      <a href="<?= _WEB_ROOT ?>/product-detail"><img
-                                  src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg"
-                                  alt=""></a>
-                    <div class="hover-effect">
-                      <h6>100k sold</h6>
-                    </div>
-                  </div>
-                  <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                  <h4 class="d-flex justify-content-center align-items-center mt-2">PlayStation 5</h4>
-                  <div class="d-flex justify-content-center align-items-center mt-2">
-                    <p class="text-danger me-2">100$</p>
-                    <s class="text-muted">150$</s>
-                  </div>
-                  <div class="d-flex justify-content-center  align-items-center mt-2">
-                    <button class="buy">Add To Cart</button>
-                    <!-- <a href="#" class="active"><i class="fas fa-heart"></i></a> -->
-                  </div>
-                </div>
-
-                <div class="item">
-                  <div class="thumb">
-                    <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
-                    <div class="hover-effect">
-                      <h6>100k sold</h6>
-                    </div>
-                  </div>
-                  <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                  <h4 class="d-flex justify-content-center align-items-center mt-2">Razer mouse</h4>
-                  <div class="d-flex justify-content-center align-items-center mt-2">
-                    <p class="text-danger me-2">100$</p>
-                    <s class="text-muted">150$</s>
-                  </div>
-                  <div class="d-flex justify-content-center  align-items-center mt-2">
-                    <button class="buy">Add To Cart</button>
-                    <!-- <a href="#" class="active"><i class="fas fa-heart"></i></a> -->
-                  </div>
-                </div>
-
-                <div class="item">
-                  <div class="thumb">
-                    <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
-                    <div class="hover-effect">
-                      <h6>100k sold</h6>
-                    </div>
-                  </div>
-                  <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                  <h4 class="d-flex justify-content-center align-items-center mt-2">Razer mouse</h4>
-                  <div class="d-flex justify-content-center align-items-center mt-2">
-                    <p class="text-danger me-2">100$</p>
-                    <s class="text-muted">150$</s>
-                  </div>
-                  <div class="d-flex justify-content-center  align-items-center mt-2">
-                    <button class="buy">Add To Cart</button>
-                    <!-- <a href="#" class="active"><i class="fas fa-heart"></i></a> -->
-                  </div>
-                </div>
-
-                <div class="item">
-                  <div class="thumb">
-                    <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
-                    <div class="hover-effect">
-                      <h6>100k sold</h6>
-                    </div>
-                  </div>
-                  <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                  <h4 class="d-flex justify-content-center align-items-center mt-2">Razer mouse</h4>
-                  <div class="d-flex justify-content-center align-items-center mt-2">
-                    <p class="text-danger me-2">100$</p>
-                    <s class="text-muted">150$</s>
-                  </div>
-                  <div class="d-flex justify-content-center  align-items-center mt-2">
-                    <button class="buy">Add To Cart</button>
-                    <!-- <a href="#" class="active"><i class="fas fa-heart"></i></a> -->
-                  </div>
-                </div>
-
+          <div class="most-popular mb-5">
+              <div class="heading-section text-center">
+                  <h4 class="mb-0 mt-4">Gamepad</h4>
               </div>
-            </div>
+              <!-- ***** Featured Games Start ***** -->
+              <div class="row">
+                  <div class="col-lg-12">
+                      <div class="featured-games header-text">
+                          <div class="owl-features owl-carousel">
+                              <?php foreach ($getProductGamepad as $item) : ?>
+                                  <div class="item p-5">
+                                      <div class="thumb p-4">
+                                          <a href="<?= _WEB_ROOT ?>/detail/<?= $item['product_id'] ?>/<?= $item['category_id'] ?>"><img
+                                                      src="<?= _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>"
+                                                      alt=""></a>
+                                      </div>
+                                      <?php if ($item['product_price_reduce'] > 0) : ?>
+                                          <label class="top-0 mt-4 position-absolute start-0 rounded-circle bg-danger text-white ps-1 pt-2 pe-1 pb-2"><?= $item['product_price_reduce'] > 0 ? '-' . number_format((($item['product_price'] - $item['product_price_reduce']) / $item['product_price'] * 100), 0) . '%' : false; ?></label>
+                                      <?php endif ?>
+                                      <h4 class="d-flex justify-content-center align-items-center mt-2 mb-0 m-0"
+                                          style="font-size: 15px; line-height: 25px !important;"><?= $item['product_name'] ?></h4>
+                                      <div class="d-flex justify-content-center align-items-center mt-2">
+                                          <h3 class="mr-2 text-danger"
+                                              style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? $item['product_price'] . '$' : $item['product_price_reduce'] . '$' ?></h3>
+                                          <s class="text-white"
+                                             style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? '' : $item['product_price'] . '$' ?></s>
+                                      </div>
+                                      <div class="d-flex justify-content-center  align-items-center mt-2">
+                                          <button class="buy">Add To Cart</button>
+                                      </div>
+                                  </div>
+                              <?php endforeach; ?>
+                          </div>
+                      </div>
+                  </div>
+              </div>
           </div>
-        </div>
-      </div>
-      <div class="header-text mt-5">
-        <img src="https://theme.hstatic.net/200000722513/1001090675/14/headblog_banner.jpg?v=2092" alt="">
-      </div>
-      <div class="most-popular">
-          <div class="row" style="padding: 0 40px 0 40px;">
-          <div class="col-lg-12">
-            <div class="heading-section text-center mt-4">
-              <h4>Keyboard Product</h4>
-            </div>
-            <div class="row">
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">100$</p>
-                      <s class="text-muted">150$</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">100$</p>
-                      <s class="text-muted">150$</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">100$</p>
-                      <s class="text-muted">150$</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">100$</p>
-                      <s class="text-muted">150$</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">100$</p>
-                      <s class="text-muted">150$</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">100$</p>
-                      <s class="text-muted">150$</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">100$</p>
-                      <s class="text-muted">150$</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">100$</p>
-                      <s class="text-muted">150$</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="header-text">
+              <img src="https://theme.hstatic.net/200000722513/1001090675/14/headblog_banner.jpg?v=2092" alt=""
+                   class="rounded-3">
           </div>
-        </div>
-      </div>
-      <div class="most-popular">
-          <div class="row" style="padding: 0 40px 0 40px;">
-          <div class="col-lg-12">
-            <div class="heading-section text-center mt-4">
-              <h4>Mouse Product</h4>
-            </div>
-            <div class="row">
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/popular-mouse.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">100$</p>
-                      <s class="text-muted">150$</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
+          <div class="most-popular mb-5">
+              <div class="heading-section text-center">
+                  <h4 class="mb-0 mt-4">Tv</h4>
               </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/popular-mouse.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">100$</p>
-                      <s class="text-muted">150$</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
+              <!-- ***** Featured Games Start ***** -->
+              <div class="row">
+                  <div class="col-lg-12">
+                      <div class="featured-games header-text">
+                          <div class="owl-features owl-carousel">
+                              <?php foreach ($getProductTv as $item) : ?>
+                                  <div class="item p-5">
+                                      <div class="thumb p-4">
+                                          <a href="<?= _WEB_ROOT ?>/detail/<?= $item['product_id'] ?>/<?= $item['category_id'] ?>"><img
+                                                      src="<?= _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>"
+                                                      alt=""></a>
+                                      </div>
+                                      <?php if ($item['product_price_reduce'] > 0) : ?>
+                                          <label class="top-0 mt-4 position-absolute start-0 rounded-circle bg-danger text-white ps-1 pt-2 pe-1 pb-2"><?= $item['product_price_reduce'] > 0 ? '-' . number_format((($item['product_price'] - $item['product_price_reduce']) / $item['product_price'] * 100), 0) . '%' : false; ?></label>
+                                      <?php endif ?>
+                                      <h4 class="d-flex justify-content-center align-items-center mt-2 mb-0 m-0"
+                                          style="font-size: 15px; line-height: 25px !important;"><?= $item['product_name'] ?></h4>
+                                      <div class="d-flex justify-content-center align-items-center mt-2">
+                                          <h3 class="mr-2 text-danger"
+                                              style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? $item['product_price'] . '$' : $item['product_price_reduce'] . '$' ?></h3>
+                                          <s class="text-white"
+                                             style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? '' : $item['product_price'] . '$' ?></s>
+                                      </div>
+                                      <div class="d-flex justify-content-center  align-items-center mt-2">
+                                          <button class="buy">Add To Cart</button>
+                                      </div>
+                                  </div>
+                              <?php endforeach; ?>
+                          </div>
+                      </div>
                   </div>
-                </div>
               </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/popular-mouse.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">100$</p>
-                      <s class="text-muted">150$</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/popular-mouse.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">100$</p>
-                      <s class="text-muted">150$</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/popular-mouse.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">100$</p>
-                      <s class="text-muted">150$</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/popular-mouse.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">100$</p>
-                      <s class="text-muted">150$</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/popular-mouse.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">100$</p>
-                      <s class="text-muted">150$</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/popular-mouse.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">100$</p>
-                      <s class="text-muted">150$</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
-        </div>
-      </div>
-      <div class="header-text mt-5">
-        <img src="https://www.vortez.net/contentteller.php?ct=news&action=file&id=8347" alt="">
-      </div>
-      <div class="most-popular">
-          <div class="row" style="padding: 0 40px 0 40px;">
-          <div class="col-lg-12">
-            <div class="heading-section text-center mt-4">
-              <h4>Gaming Headset Product</h4>
-            </div>
-            <div class="row">
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/bestsell-HP.png" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">100$</p>
-                      <s class="text-muted">150$</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/bestsell-HP.png" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">100$</p>
-                      <s class="text-muted">150$</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/bestsell-HP.png" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">100$</p>
-                      <s class="text-muted">150$</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/bestsell-HP.png" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">100$</p>
-                      <s class="text-muted">150$</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/bestsell-HP.png" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">100$</p>
-                      <s class="text-muted">150$</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/bestsell-HP.png" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">100$</p>
-                      <s class="text-muted">150$</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/bestsell-HP.png" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">100$</p>
-                      <s class="text-muted">150$</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="<?php echo _WEB_ROOT; ?>/public/assets/client/images/bestsell-HP.png" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">100$</p>
-                      <s class="text-muted">150$</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-            </div>
+          <div class="header-text">
+              <img src="https://theme.hstatic.net/200000722513/1001090675/14/headblog_banner.jpg?v=2092" alt=""
+                   class="rounded-3">
           </div>
-        </div>
-      </div>
-      <div class="most-popular">
-          <div class="row" style="padding: 0 40px 0 40px;">
-          <div class="col-lg-12">
-            <div class="heading-section text-center mt-4">
-              <h4>Gaming Speaker Product</h4>
-            </div>
-            <div class="row">
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">600.000đ</p>
-                      <s class="text-muted">900.000đ</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
+          <div class="live-stream">
+              <div class="col-lg-12">
+                  <div class="heading-section text-center mt-4">
+                      <h4>Youtube Review</h4>
                   </div>
-                </div>
               </div>
+              <div class="row">
 
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">600.000đ</p>
-                      <s class="text-muted">900.000đ</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
+                  <div class="col-lg-3 col-sm-6">
+                      <div class="item">
+                          <div class="thumb">
+                              <iframe class="rounded-5" width="220" height="220"
+                                      src="https://www.youtube.com/embed/-cmUi7daIPU?si=RiMg132Nt1IwT0tR"
+                                      title="YouTube video player" frameborder="0"
+                                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                      allowfullscreen></iframe>
+                          </div>
+                          <div class="down-content text-center">
+                              <h4 style="color: #ec6090;" class="m-0"><i class="fa fa-keyboard"></i> Keyboard</h4>
+                          </div>
+                      </div>
                   </div>
-                </div>
-              </div>
 
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">600.000đ</p>
-                      <s class="text-muted">900.000đ</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
+                  <div class="col-lg-3 col-sm-6">
+                      <div class="item">
+                          <div class="thumb">
+                              <iframe class="rounded-5" width="220" height="220"
+                                      src="https://www.youtube.com/embed/xD9fCrOmwwY?si=kOC-QP_NC49twfg9"
+                                      title="YouTube video player" frameborder="0"
+                                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                      allowfullscreen></iframe>
+                          </div>
+                          <div class="down-content text-center">
+                              <h4 style="color: #ec6090;" class="m-0"><i class="fa fa-computer-mouse"></i> Mouse</h4>
+                          </div>
+                      </div>
                   </div>
-                </div>
-              </div>
 
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">600.000đ</p>
-                      <s class="text-muted">900.000đ</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
+                  <div class="col-lg-3 col-sm-6">
+                      <div class="item">
+                          <div class="thumb">
+                              <iframe class="rounded-5" width="220" height="220"
+                                      src="https://www.youtube.com/embed/pzY4badJfPo?si=Zv6hBWrwj_o2e017"
+                                      title="YouTube video player" frameborder="0"
+                                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                      allowfullscreen></iframe>
+                          </div>
+                          <div class="down-content text-center">
+                              <h4 style="color: #ec6090;" class="m-0"><i class="fa fa-headset"></i> Headset</h4>
+                          </div>
+                      </div>
                   </div>
-                </div>
-              </div>
 
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">600.000đ</p>
-                      <s class="text-muted">900.000đ</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">600.000đ</p>
-                      <s class="text-muted">900.000đ</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">600.000đ</p>
-                      <s class="text-muted">900.000đ</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">600.000đ</p>
-                      <s class="text-muted">900.000đ</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="most-popular">
-          <div class="row" style="padding: 0 40px 0 40px;">
-          <div class="col-lg-12">
-            <div class="heading-section text-center mt-4">
-              <h4>Gamepad Product</h4>
-            </div>
-            <div class="row">
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">600.000đ</p>
-                      <s class="text-muted">900.000đ</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">600.000đ</p>
-                      <s class="text-muted">900.000đ</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">600.000đ</p>
-                      <s class="text-muted">900.000đ</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">600.000đ</p>
-                      <s class="text-muted">900.000đ</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">600.000đ</p>
-                      <s class="text-muted">900.000đ</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">600.000đ</p>
-                      <s class="text-muted">900.000đ</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">600.000đ</p>
-                      <s class="text-muted">900.000đ</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6">
-                <div class="item">
-                  <img src="https://pc-laptop-center.com/images/product_images/original_images/GamerTastaturweiss.jpg" alt="">
-                  <div class="text-center">
-                    <label class="top-0 mt-5 position-absolute start-0 rounded-circle pt-2 pb-2 btn-danger">-20%</label>
-                    <h4>Fortnite</h4>
-                    <div class="d-flex justify-content-center align-items-center mt-2">
-                      <p class="text-danger me-2">600.000đ</p>
-                      <s class="text-muted">900.000đ</s>
-                    </div>
-                    <button class="buy">Add To Cart</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="live-stream">
-        <div class="col-lg-12">
-          <div class="heading-section text-center mt-4">
-            <h4>Youtube Review</h4>
-          </div>
-        </div>
-        <div class="row">
-
-          <div class="col-lg-3 col-sm-6">
-            <div class="item">
-              <div class="thumb">
-                <iframe class="rounded-5" width="220" height="220" src="https://www.youtube.com/embed/-cmUi7daIPU?si=RiMg132Nt1IwT0tR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-              </div>
-              <div class="down-content text-center">
-                <h4 style="color: #ec6090;" class="m-0"><i class="fa fa-keyboard"></i> Keyboard</h4>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-sm-6">
-            <div class="item">
-              <div class="thumb">
-                <iframe class="rounded-5" width="220" height="220" src="https://www.youtube.com/embed/xD9fCrOmwwY?si=kOC-QP_NC49twfg9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-              </div>
-              <div class="down-content text-center">
-                <h4 style="color: #ec6090;" class="m-0"><i class="fa fa-computer-mouse"></i> Mouse</h4>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-sm-6">
-            <div class="item">
-              <div class="thumb">
-                <iframe class="rounded-5" width="220" height="220" src="https://www.youtube.com/embed/pzY4badJfPo?si=Zv6hBWrwj_o2e017" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-              </div>
-              <div class="down-content text-center">
-                <h4 style="color: #ec6090;" class="m-0"><i class="fa fa-headset"></i> Headset</h4>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-sm-6">
-            <div class="item">
-              <div class="thumb">
-                <iframe class="rounded-5" width="220" height="220" src="https://www.youtube.com/embed/uL8tZIGRi6s?si=FTZV59TXlHwy7Hz0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-              </div>
-              <div class="down-content text-center">
-                <h4 style="color: #ec6090;" class="m-0"><i class="fa fa-gamepad"></i> Gamepad</h4>
+                  <div class="col-lg-3 col-sm-6">
+                      <div class="item">
+                          <div class="thumb">
+                              <iframe class="rounded-5" width="220" height="220"
+                                      src="https://www.youtube.com/embed/uL8tZIGRi6s?si=FTZV59TXlHwy7Hz0"
+                                      title="YouTube video player" frameborder="0"
+                                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                      allowfullscreen></iframe>
+                          </div>
+                          <div class="down-content text-center">
+                              <h4 style="color: #ec6090;" class="m-0"><i class="fa fa-gamepad"></i> Gamepad</h4>
+                          </div>
               </div>
             </div>
           </div>

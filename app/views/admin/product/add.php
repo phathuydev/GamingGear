@@ -61,7 +61,7 @@
                 <p class="text-danger m-2" id="error_product_describe"></p>
             </div>
             <button type=" submit" class="btn btn-primary mr-2">Submit</button>
-            <a class="btn btn-dark" href="<? echo _MANAGE_DEFAULT ?>/product">Cancel</a>
+            <a class="btn btn-dark" href="<? echo _MANAGE_DEFAULT ?>/product/list/<?= $per_pages . '/' . $pages ?>">Cancel</a>
         </form>
     </div>
   </div>

@@ -6,21 +6,21 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th class="text-white">#</th>
                         <th class="text-white">Image</th>
                         <th class="text-white">Create Date</th>
+                        <th class="text-white">Update Date</th>
                         <th class="text-white">Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php foreach ($getBannerProductDetail as $key => $item) : ?>
                         <tr>
-                            <td class="text-white"><?= $key + 1; ?></td>
                             <td class="text-white"><img
                                         src="<?= _WEB_ROOT . '/' . $item['banner_product_path'] . ($item['banner_product_image']); ?>"
                                         alt=""
                                         style="width: 50px !important; height: 50px !important;border-radius: 0;"></td>
                             <td class="text-white"><?= formatTimeAgo(strtotime($item['create_at'])); ?></td>
+                            <td class="text-white"><?= formatTimeAgo(strtotime($item['update_at'])); ?></td>
                             <td class="d-flex align-items-center pt-4">
                                 <a class="badge badge-primary mr-2"
                                    href="<? echo _MANAGE_DEFAULT ?>/banner/banner_product_edit/<?= $item['banner_product_id'] ?>">Edit</a>

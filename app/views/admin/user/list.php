@@ -7,7 +7,6 @@
         <table class="table">
           <thead>
             <tr>
-                <th class="text-white">#</th>
                 <th class="text-white">Role</th>
                 <th class="text-white">Image</th>
                 <th class="text-white">Name</th>
@@ -22,7 +21,6 @@
           <tbody>
           <?php foreach ($listUser as $key => $item) : ?>
               <tr>
-                  <td class="text-white"><?= $key + 1; ?></td>
                   <td class="text-white"><?= $item['user_role'] == 1 ? 'Admin' : 'Client'; ?></td>
                   <td class="text-white"><img
                               src="<?= _WEB_ROOT . '/' . $item['user_image_path'] . ($item['user_image'] == null ? 'default_img.jpg' : $item['user_image']); ?>"

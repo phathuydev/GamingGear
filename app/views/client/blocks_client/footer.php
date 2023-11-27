@@ -1,6 +1,3 @@
-</div>
-</div>
-</div>
 <!-- Footer -->
 <footer class="text-center text-lg-start text-muted container">
   <!-- Section: Social media -->

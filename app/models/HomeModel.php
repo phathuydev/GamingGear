@@ -1,13 +1,14 @@
 <?php
+date_default_timezone_set('Asia/Ho_Chi_Minh'); // Set default time zone
 // Kế thừa từ class Model
 class HomeModel extends Model
 {
-    private $__table = "category";
+    private $__table = "";
 
   // Định nghĩa table trong Model
   function tableFill()
   {
-    return 'category';
+      return '';
   }
 
   function fieldFill()
@@ -15,43 +16,14 @@ class HomeModel extends Model
     return 'category_name';
   }
 
-  public function getList()
+    // get All Category Name
+    function getProductCategoryHome($category_id)
   {
-    $data = $this->db->query("SELECT * FROM $this->__table")->fetchAll(PDO::FETCH_ASSOC);
-    return $data;
+      $getProductCategoryHome = $this->db->table('products')
+          ->select('*')
+          ->where('category_id', '=', $category_id)
+          ->where('is_delete', '=', 0)
+          ->get();
+      return $getProductCategoryHome;
   }
-
-  public function getDetail($id)
-  {
-    $data = $this->db->query("SELECT * FROM $this->__table")->fetchAll(PDO::FETCH_ASSOC);
-    return $data[$id];
-  }
-
-    public function getNameCategory()
-  {
-      // $data = $this->db->table('category')->select('category_id, category_name')->limit(3, 1)->orderBy('category_id', 'ASC')->get();
-      // $data = $this->db->table('products')->join('category', 'products.category = category.id')->select('category.name as ten_danh_muc, products.product_name as ten_san_pham')->get();
-
-      // return $data;
-  }
-
-    public function getAllCategory()
-    {
-        $data = $this->db->table('category')->select('*')->get();
-    return $data;
-  }
-    // public function getAllUser()
-    // {
-    //   $data = $this->db->table('user')->select('*')->get();
-    //   return $data;
-    // }
-  public function getDetailCategory($name)
-  {
-    $data = $this->db->table('category')->where('category_id', '>', 0)->where('category_name', '=', $name)->select('category_id, category_name')->first();
-    return $data;
-  }
-
-    // public function selectEmail($email){
-    //     $this->db->table('user')->where('email', '=', $email)->get();
-    // }
 }

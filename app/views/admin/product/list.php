@@ -1,12 +1,28 @@
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">List Products</h4>
+            <h4 class="card-title mb-0">List Products</h4>
+            <div class="float-right">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end pagination-sm">
+                        <li class="page-item <?= $pages < 3 ? 'd-none' : false; ?>"><a class="page-link"
+                                                                                       href="<?php echo _MANAGE_DEFAULT ?>/product/list/<?= $per_pages; ?>/<?= 1; ?>"
+                                                                                       tabindex="-1">Previous</a></li>
+                        <?php for ($num = 1; $num <= $totalPages; $num++) { ?>
+                            <li class="page-item <?= $num == $pages ? 'disabled' : false; ?>"><a class="page-link"
+                                                                                                 href="<?php echo _MANAGE_DEFAULT ?>/product/list/<?= $per_pages; ?>/<?= $num; ?>"><?= $num; ?></a>
+                            </li>
+                        <?php } ?>
+                        <li class="page-item <?= $pages > ($totalPages - 1) ? 'd-none' : false; ?>"><a class="page-link"
+                                                                                                       href="<?php echo _MANAGE_DEFAULT ?>/product/list/<?= $per_pages; ?>/<?= $pages + 1; ?>">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
                     <tr>
-                        <th class="text-white">#</th>
                         <th class="text-white">Name</th>
                         <th class="text-white">Image</th>
                         <th class="text-white">Price</th>
@@ -19,11 +35,8 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($listProduct as $key => $item) : ?>
+                    <?php foreach ($listProduct as $item) : ?>
                         <tr>
-                            <td class="text-white">
-                                <?= $key + 1; ?>
-                            </td>
                             <td class="text-white">
                                 <?= $item['product_name'] ?>
                             </td>
@@ -48,7 +61,7 @@
                             </td>
                             <td class="d-flex align-items-center pt-4">
                                 <a class="badge badge-primary mr-2"
-                                   href="<? echo _MANAGE_DEFAULT ?>/product/product_edit/<?= $item['product_id'] ?>">Edit</a>
+                                   href="<? echo _MANAGE_DEFAULT ?>/product/product_edit/<?= $item['product_id'] ?>/<?= $per_pages ?>/<?= $pages ?>">Edit</a>
                                 <form action="" method="post" class="m-0">
                                     <input type="hidden" name="product_id" value="<?= $item['product_id'] ?>">
                                     <input type="hidden" name="create_at" value="<?= $item['create_at'] ?>">

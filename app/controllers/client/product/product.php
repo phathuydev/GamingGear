@@ -7,12 +7,20 @@ class Product extends Controller
   {
       $this->province = $this->model('ProductModel');
   }
-  public function index()
+
+    public function index($per_pages = 8, $pages = 1)
   {
-      $getAllProduct = $this->province->getAllProduct();
+      $countProductId = $this->province->countProductId();
+      $this->data['sub_content']['countProductId'] = $countProductId;
+      $offset = ($pages - 1) * $per_pages;
+      $totalPages = ceil($countProductId['countProductId'] / $per_pages);
+      $this->data['sub_content']['totalPages'] = $totalPages;
+      $this->data['sub_content']['per_pages'] = $per_pages;
+      $this->data['sub_content']['pages'] = $pages;
+      $getAllProduct = $this->province->getAllProduct($per_pages, $offset);
+      $this->data['sub_content']['getAllProduct'] = $getAllProduct;
     $title = 'Product List';
     $this->data['pages_title'] = $title;
-      $this->data['sub_content']['getAllProduct'] = $getAllProduct;
     $this->data['content'] = 'client/product/list';
     $this->render('client/layoutClient/client_layout', $this->data);
   }
@@ -26,11 +34,20 @@ class Product extends Controller
         $this->render('client/layoutClient/client_layout', $this->data);
     }
 
-    public function product_detail($product_id = 0, $category_id = 0)
+    public function product_detail($product_id = 0, $category_id = 0, $per_pages = 8, $pages = 1)
     {
+        $countProductCategory = $this->province->countProductCategory($category_id);
+        $this->data['sub_content']['countProductCategory'] = $countProductCategory;
+        $offset = ($pages - 1) * $per_pages;
+        $totalPages = ceil($countProductCategory['countProductCategory'] / $per_pages);
+        $this->data['sub_content']['totalPages'] = $totalPages;
+        $this->data['sub_content']['per_pages'] = $per_pages;
+        $this->data['sub_content']['pages'] = $pages;
         $getProductDetail = $this->province->getProductDetail($product_id);
         $this->data['sub_content']['getProductDetail'] = $getProductDetail;
-        $getProductCategory = $this->province->getProductCategory($category_id);
+        $this->data['sub_content']['product_id'] = $product_id;
+        $this->data['sub_content']['category_id'] = $category_id;
+        $getProductCategory = $this->province->getProductCategory($category_id, $per_pages, $offset);
         $this->data['sub_content']['getProductCategory'] = $getProductCategory;
         $getComment = $this->model('CommentModel')->getCommentProduct($product_id);
         $this->data['sub_content']['getComment'] = $getComment;
@@ -54,9 +71,17 @@ class Product extends Controller
         $this->render('client/layoutClient/client_layout', $this->data);
     }
 
-    public function product_category($category_id = 0)
+    public function product_category($category_id = 0, $per_pages = 8, $pages = 1)
     {
-        $getProductCategory = $this->province->getProductCategory($category_id);
+        $countProductCategory = $this->province->countProductCategory($category_id);
+        $this->data['sub_content']['countProductCategory'] = $countProductCategory;
+        $offset = ($pages - 1) * $per_pages;
+        $totalPages = ceil($countProductCategory['countProductCategory'] / $per_pages);
+        $this->data['sub_content']['totalPages'] = $totalPages;
+        $this->data['sub_content']['per_pages'] = $per_pages;
+        $this->data['sub_content']['pages'] = $pages;
+        $this->data['sub_content']['category_id'] = $category_id;
+        $getProductCategory = $this->province->getProductCategory($category_id, $per_pages, $offset);
         $this->data['sub_content']['getProductCategory'] = $getProductCategory;
         $title = 'Product Category';
         $this->data['pages_title'] = $title;

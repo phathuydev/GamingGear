@@ -1,18 +1,20 @@
-<section class="rounded m-0">
-    <div class="rounded-3 border-light">
+<div class="container w-auto">
+    <div class="most-popular">
+        <section class="rounded m-0">
+            <div class="rounded-3 border-light">
         <ol class="breadcrumb mb-0 bg-dark border-light">
             <li class="breadcrumb-item text-light"><a href="<?php echo _WEB_ROOT; ?>/home" class="h6">Home</a></li>
             <li class="breadcrumb-item text-light">Profile</li>
         </ol>
-    </div>
+            </div>
 
-    <div class="row m-0">
+            <div class="row m-0">
         <div class="col-lg-4 ps-0">
             <div class="mb-4">
                 <div class="card-body text-center bg-dark rounded-3">
                     <img src="https://i.pinimg.com/474x/19/05/b5/1905b5aa12fceb753fb75cdc0cd21764.jpg" alt="avatar"
                          class="rounded-circle img-fluid" style="width: 150px;">
-        </div>
+                </div>
             </div>
             <div class="mb-4 mb-lg-0">
                 <div class="card-body rounded-3 p-1 bg-dark">
@@ -121,8 +123,10 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
         </div>
             </div>
+        </section>
     </div>
-    </div>
-</section>
+</div>

@@ -11,11 +11,19 @@ class Post extends Controller
       }
       $this->province = $this->model('PostModel');
   }
-  public function index()
+
+    public function index($per_pages = 8, $pages = 1)
   {
-      $listPost = $this->province->getAllPost();
-    $title = 'List Post';
+      $countProductId = $this->model('ProductModel')->countProductId();
+      $this->data['sub_content']['countProductId'] = $countProductId;
+      $offset = ($pages - 1) * $per_pages;
+      $totalPages = ceil($countProductId['countProductId'] / $per_pages);
+      $this->data['sub_content']['totalPages'] = $totalPages;
+      $this->data['sub_content']['per_pages'] = $per_pages;
+      $this->data['sub_content']['pages'] = $pages;
+      $listPost = $this->province->getAllPost($per_pages, $offset);
       $this->data['sub_content']['listPost'] = $listPost;
+      $title = 'List Post';
     $this->data['pages_title'] = $title;
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $post_id = $_POST['post_id'];
@@ -104,6 +112,7 @@ class Post extends Controller
           $data_section = [
               'post_image' => $post_image_section == null ? $post_image_default : $post_image_section,
               'post_image_path' => $section_dir,
+              'update_at' => date("Y-m-d H:i:s"),
               'category_id' => $category_id_section
           ];
           $this->province->updatePost($data_section, $post_id);

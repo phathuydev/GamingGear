@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Asia/Ho_Chi_Minh'); // Set default time zone
 // Kế thừa từ clASs Model
 class PostModel extends Model
 {
@@ -19,14 +20,16 @@ class PostModel extends Model
         $this->db->table('comments_post')->insert($data);
     }
 
-    public function getAllPost()
+    public function getAllPost($per_pages, $pages)
     {
         $data = $this->db->table('posts')
             ->join('categories', 'posts.category_id = categories.category_id')
             ->join('posts_detail', 'posts.post_id = posts_detail.post_id')
-            ->select('posts.post_id AS post_id, posts.post_image AS post_image, posts.post_image_path AS post_image_path, posts.create_at AS create_at,
+            ->select('posts.post_id AS post_id, posts.post_image AS post_image, posts.post_image_path AS post_image_path, posts.create_at AS create_at, posts.update_at as update_at,
     categories.category_name AS category_name, posts_detail.post_detail_id AS post_detail_id, posts_detail.post_detail_title AS post_detail_title, posts_detail.post_detail_image AS post_detail_image, 
     posts_detail.post_detail_image_path AS post_detail_image_path, posts_detail.post_detail_content AS post_detail_content')
+            ->where('posts.is_delete', '=', 0)
+            ->limit($per_pages, $pages)
             ->get();
         return $data;
     }

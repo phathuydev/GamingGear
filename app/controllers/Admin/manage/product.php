@@ -12,11 +12,19 @@ class Product extends Controller
       }
       $this->province = $this->model('ProductModel');
   }
-  public function index()
+
+    public function list($per_pages = 8, $pages = 1)
   {
-      $listProduct = $this->province->getAllProduct();
-    $title = 'List Product';
+      $countProductId = $this->province->countProductId();
+      $this->data['sub_content']['countProductId'] = $countProductId;
+      $offset = ($pages - 1) * $per_pages;
+      $totalPages = ceil($countProductId['countProductId'] / $per_pages);
+      $this->data['sub_content']['totalPages'] = $totalPages;
+      $this->data['sub_content']['per_pages'] = $per_pages;
+      $this->data['sub_content']['pages'] = $pages;
+      $listProduct = $this->province->getAllProduct($per_pages, $offset);
       $this->data['sub_content']['listProduct'] = $listProduct;
+      $title = 'List Product';
     $this->data['pages_title'] = $title;
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $product_id = $_POST['product_id'];
@@ -28,15 +36,17 @@ class Product extends Controller
           ];
           $this->province->updateIsDelete($data, $product_id);
           $response = new Response();
-          $response->redirect('admin/manage/product');
+          $response->redirect('admin/manage/product/list/' . $per_pages . '/' . $pages . '');
       }
     $this->data['body'] = 'admin/product/list';
     $this->render('admin/layoutAdmin/admin_layout', $this->data);
   }
-  public function product_add()
+
+    public function product_add($per_pages = 8, $pages = 1)
   {
     $title = 'Add Product';
-      $this->data['sub_content']['pages_title'] = [];
+      $this->data['sub_content']['per_pages'] = $per_pages;
+      $this->data['sub_content']['pages'] = $pages;
     $this->data['pages_title'] = $title;
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $product_name = $_POST['product_name'];
@@ -65,19 +75,21 @@ class Product extends Controller
           ];
           $this->province->insertProduct($data);
           $response = new Response();
-          $response->redirect('admin/manage/product');
+          $response->redirect('admin/manage/product/list/' . $per_pages . '/' . $pages . '');
       }
     $this->data['body'] = 'admin/product/add';
     $this->render('admin/layoutAdmin/admin_layout', $this->data);
   }
 
-    public function product_edit($product_id = 0)
+    public function product_edit($product_id = 0, $per_pages = 8, $pages = 1)
   {
       $getFirstProduct = $this->province->getFirstProduct($product_id);
       $this->data['sub_content']['getFirstProduct'] = $getFirstProduct;
       $getAllCategory = $this->province->getAllCategory();
       $this->data['sub_content']['getAllCategory'] = $getAllCategory;
       $this->data['sub_content']['product_id'] = $product_id;
+      $this->data['sub_content']['per_pages'] = $per_pages;
+      $this->data['sub_content']['pages'] = $pages;
     $title = 'Edit Product';
     $this->data['pages_title'] = $title;
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -109,7 +121,7 @@ class Product extends Controller
           ];
           $this->province->updateProduct($data, $product_id);
           $response = new Response();
-          $response->redirect('admin/manage/product');
+          $response->redirect('admin/manage/product/list/' . $per_pages . '/' . $pages . '');
       }
     $this->data['body'] = 'admin/product/edit';
     $this->render('admin/layoutAdmin/admin_layout', $this->data);
