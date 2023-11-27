@@ -9,7 +9,7 @@
                         <?php foreach ($getAllStatusOrder as $item) : ?>
                             <option class="text-white" <?= (isset($item['order_status_id'])) && $item['order_status_id'] == $order_status ? 'selected' : '' ?>
                                     value="<?= $item['order_status_id'] ?>">
-                                <?= $item['order_status_name'] ?>
+                                <?= $item['order_name'] ?>
                             </option>
                         <?php endforeach; ?>
                     </select>

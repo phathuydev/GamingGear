@@ -23,23 +23,23 @@
                             <td class="text-white"><?= $item['user_phone']; ?></td>
                             <td class="text-white"><?= $item['user_address']; ?></td>
                             <td class="text-white"><?= '$' . $item['order_total']; ?></td>
-                            <?php if ($item['order_status_name'] == 'Wait for confirmation') : ?>
+                            <?php if ($item['order_name'] == 'Wait for confirmation') : ?>
                                 <td>
                                     <div class="badge badge-outline-danger">Wait for confirmation</div>
                                 </td>
-                            <?php elseif ($item['order_status_name'] == 'Confirmed') : ?>
+                            <?php elseif ($item['order_name'] == 'Confirmed') : ?>
                                 <td>
                                     <div class="badge badge-outline-info">Confirmed</div>
                                 </td>
-                            <?php elseif ($item['order_status_name'] == 'Are preparing') : ?>
+                            <?php elseif ($item['order_name'] == 'Are preparing') : ?>
                                 <td>
                                     <div class="badge badge-outline-primary">Are preparing</div>
                                 </td>
-                            <?php elseif ($item['order_status_name'] == 'Delivering') : ?>
+                            <?php elseif ($item['order_name'] == 'Delivering') : ?>
                                 <td>
                                     <div class="badge badge-outline-warning">Delivering</div>
                                 </td>
-                            <?php elseif ($item['order_status_name'] == 'Has received the goods') : ?>
+                            <?php elseif ($item['order_name'] == 'Has received the goods') : ?>
                                 <td>
                                     <div class="badge badge-outline-success">Has received the goods</div>
                                 </td>
