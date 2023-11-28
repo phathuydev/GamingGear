@@ -33,6 +33,9 @@ class Post extends Controller
         $getPostDetail = $this->province->getPostDetail($post_id);
         $this->data['sub_content']['getPostDetail'] = $getPostDetail;
         $this->data['sub_content']['post_id'] = $post_id;
+        $getCommentPost = $this->model('CommentModel')->getCommentPost($post_id);
+        $this->data['sub_content']['getComment'] = $getCommentPost;
+        $this->data['sub_content']['client_login'] = Session::data('client_login');
         $title = 'Post Detail';
         $this->data['pages_title'] = $title;
         $this->data['content'] = 'client/post/detail';

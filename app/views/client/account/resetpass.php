@@ -29,11 +29,10 @@
         <div class="row">
             <div class="col-lg-12 p-0">
                 <div class="page-content-login m-0">
-                    <!-- Jumbotron -->
-                    <div class="container py-4">
-                        <div class="row g-0 align-items-center">
-                            <div class="col-lg-12 mb-lg-0 mt-5">
-                                <div class="card-body p-5 shadow-5 text-center">
+                    <div class="d-flex justify-content-center align-items-center mb-5">
+                        <div class="most-popular mt-4" style="width: 35% !important;">
+                            <div class="card-body p-0 p-lg-5 text-black">
+                                <div class="card-body p-0 shadow-5 text-center">
                                     <form method="post" class="card-body text-cente d-inline-block">
                                         <h3 class="mb-4 h4" style="color: #ec6090;">Reset Password</h3><br>
                                         <div class="form-outline mb-4">

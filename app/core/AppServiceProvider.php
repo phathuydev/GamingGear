@@ -195,9 +195,6 @@ class AppServiceProvider extends ServiceProvider
         if ($totalRevenueLastMonth != 0) {
             $percent = (($totalRevenueMonth['totalRevenueMonth'] - $totalRevenueLastMonth) / $totalRevenueLastMonth) * 100;
             $data['percent'] = round($percent, 2);
-            // if ($data['percent'] >= 100) {
-            //   $data['percent'] = '100';
-            // }
         } else {
             $percent = 0;
             $data['percent'] = round($percent, 2);
@@ -231,13 +228,42 @@ class AppServiceProvider extends ServiceProvider
             ->join('order_status', 'orders.order_status = order_status.order_status_id')
             ->select('users.user_image_path as user_image_path, users.user_image as user_image, orders.user_name as user_name, 
       orders.user_email as user_email, orders.user_phone as user_phone, orders.user_address as user_address, orders.create_at as create_at,
-      orders.order_total, order_payment.order_payment_name as order_payment_name, order_status.order_name as order_name')
+      orders.order_total, order_payment.order_payment_name as order_payment_name, order_status.order_status_name as order_status_name')
             ->where('orders.is_delete', '=', 0)
             ->where('users.is_delete', '=', 0)
-            ->orderBy('orders.create_at', 'DESC')
+            ->where('orders.create_at', '>', $today)
+            ->orderBy('orders.create_at', 'ASC')
             ->limit('5')
             ->get();
         $data['getOrderLimit'] = $getOrderLimit;
+        //Get order user session
+        $getOrderSession = $this->db->table('orders')
+            ->join('order_status', 'orders.order_status = order_status.order_status_id')
+            ->join('orders_detail', 'orders.order_id = orders_detail.order_id')
+            ->join('products', 'orders_detail.product_id = products.product_id')
+            ->select('products.product_image_path AS product_image_path, products.product_image AS product_image, products.product_name AS product_name,
+      products.product_price AS product_price, products.product_price_reduce AS product_price_reduce, orders_detail.order_total_product AS order_total_product,
+      orders.order_total AS order_total, order_status.order_status_name AS order_status_name, orders_detail.order_quantity AS order_quantity, orders.user_name AS user_name,
+      orders.user_email AS user_email, orders.user_phone AS user_phone, orders.user_address AS user_address')
+            ->where('orders_detail.is_delete', '=', 0)
+            ->where('orders.user_id', '=', Session::data('client_login'))
+            ->orderBy('orders.create_at', 'ASC')
+            ->get();
+        $data['getOrderSession'] = $getOrderSession;
+        //Get order cancel user session
+        $getOrderCancel = $this->db->table('orders')
+            ->join('order_status', 'orders.order_status = order_status.order_status_id')
+            ->join('orders_detail', 'orders.order_id = orders_detail.order_id')
+            ->join('products', 'orders_detail.product_id = products.product_id')
+            ->select('products.product_image_path AS product_image_path, products.product_image AS product_image, products.product_name AS product_name,
+      products.product_price AS product_price, products.product_price_reduce AS product_price_reduce, orders_detail.order_total_product AS order_total_product,
+      orders.order_total AS order_total, order_status.order_status_name AS order_status_name, orders_detail.order_quantity AS order_quantity, orders.user_name AS user_name,
+      orders.user_email AS user_email, orders.user_phone AS user_phone, orders.user_address AS user_address')
+            ->where('orders_detail.is_delete', '=', 1)
+            ->where('orders.user_id', '=', Session::data('client_login'))
+            ->orderBy('orders.create_at', 'ASC')
+            ->get();
+        $data['getOrderCancel'] = $getOrderCancel;
         // get order limit 5 during the day
         $getOrderLimitDuringTheDay = $this->db->table('orders')
             ->join('users', 'orders.user_id = users.user_id')
@@ -245,11 +271,11 @@ class AppServiceProvider extends ServiceProvider
             ->join('order_status', 'orders.order_status = order_status.order_status_id')
             ->select('users.user_image_path as user_image_path, users.user_image as user_image, orders.user_name as user_name, 
       orders.user_email as user_email, orders.user_phone as user_phone, orders.user_address as user_address, orders.create_at as create_at,
-      orders.order_total, order_payment.order_payment_name as order_payment_name, order_status.order_name as order_name')
+      orders.order_total, order_payment.order_payment_name as order_payment_name, order_status.order_status_name as order_status_name')
             ->where('orders.is_delete', '=', 0)
             ->where('orders.create_at', '>', $today)
             ->where('users.is_delete', '=', 0)
-            ->orderBy('orders.create_at', 'DESC')
+            ->orderBy('orders.create_at', 'ASC')
             ->limit('3')
             ->get();
         $data['getOrderLimitDuringTheDay'] = $getOrderLimitDuringTheDay;
@@ -260,7 +286,7 @@ class AppServiceProvider extends ServiceProvider
       users.user_image_path as user_image_path, users.user_image as user_image, users.user_name as user_name')
             ->where('comments_product.is_delete', '=', 0)
             ->where('users.is_delete', '=', 0)
-            ->orderBy('comments_product.create_at', 'DESC')
+            ->orderBy('comments_product.create_at', 'ASC')
             ->limit('5')
             ->get();
         $data['getCommentProductDashboard'] = $getCommentProductDashboard;
@@ -272,7 +298,7 @@ class AppServiceProvider extends ServiceProvider
             ->where('comments_product.is_delete', '=', 0)
             ->where('comments_product.create_at', '>', $today)
             ->where('users.is_delete', '=', 0)
-            ->orderBy('comments_product.create_at', 'DESC')
+            ->orderBy('comments_product.create_at', 'ASC')
             ->limit('3')
             ->get();
         $data['getCommentProductDuringTheDay'] = $getCommentProductDuringTheDay;
@@ -283,7 +309,7 @@ class AppServiceProvider extends ServiceProvider
       users.user_image_path as user_image_path, users.user_image as user_image, users.user_name as user_name')
             ->where('comments_post.is_delete', '=', 0)
             ->where('users.is_delete', '=', 0)
-            ->orderBy('comments_post.create_at', 'DESC')
+            ->orderBy('comments_post.create_at', 'ASC')
             ->limit('5')
             ->get();
         $data['getCommentPostDashboard'] = $getCommentPostDashboard;

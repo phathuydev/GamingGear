@@ -1,9 +1,9 @@
 <div class="container w-auto">
-    <div class="most-popular m-5">
+    <div class="most-popular mb-5">
         <div class="heading-section text-center">
             <h4 class="mb-0 mt-5 mb-5">Posts</h4>
         </div>
-        <div class="row container-post">
+        <div class="row container-post pb-5">
             <?php foreach ($listPost as $item) : ?>
                 <div class="col-lg-3 p-0 card-post me-4">
                     <div class="card__header">
@@ -32,5 +32,6 @@
             <?php endforeach; ?>
     </div>
   </div>
-
+</div>
+</div>
 </div>

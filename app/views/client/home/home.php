@@ -10,7 +10,7 @@
         </ol>
         <div class="carousel-inner">
             <?php
-            $descriptions = ['First slide', 'Second slide', 'Third slide', 'Fourth slide', 'Fifth slide'];
+            $descriptions = ['First slide', 'Second slide', 'Third slide', 'Fourth slide', 'Fifth slide', 'Sixth slide', 'Seventh slide', 'Eighth slide', ' Ninth slide', 'Tenth slide'];
             foreach ($getBannerHome as $key => $item) :
                 ?>
                 <div class="carousel-item <?= $key == 0 ? 'active' : false; ?>">
@@ -111,10 +111,6 @@
                   </div>
               </div>
           </div>
-          <div class="header-text">
-              <img src="https://theme.hstatic.net/200000722513/1001090675/14/headblog_banner.jpg?v=2092" alt=""
-                   class="rounded-3">
-          </div>
           <div class="most-popular mb-5">
               <div class="heading-section text-center">
                   <h4 class="mb-0 mt-4">Keyboard</h4>
@@ -152,10 +148,6 @@
                   </div>
               </div>
           </div>
-          <div class="header-text">
-              <img src="https://theme.hstatic.net/200000722513/1001090675/14/headblog_banner.jpg?v=2092" alt=""
-                   class="rounded-3">
-          </div>
           <div class="most-popular mb-5">
               <div class="heading-section text-center">
                   <h4 class="mb-0 mt-4">Mouse</h4>
@@ -192,10 +184,6 @@
                       </div>
                   </div>
               </div>
-          </div>
-          <div class="header-text">
-              <img src="https://theme.hstatic.net/200000722513/1001090675/14/headblog_banner.jpg?v=2092" alt=""
-                   class="rounded-3">
         </div>
           <div class="most-popular mb-5">
               <div class="heading-section text-center">
@@ -234,10 +222,6 @@
                   </div>
               </div>
           </div>
-          <div class="header-text">
-              <img src="https://theme.hstatic.net/200000722513/1001090675/14/headblog_banner.jpg?v=2092" alt=""
-                   class="rounded-3">
-          </div>
           <div class="most-popular mb-5">
               <div class="heading-section text-center">
                   <h4 class="mb-0 mt-4">Tv</h4>
@@ -274,10 +258,6 @@
                       </div>
                   </div>
               </div>
-          </div>
-          <div class="header-text">
-              <img src="https://theme.hstatic.net/200000722513/1001090675/14/headblog_banner.jpg?v=2092" alt=""
-                   class="rounded-3">
           </div>
           <div class="live-stream">
               <div class="col-lg-12">

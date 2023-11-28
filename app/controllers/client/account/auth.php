@@ -20,9 +20,11 @@ class Auth extends Controller
             $stored_user_data = $this->province->getUserLoginClient($user_email);
             if ($stored_user_data) {
                 $stored_password = $stored_user_data['user_password'];
-                Session::data('client_login', $stored_user_data['user_id']);
-                $response = new Response();
-                $response->redirect('home');
+                if (password_verify($user_entered_password, $stored_password)) {
+                    Session::data('client_login', $stored_user_data['user_id']);
+                    $response = new Response();
+                    $response->redirect('home');
+                }
             } else {
                 Session::flash('msg_lgClient', 'Email or password is incorrect');
             }
