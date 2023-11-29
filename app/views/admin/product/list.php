@@ -19,7 +19,7 @@
                     </thead>
                     <tbody>
                     <?php foreach ($listProduct as $item) : ?>
-                        <tr>
+                        <tr class="border-bottom">
                             <td class="text-white">
                                 <?= $item['product_name'] ?>
                             </td>
@@ -59,6 +59,25 @@
                     </tr>
                     </tbody>
                 </table>
+                <div class="float-right mt-3">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-end pagination-sm">
+                            <li class="page-item <?= $pages < 3 ? 'd-none' : false; ?>"><a class="page-link"
+                                                                                           href="<?php echo _MANAGE_DEFAULT ?>/product/list/<?= $per_pages; ?>/<?= 1; ?>"
+                                                                                           tabindex="-1">Previous</a>
+                            </li>
+                            <?php for ($num = 1; $num <= $totalPages; $num++) { ?>
+                                <li class="page-item <?= $num == $pages ? 'disabled' : false; ?>"><a class="page-link"
+                                                                                                     href="<?php echo _MANAGE_DEFAULT ?>/product/list/<?= $per_pages; ?>/<?= $num; ?>"><?= $num; ?></a>
+                                </li>
+                            <?php } ?>
+                            <li class="page-item <?= $pages > ($totalPages - 1) ? 'd-none' : false; ?>"><a
+                                        class="page-link"
+                                        href="<?php echo _MANAGE_DEFAULT ?>/product/list/<?= $per_pages; ?>/<?= $pages + 1; ?>">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>

@@ -36,7 +36,7 @@ class Product extends Controller
           ];
           $this->province->updateIsDelete($data, $product_id);
           $response = new Response();
-          $response->redirect('admin/manage/product/list/' . $per_pages . '/' . $pages . '');
+          $response->redirect('admin/manage/product/list/8/1');
       }
     $this->data['body'] = 'admin/product/list';
     $this->render('admin/layoutAdmin/admin_layout', $this->data);
@@ -75,7 +75,7 @@ class Product extends Controller
           ];
           $this->province->insertProduct($data);
           $response = new Response();
-          $response->redirect('admin/manage/product/list/' . $per_pages . '/' . $pages . '');
+          $response->redirect('admin/manage/product/list/8/1');
       }
     $this->data['body'] = 'admin/product/add';
     $this->render('admin/layoutAdmin/admin_layout', $this->data);
@@ -121,7 +121,7 @@ class Product extends Controller
           ];
           $this->province->updateProduct($data, $product_id);
           $response = new Response();
-          $response->redirect('admin/manage/product/list/' . $per_pages . '/' . $pages . '');
+          $response->redirect('admin/manage/product/list/8/1');
       }
     $this->data['body'] = 'admin/product/edit';
     $this->render('admin/layoutAdmin/admin_layout', $this->data);

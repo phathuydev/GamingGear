@@ -39,7 +39,37 @@ class CommentModel extends Model
         return $data;
     }
 
-    public function getCommentProduct($product_id)
+    public function countCommentProductId($product_id)
+    {
+        $data = $this->db->table('comments_product')
+            ->select('COUNT(comment_product_id) as countCommentProductId')
+            ->where('is_delete', '=', 0)
+            ->where('product_id', '=', $product_id)
+            ->first();
+        return $data;
+    }
+
+    public function countCommentProductReplyId($comment_product_id)
+    {
+        $data = $this->db->table('replies_product')
+            ->select('COUNT(reply_product_id) as countCommentProductReplyId')
+            ->where('is_delete', '=', 0)
+            ->where('comment_product_id', '=', $comment_product_id)
+            ->first();
+        return $data;
+    }
+
+    public function countCommentPostReplyId($comment_post_id)
+    {
+        $data = $this->db->table('replies_post')
+            ->select('COUNT(reply_post_id) as countCommentPostReplyId')
+            ->where('is_delete', '=', 0)
+            ->where('comment_post_id', '=', $comment_post_id)
+            ->first();
+        return $data;
+    }
+
+    public function getCommentProduct($product_id, $per_pages, $pages)
     {
         $data = $this->db->table('comments_product')
             ->join('users', 'comments_product.user_id = users.user_id')
@@ -48,13 +78,14 @@ class CommentModel extends Model
       users.user_name AS user_name, users.user_email AS user_email, users.user_image_path AS 
       user_image_path, users.user_image AS user_image')
             ->where('comments_product.product_id', '=', $product_id)
+            ->limit($per_pages, $pages)
             ->where('comments_product.is_delete', '=', 0)
             ->orderBy('comments_product.create_at', 'DESC')
             ->get();
         return $data;
     }
 
-    public function getReplyCommentProduct($comment_product_id)
+    public function getReplyCommentProduct($comment_product_id, $per_pages, $pages)
     {
         $data = $this->db->table('replies_product')
             ->join('users', 'replies_product.user_id = users.user_id')
@@ -63,13 +94,14 @@ class CommentModel extends Model
       users.user_name AS user_name, users.user_email AS user_email, users.user_image_path AS 
       user_image_path, users.user_image AS user_image')
             ->where('replies_product.comment_product_id', '=', $comment_product_id)
+            ->limit($per_pages, $pages)
             ->where('replies_product.is_delete', '=', 0)
             ->orderBy('replies_product.create_at', 'DESC')
             ->get();
         return $data;
     }
 
-    public function getCommentPost($post_id)
+    public function getCommentPost($post_id, $per_pages, $pages)
     {
         $data = $this->db->table('comments_post')
             ->join('users', 'comments_post.user_id = users.user_id')
@@ -79,12 +111,23 @@ class CommentModel extends Model
       user_image_path, users.user_image AS user_image')
             ->where('comments_post.post_id', '=', $post_id)
             ->where('comments_post.is_delete', '=', 0)
+            ->limit($per_pages, $pages)
             ->orderBy('comments_post.create_at', 'DESC')
             ->get();
         return $data;
     }
 
-    public function getReplyCommentPost($comment_post_id)
+    public function countCommentPostId($comment_post_id)
+    {
+        $data = $this->db->table('comments_post')
+            ->select('COUNT(comment_post_id) as countCommentPostId')
+            ->where('is_delete', '=', 0)
+            ->where('post_id', '=', $comment_post_id)
+            ->first();
+        return $data;
+    }
+
+    public function getReplyCommentPost($comment_post_id, $per_pages, $pages)
     {
         $data = $this->db->table('replies_post')
             ->join('users', 'replies_post.user_id = users.user_id')
@@ -94,6 +137,7 @@ class CommentModel extends Model
       user_image_path, users.user_image AS user_image')
             ->where('replies_post.comment_post_id', '=', $comment_post_id)
             ->where('replies_post.is_delete', '=', 0)
+            ->limit($per_pages, $pages)
             ->orderBy('replies_post.create_at', 'DESC')
             ->get();
         return $data;

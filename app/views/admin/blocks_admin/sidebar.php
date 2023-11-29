@@ -47,7 +47,7 @@
         </a>
         <div class="collapse" id="user">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="<?php echo _MANAGE_DEFAULT ?>/user">List</a></li>
+              <li class="nav-item"><a class="nav-link" href="<?php echo _MANAGE_DEFAULT ?>/user/list/8/1">List</a></li>
             <li class="nav-item"> <a class="nav-link" href="<?php echo _MANAGE_DEFAULT ?>/user/user_add">Add</a></li>
           </ul>
         </div>
@@ -81,7 +81,7 @@
         </a>
         <div class="collapse" id="order">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="<?php echo _MANAGE_DEFAULT ?>/order">List</a></li>
+              <li class="nav-item"><a class="nav-link" href="<?php echo _MANAGE_DEFAULT ?>/order/list/8/1">List</a></li>
           </ul>
         </div>
       </li>
@@ -96,7 +96,8 @@
         </a>
         <div class="collapse" id="category">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="<?php echo _MANAGE_DEFAULT ?>/category">List</a></li>
+              <li class="nav-item"><a class="nav-link" href="<?php echo _MANAGE_DEFAULT ?>/category/list/8/1">List</a>
+              </li>
             <li class="nav-item"> <a class="nav-link" href="<?php echo _MANAGE_DEFAULT ?>/category/category_add">Add</a></li>
           </ul>
         </div>
@@ -112,7 +113,7 @@
         </a>
         <div class="collapse" id="comment">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="<?php echo _MANAGE_DEFAULT ?>/comment">List</a></li>
+              <li class="nav-item"><a class="nav-link" href="<?php echo _MANAGE_DEFAULT ?>/comment/list/1">List</a></li>
           </ul>
         </div>
       </li>
@@ -127,7 +128,7 @@
         </a>
         <div class="collapse" id="post">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="<?php echo _MANAGE_DEFAULT ?>/post">List</a></li>
+              <li class="nav-item"><a class="nav-link" href="<?php echo _MANAGE_DEFAULT ?>/post/list/8/1">List</a></li>
             <li class="nav-item"> <a class="nav-link" href="<?php echo _MANAGE_DEFAULT ?>/post/post_add">Add</a></li>
           </ul>
         </div>
@@ -143,9 +144,10 @@
         </a>
         <div class="collapse" id="banner">
           <ul class="nav flex-column sub-menu">
-              <li class="nav-item"><a class="nav-link" href="<?php echo _MANAGE_DEFAULT ?>/banner">List</a></li>
-              <li class="nav-item"><a class="nav-link"
-                                      href="<?php echo _MANAGE_DEFAULT ?>/banner/banner_home_add">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="<?php echo _MANAGE_DEFAULT ?>/banner/list/1/8/1">List</a>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="<?php echo _MANAGE_DEFAULT ?>/banner/banner_home_add">Add
+                      Home</a></li>
           </ul>
         </div>
       </li>

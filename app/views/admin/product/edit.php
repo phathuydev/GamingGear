@@ -71,7 +71,7 @@
                 <input type="hidden" class="form-control" name="create_at" value="<?= $item['create_at'] ?>">
                 <input type="hidden" class="form-control" name="update_at" value="<?= date("Y-m-d H:i:s"); ?>">
                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                <a class="btn btn-dark" href="<? echo _MANAGE_DEFAULT ?>/product/list/<?= $per_pages . '/' . $pages ?>">Cancel</a>
+                <a class="btn btn-dark" href="<? echo _MANAGE_DEFAULT ?>/product/list/8/1">Cancel</a>
             </form>
         <?php } ?>
     </div>

@@ -12,9 +12,16 @@ class User extends Controller
       $this->province = $this->model('UserModel');
   }
 
-  public function index()
+    public function list($per_pages, $pages)
   {
-      $listUser = $this->province->getAlluser();
+      $countUserId = $this->province->countUserId();
+      $this->data['sub_content']['countUserId'] = $countUserId;
+      $offset = ($pages - 1) * $per_pages;
+      $totalPages = ceil($countUserId['countUserId'] / $per_pages);
+      $this->data['sub_content']['totalPages'] = $totalPages;
+      $this->data['sub_content']['per_pages'] = $per_pages;
+      $this->data['sub_content']['pages'] = $pages;
+      $listUser = $this->province->getAlluser($per_pages, $offset);
     $title = 'List User';
       $this->data['sub_content']['listUser'] = $listUser;
     $this->data['pages_title'] = $title;
@@ -35,7 +42,7 @@ class User extends Controller
               ];
               $this->province->updateIsdelete($data, $user_id);
               $response = new Response();
-              $response->redirect('admin/manage/user');
+              $response->redirect('admin/manage/user/list/8/1');
       }
       }
       $this->data['sub_content']['checkForeignkey'] = Session::flash('checkForeignkey');
@@ -75,7 +82,7 @@ class User extends Controller
               ];
               $this->province->insertUser($data);
               $response = new Response();
-              $response->redirect('admin/manage/user');
+              $response->redirect('admin/manage/user/list/8/1');
       }
       }
       $this->data['sub_content']['checkEmailExist'] = Session::flash('checkEmailExist');
@@ -99,7 +106,7 @@ class User extends Controller
           ];
           $this->province->updateUser($data, $user_id);
           $response = new Response();
-          $response->redirect('admin/manage/user');
+          $response->redirect('admin/manage/user/list/8/1');
       }
     $this->data['body'] = 'admin/user/edit';
     $this->render('admin/layoutAdmin/admin_layout', $this->data);

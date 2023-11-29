@@ -4,20 +4,25 @@
             <h4 class="card-title">List Banner</h4>
             <ul class="nav nav-pills border-0 p-0 pb-3" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active h6" id="pills-home-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                            aria-selected="true">Banner home
-                    </button>
+                    <a href="<?= _WEB_ROOT ?>/admin/manage/banner/list/1/8/1" class="text-decoration-none text-black">
+                        <button class="nav-link <?= $tab == 1 ? 'active' : false; ?> h6" id="pills-home-tab"
+                                data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab"
+                                aria-controls="pills-home" aria-selected="true">Banner home
+                        </button>
+                    </a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link h6" id="pills-profile-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
-                            aria-selected="false">Banner Product
-                    </button>
+                    <a href="<?= _WEB_ROOT ?>/admin/manage/banner/list/2" class="text-decoration-none text-black">
+                        <button class="nav-link <?= $tab == 2 ? 'active' : false; ?> h6" id="pills-profile-tab"
+                                data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab"
+                                aria-controls="pills-profile" aria-selected="false">Banner Product
+                        </button>
+                    </a>
                 </li>
             </ul>
-            <div class="tab-content border-0 p-0" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+            <div class="tab-content border-0 p-0 pb-3" id="pills-tabContent">
+                <div class="tab-pane fade <?= $tab == 1 ? 'show active' : false; ?>" id="pills-home" role="tabpanel"
+                     aria-labelledby="pills-home-tab">
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -30,7 +35,7 @@
                             </thead>
                             <tbody>
                             <?php foreach ($getBannerHome as $key => $item) : ?>
-                                <tr>
+                                <tr class="border-bottom">
                                     <td class="text-white"><img
                                                 src="<?= _WEB_ROOT . '/' . $item['banner_home_path'] . $item['banner_home_image'] ?>"
                                                 alt=""
@@ -54,9 +59,30 @@
                             <?php endforeach; ?>
                             </tbody>
                         </table>
+                        <div class="float-right mt-3">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-end pagination-sm">
+                                    <li class="page-item <?= $pages < 3 ? 'd-none' : false; ?>"><a class="page-link"
+                                                                                                   href="<?php echo _MANAGE_DEFAULT ?>/banner/list/1/<?= $per_pages; ?>/<?= 1; ?>"
+                                                                                                   tabindex="-1">Previous</a>
+                                    </li>
+                                    <?php for ($num = 1; $num <= $totalPages; $num++) { ?>
+                                        <li class="page-item <?= $num == $pages ? 'disabled' : false; ?>"><a
+                                                    class="page-link"
+                                                    href="<?php echo _MANAGE_DEFAULT ?>/banner/list/1/<?= $per_pages; ?>/<?= $num; ?>"><?= $num; ?></a>
+                                        </li>
+                                    <?php } ?>
+                                    <li class="page-item <?= $pages > ($totalPages - 1) ? 'd-none' : false; ?>"><a
+                                                class="page-link"
+                                                href="<?php echo _MANAGE_DEFAULT ?>/banner/list/1/<?= $per_pages; ?>/<?= $pages + 1; ?>">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                <div class="tab-pane fade <?= $tab == 2 ? 'show active' : false; ?>" id="pills-profile" role="tabpanel"
+                     aria-labelledby="pills-profile-tab">
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -70,7 +96,7 @@
                             </thead>
                             <tbody>
                             <?php foreach ($getBannerProduct as $key => $data) : ?>
-                                <tr>
+                                <tr class="border-bottom">
                                     <td class="text-white"><?= $key + 1; ?></td>
                                     <td class="text-white"><img
                                                 src="<?= _WEB_ROOT . '/' . $data['product_image_path'] . $data['product_image'] ?>"

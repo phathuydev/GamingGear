@@ -15,7 +15,7 @@
                     </thead>
                     <tbody>
                     <?php foreach ($getOrderDetail as $key => $item) : ?>
-                        <tr>
+                        <tr class="border-bottom">
                             <td class="text-white"><img
                                         src="<?= _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>"
                                         alt="" style="width: 50px !important; height: 50px !important;"></td>

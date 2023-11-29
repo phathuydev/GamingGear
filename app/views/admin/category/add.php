@@ -20,7 +20,7 @@
                     <p class="text-danger m-2" id="error_name"></p>
                 </div>
                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                <a class="btn btn-dark" href="<? echo _MANAGE_DEFAULT ?>/category">Cancel</a>
+                <a class="btn btn-dark" href="<? echo _MANAGE_DEFAULT ?>/category/list/8/1">Cancel</a>
             </form>
         </div>
     </div>

@@ -15,14 +15,25 @@ class CategoryModel extends Model
   {
       return '*';
   }
-  public function getAllCategory()
+
+    public function getAllCategory($per_pages, $pages)
   {
       $data = $this->db->table('categories')
           ->select('category_id, category_name, category_image_path, create_at, category_image')
           ->where('categories.is_delete', '=', 0)
+          ->limit($per_pages, $pages)
           ->get();
       return $data;
   }
+
+    public function countCategoryId()
+    {
+        $data = $this->db->table('categories')
+            ->select('COUNT(category_id) as countCategoryId')
+            ->where('is_delete', '=', 0)
+            ->first();
+        return $data;
+    }
 
     public function countProductCategory()
     {

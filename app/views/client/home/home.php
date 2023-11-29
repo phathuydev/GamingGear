@@ -2,7 +2,7 @@
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <?php
-            foreach ($getBannerHome as $key => $item) :
+            foreach ($getBannerHomeClient as $key => $item) :
                 ?>
                 <li data-target="#carouselExampleIndicators" data-slide-to="<?= $key; ?>"
                     class="<?= $key == 0 ? 'active' : false; ?>"></li>
@@ -11,7 +11,7 @@
         <div class="carousel-inner">
             <?php
             $descriptions = ['First slide', 'Second slide', 'Third slide', 'Fourth slide', 'Fifth slide', 'Sixth slide', 'Seventh slide', 'Eighth slide', ' Ninth slide', 'Tenth slide'];
-            foreach ($getBannerHome as $key => $item) :
+            foreach ($getBannerHomeClient as $key => $item) :
                 ?>
                 <div class="carousel-item <?= $key == 0 ? 'active' : false; ?>">
                     <img class="d-block w-100"
@@ -76,162 +76,14 @@
           </div>
           <div class="most-popular mb-5">
               <div class="heading-section text-center">
-                  <h4 class="mb-0 mt-4">Headset</h4>
+                  <h4 class="mb-0 mt-4"><em>All</em> Product</h4>
               </div>
               <!-- ***** Featured Games Start ***** -->
               <div class="row">
                   <div class="col-lg-12">
                       <div class="featured-games header-text">
                           <div class="owl-features owl-carousel">
-                              <?php foreach ($getProductHeadset as $item) : ?>
-                                  <div class="item p-5">
-                                      <div class="thumb p-4">
-                                          <a href="<?= _WEB_ROOT ?>/detail/<?= $item['product_id'] ?>/<?= $item['category_id'] ?>"><img
-                                                      src="<?= _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>"
-                                                      alt=""></a>
-                                      </div>
-                                      <?php if ($item['product_price_reduce'] > 0) : ?>
-                                          <label class="top-0 mt-4 position-absolute start-0 rounded-circle bg-danger text-white ps-1 pt-2 pe-1 pb-2"><?= $item['product_price_reduce'] > 0 ? '-' . number_format((($item['product_price'] - $item['product_price_reduce']) / $item['product_price'] * 100), 0) . '%' : false; ?></label>
-                                      <?php endif ?>
-                                      <h4 class="d-flex justify-content-center align-items-center mt-2 mb-0 m-0"
-                                          style="font-size: 15px; line-height: 25px !important;"><?= $item['product_name'] ?></h4>
-                                      <div class="d-flex justify-content-center align-items-center mt-2">
-                                          <h3 class="mr-2 text-danger"
-                                              style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? $item['product_price'] . '$' : $item['product_price_reduce'] . '$' ?></h3>
-                                          <s class="text-white"
-                                             style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? '' : $item['product_price'] . '$' ?></s>
-                                      </div>
-                                      <div class="d-flex justify-content-center  align-items-center mt-2">
-                                          <button class="buy">Add To Cart</button>
-                                      </div>
-                                  </div>
-                              <?php endforeach; ?>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="most-popular mb-5">
-              <div class="heading-section text-center">
-                  <h4 class="mb-0 mt-4">Keyboard</h4>
-              </div>
-              <!-- ***** Featured Games Start ***** -->
-              <div class="row">
-                  <div class="col-lg-12">
-                      <div class="featured-games header-text">
-                          <div class="owl-features owl-carousel">
-                              <?php foreach ($getProductKeyboard as $item) : ?>
-                                  <div class="item p-5">
-                                      <div class="thumb p-4">
-                                          <a href="<?= _WEB_ROOT ?>/detail/<?= $item['product_id'] ?>/<?= $item['category_id'] ?>"><img
-                                                      src="<?= _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>"
-                                                      alt=""></a>
-                                      </div>
-                                      <?php if ($item['product_price_reduce'] > 0) : ?>
-                                          <label class="top-0 mt-4 position-absolute start-0 rounded-circle bg-danger text-white ps-1 pt-2 pe-1 pb-2"><?= $item['product_price_reduce'] > 0 ? '-' . number_format((($item['product_price'] - $item['product_price_reduce']) / $item['product_price'] * 100), 0) . '%' : false; ?></label>
-                                      <?php endif ?>
-                                      <h4 class="d-flex justify-content-center align-items-center mt-2 mb-0 m-0"
-                                          style="font-size: 15px; line-height: 25px !important;"><?= $item['product_name'] ?></h4>
-                                      <div class="d-flex justify-content-center align-items-center mt-2">
-                                          <h3 class="mr-2 text-danger"
-                                              style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? $item['product_price'] . '$' : $item['product_price_reduce'] . '$' ?></h3>
-                                          <s class="text-white"
-                                             style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? '' : $item['product_price'] . '$' ?></s>
-                                      </div>
-                                      <div class="d-flex justify-content-center  align-items-center mt-2">
-                                          <button class="buy">Add To Cart</button>
-                                      </div>
-                                  </div>
-                              <?php endforeach; ?>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="most-popular mb-5">
-              <div class="heading-section text-center">
-                  <h4 class="mb-0 mt-4">Mouse</h4>
-              </div>
-              <!-- ***** Featured Games Start ***** -->
-              <div class="row">
-                  <div class="col-lg-12">
-                      <div class="featured-games header-text">
-                          <div class="owl-features owl-carousel">
-                              <?php foreach ($getProductMouse as $item) : ?>
-                                  <div class="item p-5">
-                                      <div class="thumb p-4">
-                                          <a href="<?= _WEB_ROOT ?>/detail/<?= $item['product_id'] ?>/<?= $item['category_id'] ?>"><img
-                                                      src="<?= _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>"
-                                                      alt=""></a>
-                                      </div>
-                                      <?php if ($item['product_price_reduce'] > 0) : ?>
-                                          <label class="top-0 mt-4 position-absolute start-0 rounded-circle bg-danger text-white ps-1 pt-2 pe-1 pb-2"><?= $item['product_price_reduce'] > 0 ? '-' . number_format((($item['product_price'] - $item['product_price_reduce']) / $item['product_price'] * 100), 0) . '%' : false; ?></label>
-                                      <?php endif ?>
-                                      <h4 class="d-flex justify-content-center align-items-center mt-2 mb-0 m-0"
-                                          style="font-size: 15px; line-height: 25px !important;"><?= $item['product_name'] ?></h4>
-                                      <div class="d-flex justify-content-center align-items-center mt-2">
-                                          <h3 class="mr-2 text-danger"
-                                              style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? $item['product_price'] . '$' : $item['product_price_reduce'] . '$' ?></h3>
-                                          <s class="text-white"
-                                             style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? '' : $item['product_price'] . '$' ?></s>
-                                      </div>
-                                      <div class="d-flex justify-content-center  align-items-center mt-2">
-                                          <button class="buy">Add To Cart</button>
-                                      </div>
-                                  </div>
-                              <?php endforeach; ?>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-        </div>
-          <div class="most-popular mb-5">
-              <div class="heading-section text-center">
-                  <h4 class="mb-0 mt-4">Gamepad</h4>
-              </div>
-              <!-- ***** Featured Games Start ***** -->
-              <div class="row">
-                  <div class="col-lg-12">
-                      <div class="featured-games header-text">
-                          <div class="owl-features owl-carousel">
-                              <?php foreach ($getProductGamepad as $item) : ?>
-                                  <div class="item p-5">
-                                      <div class="thumb p-4">
-                                          <a href="<?= _WEB_ROOT ?>/detail/<?= $item['product_id'] ?>/<?= $item['category_id'] ?>"><img
-                                                      src="<?= _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>"
-                                                      alt=""></a>
-                                      </div>
-                                      <?php if ($item['product_price_reduce'] > 0) : ?>
-                                          <label class="top-0 mt-4 position-absolute start-0 rounded-circle bg-danger text-white ps-1 pt-2 pe-1 pb-2"><?= $item['product_price_reduce'] > 0 ? '-' . number_format((($item['product_price'] - $item['product_price_reduce']) / $item['product_price'] * 100), 0) . '%' : false; ?></label>
-                                      <?php endif ?>
-                                      <h4 class="d-flex justify-content-center align-items-center mt-2 mb-0 m-0"
-                                          style="font-size: 15px; line-height: 25px !important;"><?= $item['product_name'] ?></h4>
-                                      <div class="d-flex justify-content-center align-items-center mt-2">
-                                          <h3 class="mr-2 text-danger"
-                                              style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? $item['product_price'] . '$' : $item['product_price_reduce'] . '$' ?></h3>
-                                          <s class="text-white"
-                                             style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? '' : $item['product_price'] . '$' ?></s>
-                                      </div>
-                                      <div class="d-flex justify-content-center  align-items-center mt-2">
-                                          <button class="buy">Add To Cart</button>
-                                      </div>
-                                  </div>
-                              <?php endforeach; ?>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="most-popular mb-5">
-              <div class="heading-section text-center">
-                  <h4 class="mb-0 mt-4">Tv</h4>
-              </div>
-              <!-- ***** Featured Games Start ***** -->
-              <div class="row">
-                  <div class="col-lg-12">
-                      <div class="featured-games header-text">
-                          <div class="owl-features owl-carousel">
-                              <?php foreach ($getProductTv as $item) : ?>
+                              <?php foreach ($getAllProductHome as $item) : ?>
                                   <div class="item p-5">
                                       <div class="thumb p-4">
                                           <a href="<?= _WEB_ROOT ?>/detail/<?= $item['product_id'] ?>/<?= $item['category_id'] ?>"><img

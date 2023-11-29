@@ -16,9 +16,23 @@ class UserModel extends Model
         return '*';
     }
 
-    public function getAlluser()
+    public function getAlluser($per_pages, $pages)
     {
-        $data = $this->db->table('users')->select('user_id, user_name, user_email, user_phone, user_image, user_image_path, user_address, user_locked, user_role, create_at, update_at, user_create, user_update, user_delete')->where('is_delete', '=', '0')->get();
+        $data = $this->db->table('users')
+            ->select('user_id, user_name, user_email, user_phone, user_image, user_image_path, 
+    user_address, user_locked, user_role, create_at, update_at, user_create, user_update, user_delete')
+            ->where('is_delete', '=', '0')
+            ->limit($per_pages, $pages)
+            ->get();
+        return $data;
+    }
+
+    public function countUserId()
+    {
+        $data = $this->db->table('users')
+            ->select('COUNT(user_id) as countUserId')
+            ->where('is_delete', '=', 0)
+            ->first();
         return $data;
     }
 

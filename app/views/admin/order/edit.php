@@ -9,13 +9,13 @@
                         <?php foreach ($getAllStatusOrder as $item) : ?>
                             <option class="text-white" <?= (isset($item['order_status_id'])) && $item['order_status_id'] == $order_status ? 'selected' : '' ?>
                                     value="<?= $item['order_status_id'] ?>">
-                                <?= $item['order_name'] ?>
+                                <?= $item['order_status_name'] ?>
                             </option>
                         <?php endforeach; ?>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                <a href="<? echo _MANAGE_DEFAULT ?>/order" class="btn btn-dark">Cancel</a>
+                <a href="<? echo _MANAGE_DEFAULT ?>/order/list/8/1" class="btn btn-dark">Cancel</a>
             </form>
         </div>
     </div>

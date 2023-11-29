@@ -11,15 +11,24 @@ class Banner extends Controller
       }
       $this->province = $this->model('BannerModel');
   }
-  public function index()
+
+    public function list($tab = 1, $per_pages = 8, $pages = 1)
   {
-      $getBannerHome = $this->province->getBannerHome();
+      $countBannerHomeId = $this->province->countBannerHomeId();
+      $this->data['sub_content']['countBannerHomeId'] = $countBannerHomeId;
+      $offset = ($pages - 1) * $per_pages;
+      $totalPages = ceil($countBannerHomeId['countBannerHomeId'] / $per_pages);
+      $this->data['sub_content']['totalPages'] = $totalPages;
+      $this->data['sub_content']['per_pages'] = $per_pages;
+      $this->data['sub_content']['pages'] = $pages;
+      $getBannerHome = $this->province->getBannerHome($per_pages, $offset);
       $this->data['sub_content']['getBannerHome'] = $getBannerHome;
+      $this->data['sub_content']['tab'] = $tab;
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $banner_home_id = $_POST['banner_home_id'];
           $this->province->deleteBannerHome($banner_home_id);
           $response = new Response();
-          $response->redirect('admin/manage/banner');
+          $response->redirect('admin/manage/banner/list/1/8/1');
       }
       $getBannerProduct = $this->province->getBannerProduct();
       $this->data['sub_content']['getBannerProduct'] = $getBannerProduct;
@@ -33,12 +42,13 @@ class Banner extends Controller
     {
         $getBannerProductDetail = $this->province->getBannerProductDetail($product_id);
         $this->data['sub_content']['getBannerProductDetail'] = $getBannerProductDetail;
+        $this->data['sub_content']['product_id'] = $product_id;
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $banner_product_id = $_POST['banner_product_id'];
             $product_id = $_POST['product_id'];
             $this->province->deleteBannerProduct($banner_product_id);
             $response = new Response();
-            $response->redirect('admin/manage/banner/banner_product_detail/' . $product_id . '');
+            $response->redirect('admin/manage/banner/banner_product_detail/1');
         }
         $title = 'Comment Product Detail';
         $this->data['pages_title'] = $title;
@@ -64,7 +74,7 @@ class Banner extends Controller
                 $this->province->insertBannerHome($data);
             }
             $response = new Response();
-            $response->redirect('admin/manage/banner');
+            $response->redirect('admin/manage/banner/list/1/8/1');
         }
         $title = 'Banner Home Add';
         $this->data['sub_content']['pages_title'] = [];
@@ -93,7 +103,7 @@ class Banner extends Controller
           ];
           $this->province->updateBannerHome($data, $banner_home_id);
           $response = new Response();
-          $response->redirect('admin/manage/banner');
+          $response->redirect('admin/manage/banner/list/1/8/1');
       }
       $title = 'Edit Banner Home';
     $this->data['pages_title'] = $title;
@@ -122,7 +132,7 @@ class Banner extends Controller
                 $this->province->insertBannerProduct($data, $product_id);
             }
             $response = new Response();
-            $response->redirect('admin/manage/banner');
+            $response->redirect('admin/manage/banner/banner_product_detail/' . $product_id . '');
         }
         $title = 'Banner Product Add';
         $this->data['sub_content']['pages_title'] = [];
@@ -152,7 +162,7 @@ class Banner extends Controller
           ];
           $this->province->updateBannerProduct($data, $banner_product_id);
           $response = new Response();
-          $response->redirect('admin/manage/banner/banner_product_detail/' . $product_id . '');
+          $response->redirect('admin/manage/banner/banner_product_detail/1');
       }
       $title = 'Edit Banner Product';
     $this->data['pages_title'] = $title;

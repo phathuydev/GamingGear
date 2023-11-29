@@ -14,7 +14,7 @@ class OrderModel extends Model
         return '*';
     }
 
-    public function getAllOrder()
+    public function getAllOrder($per_pages, $pages)
     {
         $data = $this->db->table('orders')
             ->join('users', 'orders.user_id = users.user_id')
@@ -26,8 +26,18 @@ class OrderModel extends Model
             orders.user_name AS user_name, order_payment.order_payment_name AS order_payment_name, order_status.order_name AS order_name,
             orders.user_email AS user_email, orders.user_phone AS user_phone, orders.user_address AS user_address')
             ->where('orders.is_delete', '=', 0)
+            ->limit($per_pages, $pages)
             ->orderBy('orders.create_at', 'DESC')
             ->get();
+        return $data;
+    }
+
+    public function countOrderId()
+    {
+        $data = $this->db->table('orders')
+            ->select('COUNT(order_id) as countOrderId')
+            ->where('is_delete', '=', 0)
+            ->first();
         return $data;
     }
     public function updateIsDelete($data, $order_id)

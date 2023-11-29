@@ -34,6 +34,15 @@ class PostModel extends Model
         return $data;
     }
 
+    public function countPostId()
+    {
+        $data = $this->db->table('posts')
+            ->select('COUNT(post_id) as countPostId')
+            ->where('is_delete', '=', 0)
+            ->first();
+        return $data;
+    }
+
     public function getAllCategory()
     {
         $data = $this->db->table('categories')

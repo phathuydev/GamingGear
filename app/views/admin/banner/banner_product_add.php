@@ -17,7 +17,7 @@
                 </div>
                 <input type="hidden" name="product_id" value="<?= $product_id; ?>">
                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                <a class="btn btn-dark" href="<? echo _MANAGE_DEFAULT ?>/banner">Cancel</a>
+                <a class="btn btn-dark" href="<? echo _MANAGE_DEFAULT ?>/banner/list/2">Cancel</a>
             </form>
         </div>
     </div>

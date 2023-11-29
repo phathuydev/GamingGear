@@ -4,25 +4,6 @@
             <h4 class="mb-0 mt-5"><em>All</em> Products</h4>
         </div>
         <div class="row pr-5 pl-5">
-            <div class="float-right pe-4 pb-3">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-end pagination-sm">
-                        <li class="page-item <?= $pages < 3 ? 'd-none' : false; ?>"><a class="page-link text-black"
-                                                                                       href="<?php echo _WEB_ROOT ?>/products/index/<?= $per_pages; ?>/<?= 1; ?>"
-                                                                                       tabindex="-1">Previous</a></li>
-                        <?php for ($num = 1; $num <= $totalPages; $num++) { ?>
-                            <li class="page-item <?= $num == $pages ? 'disabled' : false; ?>"><a
-                                        class="page-link text-black <?= $num == $pages ? 'bg-black text-white' : false; ?>"
-                                        href="<?php echo _WEB_ROOT ?>/products/index/<?= $per_pages; ?>/<?= $num; ?>"><?= $num; ?></a>
-                            </li>
-                        <?php } ?>
-                        <li class="page-item <?= $pages > ($totalPages - 1) ? 'd-none' : false; ?>"><a
-                                    class="page-link text-black"
-                                    href="<?php echo _WEB_ROOT ?>/products/index/<?= $per_pages; ?>/<?= $pages + 1; ?>">Next</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
             <?php foreach ($getAllProduct as $item) : ?>
         <div class="bg-transparent featured-games header-text col-md-3 col-sm-12">
             <div class="card-pd" style="height: 100%;">
@@ -46,6 +27,25 @@
             </div>
         </div>
             <?php endforeach; ?>
+        </div>
+        <div class="d-flex justify-content-center mt-3 pe-4 pb-3">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end pagination-sm">
+                    <li class="page-item <?= $pages < 3 ? 'd-none' : false; ?>"><a class="page-link text-black"
+                                                                                   href="<?php echo _WEB_ROOT ?>/products/index/<?= $per_pages; ?>/<?= 1; ?>"
+                                                                                   tabindex="-1">Previous</a></li>
+                    <?php for ($num = 1; $num <= $totalPages; $num++) { ?>
+                        <li class="page-item <?= $num == $pages ? 'disabled' : false; ?>"><a
+                                    class="page-link text-black <?= $num == $pages ? 'bg-black text-white' : false; ?>"
+                                    href="<?php echo _WEB_ROOT ?>/products/index/<?= $per_pages; ?>/<?= $num; ?>"><?= $num; ?></a>
+                        </li>
+                    <?php } ?>
+                    <li class="page-item <?= $pages > ($totalPages - 1) ? 'd-none' : false; ?>"><a
+                                class="page-link text-black"
+                                href="<?php echo _WEB_ROOT ?>/products/index/<?= $per_pages; ?>/<?= $pages + 1; ?>">Next</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
         <div class="most-popular pl-5 pr-5 mt-5">
             <div class="heading-section text-center">

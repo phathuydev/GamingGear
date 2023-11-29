@@ -11,9 +11,17 @@ class Category extends Controller
       }
       $this->province = $this->model('CategoryModel');
   }
-  public function index()
+
+    public function list($per_pages, $pages)
   {
-      $listCategory = $this->province->getAllcategory();
+      $countCategoryId = $this->province->countCategoryId();
+      $this->data['sub_content']['countCategoryId'] = $countCategoryId;
+      $offset = ($pages - 1) * $per_pages;
+      $totalPages = ceil($countCategoryId['countCategoryId'] / $per_pages);
+      $this->data['sub_content']['totalPages'] = $totalPages;
+      $this->data['sub_content']['per_pages'] = $per_pages;
+      $this->data['sub_content']['pages'] = $pages;
+      $listCategory = $this->province->getAllcategory($per_pages, $offset);
       $this->data['sub_content']['listCategory'] = $listCategory;
     $title = 'List Category';
       $this->data['pages_title'] = $title;
@@ -33,10 +41,8 @@ class Category extends Controller
               ];
               $this->province->updateCategory($data, $category_id);
               $response = new Response();
-              $response->redirect('admin/manage/category');
+              $response->redirect('admin/manage/category/list/8/1');
           }
-          $response = new Response();
-          $response->redirect('admin/manage/category');
       }
       $this->data['sub_content']['checkForeignkey'] = Session::flash('checkForeignkey');
     $this->data['body'] = 'admin/category/list';
@@ -68,7 +74,7 @@ class Category extends Controller
               ];
               $this->province->insertCategory($data);
               $response = new Response();
-              $response->redirect('admin/manage/category');
+              $response->redirect('admin/manage/category/list/8/1');
       }
       }
       $this->data['sub_content']['nameExist'] = Session::flash('nameExist');
@@ -99,7 +105,7 @@ class Category extends Controller
               ];
               $this->province->updateCategory($data, $category_id);
               $response = new Response();
-              $response->redirect('admin/manage/category');
+              $response->redirect('admin/manage/category/list/8/1');
           } elseif ($name !== $nameDefault) {
               $checkNameCategory = $this->province->getNameCategory($name);
               if ($checkNameCategory) {
@@ -117,7 +123,7 @@ class Category extends Controller
           ];
           $this->province->updateCategory($data, $category_id);
           $response = new Response();
-          $response->redirect('admin/manage/category');
+                  $response->redirect('admin/manage/category/list/8/1');
               }
           }
       }

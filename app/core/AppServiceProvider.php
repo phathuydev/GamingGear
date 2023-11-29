@@ -285,8 +285,8 @@ class AppServiceProvider extends ServiceProvider
             ->select('comments_product.comment_content as comment_content, comments_product.create_at as create_at,
       users.user_image_path as user_image_path, users.user_image as user_image, users.user_name as user_name')
             ->where('comments_product.is_delete', '=', 0)
+            ->where('comments_product.create_at', '>', $today)
             ->where('users.is_delete', '=', 0)
-            ->orderBy('comments_product.create_at', 'ASC')
             ->limit('5')
             ->get();
         $data['getCommentProductDashboard'] = $getCommentProductDashboard;
@@ -309,16 +309,16 @@ class AppServiceProvider extends ServiceProvider
       users.user_image_path as user_image_path, users.user_image as user_image, users.user_name as user_name')
             ->where('comments_post.is_delete', '=', 0)
             ->where('users.is_delete', '=', 0)
-            ->orderBy('comments_post.create_at', 'ASC')
+            ->where('comments_post.create_at', '>', $today)
             ->limit('5')
             ->get();
         $data['getCommentPostDashboard'] = $getCommentPostDashboard;
 
         // Get banner home
-        $getBannerHome = $this->db->table('banners_home')
+        $getBannerHomeClient = $this->db->table('banners_home')
             ->select('banner_home_id, banner_home_image, banner_home_path, create_at, update_at')
             ->get();
-        $data['getBannerHome'] = $getBannerHome;
+        $data['getBannerHomeClient'] = $getBannerHomeClient;
 
         // get products special
         $getProductSpecial = $this->db->table('products')
@@ -334,7 +334,7 @@ class AppServiceProvider extends ServiceProvider
         $data['getProductSpecial'] = $getProductSpecial;
 
         // get products category headset
-        $getProductHeadset = $this->db->table('products')
+        $getAllProductHome = $this->db->table('products')
             ->join('categories', 'products.category_id = categories.category_id')
             ->select('products.product_id AS product_id, products.product_name AS product_name, products.product_image AS product_image, 
          products.product_image_path AS product_image_path, products.product_price AS product_price,
@@ -342,68 +342,12 @@ class AppServiceProvider extends ServiceProvider
          products.category_id AS category_id, products.product_special AS product_special, products.product_describe AS product_describe, 
          products.create_at AS create_at, categories.category_id AS category_id, categories.category_name AS category_name')
             ->where('products.is_delete', '=', 0)
-            ->where('products.category_id', '=', 1)
             ->get();
-        $data['getProductHeadset'] = $getProductHeadset;
-
-        // get products category keyboard
-        $getProductKeyboard = $this->db->table('products')
-            ->join('categories', 'products.category_id = categories.category_id')
-            ->select('products.product_id AS product_id, products.product_name AS product_name, products.product_image AS product_image, 
-         products.product_image_path AS product_image_path, products.product_price AS product_price,
-         products.product_price_reduce AS product_price_reduce, products.product_quantity AS product_quantity, 
-         products.category_id AS category_id, products.product_special AS product_special, products.product_describe AS product_describe, 
-         products.create_at AS create_at, categories.category_id AS category_id, categories.category_name AS category_name')
-            ->where('products.is_delete', '=', 0)
-            ->where('products.category_id', '=', 2)
-            ->get();
-        $data['getProductKeyboard'] = $getProductKeyboard;
-
-        // get products category mouse
-        $getProductMouse = $this->db->table('products')
-            ->join('categories', 'products.category_id = categories.category_id')
-            ->select('products.product_id AS product_id, products.product_name AS product_name, products.product_image AS product_image, 
-         products.product_image_path AS product_image_path, products.product_price AS product_price,
-         products.product_price_reduce AS product_price_reduce, products.product_quantity AS product_quantity, 
-         products.category_id AS category_id, products.product_special AS product_special, products.product_describe AS product_describe, 
-         products.create_at AS create_at, categories.category_id AS category_id, categories.category_name AS category_name')
-            ->where('products.is_delete', '=', 0)
-            ->where('products.category_id', '=', 3)
-            ->get();
-        $data['getProductMouse'] = $getProductMouse;
-
-        // get products category gamepad
-        $getProductGamepad = $this->db->table('products')
-            ->join('categories', 'products.category_id = categories.category_id')
-            ->select('products.product_id AS product_id, products.product_name AS product_name, products.product_image AS product_image, 
-         products.product_image_path AS product_image_path, products.product_price AS product_price,
-         products.product_price_reduce AS product_price_reduce, products.product_quantity AS product_quantity, 
-         products.category_id AS category_id, products.product_special AS product_special, products.product_describe AS product_describe, 
-         products.create_at AS create_at, categories.category_id AS category_id, categories.category_name AS category_name')
-            ->where('products.is_delete', '=', 0)
-            ->where('products.category_id', '=', 4)
-            ->get();
-        $data['getProductGamepad'] = $getProductGamepad;
-
-        // get products category tv
-        $getProductTv = $this->db->table('products')
-            ->join('categories', 'products.category_id = categories.category_id')
-            ->select('products.product_id AS product_id, products.product_name AS product_name, products.product_image AS product_image, 
-         products.product_image_path AS product_image_path, products.product_price AS product_price,
-         products.product_price_reduce AS product_price_reduce, products.product_quantity AS product_quantity, 
-         products.category_id AS category_id, products.product_special AS product_special, products.product_describe AS product_describe, 
-         products.create_at AS create_at, categories.category_id AS category_id, categories.category_name AS category_name')
-            ->where('products.is_delete', '=', 0)
-            ->where('products.category_id', '=', 5)
-            ->get();
-        $data['getProductTv'] = $getProductTv;
-
-        // Phân trang
+        $data['getAllProductHome'] = $getAllProductHome;
 
         $getAllCategory = $this->db->table('categories')
             ->select('*')
             ->get();
-
         $data['getAllCategory'] = $getAllCategory;
         $data['copyright'] = 'Coppyright &copy; 2023 by GamingGear';
         View::share($data);

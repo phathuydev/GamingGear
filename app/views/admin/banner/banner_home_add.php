@@ -15,7 +15,7 @@
                     <p class="text-danger m-2" id="error_banner_home_image"></p>
                 </div>
                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                <a class="btn btn-dark" href="<? echo _MANAGE_DEFAULT ?>/banner">Cancel</a>
+                <a class="btn btn-dark" href="<? echo _MANAGE_DEFAULT ?>/banner/list/1/8/1">Cancel</a>
             </form>
         </div>
     </div>

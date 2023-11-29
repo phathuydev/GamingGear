@@ -22,7 +22,7 @@
                     <input type="hidden" name="banner_home_id" value="<?= $item['banner_home_id'] ?>">
                     <input type="hidden" name="banner_home_image" value="<?= $item['banner_home_image'] ?>">
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                    <a class="btn btn-dark" href="<? echo _MANAGE_DEFAULT ?>/banner">Cancel</a>
+                    <a class="btn btn-dark" href="<? echo _MANAGE_DEFAULT ?>/banner/list/1/8/1">Cancel</a>
                 </form>
             <?php endforeach ?>
         </div>

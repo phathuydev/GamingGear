@@ -14,10 +14,11 @@ class BannerModel extends Model
         return '*';
     }
 
-    public function getBannerHome()
+    public function getBannerHome($per_pages, $pages)
     {
         $data = $this->db->table('banners_home')
-            ->select('banner_home_id, banner_home_image, banner_home_path, create_at')
+            ->select('banner_home_id, banner_home_image, banner_home_path, create_at, update_at')
+            ->limit($per_pages, $pages)
             ->get();
         return $data;
     }
@@ -48,6 +49,14 @@ class BannerModel extends Model
     COUNT(banners_product.banner_product_id) AS count_banner_product')
             ->groupBy('products.product_id, products.product_name, products.product_image, products.product_image_path')
             ->get();
+        return $data;
+    }
+
+    public function countBannerHomeId()
+    {
+        $data = $this->db->table('banners_home')
+            ->select('COUNT(banner_home_id) as countBannerHomeId')
+            ->first();
         return $data;
     }
 

@@ -15,7 +15,7 @@
                     </thead>
                     <tbody>
                     <?php foreach ($listCategory as $key => $item) : ?>
-                        <tr>
+                        <tr class="border-bottom">
                             <td class="text-white"><img
                                         src="<?= $item['category_image'] == true ? _WEB_ROOT . '/' . $item['category_image_path'] . $item['category_image'] : _WEB_ROOT . '/' . $item['category_image_path'] . 'default_img.jpg'; ?>"
                                         alt="" style="width: 50px !important; height: 50px !important;"></td>
@@ -36,6 +36,25 @@
                     <?php endforeach; ?>
                     </tbody>
                 </table>
+                <div class="float-right mt-3">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-end pagination-sm">
+                            <li class="page-item <?= $pages < 3 ? 'd-none' : false; ?>"><a class="page-link"
+                                                                                           href="<?php echo _MANAGE_DEFAULT ?>/category/list/<?= $per_pages; ?>/<?= 1; ?>"
+                                                                                           tabindex="-1">Previous</a>
+                            </li>
+                            <?php for ($num = 1; $num <= $totalPages; $num++) { ?>
+                                <li class="page-item <?= $num == $pages ? 'disabled' : false; ?>"><a class="page-link"
+                                                                                                     href="<?php echo _MANAGE_DEFAULT ?>/category/list/<?= $per_pages; ?>/<?= $num; ?>"><?= $num; ?></a>
+                                </li>
+                            <?php } ?>
+                            <li class="page-item <?= $pages > ($totalPages - 1) ? 'd-none' : false; ?>"><a
+                                        class="page-link"
+                                        href="<?php echo _MANAGE_DEFAULT ?>/category/list/<?= $per_pages; ?>/<?= $pages + 1; ?>">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>

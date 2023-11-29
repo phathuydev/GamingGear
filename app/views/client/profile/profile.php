@@ -164,13 +164,14 @@
                                                         <td class="text-white small text-center">
                                                             <button type="button"
                                                                     class="small rounded-2 p-1 bg-primary text-white mb-2"
-                                                                    data-toggle="modal" data-target="#exampleModal"><u>Edit
-                                                                    Address</u></button>
+                                                                    data-toggle="modal" data-target="#exampleModal">Edit
+                                                                Address
+                                                            </button>
                                                             <form method="post">
                                                                 <butotn type="submit" name="cancelOrder"
                                                                         class="small rounded-2 p-1 bg-danger text-white"
                                                                         data-toggle="modal"
-                                                                        data-target="#exampleModal2"><u>Cancel Order</u>
+                                                                        data-target="#exampleModal2">Cancel Order
                                                                 </butotn>
                                                             </form>
                                                         </td>

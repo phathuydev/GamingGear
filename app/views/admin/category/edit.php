@@ -27,7 +27,7 @@
                 </div>
                 <input type="hidden" name="nameDefault" value="<?= $item['category_name'] ?>">
                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                <a class="btn btn-dark" href="<? echo _MANAGE_DEFAULT ?>/category">Cancel</a>
+                <a class="btn btn-dark" href="<? echo _MANAGE_DEFAULT ?>/category/list/8/1">Cancel</a>
                 </form>
             <?php } ?>
         </div>

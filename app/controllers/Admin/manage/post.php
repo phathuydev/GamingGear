@@ -12,12 +12,12 @@ class Post extends Controller
       $this->province = $this->model('PostModel');
   }
 
-    public function index($per_pages = 8, $pages = 1)
+    public function list($per_pages = 8, $pages = 1)
   {
-      $countProductId = $this->model('ProductModel')->countProductId();
-      $this->data['sub_content']['countProductId'] = $countProductId;
+      $countPostId = $this->province->countPostId();
+      $this->data['sub_content']['countPostId'] = $countPostId;
       $offset = ($pages - 1) * $per_pages;
-      $totalPages = ceil($countProductId['countProductId'] / $per_pages);
+      $totalPages = ceil($countPostId['countPostId'] / $per_pages);
       $this->data['sub_content']['totalPages'] = $totalPages;
       $this->data['sub_content']['per_pages'] = $per_pages;
       $this->data['sub_content']['pages'] = $pages;
@@ -35,7 +35,7 @@ class Post extends Controller
           ];
           $this->province->updateIsDelete($data, $post_id, $post_detail_id);
           $response = new Response();
-          $response->redirect('admin/manage/post');
+          $response->redirect('admin/manage/post/list/8/1');
       }
     $this->data['body'] = 'admin/post/list';
     $this->render('admin/layoutAdmin/admin_layout', $this->data);
@@ -75,7 +75,7 @@ class Post extends Controller
           ];
           $this->province->insertPostDetail($data_content, $post_id);
           $response = new Response();
-          $response->redirect('admin/manage/post');
+          $response->redirect('admin/manage/post/list/8/1');
       }
     $title = 'Add Post';
     $this->data['sub_content']['pages_title'] = $title;
@@ -132,7 +132,7 @@ class Post extends Controller
           ];
           $this->province->UpdatePostDetail($data_content, $post_detail_id);
           $response = new Response();
-          $response->redirect('admin/manage/post');
+          $response->redirect('admin/manage/post/list/8/1');
       }
     $title = 'Edit Post';
     $this->data['sub_content']['pages_title'] = $title;

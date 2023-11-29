@@ -11,9 +11,17 @@ class Order extends Controller
       }
       $this->province = $this->model('OrderModel');
   }
-  public function index()
+
+    public function list($per_pages, $pages)
   {
-      $listOrder = $this->province->getAllOrder();
+      $countOrderId = $this->province->countOrderId();
+      $this->data['sub_content']['countOrderId'] = $countOrderId;
+      $offset = ($pages - 1) * $per_pages;
+      $totalPages = ceil($countOrderId['countOrderId'] / $per_pages);
+      $this->data['sub_content']['totalPages'] = $totalPages;
+      $this->data['sub_content']['per_pages'] = $per_pages;
+      $this->data['sub_content']['pages'] = $pages;
+      $listOrder = $this->province->getAllOrder($per_pages, $offset);
       $this->data['sub_content']['listOrder'] = $listOrder;
     $title = 'List Order';
     $this->data['pages_title'] = $title;
@@ -45,7 +53,7 @@ class Order extends Controller
           ];
           $this->province->updateOrder($data, $order_id);
           $response = new Response();
-          $response->redirect('admin/manage/order');
+          $response->redirect('admin/manage/order/list/8/1');
       }
     $title = 'Update Status';
     $this->data['sub_content']['pages_title'] = $title;

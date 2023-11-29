@@ -50,7 +50,7 @@
                     <p class="text-danger m-2" id="error_post_content_content"></p>
                 </div>
                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                <a class="btn btn-dark" href="<? echo _MANAGE_DEFAULT ?>/post">Cancel</a>
+                <a class="btn btn-dark" href="<? echo _MANAGE_DEFAULT ?>/post/list/8/1">Cancel</a>
             </form>
         </div>
     </div>
