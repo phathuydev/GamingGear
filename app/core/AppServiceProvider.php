@@ -34,22 +34,6 @@ class AppServiceProvider extends ServiceProvider
         }
       }
     }
-    // Hàm tạo mã đơn hàng ngẫu nhiên gồm chữ và số
-    // function generateOrderCode()
-    // {
-    //   $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'; // Các ký tự có thể sử dụng
-    //   $codeLength = 6; // Độ dài mã đơn hàng
-
-    //   $code = ''; // Chuỗi mã đơn hàng ban đầu
-
-    //   // Tạo mã đơn hàng ngẫu nhiên bằng cách chọn ngẫu nhiên các ký tự từ chuỗi $characters
-    //   for ($i = 0; $i < $codeLength; $i++) {
-    //     $code .= $characters[rand(0, strlen($characters) - 1)];
-    //   }
-
-    //   return $code;
-    // }
-    // $data['generateOrderCode'] = generateOrderCode();
     // Get user admin
     $getUserSession = $this->db->table('users')
       ->select('user_id, user_name, user_email, user_phone, user_image, user_image_path, 
@@ -64,13 +48,7 @@ class AppServiceProvider extends ServiceProvider
       ->where('user_id', '=', Session::data('client_login'))
       ->first();
     $data['getUserClient'] = $getUserClient;
-    // Get user google
-    $getUserGoogle = $this->db->table('users')
-      ->select('user_id, user_name, user_email, user_phone, user_image, 
-    user_address')
-      ->where('user_id', '=', Session::data('google_login'))
-      ->first();
-    $data['getUserGoogle'] = $getUserGoogle;
+
     // count user yesterday
     $yesterday = date('Y-m-d', strtotime('-1 day'));
     $countUserYesterDay = $this->db->table('users')
@@ -133,28 +111,28 @@ class AppServiceProvider extends ServiceProvider
 
     // count comment products yesterday
     $countCommentProductYesterDay = $this->db->table('comments')
-      ->select('COUNT(comment_id) as countCommentProductYesterDay')
+        ->select('COUNT(comments) as countCommentProductYesterDay')
       ->where('create_at', '>=', $today)
       ->where('is_delete', '=', 0)
       ->first();
     $data['countCommentProductYesterDay'] = $countCommentProductYesterDay;
     // count user
     $countAllCommentProduct = $this->db->table('comments')
-      ->select('COUNT(comment_id) as countAllCommentProduct')
+        ->select('COUNT(comments) as countAllCommentProduct')
       ->where('is_delete', '=', 0)
       ->first();
     $data['countAllCommentProduct'] = $countAllCommentProduct;
 
     // count comment posts yesterday
-    $countCommentPostYesterDay = $this->db->table('comments')
-      ->select('COUNT(comment_id) as countCommentPostYesterDay')
+      $countCommentPostYesterDay = $this->db->table('comments_post')
+          ->select('COUNT(comment_post_id) as countCommentPostYesterDay')
       ->where('is_delete', '=', 0)
       ->where('create_at', '>=', $today)
       ->first();
     $data['countCommentPostYesterDay'] = $countCommentPostYesterDay;
     // count user
-    $countAllCommentPost = $this->db->table('comments')
-      ->select('COUNT(comment_id) as countAllCommentPost')
+      $countAllCommentPost = $this->db->table('comments_post')
+          ->select('COUNT(comment_post_id) as countAllCommentPost')
       ->where('is_delete', '=', 0)
       ->first();
     $data['countAllCommentPost'] = $countAllCommentPost;
@@ -216,6 +194,9 @@ class AppServiceProvider extends ServiceProvider
     if ($totalRevenueLastMonth != 0) {
       $percent = (($totalRevenueMonth['totalRevenueMonth'] - $totalRevenueLastMonth) / $totalRevenueLastMonth) * 100;
       $data['percent'] = round($percent, 2);
+        // if ($data['percent'] >= 100) {
+        //   $data['percent'] = '100';
+        // }
     } else {
       $percent = 0;
       $data['percent'] = round($percent, 2);
@@ -252,39 +233,10 @@ class AppServiceProvider extends ServiceProvider
       orders.order_total, order_payment.order_payment_name as order_payment_name, order_status.order_status_name as order_status_name')
       ->where('orders.is_delete', '=', 0)
       ->where('users.is_delete', '=', 0)
-      ->where('orders.create_at', '>', $today)
-      ->orderBy('orders.create_at', 'ASC')
+        ->orderBy('orders.create_at', 'DESC')
       ->limit('5')
       ->get();
     $data['getOrderLimit'] = $getOrderLimit;
-    //Get order user session
-    $getOrderSession = $this->db->table('orders')
-      ->join('order_status', 'orders.order_status = order_status.order_status_id')
-      ->join('orders_detail', 'orders.order_id = orders_detail.order_id')
-      ->join('products', 'orders_detail.product_id = products.product_id')
-      ->select('products.product_image_path AS product_image_path, products.product_image AS product_image, products.product_name AS product_name,
-      products.product_price AS product_price, products.product_price_reduce AS product_price_reduce, orders_detail.order_total_product AS order_total_product,
-      orders.order_total AS order_total, order_status.order_status_name AS order_status_name, orders_detail.order_quantity AS order_quantity, orders.user_name AS user_name, orders_detail.order_detail_id as order_detail_id,
-      orders.user_email AS user_email, orders.user_phone AS user_phone, orders.user_address AS user_address, orders.code_orders as code_orders, orders.order_id as order_id, orders.order_status as order_status')
-      ->where('orders_detail.is_delete', '=', 0)
-      ->where('orders.user_id', '=', (Session::data('client_login')) ? Session::data('client_login') : Session::data('google_login'))
-      ->orderBy('orders.create_at', 'ASC')
-      ->get();
-    $data['getOrderSession'] = $getOrderSession;
-    //Get order cancel user session
-    $getOrderCancel = $this->db->table('orders')
-      ->join('order_status', 'orders.order_status = order_status.order_status_id')
-      ->join('orders_detail', 'orders.order_id = orders_detail.order_id')
-      ->join('products', 'orders_detail.product_id = products.product_id')
-      ->select('products.product_id as product_id, products.product_image_path AS product_image_path, products.product_image AS product_image, products.product_name AS product_name,
-      products.product_price AS product_price, products.product_price_reduce AS product_price_reduce, orders_detail.order_total_product AS order_total_product,
-      orders.order_total AS order_total, order_status.order_status_name AS order_status_name, orders_detail.order_quantity AS order_quantity, orders.user_name AS user_name, orders_detail.order_detail_id as order_detail_id,
-      orders.user_email AS user_email, orders.user_phone AS user_phone, orders.user_address AS user_address, orders.code_orders as code_orders, orders.order_id as order_id, orders.order_status as order_status')
-      ->where('orders_detail.is_delete', '=', 1)
-      ->where('orders.user_id', '=', (Session::data('client_login')) ? Session::data('client_login') : Session::data('google_login'))
-      ->orderBy('orders.create_at', 'ASC')
-      ->get();
-    $data['getOrderCancel'] = $getOrderCancel;
     // get order limit 5 during the day
     $getOrderLimitDuringTheDay = $this->db->table('orders')
       ->join('users', 'orders.user_id = users.user_id')
@@ -296,7 +248,7 @@ class AppServiceProvider extends ServiceProvider
       ->where('orders.is_delete', '=', 0)
       ->where('orders.create_at', '>', $today)
       ->where('users.is_delete', '=', 0)
-      ->orderBy('orders.create_at', 'ASC')
+        ->orderBy('orders.create_at', 'DESC')
       ->limit('3')
       ->get();
     $data['getOrderLimitDuringTheDay'] = $getOrderLimitDuringTheDay;
@@ -306,8 +258,8 @@ class AppServiceProvider extends ServiceProvider
       ->select('comments.comment_content as comment_content, comments.create_at as create_at,
       users.user_image_path as user_image_path, users.user_image as user_image, users.user_name as user_name')
       ->where('comments.is_delete', '=', 0)
-      ->where('comments.create_at', '>', $today)
       ->where('users.is_delete', '=', 0)
+        ->orderBy('comments.create_at', 'DESC')
       ->limit('5')
       ->get();
     $data['getCommentProductDashboard'] = $getCommentProductDashboard;
@@ -319,27 +271,27 @@ class AppServiceProvider extends ServiceProvider
       ->where('comments.is_delete', '=', 0)
       ->where('comments.create_at', '>', $today)
       ->where('users.is_delete', '=', 0)
-      ->orderBy('comments.create_at', 'ASC')
+        ->orderBy('comments.create_at', 'DESC')
       ->limit('3')
       ->get();
     $data['getCommentProductDuringTheDay'] = $getCommentProductDuringTheDay;
     // get comment post new
-    $getCommentPostDashboard = $this->db->table('comments')
-      ->join('users', 'comments.user_id = users.user_id')
-      ->select('comments.comment_content as comment_content, comments.create_at as create_at,
+      $getCommentPostDashboard = $this->db->table('comments_post')
+          ->join('users', 'comments_post.user_id = users.user_id')
+          ->select('comments_post.comment_content as comment_content, comments_post.create_at as create_at,
       users.user_image_path as user_image_path, users.user_image as user_image, users.user_name as user_name')
-      ->where('comments.is_delete', '=', 0)
+          ->where('comments_post.is_delete', '=', 0)
       ->where('users.is_delete', '=', 0)
-      ->where('comments.create_at', '>', $today)
+          ->orderBy('comments_post.create_at', 'DESC')
       ->limit('5')
       ->get();
     $data['getCommentPostDashboard'] = $getCommentPostDashboard;
 
     // Get banner home
-    $getBannerHomeClient = $this->db->table('banners_home')
+      $getBannerHome = $this->db->table('banners_home')
       ->select('banner_home_id, banner_home_image, banner_home_path, create_at, update_at')
       ->get();
-    $data['getBannerHomeClient'] = $getBannerHomeClient;
+      $data['getBannerHome'] = $getBannerHome;
 
     // get products special
     $getProductSpecial = $this->db->table('products')
@@ -355,7 +307,7 @@ class AppServiceProvider extends ServiceProvider
     $data['getProductSpecial'] = $getProductSpecial;
 
     // get products category headset
-    $getAllProductHome = $this->db->table('products')
+      $getProductHeadset = $this->db->table('products')
       ->join('categories', 'products.category_id = categories.category_id')
       ->select('products.product_id AS product_id, products.product_name AS product_name, products.product_image AS product_image, 
          products.product_image_path AS product_image_path, products.product_price AS product_price,
@@ -363,151 +315,69 @@ class AppServiceProvider extends ServiceProvider
          products.category_id AS category_id, products.product_special AS product_special, products.product_describe AS product_describe, 
          products.create_at AS create_at, categories.category_id AS category_id, categories.category_name AS category_name')
       ->where('products.is_delete', '=', 0)
+          ->where('products.category_id', '=', 1)
       ->get();
-    $data['getAllProductHome'] = $getAllProductHome;
+      $data['getProductHeadset'] = $getProductHeadset;
+
+      // get products category keyboard
+      $getProductKeyboard = $this->db->table('products')
+          ->join('categories', 'products.category_id = categories.category_id')
+          ->select('products.product_id AS product_id, products.product_name AS product_name, products.product_image AS product_image, 
+         products.product_image_path AS product_image_path, products.product_price AS product_price,
+         products.product_price_reduce AS product_price_reduce, products.product_quantity AS product_quantity, 
+         products.category_id AS category_id, products.product_special AS product_special, products.product_describe AS product_describe, 
+         products.create_at AS create_at, categories.category_id AS category_id, categories.category_name AS category_name')
+          ->where('products.is_delete', '=', 0)
+          ->where('products.category_id', '=', 2)
+          ->get();
+      $data['getProductKeyboard'] = $getProductKeyboard;
+
+      // get products category mouse
+      $getProductMouse = $this->db->table('products')
+          ->join('categories', 'products.category_id = categories.category_id')
+          ->select('products.product_id AS product_id, products.product_name AS product_name, products.product_image AS product_image, 
+         products.product_image_path AS product_image_path, products.product_price AS product_price,
+         products.product_price_reduce AS product_price_reduce, products.product_quantity AS product_quantity, 
+         products.category_id AS category_id, products.product_special AS product_special, products.product_describe AS product_describe, 
+         products.create_at AS create_at, categories.category_id AS category_id, categories.category_name AS category_name')
+          ->where('products.is_delete', '=', 0)
+          ->where('products.category_id', '=', 3)
+          ->get();
+      $data['getProductMouse'] = $getProductMouse;
+
+      // get products category gamepad
+      $getProductGamepad = $this->db->table('products')
+          ->join('categories', 'products.category_id = categories.category_id')
+          ->select('products.product_id AS product_id, products.product_name AS product_name, products.product_image AS product_image, 
+         products.product_image_path AS product_image_path, products.product_price AS product_price,
+         products.product_price_reduce AS product_price_reduce, products.product_quantity AS product_quantity, 
+         products.category_id AS category_id, products.product_special AS product_special, products.product_describe AS product_describe, 
+         products.create_at AS create_at, categories.category_id AS category_id, categories.category_name AS category_name')
+          ->where('products.is_delete', '=', 0)
+          ->where('products.category_id', '=', 4)
+          ->get();
+      $data['getProductGamepad'] = $getProductGamepad;
+
+      // get products category tv
+      $getProductTv = $this->db->table('products')
+          ->join('categories', 'products.category_id = categories.category_id')
+          ->select('products.product_id AS product_id, products.product_name AS product_name, products.product_image AS product_image, 
+         products.product_image_path AS product_image_path, products.product_price AS product_price,
+         products.product_price_reduce AS product_price_reduce, products.product_quantity AS product_quantity, 
+         products.category_id AS category_id, products.product_special AS product_special, products.product_describe AS product_describe, 
+         products.create_at AS create_at, categories.category_id AS category_id, categories.category_name AS category_name')
+          ->where('products.is_delete', '=', 0)
+          ->where('products.category_id', '=', 5)
+          ->get();
+      $data['getProductTv'] = $getProductTv;
+
+      // Phân trang
 
     $getAllCategory = $this->db->table('categories')
       ->select('*')
-      ->where('is_delete', '=', 0)
       ->get();
-    $data['getAllCategory'] = $getAllCategory;
-    // Add to cart
-    if (isset($_POST['add_to_cart'])) {
-      if (!empty(Session::data('client_login'))) {
-        if (isset($_SESSION['cart'])) {
-          $session_array_id = array_column($_SESSION['cart'], "product_id");
-          if (!in_array($_POST['product_id'], $session_array_id)) {
-            $session_array = array(
-              'product_id' => $_POST['product_id'],
-              'product_name' => $_POST['product_name'],
-              'product_price' => $_POST['product_price'],
-              'product_price_reduce' => $_POST['product_price_reduce'],
-              'product_image_path' => $_POST['product_image_path'],
-              'product_image' => $_POST['product_image'],
-              'product_quantity' => $_POST['product_quantity']
-            );
-            // Session::data('cart'[], $session_array);
-            $_SESSION['cart'][] = $session_array;
-            $response = new Response();
-            $response->redirect('carts');
-          } else {
-            if (isset($_POST['add_to_cart'])) {
-              if (isset($_SESSION['cart'])) {
-                $product_id_to_add = $_POST['product_id'];
-                foreach ($_SESSION['cart'] as &$product) {
-                  if ($product['product_id'] == $product_id_to_add) {
-                    $product['product_quantity']++;
-                    $response = new Response();
-                    $response->redirect('carts');
-                  }
-                }
-              }
-            }
-          }
-        } else {
-          $session_array = array(
-            'product_id' => $_POST['product_id'],
-            'product_name' => $_POST['product_name'],
-            'product_price' => $_POST['product_price'],
-            'product_price_reduce' => $_POST['product_price_reduce'],
-            'product_image_path' => $_POST['product_image_path'],
-            'product_image' => $_POST['product_image'],
-            'product_quantity' => $_POST['product_quantity']
-          );
-          $_SESSION['cart'][] = $session_array;
-          $response = new Response();
-          $response->redirect('carts');
-        }
-      } elseif (!empty(Session::data('google_login'))) {
-        if (isset($_SESSION['cart'])) {
-          $session_array_id = array_column($_SESSION['cart'], "product_id");
-          if (!in_array($_POST['product_id'], $session_array_id)) {
-            $session_array = array(
-              'product_id' => $_POST['product_id'],
-              'product_name' => $_POST['product_name'],
-              'product_price' => $_POST['product_price'],
-              'product_price_reduce' => $_POST['product_price_reduce'],
-              'product_image_path' => $_POST['product_image_path'],
-              'product_image' => $_POST['product_image'],
-              'product_quantity' => $_POST['product_quantity']
-            );
-            // Session::data('cart'[], $session_array);
-            $_SESSION['cart'][] = $session_array;
-            $response = new Response();
-            $response->redirect('carts');
-          } else {
-            if (isset($_POST['add_to_cart'])) {
-              if (isset($_SESSION['cart'])) {
-                $product_id_to_add = $_POST['product_id'];
-                foreach ($_SESSION['cart'] as &$product) {
-                  if ($product['product_id'] == $product_id_to_add) {
-                    $product['product_quantity']++;
-                    $response = new Response();
-                    $response->redirect('carts');
-                  }
-                }
-              }
-            }
-          }
-        } else {
-          $session_array = array(
-            'product_id' => $_POST['product_id'],
-            'product_name' => $_POST['product_name'],
-            'product_price' => $_POST['product_price'],
-            'product_price_reduce' => $_POST['product_price_reduce'],
-            'product_image_path' => $_POST['product_image_path'],
-            'product_image' => $_POST['product_image'],
-            'product_quantity' => $_POST['product_quantity']
-          );
-          $_SESSION['cart'][] = $session_array;
-          $response = new Response();
-          $response->redirect('carts');
-        }
-      } else {
-        $response = new Response();
-        $response->redirect('lgUser');
-      }
-    }
-    $totalPrice = 0;
-    $totalCart = 0;
-    if (isset($_POST['update_quantity'])) {
-      if (isset($_SESSION['cart'])) {
-        foreach ($_SESSION['cart'] as &$product) {
-          if ($product['product_id'] == $_POST['product_id']) {
-            // Cập nhật số lượng sản phẩm
-            $new_quantity = (int)$_POST['new_quantity'];
-            if ($new_quantity >= 1) {
-              $product['product_quantity'] = $new_quantity;
-            }
-            break;
-          }
-        }
-      }
-    }
-    if (isset($_SESSION['cart'])) {
-      foreach ($_SESSION['cart'] as $item) {
-        $totalPrice += ($item['product_price_reduce'] == null ? $item['product_price'] : $item['product_price_reduce']) * $item['product_quantity'];
-        $totalCart = COUNT($_SESSION['cart']);
-      }
-    }
-    if (isset($_POST['delete_product'])) {
-      foreach ($_SESSION['cart'] as $key => $item) {
-        $product_id = $_POST['product_id'];
-        if ($item['product_id'] == $product_id) {
-          unset($_SESSION['cart'][$key]);
-          $totalPrice -= ($item['product_price_reduce'] == null ? $item['product_price'] : $item['product_price_reduce']) * $item['product_quantity'];
-          $totalCart = COUNT($_SESSION['cart']);
-        }
-      }
-    }
-    $data['totalPrice'] = $totalPrice;
-    $data['totalCart'] = $totalCart;
 
-      // if (isset($_POST['searchProduct'])) {
-      //   $searchKeyword = $_POST['searchKeyword'];
-      //   $this->db('ProductModel')->getProductKey();
-      // }
-
+      $data['getAllCategory'] = $getAllCategory;
     $data['copyright'] = 'Coppyright &copy; 2023 by GamingGear';
     View::share($data);
   }
