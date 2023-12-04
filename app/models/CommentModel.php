@@ -54,12 +54,13 @@ class CommentModel extends Model
       ->first();
     return $data;
   }
-  public function countCommentPostReplyId($comment_post_id)
+
+    public function countCommentPostReplyId($comment_id)
   {
     $data = $this->db->table('replies_post')
       ->select('COUNT(reply_post_id) as countCommentPostReplyId')
       ->where('is_delete', '=', 0)
-      ->where('comment_post_id', '=', $comment_post_id)
+        ->where('comment_id', '=', $comment_id)
       ->first();
     return $data;
   }
@@ -128,7 +129,7 @@ class CommentModel extends Model
     $data = $this->db->table('comments')
       ->join('users', 'comments.user_id = users.user_id')
       ->select('comments.post_id AS post_id, comments.comment_id AS comment_id, comments.user_id AS user_id, 
-      comments.comment_content AS comment_content, comments.create_at AS create_at, 
+      comments.comment_content AS comment_content, comments.create_at AS create_at, comments.parent_id AS parent_id,
       users.user_name AS user_name, users.user_email AS user_email, users.user_image_path AS 
       user_image_path, users.user_image AS user_image')
       ->where('comments.post_id', '=', $post_id)
@@ -143,7 +144,7 @@ class CommentModel extends Model
     $data = $this->db->table('comments')
       ->join('users', 'comments.user_id = users.user_id')
       ->select('comments.post_id AS post_id, comments.comment_id AS comment_id, comments.user_id AS user_id, 
-      comments.comment_content AS comment_content, comments.create_at AS create_at, 
+      comments.comment_content AS comment_content, comments.create_at AS create_at, comments.parent_id AS parent_id,
       users.user_name AS user_name, users.user_email AS user_email, users.user_image_path AS 
       user_image_path, users.user_image AS user_image')
       ->where('comments.post_id', '=', $post_id)
@@ -153,12 +154,13 @@ class CommentModel extends Model
       ->get();
     return $data;
   }
-  public function countCommentPostId($comment_post_id)
+
+    public function countCommentPostId($comment_id)
   {
     $data = $this->db->table('comments')
-      ->select('COUNT(comment_post_id) as countCommentPostId')
+        ->select('COUNT(comment_id) as countCommentPostId')
       ->where('is_delete', '=', 0)
-      ->where('post_id', '=', $comment_post_id)
+        ->where('post_id', '=', $comment_id)
       ->first();
     return $data;
   }
