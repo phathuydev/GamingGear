@@ -703,3 +703,12 @@ body {
   float: right;
   font-style: italic;
 }
+
+/* Thêm class để ẩn form ban đầu */
+.comment-form {
+  display: none !important;
+}
+
+.comment-form.hidden {
+  display: block !important;
+}

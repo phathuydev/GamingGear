@@ -22,15 +22,15 @@ class Route
     return $handleUrl;
   }
 
-  public function getUri()
-  {
-    return $this->__keyRoute;
-  }
+  // public function getUri()
+  // {
+  //   return $this->__keyRoute;
+  // }
 
-  static public function getFullUrl()
-  {
-    $uri = App::$app->getUrl();
-    $url = _WEB_ROOT .  $uri;
-    return $url;
-  }
+  // static public function getFullUrl()
+  // {
+  //   $uri = App::$app->getUrl();
+  //   $url = _WEB_ROOT .  $uri;
+  //   return $url;
+  // }
 }

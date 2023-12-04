@@ -46,7 +46,7 @@ class App
 
     // Middleware App
     $this->handleGlobalMiddleware($this->__db);
-    $this->handleRouteMiddleware($this->__routes->getUri(), $this->__db);
+    // $this->handleRouteMiddleware($this->__routes->getUri(), $this->__db);
 
     // App service Provider
     $this->handleAppServiceProvider($this->__db);

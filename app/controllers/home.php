@@ -11,7 +11,7 @@ class Home extends Controller
   {
       $title = 'Home';
     $this->data['pages_title'] = $title;
-    $this->data['sub_content']['role'] = [];
+    $this->data['sub_content'][] = [];
     $this->data['content'] = 'client/home/home';
     $this->render('client/layoutClient/client_layout', $this->data);
   }

@@ -20,7 +20,7 @@ class OrderModel extends Model
             ->join('users', 'orders.user_id = users.user_id')
             ->join('order_status', 'orders.order_status = order_status.order_status_id')
             ->join('order_payment', 'orders.order_payment = order_payment.order_payment_id')
-            ->select('orders.order_id AS order_id, orders.order_note AS order_note, orders.order_total AS order_total, 
+            ->select('orders.code_orders AS code_orders, orders.order_id AS order_id, orders.order_note AS order_note, orders.order_total AS order_total, 
             orders.order_payment AS order_payment, orders.order_status AS order_status,
             users.user_image AS user_image, users.user_image_path AS user_image_path,
             orders.user_name AS user_name, order_payment.order_payment_name AS order_payment_name, order_status.order_name AS order_name,
@@ -55,7 +55,7 @@ class OrderModel extends Model
             ->join('orders', 'orders_detail.order_id = orders.order_id')
             ->select('orders_detail.order_quantity AS order_quantity, orders_detail.order_total_product AS product_total,
             products.product_name AS product_name, products.product_image AS product_image, products.product_image_path AS product_image_path,
-            order_payment as order_payment_name')
+            orders.order_payment as order_payment_name, orders.order_status as order_status_name')
             ->where('orders_detail.order_id', '=', $order_id)
             ->get();
         return $data;
