@@ -29,8 +29,9 @@
                 <td class="d-flex align-items-center pt-4">
                   <form method="post" class="m-0">
                     <input type="hidden" name="comment_id" value="<?= $item['comment_id'] ?>">
-                    <input type="hidden" name="product_id" value="<?= $item['product_id'] ?>">
-                    <button type="submit" class="badge badge-danger border-0" onclick="return confirm('Delete Comment <?= $item['comment_content'] ?>');">Delete Comment</button>
+                      <button type="submit" name="deleteCommentProduct" class="badge badge-danger border-0"
+                              onclick="return confirm('Delete Comment <?= $item['comment_content'] ?>');">Delete Comment
+                      </button>
                   </form>
                 </td>
               </tr>

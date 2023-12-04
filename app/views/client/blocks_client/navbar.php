@@ -6,10 +6,12 @@
           <a href="<?= _WEB_ROOT; ?>/home" class="logo">
             <img src="<?php echo _WEB_ROOT ?>/public/assets/client/images/Gaming-logoWT.png" alt="">
           </a>
-          <div class="search-input">
-            <form id="search" action="#">
-              <input type="text" class="bg-white" placeholder="Seach Product" id='searchText' name="searchKeyword" onkeypress="handle" />
-              <i class="fa fa-search"></i>
+            <div class="search-input position-relative">
+                <form id="search" class="d-flex" action="" method="post">
+                    <input type="text" class="bg-white ps-3 pe-3" placeholder="Seach" id='searchText'
+                           name="searchKeyword">
+                    <input type="submit" name="searchProduct"
+                           class="bg-black border text-white position-absolute p-2 end-0" id="" value="Tìm kiếm">
             </form>
           </div>
           <!-- ***** Search End ***** -->

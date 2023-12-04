@@ -502,6 +502,12 @@ class AppServiceProvider extends ServiceProvider
     }
     $data['totalPrice'] = $totalPrice;
     $data['totalCart'] = $totalCart;
+
+      // if (isset($_POST['searchProduct'])) {
+      //   $searchKeyword = $_POST['searchKeyword'];
+      //   $this->db('ProductModel')->getProductKey();
+      // }
+
     $data['copyright'] = 'Coppyright &copy; 2023 by GamingGear';
     View::share($data);
   }

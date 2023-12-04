@@ -155,17 +155,22 @@ class CommentModel extends Model
     return $data;
   }
 
-    public function countCommentPostId($comment_id)
+    public function countCommentPostId($post_id)
   {
     $data = $this->db->table('comments')
         ->select('COUNT(comment_id) as countCommentPostId')
       ->where('is_delete', '=', 0)
-        ->where('post_id', '=', $comment_id)
+        ->where('post_id', '=', $post_id)
       ->first();
     return $data;
   }
   public function updateIsdeleteCommentProduct($data, $comment_id)
   {
+      $this->db->table('comments')->where('comment_id', '=', $comment_id)->update($data);
+  }
+
+    public function updateIsdeleteCommentPost($data, $comment_id)
+    {
     $this->db->table('comments')->where('comment_id', '=', $comment_id)->update($data);
   }
   public function updateIsdeleteReplyCommentProduct($data, $comment_id)

@@ -72,25 +72,17 @@
                         </div>
                         <div>
                           <div class="row">
-                            <div class="col-lg-4 col-sm-4">
+                              <div class="col-lg-6 col-sm-6">
                               <div data-bs-toggle="collapse">
                                 <button class="card-radio text-center text-truncate small p-0" type="submit" name="redirect" id="">
                                   <span class="card-radio text-center text-truncate small">
-                                    <img src="<?= _WEB_ROOT ?>/public/assets/client/images/vnpay.png" alt="" style="width: 30%;">
+                                    <img src="<?= _WEB_ROOT ?>/public/assets/client/images/vnpay.png" alt=""
+                                         style="width: 20%;">
                                   </span>
                                 </button>
                               </div>
                             </div>
-                            <div class="col-lg-4 col-sm-4">
-                              <div data-bs-toggle="collapse">
-                                <button class="card-radio text-center text-truncate small p-0" type="submit" name="redirect" id="">
-                                  <span class="card-radio text-center text-truncate small">
-                                    <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-MoMo-Square-768x768.png" alt="" style="width: 15%;">
-                                  </span>
-                                </button>
-                              </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-4">
+                              <div class="col-lg-6 col-sm-6">
                               <div>
                                 <a class="card-radio-label">
                                   <input type="radio" name="pay-method" id="pay-methodoption3" class="card-radio-input" checked="">
@@ -241,25 +233,17 @@
                         </div>
                         <div>
                           <div class="row">
-                            <div class="col-lg-4 col-sm-4">
+                              <div class="col-lg-6 col-sm-6">
                               <div data-bs-toggle="collapse">
                                 <button class="card-radio text-center text-truncate small p-0" type="submit" name="redirect" id="">
                                   <span class="card-radio text-center text-truncate small">
-                                    <img src="<?= _WEB_ROOT ?>/public/assets/client/images/vnpay.png" alt="" style="width: 30%;">
+                                    <img src="<?= _WEB_ROOT ?>/public/assets/client/images/vnpay.png" alt=""
+                                         style="width: 20%;">
                                   </span>
                                 </button>
                               </div>
                             </div>
-                            <div class="col-lg-4 col-sm-4">
-                              <div data-bs-toggle="collapse">
-                                <button class="card-radio text-center text-truncate small p-0" type="submit" name="redirect" id="">
-                                  <span class="card-radio text-center text-truncate small">
-                                    <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-MoMo-Square-768x768.png" alt="" style="width: 15%;">
-                                  </span>
-                                </button>
-                              </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-4">
+                              <div class="col-lg-6 col-sm-6">
                               <div>
                                 <a class="card-radio-label">
                                   <input type="radio" name="pay-method" id="pay-methodoption3" class="card-radio-input" checked="">
