@@ -55,13 +55,15 @@ trait QueryBuilder
     return $this;
   }
 
-  public function lastID(){
+    public function lastID()
+    {
     return $this->lastInsertId();
   }
 
   public function get()
   {
       $sqlQuery = "SELECT $this->selectField FROM $this->tableName $this->innerJoin $this->where $this->orderBy $this->groupBy $this->limit";
+      // echo $sqlQuery;
     $sqlQuery = trim($sqlQuery);
     $query = $this->query($sqlQuery);
     $this->resetQuery();

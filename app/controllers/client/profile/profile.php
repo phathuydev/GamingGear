@@ -64,7 +64,7 @@ class Profile extends Controller
         'is_delete' => 1
       ];
       $this->province->updateAddressOrderDetail($data, $order_detail_id);
-      Session::flash('deleteOrder', 'Order Delete successfully');
+        Session::flash('deleteOrder', 'Order cancel successfully');
       $response = new Response();
       $response->redirect('profile/index/2/1');
     }

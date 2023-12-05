@@ -7,11 +7,10 @@
             <img src="<?php echo _WEB_ROOT ?>/public/assets/client/images/Gaming-logoWT.png" alt="">
           </a>
             <div class="search-input position-relative">
-                <form id="search" class="d-flex" action="" method="post">
-                    <input type="text" class="bg-white ps-3 pe-3" placeholder="Seach" id='searchText'
-                           name="searchKeyword">
+                <form id="search" class="d-flex" action="<?= _WEB_ROOT ?>/search/8/1" method="post">
+                    <input type="search" class="bg-white ps-3 pe-3" placeholder="Seach" name="searchKeyword">
                     <input type="submit" name="searchProduct"
-                           class="bg-black border text-white position-absolute p-2 end-0" id="" value="Tìm kiếm">
+                           class="bg-black border text-white position-absolute p-2 end-0" value="Tìm kiếm">
             </form>
           </div>
           <!-- ***** Search End ***** -->
@@ -27,7 +26,9 @@
             <?php elseif (empty(Session::data('client_login'))) : ?>
               <li data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a><img src="<?php echo _WEB_ROOT . '/' . 'public/assets/admin/uploaded_img/default_img.jpg'; ?>" style="width: 40px !important; border-radius: 30px;" alt="avatar"></a></li>
             <?php else : ?>
-              <li><a href="<?= _WEB_ROOT ?>/profile/index/1"><img src="<?php echo _WEB_ROOT . '/' . $getUserClient['user_image_path'] . ($getUserClient['user_image'] ? $getUserClient['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') ?>" style="width: 40px !important; border-radius: 30px;" alt="avatar"></a></li>
+                <li><a href="<?= _WEB_ROOT ?>/profile/index/1"><img
+                                src="<?= !empty($getUserClient['user_image_path']) ? _WEB_ROOT . '/' . $getUserClient['user_image_path'] . ($getUserClient['user_image'] ? $getUserClient['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($getUserClient['user_image'] ? $getUserClient['user_image'] : _WEB_ROOT . '/' . $getUserClient['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>"
+                                style="width: 40px !important; border-radius: 30px;" alt="avatar"></a></li>
             <?php endif ?>
             <div class="dropdown-menu rounded-3 mt-2 pt-1 pb-1 ps-0 pe-0" style="top: -55px; left: 40px;">
               <?php if (empty(Session::data('client_login'))) : ?>

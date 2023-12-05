@@ -1,3 +1,4 @@
+<?php include '../../../../app/core/resetPass.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,40 +23,38 @@
     <link rel="shortcut icon" href="<? echo _WEB_ROOT ?>/public/assets/admin/img/logo4.jpg"/>
 </head>
 
-<body class="header-text"
-      style="background-image: url('http://1.bp.blogspot.com/-RUGcTW3FR2U/Ur12Bi3G5QI/AAAAAAAABzk/WC0wQdRHhw4/s1600/B1.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
-<section class="h-100 gradient-custom m-0">
-    <div class="container py-5">
-        <div class="row">
-            <div class="col-lg-12 p-0">
-                <div class="page-content-login m-0">
-                    <div class="d-flex justify-content-center align-items-center mb-5">
-                        <div class="most-popular mt-4" style="width: 35% !important;">
-                            <div class="card-body p-0 p-lg-5 text-black">
-                                <div class="card-body p-0 shadow-5 text-center">
-                                    <form method="post" class="card-body text-cente d-inline-block">
-                                        <h3 class="mb-4 h4" style="color: #ec6090;">Reset Password</h3><br>
-                                        <div class="form-outline mb-4">
-                                            <input type="password" id="typeEmailX-2" name="password"
-                                                   class="form-control form-control-lg" placeholder="Password"/>
-                                        </div>
-                                        <div class="form-outline mb-4">
-                                            <input type="password" id="typeEmailX-2" name="cpassword"
-                                                   class="form-control form-control-lg" placeholder="Confirm Password"/>
-                                        </div>
-                                        <button class="btn btn-lg btn-block mb-2" type="submit"
-                                                style="background-color: #ec6090; color: #fff;">Reset
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+<body style="background-image: url('https://i.pinimg.com/originals/a7/5b/f8/a75bf8a2aa58d056d640de66665c18be.jpg'); background-repeat: no-repeat; background-position: center;">
+<div class="d-flex justify-content-center align-items-center mt-5">
+    <div class="most-popular mt-5" style="width: 30% !important;">
+        <div class="bg-dark p-0 p-lg-5 text-black" style="border-radius: 20px;">
+            <div class="card-body p-0 shadow-5 text-center">
+                <form method="post" class="card-body text-cente d-inline-block">
+                    <h3 class="mb-3 h4" style="color: #ec6090;">Reset Password</h3><br>
+                    <?php echo isset($err) ? '<p class="text-danger mt-2 text-center">' . $err . '</p>' : false ?>
+                    <div class="form-outline mb-4">
+                        <input type="email" id="typeEmailX-2" name="email" class="form-control form-control-lg"
+                               placeholder="Email"
+                               value="<?= isset($_SESSION['user_email']) ? $_SESSION['user_email'] : false; ?>"/>
+                        <?php echo isset($msgEmail) ? '<p class="text-danger mt-2 text-center">' . $msgEmail . '</p>' : false ?>
                     </div>
-                </div>
+                    <div class="form-outline mb-4">
+                        <input type="password" id="typeEmailX-2" name="password" class="form-control form-control-lg"
+                               placeholder="Password"/>
+                        <?php echo isset($msgReset) ? '<p class="text-danger mt-2 text-center">' . $msgReset . '</p>' : '<p class="text-danger mt-2 text-center">' . (isset($notMatch) ? $notMatch : (isset($strlenPass) ? $strlenPass : false)) . '</p>' ?>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <input type="password" id="typeEmailX-2" name="cpassword" class="form-control form-control-lg"
+                               placeholder="Confirm Password"/>
+                        <?php echo isset($msgCpass) ? '<p class="text-danger mt-2 text-center">' . $msgCpass . '</p>' : false ?>
+                        </div>
+                    <button class="btn btn-lg btn-block mb-2" type="submit" name="resetpass"
+                            style="background-color: #ec6090; color: #fff;">Reset
+                    </button>
+                </form>
             </div>
         </div>
     </div>
-</section>
+</div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

@@ -23,18 +23,30 @@ class Product extends Controller
     $this->data['content'] = 'client/product/list';
     $this->render('client/layoutClient/client_layout', $this->data);
   }
-  public function product_search($keyWord = '')
+
+    public function product_search($per_pages = 8, $pages = 1)
   {
-    $title = 'Keyword - ' . $keyWord;
+      $title = 'Product Search';
     $this->data['pages_title'] = $title;
-    $this->data['sub_content']['getProductCategory'] = '';
+      if (isset($_POST['searchProduct'])) {
+          $searchKeyword = $_POST['searchKeyword'];
+          Session::data('searchKeyword', $searchKeyword);
+      }
+      $countProductSearch = $this->province->countProductSearch(Session::data('searchKeyword'));
+      $this->data['sub_content']['countProductSearch'] = $countProductSearch;
+      $offset = ($pages - 1) * $per_pages;
+      $totalPages = ceil($countProductSearch['countProductSearch'] / $per_pages);
+      $this->data['sub_content']['totalPages'] = $totalPages;
+      $this->data['sub_content']['per_pages'] = $per_pages;
+      $this->data['sub_content']['pages'] = $pages;
+      $getProductSearch = $this->province->getProductSearch(Session::data('searchKeyword'), $per_pages, $offset);
+      $this->data['sub_content']['getProductSearch'] = $getProductSearch;
+      $this->data['sub_content']['keyWord'] = Session::data('searchKeyword');
     $this->data['content'] = 'client/product/search';
     $this->render('client/layoutClient/client_layout', $this->data);
   }
   public function product_detail($product_id = 0, $category_id = 0, $per_pages = 8, $pages = 1)
   {
-    $countCommentProductId = $this->model('CommentModel')->countCommentProductId($product_id);
-    $this->data['sub_content']['countCommentProductId'] = $countCommentProductId;
     $getBannerProductId = $this->province->getBannerProductId($product_id);
     $this->data['sub_content']['getBannerProductId'] = $getBannerProductId;
     $countProductCategory = $this->province->countProductCategory($category_id);

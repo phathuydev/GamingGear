@@ -25,6 +25,8 @@ class Auth extends Controller
             Session::data('client_login', $stored_user_data['user_id']);
             $response = new Response();
             $response->redirect('home');
+          } else {
+              Session::flash('msg_lgClient', 'Email or password is incorrect');
           }
         } else {
           Session::flash('msg_lgClient', 'Email or password is incorrect');
@@ -69,7 +71,54 @@ class Auth extends Controller
   {
     $title = 'Forgot';
     $this->data['pages_title'] = $title;
-    $this->data['sub_content']['product'] = [];
+      //Quên mật khẩu user
+      if (isset($_POST['forgotPassword'])) {
+          $user_email = $_POST['user_email'];
+          $resetpass_HashSecret = "OQJSUFBVHCYDJFOEJFGSLOWGYWBEYGB";
+          $hash = hash_hmac('sha256', $user_email, $resetpass_HashSecret);
+          $_SESSION['hashEmail'] = $hash;
+          $select = $this->province->getUserLoginClient($user_email);
+          if (empty($user_email)) {
+              Session::flash('err_user_email', 'Please fill in your email!');
+          } elseif ($select) {
+              $_SESSION['resetPass'] = $select['user_id'];
+              $_SESSION['user_email'] = $user_email;
+              $mess = '<div><p><b>Hello!</b></p>
+        <p>You just received a request to change your password from this email, please click on the link below to change your password!.</p><br>
+        <p><button style="background-color: #0000000; color: #fff;"><a href="http://gaminggear.vn/app/views/client/account/resetpass.php">
+        Click here</a></button></p><br>
+        <p>If you did not request a password reset, no further action is required.</p></div>';
+
+              require './app/core/PHPMailer-master/src/Exception.php';
+              require './app/core/PHPMailer-master/src/PHPMailer.php';
+              require './app/core/PHPMailer-master/src/SMTP.php';
+
+              $email = $user_email;
+              $mail = new PHPMailer\PHPMailer\PHPMailer();
+              $mail->IsSMTP();
+              $mail->SMTPAuth = true;
+              $mail->SMTPSecure = "tls";
+              $mail->Host = "smtp.gmail.com";
+              $mail->Port = "587";
+              $mail->Username = "huylppc05334@fpt.edu.vn";
+              $mail->Password = "lenl ztdz evcs foia";
+              $mail->FromName = "Reset Password";
+              $mail->addAddress($email);
+              $mail->Subject = "Reset Password User " . $user_email . "";
+              $mail->isHTML(TRUE);
+              $mail->Body = $mess;
+              if (!$mail->send()) {
+                  exit();
+              } else {
+                  Session::flash('err_user_email_success', 'Link to reset password has been sent to your email!');
+              }
+          } else {
+              Session::flash('err_user_email', 'The email you just entered does not exist!');
+          }
+      };
+      $this->data['sub_content']['err_user_email'] = Session::flash('err_user_email');
+      $this->data['sub_content']['err_user_email_success'] = Session::flash('err_user_email_success');
+      $this->data['sub_content']['resetPass'] = Session::data('resetPass');
     $this->data['content'] = 'client/account/forgot';
     $this->render('client/layoutClient/client_layout', $this->data);
   }

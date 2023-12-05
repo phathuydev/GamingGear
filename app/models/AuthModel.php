@@ -24,14 +24,11 @@ class AuthModel extends Model
   public function getUserLoginClient($user_email)
   {
     $data = $this->db->table('users')
-    ->select('*')
-    ->where('user_email', '=', $user_email)
-    ->where('is_delete', '=', 0)
-    ->where('user_locked', '=', 0)
-    ->where('google_account', '=', 0)
-    ->first();
-    if ($data) {
+        ->select('*')
+        ->where('user_email', '=', $user_email)
+        ->where('is_delete', '=', 0)
+        ->where('user_locked', '=', 0)
+        ->first();
       return $data;
-    }
   }
 }

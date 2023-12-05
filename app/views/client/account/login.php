@@ -21,8 +21,8 @@
                 <div class="pt-1 mb-4">
                     <input class="btn btn-dark btn-lg btn-block" type="submit" value="Login" style="background-color: #ec6090; color: #fff;">
                 </div>
-                <a class="small text-white" href="<?php echo _WEB_ROOT ?>/client/account/auth/forgot">Forgot password?</a>
-                <a href="<?php echo _WEB_ROOT ?>/client/account/auth/register" class="h6" style="color: #ec6090;">Register here</a></p>
+                <a class="small text-white" href="<?php echo _WEB_ROOT ?>/forgotPass">Forgot password?</a>
+                <a href="<?php echo _WEB_ROOT ?>/register" class="h6" style="color: #ec6090;">Register here</a></p>
                 <?php if (isset($authUrl)) { ?>
                     <a href="<?= $authUrl ?>" class="btn btn-lg btn-block btn-primary mt-5" style="background-color: #dd4b39;"><i class="fab fa-google me-2"></i> Sign in with google</a>
                 <?php } ?>

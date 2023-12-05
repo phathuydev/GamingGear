@@ -9,6 +9,7 @@
                         <th class="text-white">Image Representing</th>
                         <th class="text-white">Category</th>
                         <th class="text-white">Create Date</th>
+                        <th class="text-white">Update Date</th>
                         <th class="text-white">Action</th>
                     </tr>
                     </thead>

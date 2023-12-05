@@ -101,7 +101,7 @@ class Cart extends Controller
       if (isset($_SESSION['cart'])) {
         $totalPrice = 0;
         foreach ($_SESSION['cart'] as $item) {
-          $totalPrice += ($item['product_price_reduce'] == null ? $item['product_price'] : $item['product_price_reduce']) * $item['product_quantity'];
+            $totalPrice += (isset($item['product_price_reduce']) ? $item['product_price_reduce'] : $item['product_price']) * $item['product_quantity'];
         }
       }
       if (isset($_POST['payCart'])) {
@@ -130,8 +130,9 @@ class Cart extends Controller
           for ($i = 0; $i < sizeof($_SESSION['cart']); $i++) {
             $product_id = $_SESSION['cart'][$i]['product_id'];
             $product_price = $_SESSION['cart'][$i]['product_price'];
+              $product_price_reduce = $_SESSION['cart'][$i]['product_price_reduce'];
             $product_quantity = $_SESSION['cart'][$i]['product_quantity'];
-            $total_product = $product_price * $product_quantity;
+              $total_product = (isset($product_price_reduce) ? $product_price_reduce : $product_price) * $product_quantity;
             $data = [
               'product_id' => $product_id,
               'order_id' => $order_id,
@@ -154,7 +155,7 @@ class Cart extends Controller
         <td class='td text-center' style='color: #636363;border: 1px solid #e5e5e5;padding: 12px;text-align: left;vertical-align: middle;font-family: ' Helvetica Neue', Helvetica, Roboto, Arial, sans-serif' align='left'>
         $data[product_quantity] </td>
         <td class='td text-center' style='color: #636363;border: 1px solid #e5e5e5;padding: 12px;text-align: left;vertical-align: middle;font-family: ' Helvetica Neue', Helvetica, Roboto, Arial, sans-serif' align='left'>
-          $<span class='woocommerce-Price-amount amount'>" . (isset($data['product_price']) ? $data['product_price'] : $data['product_price_reduce']) * $data['product_quantity'] . "<span class='woocommerce-Price-currencySymbol'></span></span>
+          $<span class='woocommerce-Price-amount amount'>" . (isset($data['product_price_reduce']) ? $data['product_price_reduce'] : $data['product_price']) * $data['product_quantity'] . "<span class='woocommerce-Price-currencySymbol'></span></span>
         </td>
       </tr>
       ";
@@ -205,7 +206,7 @@ class Cart extends Controller
                                                 <p style='margin: 0 0 16px'><b>Gaming Gear</b> Hello</p>
                                                 <p style='margin: 0 0 16px'>Your order is awaiting confirmation and will be sent soon!</p>
                                                 <h2 style='color: #7f54b3;display: block;font-family: &quot;Helvetica Neue&quot;,Helvetica,Roboto,Arial,sans-serif;font-size: 18px;font-weight: bold;line-height: 130%;margin: 0 0 18px;text-align: left'>
-                                                  [Code Orders: $code_orders] (" . date("F j, Y H:i:s") . ") </h2>
+                                                  [Code Orders: #$code_orders] (" . date("F j, Y H:i:s") . ") </h2>
                                                 <div style='margin-bottom: 40px'>
                                                   <table class='td' cellspacing='0' cellpadding='6' border='1' style='color: #636363;border: 1px solid #e5e5e5;vertical-align: middle;width: 100%;font-family: ' Helvetica Neue', Helvetica, Roboto, Arial, sans-serif' width='100%'>
                                                     <thead>
@@ -365,7 +366,7 @@ class Cart extends Controller
                 'user_address' => $user_address,
                 'order_note' => $note,
                 'order_total' => $order_total,
-                'order_payment' => 1,
+                'order_payment' => 2,
                 'order_status' => 1
             ];
             $order_id = $this->province->insertOrders($data);
@@ -373,8 +374,9 @@ class Cart extends Controller
                 for ($i = 0; $i < sizeof($_SESSION['cart']); $i++) {
                     $product_id = $_SESSION['cart'][$i]['product_id'];
                     $product_price = $_SESSION['cart'][$i]['product_price'];
+                    $product_price_reduce = $_SESSION['cart'][$i]['product_price_reduce'];
                     $product_quantity = $_SESSION['cart'][$i]['product_quantity'];
-                    $total_product = $product_price * $product_quantity;
+                    $total_product = (isset($product_price_reduce) ? $product_price_reduce : $product_price) * $product_quantity;
                     $data = [
                         'product_id' => $product_id,
                         'order_id' => $order_id,
@@ -385,8 +387,10 @@ class Cart extends Controller
                 }
                 $pay_show = 'Transfer';
                 $heading = "Code orders: #$code_orders";
+                $totalPrice = 0;
                 $body = array();
                 foreach ($_SESSION['cart'] as $data) {
+                    $totalPrice += ((isset($data['product_price_reduce']) ? $data['product_price_reduce'] : $data['product_price']) * $data['product_quantity']);
                     $body[] = "
         <tr class='order_item'>
           <td class='td text-center' style='color: #636363;border: 1px solid #e5e5e5;padding: 12px;text-align: left;vertical-align: middle;font-family: ' Helvetica Neue', Helvetica, Roboto, Arial, sans-serif' align='left'>
@@ -394,7 +398,7 @@ class Cart extends Controller
           <td class='td text-center' style='color: #636363;border: 1px solid #e5e5e5;padding: 12px;text-align: left;vertical-align: middle;font-family: ' Helvetica Neue', Helvetica, Roboto, Arial, sans-serif' align='left'>
           $data[product_quantity] </td>
           <td class='td text-center' style='color: #636363;border: 1px solid #e5e5e5;padding: 12px;text-align: left;vertical-align: middle;font-family: ' Helvetica Neue', Helvetica, Roboto, Arial, sans-serif' align='left'>
-            $<span class='woocommerce-Price-amount amount'>" . $data['product_price'] * $data['product_quantity'] . "<span class='woocommerce-Price-currencySymbol'></span></span>
+            $<span class='woocommerce-Price-amount amount'>" . (isset($data['product_price_reduce']) ? $data['product_price_reduce'] : $data['product_price']) * $data['product_quantity'] . "<span class='woocommerce-Price-currencySymbol'></span></span>
           </td>
         </tr>
         ";
@@ -445,7 +449,7 @@ class Cart extends Controller
                                                   <p style='margin: 0 0 16px'><b>Gaming Gear</b> Hello</p>
                                                   <p style='margin: 0 0 16px'>Your order is awaiting confirmation and will be sent soon!</p>
                                                   <h2 style='color: #7f54b3;display: block;font-family: &quot;Helvetica Neue&quot;,Helvetica,Roboto,Arial,sans-serif;font-size: 18px;font-weight: bold;line-height: 130%;margin: 0 0 18px;text-align: left'>
-                                                    [Code Orders: $code_orders] (" . date("F j, Y H:i:s") . ") </h2>
+                                                    [Code Orders: #$code_orders] (" . date("F j, Y H:i:s") . ") </h2>
                                                   <div style='margin-bottom: 40px'>
                                                     <table class='td' cellspacing='0' cellpadding='6' border='1' style='color: #636363;border: 1px solid #e5e5e5;vertical-align: middle;width: 100%;font-family: ' Helvetica Neue', Helvetica, Roboto, Arial, sans-serif' width='100%'>
                                                       <thead>
@@ -461,7 +465,7 @@ class Cart extends Controller
                                                       <tfoot>
                                                         <tr>
                                                           <th class='td' scope='row' colspan='2' style='color: #636363;border: 1px solid #e5e5e5;vertical-align: middle;padding: 12px;text-align: left;' align='left'>Subtotal:</th>
-                                                          <td class='td' style='color: #636363;border: 1px solid #e5e5e5;vertical-align: middle;padding: 12px;text-align: left;' align='left'>$<span class='woocommerce-Price-amount amount'>" . $order_total . "<span class='woocommerce-Price-currencySymbol'></span></span></td>
+                                                          <td class='td' style='color: #636363;border: 1px solid #e5e5e5;vertical-align: middle;padding: 12px;text-align: left;' align='left'>$<span class='woocommerce-Price-amount amount'>" . $totalPrice . "<span class='woocommerce-Price-currencySymbol'></span></span></td>
                                                         </tr>
                                                         <tr>
                                                           <th class='td' scope='row' colspan='2' style='color: #636363;border: 1px solid #e5e5e5;vertical-align: middle;padding: 12px;text-align: left;' align='left'>Shipping</th>
@@ -473,7 +477,7 @@ class Cart extends Controller
                                                         </tr>
                                                         <tr>
                                                           <th class='td' scope='row' colspan='2' style='color: #636363;border: 1px solid #e5e5e5;vertical-align: middle;padding: 12px;text-align: left;' align='left'>Total:</th>
-                                                          <td class='td' style='color: #636363;border: 1px solid #e5e5e5;vertical-align: middle;padding: 12px;text-align: left;' align='left'>$<span class='woocommerce-Price-amount amount'>" . $order_total . "<span class='woocommerce-Price-currencySymbol'></span></span></td>
+                                                          <td class='td' style='color: #636363;border: 1px solid #e5e5e5;vertical-align: middle;padding: 12px;text-align: left;' align='left'>$<span class='woocommerce-Price-amount amount'>" . $totalPrice . "<span class='woocommerce-Price-currencySymbol'></span></span></td>
                                                         </tr>
                                                         <tr>
                                                           <th class='td' scope='row' colspan='2' style='color: #636363;border: 1px solid #e5e5e5;vertical-align: middle;padding: 12px;text-align: left;' align='left'>Note:</th>

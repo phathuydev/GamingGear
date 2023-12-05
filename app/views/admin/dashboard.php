@@ -336,7 +336,8 @@
               <?php foreach ($getOrderLimit as $item) : ?>
                 <tr>
                   <td>
-                    <img src="<?= _WEB_ROOT . '/' . $item['user_image_path'] . ($item['user_image'] ? $item['user_image'] : 'default_img.jpg') ?>" style="width: 40px; height: 40px; border-radius: 30px;" alt="image" />
+                      <img src="<?= !empty($item['user_image_path']) ? _WEB_ROOT . '/' . $item['user_image_path'] . ($item['user_image'] ? $item['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($item['user_image'] ? $item['user_image'] : _WEB_ROOT . '/' . $item['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>"
+                           style="width: 40px; height: 40px; border-radius: 30px;" alt="image"/>
                     <span class="pl-2"><?= $item['user_name'] ?></span>
                   </td>
                   <td><?= $item['user_email'] ?></td>
@@ -387,42 +388,14 @@
     <div class="card">
       <div class="card-body">
         <div class="d-flex flex-row justify-content-between">
-          <h4 class="card-title">Comments Product</h4>
+            <h4 class="card-title">Comments</h4>
         </div>
         <?php foreach ($getCommentProductDashboard as $item) : ?>
           <div class="preview-list">
             <div class="preview-item border-bottom">
               <div class="preview-thumbnail">
-                <img src="<?= _WEB_ROOT . '/' . $item['user_image_path'] . ($item['user_image'] ? $item['user_image'] : 'default_img.jpg') ?>" style="width: 40px; height: 40px; border-radius: 30px;"" alt=" image" />
-              </div>
-              <div class="preview-item-content d-flex flex-grow">
-                <div class="flex-grow">
-                  <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                    <h6 class="preview-subject"><?= $item['user_name'] ?></h6>
-                    <p class="text-muted text-small"><?= formatTimeAgo(strtotime($item['create_at'])); ?></p>
-                  </div>
-                  <p class="text-muted mt-1"><?= $item['comment_content'] ?></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        <?php endforeach; ?>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-12 col-xl-12 grid-margin stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <div class="d-flex flex-row justify-content-between">
-          <h4 class="card-title">Comments Post</h4>
-        </div>
-        <?php foreach ($getCommentPostDashboard as $item) : ?>
-          <div class="preview-list">
-            <div class="preview-item border-bottom">
-              <div class="preview-thumbnail">
-                <img src="<?= _WEB_ROOT . '/' . $item['user_image_path'] . ($item['user_image'] ? $item['user_image'] : 'default_img.jpg') ?>" style="width: 40px; height: 40px; border-radius: 30px;"" alt=" image" />
+                  <img src="<?= !empty($item['user_image_path']) ? _WEB_ROOT . '/' . $item['user_image_path'] . ($item['user_image'] ? $item['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($item['user_image'] ? $item['user_image'] : _WEB_ROOT . '/' . $item['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>"
+                       style="width: 40px; height: 40px; border-radius: 30px;"" alt=" image" />
               </div>
               <div class="preview-item-content d-flex flex-grow">
                 <div class="flex-grow">

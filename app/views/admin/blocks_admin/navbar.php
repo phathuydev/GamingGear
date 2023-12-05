@@ -65,7 +65,8 @@
             <?php foreach ($getOrderLimitDuringTheDay as $item) : ?>
               <a class="dropdown-item preview-item">
                 <div class="preview-thumbnail">
-                  <img src="<?= _WEB_ROOT . '/' . $item['user_image_path'] . ($item['user_image'] ? $item['user_image'] : 'default_img.jpg') ?>" style="width: 40px; height: 40px; border-radius: 30px;" alt="image" />
+                    <img src="<?= !empty($item['user_image_path']) ? _WEB_ROOT . '/' . $item['user_image_path'] . ($item['user_image'] ? $item['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($item['user_image'] ? $item['user_image'] : _WEB_ROOT . '/' . $item['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>"
+                         style="width: 40px; height: 40px; border-radius: 30px;" alt="image"/>
                 </div>
                 <div class="preview-item-content">
                   <p class="preview-subject ellipsis mb-1"><?= $item['user_name'] ?></p>
@@ -99,7 +100,8 @@
               <a class="dropdown-item preview-item">
                 <div class="preview-thumbnail">
                   <div class="preview-icon bg-dark rounded-circle">
-                    <img src="<?= _WEB_ROOT . '/' . $item['user_image_path'] . ($item['user_image'] ? $item['user_image'] : 'default_img.jpg') ?>" style="width: 40px; height: 40px; border-radius: 30px;"" alt=" image" />
+                      <img src="<?= !empty($item['user_image_path']) ? _WEB_ROOT . '/' . $item['user_image_path'] . ($item['user_image'] ? $item['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($item['user_image'] ? $item['user_image'] : _WEB_ROOT . '/' . $item['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>"
+                           style="width: 40px; height: 40px; border-radius: 30px;"" alt=" image" />
                   </div>
                 </div>
                 <div class="preview-item-content">

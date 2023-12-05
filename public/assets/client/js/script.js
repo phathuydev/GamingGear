@@ -1,23 +1,3 @@
-// Ẩn hiện form bình luận
-document.addEventListener("DOMContentLoaded", function () {
-  var replyButtons = document.querySelectorAll('.reply-btn');
-
-  replyButtons.forEach(function (button) {
-    button.addEventListener('click', function (event) {
-      event.preventDefault();
-
-      // Get the comment ID from the data-id attribute
-      var commentId = button.getAttribute('data-id');
-
-      // Toggle the class to show/hide the associated comment form
-      var commentForm = document.getElementById('comment-form-' + commentId);
-      if (commentForm) {
-        commentForm.classList.toggle('hidden');
-      }
-    });
-  });
-});
-
 function validateRegister() {
   var userName = document.getElementById('user_name').value;
   var userEmail = document.getElementById('user_email').value;

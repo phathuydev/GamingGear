@@ -1,6 +1,6 @@
 <?php if (!empty($getUserClient)) : ?>
   <div class="container w-auto">
-    <div class="most-popular mt-4">
+      <div class="most-popular mt-5">
       <div class="container">
         <form method="post" onsubmit="return validateCheckout()">
           <div class="row mt-4">
@@ -161,7 +161,7 @@
   </div>
 <?php else : ?>
   <div class="container w-auto">
-    <div class="most-popular mt-4">
+      <div class="most-popular mt-5>
       <div class="container">
         <form method="post" onsubmit="return validateCheckout()">
           <div class="row mt-4">

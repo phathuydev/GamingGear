@@ -118,7 +118,7 @@ class Product extends Controller
       ];
       $this->province->updateProduct($data, $product_id);
       $response = new Response();
-      $response->redirect('admin/manage/product/list/8/1');
+        $response->redirect('admin/manage/product/list/8/' . $pages . '');
     }
     $this->data['body'] = 'admin/product/edit';
     $this->render('admin/layoutAdmin/admin_layout', $this->data);
