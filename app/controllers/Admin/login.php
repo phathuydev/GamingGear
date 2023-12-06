@@ -16,7 +16,9 @@ class Login extends Controller
       $user_email = $_POST['user_email'];
       $user_entered_password = $_POST['user_password'];
       $stored_user_data = $this->province->getUserLoginAdmin($user_email);
-      if ($stored_user_data) {
+      if ($stored_user_data['user_locked'] == 1) {
+        Session::flash('msg', 'Your account has been locked');
+      } elseif ($stored_user_data) {
         $stored_password = $stored_user_data['user_password'];
         if (password_verify($user_entered_password, $stored_password)) {
           Session::data('admin_login', $stored_user_data['user_id']);

@@ -16,19 +16,23 @@ class AuthModel extends Model
   }
   public function getUserLoginAdmin($user_email)
   {
-    $data = $this->db->table('users')->select('*')->where('user_email', '=', $user_email)->where('is_delete', '=', 0)->where('user_locked', '=', 0)->where('user_role', '=', 1)->first();
-    if ($data) {
-      return $data;
-    }
+    $data = $this->db->table('users')
+      ->select('*')
+      ->where('user_email', '=', $user_email)
+      ->where('is_delete', '=', 0)
+      ->where('user_locked', '=', 0)
+      ->where('user_role', '=', 1)
+      ->first();
+    return $data;
   }
   public function getUserLoginClient($user_email)
   {
     $data = $this->db->table('users')
-        ->select('*')
-        ->where('user_email', '=', $user_email)
-        ->where('is_delete', '=', 0)
-        ->where('user_locked', '=', 0)
-        ->first();
-      return $data;
+      ->select('*')
+      ->where('user_email', '=', $user_email)
+      ->where('is_delete', '=', 0)
+      ->where('user_locked', '=', 0)
+      ->first();
+    return $data;
   }
 }
