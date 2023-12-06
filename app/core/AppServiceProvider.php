@@ -305,7 +305,7 @@ class AppServiceProvider extends ServiceProvider
     $getCommentProductDashboard = $this->db->table('comments')
       ->join('users', 'comments.user_id = users.user_id')
       ->select('comments.comment_content as comment_content, comments.create_at as create_at,
-      users.user_image_path as user_image_path, users.user_image as user_image, users.user_name as user_name')
+      users.user_image_path as user_image_path, users.user_image as user_image, users.user_name as user_name, users.user_email as user_email')
       ->where('comments.is_delete', '=', 0)
         ->where('comments.create_at', '>', $today)
       ->where('users.is_delete', '=', 0)
@@ -317,7 +317,7 @@ class AppServiceProvider extends ServiceProvider
     $getCommentProductDuringTheDay = $this->db->table('comments')
       ->join('users', 'comments.user_id = users.user_id')
       ->select('comments.comment_content as comment_content, comments.create_at as create_at,
-      users.user_image_path as user_image_path, users.user_image as user_image, users.user_name as user_name')
+      users.user_image_path as user_image_path, users.user_image as user_image, users.user_name as user_name, users.user_email as user_email')
       ->where('comments.is_delete', '=', 0)
       ->where('comments.create_at', '>', $today)
       ->where('users.is_delete', '=', 0)

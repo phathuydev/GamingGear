@@ -38,7 +38,7 @@
             <?php endforeach ?>
           </tbody>
         </table>
-        <div class="float-right mt-3">
+        <div class="float-left m-3 mt-4">
           <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-end pagination-sm">
               <li class="page-item <?= $pages < 3 ? 'd-none' : false; ?>"><a class="page-link" href="<?php echo _MANAGE_DEFAULT ?>/comment/comment_product_detail/<?= $product_id . '/' . $per_pages; ?>/<?= 1; ?>" tabindex="-1">Previous</a></li>
