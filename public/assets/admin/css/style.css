@@ -107,8 +107,8 @@
 /*-------------------------------------------------------------------*/
 /* === SCSS Compass Functions === */
 body::-webkit-scrollbar {
-    width: 0;
-    background-color: transparent;
+  width: 0;
+  background-color: transparent;
 }
 
 @-moz-keyframes flash {
@@ -30798,4 +30798,9 @@ div.tagsinput span.tag a {
   background: #000000;
   padding: 1.875rem 1.75rem;
   width: 100%;
+}
+
+a.disabled {
+  pointer-events: none;
+  opacity: 0.65;
 }
