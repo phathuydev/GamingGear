@@ -78,7 +78,8 @@ class Post extends Controller
       $comment_id = $_POST['comment_id'];
       $data = [
         'comment_content' => $comment_content_new,
-        'comment_id' => $comment_id
+        'comment_id' => $comment_id,
+        'update_at' => date('Y-m-d H:i:s')
       ];
       $this->province->editCommentProduct($data, $comment_id);
       $response = new Response();
@@ -88,7 +89,8 @@ class Post extends Controller
       $comment_id = $_POST['comment_id'];
       $data = [
         'comment_content' => $comment_content_new,
-        'comment_id' => $comment_id
+        'comment_id' => $comment_id,
+        'update_at' => date('Y-m-d H:i:s')
       ];
       $this->province->editCommentProduct($data, $comment_id);
       $response = new Response();
