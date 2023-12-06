@@ -28,9 +28,7 @@ class User extends Controller
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $user_id = $_POST['user_id'];
       if (
-        $this->model('CheckForeignkeyModel')->isForeignKeyExist('comments_post', 'user_id', $user_id) == true || $this->model('CheckForeignkeyModel')->isForeignKeyExist('comments_product', 'user_id', $user_id) == true
-        || $this->model('CheckForeignkeyModel')->isForeignKeyExist('orders', 'user_id', $user_id) == true || $this->model('CheckForeignkeyModel')->isForeignKeyExist('replies_post', 'user_id', $user_id) == true
-        || $this->model('CheckForeignkeyModel')->isForeignKeyExist('replies_product', 'user_id', $user_id) == true
+        $this->model('CheckForeignkeyModel')->isForeignKeyExist('comments', 'user_id', $user_id) == true || $this->model('CheckForeignkeyModel')->isForeignKeyExist('orders', 'user_id', $user_id) == true
       ) {
         Session::flash('checkForeignkey', 'Error Linking Foreign Keys.');
       } else {

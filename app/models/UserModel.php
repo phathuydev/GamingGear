@@ -25,6 +25,24 @@ class UserModel extends Model
       ->get();
     return $data;
   }
+  public function getUserCreate($user_create)
+  {
+    $data = $this->db->table('users')
+      ->select('user_id, user_name, user_email, user_create, user_update, user_delete')
+      ->where('is_delete', '=', '0')
+      ->where('user_id', '=', $user_create)
+      ->first();
+    return $data;
+  }
+  public function getUserUpdate($user_update)
+  {
+    $data = $this->db->table('users')
+      ->select('user_id, user_name, user_email, user_create, user_update, user_delete')
+      ->where('is_delete', '=', '0')
+      ->where('user_id', '=', $user_update)
+      ->first();
+    return $data;
+  }
   public function countUserId()
   {
     $data = $this->db->table('users')
@@ -43,10 +61,18 @@ class UserModel extends Model
     $data = $this->db->table('users')->select('user_id, user_email')->where('user_email', '=', $user_email)->first();
     return $data;
   }
+  public function getUserGoogle($user_id)
+  {
+    $data = $this->db->table('users')
+      ->select('user_id, user_role, google_account')
+      ->where('user_id', '=', $user_id)
+      ->first();
+    return $data;
+  }
   public function getUserEmailGoogle($user_email)
   {
     $data = $this->db->table('users')
-      ->select('user_id, user_email')
+      ->select('user_id, user_email, user_locked')
       ->where('user_email', '=', $user_email)
       ->where('user_locked', '=', 0)
       ->where('google_account', '=', 1)
