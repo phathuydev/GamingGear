@@ -5,27 +5,26 @@ class CategoryModel extends Model
 
     private $__table = "categories";
 
-  // Định nghĩa table trong Model
-  function tableFill()
-  {
-      return 'categories';
-  }
+    // Định nghĩa table trong Model
+    function tableFill()
+    {
+        return 'categories';
+    }
 
-  function fieldFill()
-  {
-      return '*';
-  }
+    function fieldFill()
+    {
+        return '*';
+    }
 
     public function getAllCategory($per_pages, $pages)
-  {
-      $data = $this->db->table('categories')
-          ->select('category_id, category_name, category_image_path, create_at, category_image')
-          ->where('categories.is_delete', '=', 0)
-          ->limit($per_pages, $pages)
-          ->get();
-      return $data;
-  }
-
+    {
+        $data = $this->db->table('categories')
+            ->select('category_id, category_name, category_image_path, create_at, update_at, user_create, user_update, category_image')
+            ->where('categories.is_delete', '=', 0)
+            ->limit($per_pages, $pages)
+            ->get();
+        return $data;
+    }
     public function countCategoryId()
     {
         $data = $this->db->table('categories')
@@ -63,8 +62,8 @@ class CategoryModel extends Model
             ->select('category_name')
             ->where('category_name', '=', $name)
             ->first();
-    return $data;
-  }
+        return $data;
+    }
 
     public function getFirstCategory($category_id)
     {
