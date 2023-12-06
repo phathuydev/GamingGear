@@ -139,7 +139,7 @@
                 <!-- Nếu người dùng đăng nhập thì hiện form gửi bình luận -->
                   <div class="d-flex align-items-center justify-content-start mb-5 mt-5">
                       <img class="rounded-circle shadow-1-strong me-3"
-                           src="<?= !empty($getUserClient['user_image_path']) ? _WEB_ROOT . '/' . $getUserClient['user_image_path'] . ($getUserClient['user_image'] ? $getUserClient['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($getUserClient['user_image'] ? $getUserClient['user_image'] : _WEB_ROOT . '/' . $getUserClient['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>"
+                           src="<?= !empty($getUserClient['user_image_path']) ? _WEB_ROOT . '/' . ($getUserClient['user_image'] ? $getUserClient['user_image_path'] . '/' . $getUserClient['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($getUserClient['user_image'] ? $getUserClient['user_image'] : _WEB_ROOT . '/' . $getUserClient['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>"
                            alt="avatar" style="width: 50px !important; border-radius: 30px;"/>
                       <form method="post" class="w-100 d-flex slidebar">
                           <input type="text" name="comment_content" class="rounded-5 ps-3 w-100 pt-1 pb-1"
@@ -160,7 +160,7 @@
                     <?php foreach ($getComment as $comment) : ?>
                       <!-- Comment cha -->
                       <div class="d-flex flex-start">
-                          <img src="<?= !empty($comment['user_image_path']) ? _WEB_ROOT . '/' . $comment['user_image_path'] . ($comment['user_image'] ? $comment['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($comment['user_image'] ? $comment['user_image'] : _WEB_ROOT . '/' . $comment['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>"
+                          <img src="<?= !empty($comment['user_image_path']) ? _WEB_ROOT . '/' . ($comment['user_image'] ? $comment['user_image_path'] . '/' . $comment['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($comment['user_image'] ? $comment['user_image'] : _WEB_ROOT . '/' . $comment['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>"
                                alt="" class="me-3 mt-2"
                                style="width: 45px !important; height: 45px !important; border-radius: 30px;">
                         <div class="flex-grow-1 flex-shrink-1 mb-3">
@@ -218,7 +218,7 @@
                                                     <div class="modal-body pt-0 pb-0">
                                                         <div class="d-flex align-items-center justify-content-start mb-2 mt-2">
                                                             <img class="rounded-circle shadow-1-strong me-3"
-                                                                 src="<?= !empty($getUserClient['user_image_path']) ? _WEB_ROOT . '/' . $getUserClient['user_image_path'] . ($getUserClient['user_image'] ? $getUserClient['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($getUserClient['user_image'] ? $getUserClient['user_image'] : _WEB_ROOT . '/' . $getUserClient['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>"
+                                                                 src="<?= !empty($getUserClient['user_image_path']) ? _WEB_ROOT . '/' . ($getUserClient['user_image'] ? $getUserClient['user_image_path'] . '/' . $getUserClient['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($getUserClient['user_image'] ? $getUserClient['user_image'] : _WEB_ROOT . '/' . $getUserClient['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>"
                                                                  alt="avatar"
                                                                  style="width: 45px !important; border-radius: 30px;"/>
                                                             <input type="text" name="comment_content"
@@ -263,7 +263,7 @@
                                                 <div class="modal-body pt-0 pb-0">
                                                     <div class="d-flex align-items-center justify-content-start mb-2 mt-2">
                                                         <img class="rounded-circle shadow-1-strong me-3"
-                                                             src="<?= !empty($getUserClient['user_image_path']) ? _WEB_ROOT . '/' . $getUserClient['user_image_path'] . ($getUserClient['user_image'] ? $getUserClient['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($getUserClient['user_image'] ? $getUserClient['user_image'] : _WEB_ROOT . '/' . $getUserClient['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>"
+                                                             src="<?= !empty($getUserClient['user_image_path']) ? _WEB_ROOT . '/' . ($getUserClient['user_image'] ? $getUserClient['user_image_path'] . '/' . $getUserClient['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($getUserClient['user_image'] ? $getUserClient['user_image'] : _WEB_ROOT . '/' . $getUserClient['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>"
                                                              alt="avatar"
                                                              style="width: 45px !important; border-radius: 30px;"/>
                                                         <input type="hidden" name="comment_id"
@@ -292,7 +292,7 @@
                           <?php foreach ($replies as $reply) : ?>
                             <div class="d-flex flex-start mt-4" id="ButtonComment">
                                 <a class="me-3 mt-2">
-                                <img class="rounded-circle shadow-1-strong" src="<?= !empty($reply['user_image_path']) ? _WEB_ROOT . '/' . $reply['user_image_path'] . ($reply['user_image'] ? $reply['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($reply['user_image'] ? $reply['user_image'] : _WEB_ROOT . '/' . $reply['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>" alt="avatar" style="width: 40px !important; border-radius: 30px;" />
+                                <img class="rounded-circle shadow-1-strong" src="<?= !empty($reply['user_image_path']) ? _WEB_ROOT . '/' . ($reply['user_image'] ? $reply['user_image_path'] . '/' . $reply['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($reply['user_image'] ? $reply['user_image'] : _WEB_ROOT . '/' . $reply['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>" alt="avatar" style="width: 40px !important; border-radius: 30px;" />
                               </a>
                               <div class="flex-grow-1 flex-shrink-1">
                                 <div>
@@ -348,7 +348,7 @@
                                                   <div class="modal-body pt-0 pb-0">
                                                       <div class="d-flex align-items-center justify-content-start mb-2 mt-2">
                                                           <img class="rounded-circle shadow-1-strong me-3"
-                                                               src="<?= !empty($getUserClient['user_image_path']) ? _WEB_ROOT . '/' . $getUserClient['user_image_path'] . ($getUserClient['user_image'] ? $getUserClient['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($getUserClient['user_image'] ? $getUserClient['user_image'] : _WEB_ROOT . '/' . $getUserClient['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>"
+                                                               src="<?= !empty($getUserClient['user_image_path']) ? _WEB_ROOT . '/' . ($getUserClient['user_image'] ? $getUserClient['user_image_path'] . '/' . $getUserClient['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($getUserClient['user_image'] ? $getUserClient['user_image'] : _WEB_ROOT . '/' . $getUserClient['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>"
                                                                alt="avatar"
                                                                style="width: 45px !important; border-radius: 30px;"/>
                                                           <input type="text" name="comment_content"
@@ -394,7 +394,7 @@
                                                   <div class="modal-body pt-0 pb-0">
                                                       <div class="d-flex align-items-center justify-content-start mb-2 mt-2">
                                                           <img class="rounded-circle shadow-1-strong me-3"
-                                                               src="<?= !empty($getUserClient['user_image_path']) ? _WEB_ROOT . '/' . $getUserClient['user_image_path'] . ($getUserClient['user_image'] ? $getUserClient['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($getUserClient['user_image'] ? $getUserClient['user_image'] : _WEB_ROOT . '/' . $getUserClient['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>"
+                                                               src="<?= !empty($reply['user_image_path']) ? _WEB_ROOT . '/' . ($reply['user_image'] ? $reply['user_image_path'] . '/' . $reply['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($reply['user_image'] ? $reply['user_image'] : _WEB_ROOT . '/' . $reply['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>"
                                                                alt="avatar"
                                                                style="width: 45px !important; border-radius: 30px;"/>
                                                           <input type="hidden" name="comment_id"
@@ -591,7 +591,7 @@
                           <?php foreach ($replies as $reply) : ?>
                             <div class="d-flex flex-start mt-4" id="ButtonComment">
                                 <a class="me-3 mt-2">
-                                <img class="rounded-circle shadow-1-strong" src="<?= !empty($reply['user_image_path']) ? _WEB_ROOT . '/' . $reply['user_image_path'] . ($reply['user_image'] ? $reply['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($reply['user_image'] ? $reply['user_image'] : _WEB_ROOT . '/' . $reply['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>" alt="avatar" style="width: 40px !important; border-radius: 30px;" />
+                                <img class="rounded-circle shadow-1-strong" src="<?= !empty($reply['user_image_path']) ? _WEB_ROOT . '/' . ($reply['user_image'] ? $reply['user_image_path'] . '/' . $reply['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($reply['user_image'] ? $reply['user_image'] : _WEB_ROOT . '/' . $reply['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>" alt="avatar" style="width: 40px !important; border-radius: 30px;" />
                               </a>
                               <div class="flex-grow-1 flex-shrink-1">
                                 <div>
@@ -767,7 +767,7 @@
                                                   <div class="d-flex flex-start mt-4" id="ButtonComment">
                                                       <a class="me-3 mt-2">
                                                           <img class="rounded-circle shadow-1-strong"
-                                                               src="<?= !empty($reply['user_image_path']) ? _WEB_ROOT . '/' . $reply['user_image_path'] . ($reply['user_image'] ? $reply['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($reply['user_image'] ? $reply['user_image'] : _WEB_ROOT . '/' . $reply['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>"
+                                                               src="<?= !empty($reply['user_image_path']) ? _WEB_ROOT . '/' . ($reply['user_image'] ? $reply['user_image_path'] . '/' . $reply['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($reply['user_image'] ? $reply['user_image'] : _WEB_ROOT . '/' . $reply['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>"
                                                                alt="avatar"
                                                                style="width: 40px !important; border-radius: 30px;"/>
                                                       </a>

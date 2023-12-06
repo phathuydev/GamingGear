@@ -20,8 +20,8 @@ class ProductModel extends Model
     $data = $this->db->table('products')
       ->join('categories', 'products.category_id = categories.category_id')
       ->select('products.product_id AS product_id, products.product_name AS product_name, products.product_image AS product_image, products.product_image_path AS product_image_path, products.product_price AS product_price,
-     products.product_price_reduce AS product_price_reduce, products.product_quantity AS product_quantity, 
-     products.category_id AS category_id, products.product_special AS product_special, products.product_describe AS product_describe, 
+     products.product_price_reduce AS product_price_reduce, products.product_quantity AS product_quantity, products.update_at as update_at,
+     products.category_id AS category_id, products.product_special AS product_special, products.product_describe AS product_describe, products.user_create as user_create, products.user_update as user_update,
      products.create_at AS create_at, categories.category_id AS category_id, categories.category_name AS category_name')
       ->where('products.is_delete', '=', 0)
       ->limit($per_pages, $pages)
