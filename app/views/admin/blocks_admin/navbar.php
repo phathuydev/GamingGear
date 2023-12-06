@@ -66,7 +66,7 @@
               <?php foreach ($getOrderLimitDuringTheDay as $item) : ?>
                 <a class="dropdown-item preview-item">
                   <div class="preview-thumbnail">
-                    <img src="<?= !empty($item['user_image_path']) ? _WEB_ROOT . '/' . ($item['user_image'] ? $item['user_image_path'] . '/' . $item['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($item['user_image'] ? $item['user_image'] : _WEB_ROOT . '/' . $item['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>" style="width: 40px; height: 40px; border-radius: 30px;" alt="image" />
+                    <img src="<?= _WEB_ROOT . '/' . $item['user_image_path'] . '/' . $item['user_image'] ?>" style="width: 40px; height: 40px; border-radius: 30px;" alt="image" />
                   </div>
                   <div class="preview-item-content">
                     <p class="preview-subject ellipsis mb-1"><?= $item['user_name'] === null ? $item['user_email'] : $item['user_name'] ?></p>
@@ -100,7 +100,7 @@
                 <a class="dropdown-item preview-item">
                   <div class="preview-thumbnail">
                     <div class="preview-icon bg-dark rounded-circle">
-                      <img src="<?= !empty($item['user_image_path']) ? _WEB_ROOT . '/' . ($item['user_image'] ? $item['user_image_path'] . '/' . $item['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($item['user_image'] ? $item['user_image'] : _WEB_ROOT . '/' . $item['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>" style="width: 40px; height: 40px; border-radius: 30px;"" alt=" image" />
+                      <img src="<?= _WEB_ROOT . '/' . $item['user_image_path'] . '/' . $item['user_image'] ?>" style="width: 40px; height: 40px; border-radius: 30px;"" alt=" image" />
                     </div>
                   </div>
                   <div class="preview-item-content">
@@ -126,8 +126,8 @@
         <li class="nav-item dropdown">
           <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
             <div class="navbar-profile">
-              <img class="img-xs rounded-circle" src="<?= !empty($getUserSession['user_image_path']) ? _WEB_ROOT . '/' . ($getUserSession['user_image'] ? $getUserSession['user_image_path'] . '/' . $getUserSession['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($getUserSession['user_image'] ? $getUserSession['user_image'] : _WEB_ROOT . '/' . $getUserSession['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>" alt="">
-              <p class="mb-0 d-none d-sm-block navbar-profile-name"><?= !empty($getUserSession['user_name']) ? $getUserSession['user_name'] : $getUserSession['user_email'] ?></p>
+              <img class="img-xs rounded-circle" src="<?= _WEB_ROOT . '/' . $getUserSession['user_image_path'] . $getUserSession['user_image'] ?>" alt="">
+              <p class="mb-0 d-none d-sm-block navbar-profile-name"><?= $getUserSession['user_name'] ?></p>
               <i class="mdi mdi-menu-down d-none d-sm-block"></i>
             </div>
           </a>

@@ -712,3 +712,18 @@ body {
 .comment-form.hidden {
   display: block !important;
 }
+
+a.disabled {
+  pointer-events: none;
+  opacity: 0.65;
+}
+
+a.disabled {
+  pointer-events: none;
+  opacity: 0.65;
+}
+
+a.disabled {
+  pointer-events: none;
+  opacity: 0.65;
+}

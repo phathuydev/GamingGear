@@ -1,8 +1,16 @@
 // validate form add user
 function validateUsers() {
+  var userName = document.getElementById('user_name').value;
   var userEmail = document.getElementById('user_email').value;
   var userPassword = document.getElementById('user_password').value;
+  var userImage = document.getElementById('user_image').value;
   var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (userName === '') {
+    document.getElementById('error_user_name').innerHTML = 'Username is required.';
+    return false;
+  } else {
+    document.getElementById('error_user_name').innerHTML = '';
+  }
   if (userEmail === '') {
     document.getElementById('error_user_email').innerHTML = 'Email is required.';
     return false;
@@ -20,6 +28,12 @@ function validateUsers() {
     return false;
   } else {
     document.getElementById('error_user_password').innerHTML = '';
+  }
+  if (userImage === '') {
+    document.getElementById('error_user_image').innerHTML = 'Image is required.';
+    return false;
+  } else {
+    document.getElementById('error_user_image').innerHTML = '';
   }
   return true;
 }

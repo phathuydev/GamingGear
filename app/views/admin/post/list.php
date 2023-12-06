@@ -18,7 +18,7 @@
                     <tbody>
                         <?php foreach ($listPost as $key => $item) : ?>
                             <tr class="border-bottom">
-                                <td class="text-white"><img src="<?= $item['post_image'] == true ? _WEB_ROOT . '/' . $item['post_image_path'] . $item['post_image'] : _WEB_ROOT . '/' . $item['post_image_path'] . 'default_img.jpg'; ?>" alt="" style="width: 100px !important; height: 50px !important; border-radius: 0;">
+                                <td class="text-white"><img src="<?= _WEB_ROOT . '/' . $item['post_image_path'] . $item['post_image'] ?>" alt="" style="width: 100px !important; height: 50px !important; border-radius: 0;">
                                 </td>
                                 <td class="text-white"><?= $item['category_name']; ?></td>
                                 <td class="text-white"><?= formatTimeAgo(strtotime($item['create_at'])); ?></td>

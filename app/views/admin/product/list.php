@@ -26,7 +26,7 @@
                                 <td class="text-white">
                                     <?= $item['product_name'] ?>
                                 </td>
-                                <td class="text-white"><img src="<?= $item['product_image'] == true ? _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] : _WEB_ROOT . '/' . $item['product_image_path'] . 'default_img.jpg'; ?>" alt="" style="width: 50px !important; height: 50px !important;"></td>
+                                <td class="text-white"><img src="<?= _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>" alt="" style="width: 50px !important; height: 50px !important;"></td>
                                 <td class="text-white">
                                     <?= '$' . $item['product_price'] ?>
                                 </td>

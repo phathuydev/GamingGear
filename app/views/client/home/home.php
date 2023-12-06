@@ -54,7 +54,7 @@
                           <s class="text-white" style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? '' : $item['product_price'] . '$' ?></s>
                         </div>
                         <div class="d-flex justify-content-center  align-items-center mt-2">
-                          <button type="submit" class="buy" name="add_to_cart">Add To Cart</button>
+                          <button type="submit" class="buy" name="add_to_cart" <?= !empty($item['product_quantity']) <= 0 ? 'disabled' : '' ?>>Add To Cart</button>
                         </div>
                       </div>
                       <input type="hidden" name="product_id" value="<?= $item['product_id'] ?>">
@@ -98,7 +98,7 @@
                           <s class="text-white" style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? '' : $item['product_price'] . '$' ?></s>
                         </div>
                         <div class="d-flex justify-content-center  align-items-center mt-2">
-                          <button type="submit" class="buy" name="add_to_cart">Add To Cart</button>
+                          <button type="submit" class="buy" name="add_to_cart" <?= !empty($item['product_quantity']) <= 0 ? 'disabled' : '' ?>>Add To Cart</button>
                         </div>
                       </div>
                       <input type="hidden" name="product_id" value="<?= $item['product_id'] ?>">

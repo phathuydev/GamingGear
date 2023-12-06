@@ -8,9 +8,9 @@
           </a>
             <div class="search-input position-relative">
                 <form id="search" class="d-flex" action="<?= _WEB_ROOT ?>/search/8/1" method="post">
-                    <input type="search" class="bg-white ps-3 pe-3" placeholder="Seach" name="searchKeyword">
+                    <input type="search" class="bg-white ps-3 pe-3" placeholder="Keyword" name="searchKeyword">
                     <input type="submit" name="searchProduct"
-                           class="bg-black border text-white position-absolute p-2 end-0" value="Tìm kiếm">
+                           class="bg-black border text-white position-absolute p-2 end-0" value="Search">
             </form>
           </div>
           <!-- ***** Search End ***** -->

@@ -20,7 +20,19 @@ class CartModel extends Model
     $this->db->table('orders')->insert($data);
     return $this->db->lastID();
   }
-
+  public function getQuantityProduct($product_id)
+  {
+    $data = $this->db->table('products')
+      ->where('product_id', '=', $product_id)
+      ->first();
+    return $data;
+  }
+  public function updateQuantityProduct($data, $product_id)
+  {
+    $this->db->table('products')
+      ->where('product_id', '=', $product_id)
+      ->update($data);
+  }
   public function getVnp_SecureHash($vnp_SecureHash)
   {
     $data = $this->db->table('vnpay')
@@ -28,12 +40,10 @@ class CartModel extends Model
       ->first();
     return $data;
   }
-
   public function insertVnpay($data)
   {
     $this->db->table('vnpay')->insert($data);
   }
-
   public function updatePayment($data2, $code_orders)
   {
     $this->db->table('orders')

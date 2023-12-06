@@ -16,8 +16,8 @@ class Login extends Controller
       $user_email = $_POST['user_email'];
       $user_entered_password = $_POST['user_password'];
       $stored_user_data = $this->province->getUserLoginAdmin($user_email);
-      if ($stored_user_data['user_locked'] == 1) {
-        Session::flash('msg', 'Your account has been locked');
+      if (empty($user_email) || empty($user_entered_password)) {
+        Session::flash('msg', 'Please enter complete information');
       } elseif ($stored_user_data) {
         $stored_password = $stored_user_data['user_password'];
         if (password_verify($user_entered_password, $stored_password)) {
@@ -28,7 +28,7 @@ class Login extends Controller
           Session::flash('msg', 'Email or password is incorrect');
         }
       } else {
-        Session::flash('msg', 'Please enter complete information');
+        Session::flash('msg', 'Email or password is incorrect');
       }
     }
     $this->data['msg'] = Session::flash('msg');

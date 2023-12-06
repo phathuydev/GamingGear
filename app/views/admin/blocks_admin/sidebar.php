@@ -10,11 +10,11 @@
         <div class="profile-desc">
           <div class="profile-pic">
             <div class="count-indicator">
-              <img class="img-xs rounded-circle " src="<?= !empty($getUserSession['user_image_path']) ? _WEB_ROOT . '/' . ($getUserSession['user_image'] ? $getUserSession['user_image_path'] . '/' . $getUserSession['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($getUserSession['user_image'] ? $getUserSession['user_image'] : _WEB_ROOT . '/' . $getUserSession['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>" alt="">
+              <img class="img-xs rounded-circle " src="<?= _WEB_ROOT . '/' . $getUserSession['user_image_path'] . $getUserSession['user_image'] ?>" alt="">
               <span class="count bg-success"></span>
             </div>
             <div class="profile-name">
-              <h5 class="mb-1 font-weight-normal"><?= !empty($getUserSession['user_name']) ? $getUserSession['user_name'] : $getUserSession['user_email'] ?></h5>
+              <h5 class="mb-1 font-weight-normal"><?= $getUserSession['user_name'] ?></h5>
               <span><?= $getUserSession['user_role'] == 1 ? 'ADMIN' : ''; ?></span>
             </div>
           </div>

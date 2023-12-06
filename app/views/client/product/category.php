@@ -12,13 +12,16 @@
               <div class="imgBox">
                 <a href="<?php echo _PRODUCT_DEFAULT; ?>/product_detail/<?= $item['product_id'] . '/' . $item['category_id'] ?>/8/1"><img src="<?= _WEB_ROOT . '/' . $item['product_image_path'] . $item['product_image'] ?>" alt="mouse corsair" style="width: 200px !important; height: 200px !important;" class="mouse"></a>
               </div>
+              <?php if ($item['product_price_reduce'] > 0) : ?>
+                <label class="top-0 mt-4 position-absolute start-0 rounded-circle bg-danger text-white ps-1 pt-2 pe-1 pb-2"><?= $item['product_price_reduce'] > 0 ? '-' . number_format((($item['product_price'] - $item['product_price_reduce']) / $item['product_price'] * 100), 0) . '%' : false; ?></label>
+              <?php endif ?>
               <div class="contentBox">
                 <p class="h4 text-white text-uppercase font-weight-bold m-0" style="font-size: 15px;"><?= $item['product_name'] ?> </p>
                 <div class="d-flex align-items-center mt-1">
                   <h3 class="mr-2 text-danger" style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? $item['product_price'] . '$' : $item['product_price_reduce'] . '$' ?></h3>
                   <s class="text-white" style="font-size: 15px;"><?= $item['product_price_reduce'] == null ? '' : $item['product_price'] . '$' ?></s>
                 </div>
-                <button type="submit" class="buy" style="font-size: 10px; padding: 5px 15px 5px 15px;" name="add_to_cart">Add To Cart</button>
+                <button type="submit" class="buy" style="font-size: 10px; padding: 5px 15px 5px 15px;" name="add_to_cart" <?= !empty($item['product_quantity']) <= 0 ? 'disabled' : '' ?>>Add To Cart</button>
               </div>
               <input type="hidden" name="product_id" value="<?= $item['product_id'] ?>">
               <input type="hidden" name="product_name" value="<?= $item['product_name'] ?>">
@@ -32,17 +35,17 @@
         </div>
       <?php endforeach; ?>
     </div>
-      <div class="d-flex justify-content-center mt-3 pe-4 pb-3">
-        <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-end pagination-sm">
-            <li class="page-item <?= $pages < 3 ? 'd-none' : false; ?>"><a class="page-link text-black" href="<?= _PRODUCT_DEFAULT ?>/product_category/<?= $category_id ?>/<?= $per_pages; ?>/<?= 1; ?>" tabindex="-1">Previous</a></li>
-            <?php for ($num = 1; $num <= $totalPages; $num++) { ?>
-              <li class="page-item <?= $num == $pages ? 'disabled' : false; ?>"><a class="page-link text-black <?= $num == $pages ? 'bg-black text-white' : false; ?>" href="<?= _PRODUCT_DEFAULT ?>/product_category/<?= $category_id ?>/<?= $per_pages; ?>/<?= $num; ?>"><?= $num; ?></a></li>
-            <?php } ?>
-            <li class="page-item <?= $pages > ($totalPages - 1) ? 'd-none' : false; ?>"><a class="page-link text-black" href="<?= _PRODUCT_DEFAULT ?>/product_category/<?= $category_id ?>/<?= $per_pages; ?>/<?= $pages + 1; ?>">Next</a></li>
-          </ul>
-        </nav>
-      </div>  
+    <div class="d-flex justify-content-center mt-3 pe-4 pb-3">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end pagination-sm">
+          <li class="page-item <?= $pages < 3 ? 'd-none' : false; ?>"><a class="page-link text-black" href="<?= _PRODUCT_DEFAULT ?>/product_category/<?= $category_id ?>/<?= $per_pages; ?>/<?= 1; ?>" tabindex="-1">Previous</a></li>
+          <?php for ($num = 1; $num <= $totalPages; $num++) { ?>
+            <li class="page-item <?= $num == $pages ? 'disabled' : false; ?>"><a class="page-link text-black <?= $num == $pages ? 'bg-black text-white' : false; ?>" href="<?= _PRODUCT_DEFAULT ?>/product_category/<?= $category_id ?>/<?= $per_pages; ?>/<?= $num; ?>"><?= $num; ?></a></li>
+          <?php } ?>
+          <li class="page-item <?= $pages > ($totalPages - 1) ? 'd-none' : false; ?>"><a class="page-link text-black" href="<?= _PRODUCT_DEFAULT ?>/product_category/<?= $category_id ?>/<?= $per_pages; ?>/<?= $pages + 1; ?>">Next</a></li>
+        </ul>
+      </nav>
+    </div>
 
     <!-- Categories -->
     <div class="most-popular pl-5 pr-5 mt-5">

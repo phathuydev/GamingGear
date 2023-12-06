@@ -35,8 +35,12 @@
                       <form action="" method="post">
                         <div class="d-flex align-items-center">
                           <input type="hidden" name="product_id" value="<?= $item['product_id'] ?>">
-                          <input class="rounded-2 text-center border-0" id="inputQuantity" type="num" name="new_quantity" value="<?= $item['product_quantity'] ?>" style="max-width: 5rem" />
-                          <button type="submit" name="update_quantity" class="btn ms-2 bg-success text-white p-0 border-0 pl-1 pr-1">Update</button>
+                          <?php $getQuantityProduct = $this->province->getQuantityProduct($item['product_id']);
+                          if (isset($getQuantityProduct)) {
+                          ?>
+                            <input class="rounded-2 text-center border-0" id="inputQuantity" min="1" max="<?= $getQuantityProduct['product_quantity'] ?>" type="number" name="new_quantity" value="<?= $item['product_quantity'] ?>" style="max-width: 5rem" />
+                          <?php } ?>
+                          <button type="submit" name="update_quantity" class="btn ms-2 bg-success text-white p-0 border-0 pl-1 pr-1" <?= $item['product_quantity'] > $getQuantityProduct['product_quantity'] ? 'disabled' : false ?>>Update</button>
                         </div>
                       </form>
                       <div class="d-flex align-items-center">
@@ -102,4 +106,3 @@
       </div>
     <?php endif ?>
   </div>
-  
