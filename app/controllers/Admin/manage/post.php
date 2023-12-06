@@ -110,6 +110,7 @@ class Post extends Controller
         'post_image' => $post_image_section == null ? $post_image_default : $post_image_section,
         'post_image_path' => $section_dir,
         'update_at' => date("Y-m-d H:i:s"),
+        'user_update' => Session::data('admin_login'),
         'category_id' => $category_id_section
       ];
       $this->province->updatePost($data_section, $post_id);

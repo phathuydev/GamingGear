@@ -25,7 +25,7 @@ class PostModel extends Model
       ->join('posts_detail', 'posts.post_id = posts_detail.post_id')
       ->select('posts.post_id AS post_id, posts.post_image AS post_image, posts.post_image_path AS post_image_path, posts.create_at AS create_at, posts.update_at as update_at,
     categories.category_name AS category_name, posts_detail.post_detail_id AS post_detail_id, posts_detail.post_detail_title AS post_detail_title, posts_detail.post_detail_image AS post_detail_image, 
-    posts_detail.post_detail_image_path AS post_detail_image_path, posts_detail.post_detail_content AS post_detail_content')
+    posts_detail.post_detail_image_path AS post_detail_image_path, posts_detail.post_detail_content AS post_detail_content, posts.user_create as user_create, posts.user_update as user_update')
       ->where('posts.is_delete', '=', 0)
       ->limit($per_pages, $pages)
       ->get();
