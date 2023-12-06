@@ -27,6 +27,18 @@ class Order extends Controller
     $this->data['body'] = 'admin/order/list';
     $this->render('admin/layoutAdmin/admin_layout', $this->data);
   }
+  public function code_orders()
+  {
+    $title = 'Search Code Order';
+    $this->data['pages_title'] = $title;
+    if (isset($_POST['search_code_orders'])) {
+      $code_orders = $_POST['code_orders'];
+      $getOrderSearch = $this->province->getOrderSearch($code_orders);
+      $this->data['sub_content']['getOrderSearch'] = $getOrderSearch;
+    }
+    $this->data['body'] = 'admin/order/search';
+    $this->render('admin/layoutAdmin/admin_layout', $this->data);
+  }
   public function order_detail($order_id = 0)
   {
     $getOrderDetail = $this->province->getOrderDetail($order_id);
