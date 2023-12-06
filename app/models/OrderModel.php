@@ -23,7 +23,7 @@ class OrderModel extends Model
             ->select('orders.code_orders AS code_orders, orders.order_id AS order_id, orders.order_note AS order_note, orders.order_total AS order_total, 
             orders.order_payment AS order_payment, orders.order_status AS order_status,
             users.user_image AS user_image, users.user_image_path AS user_image_path,
-            orders.user_name AS user_name, order_payment.order_payment_name AS order_payment_name, order_status.order_name AS order_name,
+            orders.user_name AS user_name, order_payment.order_payment_name AS order_payment_name, order_status_name AS order_name,
             orders.user_email AS user_email, orders.user_phone AS user_phone, orders.user_address AS user_address')
             ->where('orders.is_delete', '=', 0)
             ->limit($per_pages, $pages)
@@ -57,7 +57,17 @@ class OrderModel extends Model
             products.product_name AS product_name, products.product_image AS product_image, products.product_image_path AS product_image_path,
             orders.order_payment as order_payment_name, orders.order_status as order_status_name')
             ->where('orders_detail.order_id', '=', $order_id)
+            ->where('orders_detail.is_delete', '=', 0)
             ->get();
+        return $data;
+    }
+    public function countOrderDetail($order_id)
+    {
+        $data = $this->db->table('orders_detail')
+            ->select('COUNT(order_detail_id) as countOrderDetail')
+            ->where('is_delete', '=', 0)
+            ->where('order_id', '=', $order_id)
+            ->first();
         return $data;
     }
     public function getAllStatusOrder()

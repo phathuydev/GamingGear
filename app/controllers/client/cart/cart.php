@@ -23,30 +23,30 @@ class Cart extends Controller
       $response = new Response();
       $response->redirect('home');
     } elseif (isset($_POST['redirect'])) {
-        $code_orders = rand(00, 999999);
-        $data = [
-            'code_orders' => $code_orders,
-            'user_id' => $_POST['user_id'],
-            'user_name' => $_POST['user_name'],
-            'user_email' => $_POST['user_email'],
-            'user_phone' => $_POST['user_phone'],
-            'user_address' => $_POST['user_address'],
-            'order_note' => $_POST['note'],
-            'order_total' => $_POST['order_total'],
-            'order_payment' => 3,
-            'order_status' => 1
-        ];
-        Session::data('user_info', $data);
+      $code_orders = rand(00, 999999);
+      $data = [
+        'code_orders' => $code_orders,
+        'user_id' => $_POST['user_id'],
+        'user_name' => $_POST['user_name'],
+        'user_email' => $_POST['user_email'],
+        'user_phone' => $_POST['user_phone'],
+        'user_address' => $_POST['user_address'],
+        'order_note' => $_POST['note'],
+        'order_total' => $_POST['order_total'],
+        'order_payment' => 3,
+        'order_status' => 1
+      ];
+      Session::data('user_info', $data);
       // 9704198526191432198
       // NGUYEN VAN A
       // 07/15
       // 123456
       $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_Returnurl = "http://gaminggear.vn/thanks";
+      $vnp_Returnurl = "http://gaminggear.vn/thanks";
       $vnp_TmnCode = "7O4WR25D";
       $vnp_HashSecret = "VSFLPBGUAUINIXWNNJOCWXEXGZPIUFEG";
-        $vnp_TxnRef = $code_orders;
-        $vnp_OrderInfo = 'Pay bills';
+      $vnp_TxnRef = $code_orders;
+      $vnp_OrderInfo = 'Pay bills';
       $vnp_OrderType = 'billpayment';
       $vnp_Amount = $_POST['order_total'] * 2414000;
       $vnp_Locale = 'en';
@@ -101,7 +101,7 @@ class Cart extends Controller
       if (isset($_SESSION['cart'])) {
         $totalPrice = 0;
         foreach ($_SESSION['cart'] as $item) {
-            $totalPrice += (isset($item['product_price_reduce']) ? $item['product_price_reduce'] : $item['product_price']) * $item['product_quantity'];
+          $totalPrice += (isset($item['product_price_reduce']) ? $item['product_price_reduce'] : $item['product_price']) * $item['product_quantity'];
         }
       }
       if (isset($_POST['payCart'])) {
@@ -130,9 +130,9 @@ class Cart extends Controller
           for ($i = 0; $i < sizeof($_SESSION['cart']); $i++) {
             $product_id = $_SESSION['cart'][$i]['product_id'];
             $product_price = $_SESSION['cart'][$i]['product_price'];
-              $product_price_reduce = $_SESSION['cart'][$i]['product_price_reduce'];
+            $product_price_reduce = $_SESSION['cart'][$i]['product_price_reduce'];
             $product_quantity = $_SESSION['cart'][$i]['product_quantity'];
-              $total_product = (isset($product_price_reduce) ? $product_price_reduce : $product_price) * $product_quantity;
+            $total_product = (isset($product_price_reduce) ? $product_price_reduce : $product_price) * $product_quantity;
             $data = [
               'product_id' => $product_id,
               'order_id' => $order_id,
@@ -322,76 +322,73 @@ class Cart extends Controller
   }
   public function thanks()
   {
-    if (empty($_SESSION['cart'])) {
-      $response = new Response();
-      $response->redirect('home');
-    } elseif (isset($_GET['vnp_Amount'])) {
+    if (isset($_GET['vnp_Amount'])) {
+      $vnp_SecureHash = $_GET['vnp_SecureHash'];
+      $checkSecureHash = $this->province->getVnp_SecureHash($vnp_SecureHash);
+      if ($checkSecureHash) {
+        $response = new Response();
+        $response->redirect('home');
+      } else {
         $vnp_SecureHash = $_GET['vnp_SecureHash'];
-        $checkSecureHash = $this->province->getVnp_SecureHash($vnp_SecureHash);
-        if ($checkSecureHash) {
-            // $response = new Response();
-            // $response->redirect('home');
-        } else {
-            $vnp_SecureHash = $_GET['vnp_SecureHash'];
+        $data = [
+          'vnp_Amount' => $_GET['vnp_Amount'],
+          'vnp_BankCode' => $_GET['vnp_BankCode'],
+          'vnp_BankTranNo' => $_GET['vnp_BankTranNo'],
+          'vnp_CardType' => $_GET['vnp_CardType'],
+          'vnp_OrderInfo' => $_GET['vnp_OrderInfo'],
+          'vnp_PayDate' => $_GET['vnp_PayDate'],
+          'vnp_ResponseCode' => $_GET['vnp_ResponseCode'],
+          'vnp_TmnCode' => $_GET['vnp_TmnCode'],
+          'vnp_TransactionNo' => $_GET['vnp_TransactionNo'],
+          'vnp_TransactionStatus' => $_GET['vnp_TransactionStatus'],
+          'vnp_TxnRef' => $_GET['vnp_TxnRef'],
+          'vnp_SecureHash' => $_GET['vnp_SecureHash']
+        ];
+        $this->province->insertVnpay($data);
+        $user_info = Session::data('user_info');
+        $code_orders = $user_info['code_orders'];
+        $user_id = $user_info['user_id'];
+        $user_name = $user_info['user_name'];
+        $user_email = $user_info['user_email'];
+        $user_phone = $user_info['user_phone'];
+        $user_address = $user_info['user_address'];
+        $note = $user_info['order_note'];
+        $order_total = $user_info['order_total'];
+        $data = [
+          'code_orders' => $code_orders,
+          'user_id' => $user_id,
+          'user_name' => $user_name,
+          'user_email' => $user_email,
+          'user_phone' => $user_phone,
+          'user_address' => $user_address,
+          'order_note' => $note,
+          'order_total' => $order_total,
+          'order_payment' => 2,
+          'order_status' => 1
+        ];
+        $order_id = $this->province->insertOrders($data);
+        if ($order_id) {
+          for ($i = 0; $i < sizeof($_SESSION['cart']); $i++) {
+            $product_id = $_SESSION['cart'][$i]['product_id'];
+            $product_price = $_SESSION['cart'][$i]['product_price'];
+            $product_price_reduce = $_SESSION['cart'][$i]['product_price_reduce'];
+            $product_quantity = $_SESSION['cart'][$i]['product_quantity'];
+            $total_product = (isset($product_price_reduce) ? $product_price_reduce : $product_price) * $product_quantity;
             $data = [
-                'vnp_Amount' => $_GET['vnp_Amount'],
-                'vnp_BankCode' => $_GET['vnp_BankCode'],
-                'vnp_BankTranNo' => $_GET['vnp_BankTranNo'],
-                'vnp_CardType' => $_GET['vnp_CardType'],
-                'vnp_OrderInfo' => $_GET['vnp_OrderInfo'],
-                'vnp_PayDate' => $_GET['vnp_PayDate'],
-                'vnp_ResponseCode' => $_GET['vnp_ResponseCode'],
-                'vnp_TmnCode' => $_GET['vnp_TmnCode'],
-                'vnp_TransactionNo' => $_GET['vnp_TransactionNo'],
-                'vnp_TransactionStatus' => $_GET['vnp_TransactionStatus'],
-                'vnp_TxnRef' => $_GET['vnp_TxnRef'],
-                'vnp_SecureHash' => $_GET['vnp_SecureHash']
+              'product_id' => $product_id,
+              'order_id' => $order_id,
+              'order_quantity' => $product_quantity,
+              'order_total_product' => $total_product
             ];
-            $this->province->insertVnpay($data);
-            $user_info = Session::data('user_info');
-            $code_orders = $user_info['code_orders'];
-            $user_id = $user_info['user_id'];
-            $user_name = $user_info['user_name'];
-            $user_email = $user_info['user_email'];
-            $user_phone = $user_info['user_phone'];
-            $user_address = $user_info['user_address'];
-            $note = $user_info['order_note'];
-            $order_total = $user_info['order_total'];
-            $data = [
-                'code_orders' => $code_orders,
-                'user_id' => $user_id,
-                'user_name' => $user_name,
-                'user_email' => $user_email,
-                'user_phone' => $user_phone,
-                'user_address' => $user_address,
-                'order_note' => $note,
-                'order_total' => $order_total,
-                'order_payment' => 2,
-                'order_status' => 1
-            ];
-            $order_id = $this->province->insertOrders($data);
-            if ($order_id) {
-                for ($i = 0; $i < sizeof($_SESSION['cart']); $i++) {
-                    $product_id = $_SESSION['cart'][$i]['product_id'];
-                    $product_price = $_SESSION['cart'][$i]['product_price'];
-                    $product_price_reduce = $_SESSION['cart'][$i]['product_price_reduce'];
-                    $product_quantity = $_SESSION['cart'][$i]['product_quantity'];
-                    $total_product = (isset($product_price_reduce) ? $product_price_reduce : $product_price) * $product_quantity;
-                    $data = [
-                        'product_id' => $product_id,
-                        'order_id' => $order_id,
-                        'order_quantity' => $product_quantity,
-                        'order_total_product' => $total_product
-                    ];
-                    $this->province->insertOrderDetail($data);
-                }
-                $pay_show = 'Transfer';
-                $heading = "Code orders: #$code_orders";
-                $totalPrice = 0;
-                $body = array();
-                foreach ($_SESSION['cart'] as $data) {
-                    $totalPrice += ((isset($data['product_price_reduce']) ? $data['product_price_reduce'] : $data['product_price']) * $data['product_quantity']);
-                    $body[] = "
+            $this->province->insertOrderDetail($data);
+          }
+          $pay_show = 'Transfer';
+          $heading = "Code orders: #$code_orders";
+          $totalPrice = 0;
+          $body = array();
+          foreach ($_SESSION['cart'] as $data) {
+            $totalPrice += ((isset($data['product_price_reduce']) ? $data['product_price_reduce'] : $data['product_price']) * $data['product_quantity']);
+            $body[] = "
         <tr class='order_item'>
           <td class='td text-center' style='color: #636363;border: 1px solid #e5e5e5;padding: 12px;text-align: left;vertical-align: middle;font-family: ' Helvetica Neue', Helvetica, Roboto, Arial, sans-serif' align='left'>
           $data[product_name] </td>
@@ -402,9 +399,9 @@ class Cart extends Controller
           </td>
         </tr>
         ";
-                }
-                $item = implode($body);
-                $mess = "<table width='100%' id='outer_wrapper' style='background-color: #f7f7f7' 'bgcolor='#f7f7f7'>
+          }
+          $item = implode($body);
+          $mess = "<table width='100%' id='outer_wrapper' style='background-color: #f7f7f7' 'bgcolor='#f7f7f7'>
         <tbody>
           <tr>
             <td><!-- Deliberately empty to support consistent sizing and layout across multiple email clients. --></td>
@@ -529,37 +526,37 @@ class Cart extends Controller
         </tbody>
       </table> ";
 
-                require './app/core/PHPMailer-master/src/Exception.php';
-                require './app/core/PHPMailer-master/src/PHPMailer.php';
-                require './app/core/PHPMailer-master/src/SMTP.php';
+          require './app/core/PHPMailer-master/src/Exception.php';
+          require './app/core/PHPMailer-master/src/PHPMailer.php';
+          require './app/core/PHPMailer-master/src/SMTP.php';
 
-                $email = $user_email;
-                $mail = new PHPMailer\PHPMailer\PHPMailer();
-                $mail->IsSMTP();
-                $mail->SMTPAuth = true;
-                $mail->SMTPSecure = 'tls';
-                $mail->Host = 'smtp.gmail.com';
-                $mail->Port = '587';
-                $mail->Username = 'huylppc05334@fpt.edu.vn';
-                $mail->Password = 'lenl ztdz evcs foia';
-                $mail->FromName = 'GWine';
-                $mail->addAddress($email);
-                $mail->Subject = $heading;
-                $mail->isHTML(TRUE);
-                $mail->Body = $mess;
-                if (!$mail->send()) {
-                    exit();
-                }
-            }
-            unset($_SESSION['cart']);
-            Session::delete('user_info');
+          $email = $user_email;
+          $mail = new PHPMailer\PHPMailer\PHPMailer();
+          $mail->IsSMTP();
+          $mail->SMTPAuth = true;
+          $mail->SMTPSecure = 'tls';
+          $mail->Host = 'smtp.gmail.com';
+          $mail->Port = '587';
+          $mail->Username = 'huylppc05334@fpt.edu.vn';
+          $mail->Password = 'lenl ztdz evcs foia';
+          $mail->FromName = 'GWine';
+          $mail->addAddress($email);
+          $mail->Subject = $heading;
+          $mail->isHTML(TRUE);
+          $mail->Body = $mess;
+          if (!$mail->send()) {
+            exit();
+          }
         }
+        unset($_SESSION['cart']);
+        Session::delete('user_info');
+      }
     }
-      $title = 'Thanks';
-      $this->data['pages_title'] = $title;
-      $this->data['sub_content']['product'] = [];
-      $this->data['css_thanks'] = _WEB_ROOT . '/public/assets/client/css/thanks.css';
-      $this->data['content'] = 'client/cart/thanks';
-      $this->render('client/layoutClient/client_layout', $this->data);
+    $title = 'Thanks';
+    $this->data['pages_title'] = $title;
+    $this->data['sub_content']['product'] = [];
+    $this->data['css_thanks'] = _WEB_ROOT . '/public/assets/client/css/thanks.css';
+    $this->data['content'] = 'client/cart/thanks';
+    $this->render('client/layoutClient/client_layout', $this->data);
   }
 }
