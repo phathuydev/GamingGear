@@ -394,13 +394,13 @@
           <div class="preview-list">
             <div class="preview-item border-bottom">
               <div class="preview-thumbnail">
-                  <img src="<?= !empty($item['user_image_path']) ? _WEB_ROOT . '/' . $item['user_image_path'] . ($item['user_image'] ? $item['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($item['user_image'] ? $item['user_image'] : _WEB_ROOT . '/' . $item['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>"
+                  <img src="<?= !empty($item['user_image_path']) ? _WEB_ROOT . '/' . ($item['user_image'] ? $item['user_image_path'] . '/' . $item['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($item['user_image'] ? $item['user_image'] : _WEB_ROOT . '/' . $item['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>"
                        style="width: 40px; height: 40px; border-radius: 30px;"" alt=" image" />
               </div>
               <div class="preview-item-content d-flex flex-grow">
                 <div class="flex-grow">
                   <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                    <h6 class="preview-subject"><?= $item['user_name'] ?></h6>
+                    <h6 class="preview-subject"><?= isset($item['user_email']) ? $item['user_email'] : $item['user_name'] ?></h6>
                     <p class="text-muted text-small"><?= formatTimeAgo(strtotime($item['create_at'])); ?></p>
                   </div>
                   <p class="text-muted mt-1"><?= $item['comment_content'] ?></p>
