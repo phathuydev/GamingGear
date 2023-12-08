@@ -336,7 +336,7 @@
               <?php foreach ($getOrderLimit as $item) : ?>
                 <tr>
                   <td>
-                    <img src="<?= _WEB_ROOT . '/' . $item['user_image_path'] . $item['user_image'] ?>" style="width: 40px; height: 40px; border-radius: 30px;" alt="image" />
+                    <img src="<?= ($item['user_image_path'] ?  _WEB_ROOT . '/' . $item['user_image_path'] . $item['user_image'] : $item['user_image']) ?>" style="width: 40px; height: 40px; border-radius: 30px;" alt="image" />
                     <span class="pl-2"><?= $item['user_name'] ?></span>
                   </td>
                   <td><?= $item['user_email'] ?></td>
@@ -393,7 +393,7 @@
           <div class="preview-list">
             <div class="preview-item border-bottom">
               <div class="preview-thumbnail">
-                <img src="<?= _WEB_ROOT . '/' . $item['user_image_path'] . $item['user_image'] ?>" style="width: 40px; height: 40px; border-radius: 30px;"" alt=" image" />
+                <img src="<?= ($item['user_image_path'] ?  _WEB_ROOT . '/' . $item['user_image_path'] . $item['user_image'] : $item['user_image']) ?>" style="width: 40px; height: 40px; border-radius: 30px;"" alt=" image" />
               </div>
               <div class="preview-item-content d-flex flex-grow">
                 <div class="flex-grow">

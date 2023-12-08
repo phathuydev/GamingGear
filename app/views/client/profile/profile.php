@@ -13,7 +13,7 @@
           <div class="col-lg-4 ps-0">
             <div class="mb-4">
               <div class="card-body text-center bg-dark rounded-3">
-                <img src="<?= !empty($getUserClient['user_image_path']) ? _WEB_ROOT . '/' . ($getUserClient['user_image'] ? $getUserClient['user_image_path'] . '/' . $getUserClient['user_image'] : 'public/assets/admin/uploaded_img/default_img.jpg') : ($getUserClient['user_image'] ? $getUserClient['user_image'] : _WEB_ROOT . '/' . $getUserClient['user_image_path'] . 'public/assets/admin/uploaded_img/default_img.jpg'); ?>" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                <img src="<?= ($getUserClient['user_image_path'] ?  _WEB_ROOT . '/' . $getUserClient['user_image_path'] . $getUserClient['user_image'] : $getUserClient['user_image']) ?>" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
               </div>
             </div>
             <div class="mb-4 mb-lg-0">
