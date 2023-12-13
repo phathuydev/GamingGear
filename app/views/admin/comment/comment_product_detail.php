@@ -27,8 +27,7 @@
                 <td class="d-flex align-items-center pt-4">
                   <form method="post" class="m-0">
                     <input type="hidden" name="comment_id" value="<?= $item['comment_id'] ?>">
-                    <button type="submit" name="deleteCommentProduct" class="badge badge-danger border-0" onclick="return confirm('Delete Comment <?= $item['comment_content'] ?>');">Delete Comment
-                    </button>
+                    <button type="submit" name="<?= $item['is_delete'] == 0 ? 'deleteCommentProduct' : 'restoreCommentProduct' ?>" class="badge badge-<?= $item['is_delete'] == 0 ? 'danger' : 'success' ?> border-0" onclick="return confirm('<?= $item['is_delete'] == 0 ? 'Delete' : 'Restore' ?> Comment <?= $item['comment_content'] ?>');"><?= $item['is_delete'] == 0 ? 'Delete' : 'Restore' ?></button>
                   </form>
                 </td>
               </tr>

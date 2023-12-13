@@ -25,17 +25,24 @@ class Product extends Controller
     $this->data['sub_content']['listProduct'] = $listProduct;
     $title = 'List Product';
     $this->data['pages_title'] = $title;
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['deleteProduct'])) {
       $product_id = $_POST['product_id'];
       $data = [
         'is_delete' => 1,
-        'user_delete' => Session::data('admin_login'),
-        'update_at' => date("Y-m-d H:i:s"),
-        'user_update' => Session::data('admin_login')
+        'user_delete' => Session::data('admin_login')
       ];
       $this->province->updateIsDelete($data, $product_id);
       $response = new Response();
-      $response->redirect('admin/manage/product/list/8/1');
+      $response->redirect('admin/manage/product/list/8/' . $pages . '');
+    } elseif (isset($_POST['restoreProduct'])) {
+      $product_id = $_POST['product_id'];
+      $data = [
+        'is_delete' => 0,
+        'user_delete' => 1
+      ];
+      $this->province->updateIsDelete($data, $product_id);
+      $response = new Response();
+      $response->redirect('admin/manage/product/list/8/' . $pages . '');
     }
     $this->data['body'] = 'admin/product/list';
     $this->render('admin/layoutAdmin/admin_layout', $this->data);
@@ -118,7 +125,7 @@ class Product extends Controller
       ];
       $this->province->updateProduct($data, $product_id);
       $response = new Response();
-        $response->redirect('admin/manage/product/list/8/' . $pages . '');
+      $response->redirect('admin/manage/product/list/8/' . $pages . '');
     }
     $this->data['body'] = 'admin/product/edit';
     $this->render('admin/layoutAdmin/admin_layout', $this->data);

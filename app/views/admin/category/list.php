@@ -36,12 +36,11 @@
                                     <td class="text-white"><?= !empty($data2['user_name']) == null ? $data2['user_email'] : $data2['user_name'] ?></td>
                                 <?php } ?>
                                 <td class="d-flex align-items-center pt-4">
-                                    <a class="badge badge-primary mr-2" href="<? echo _MANAGE_DEFAULT ?>/category/category_edit/<?= $item['category_id'] ?>">Edit</a>
+                                    <a class="badge badge-primary mr-2 <?= $item['is_delete'] == 1 ? 'disabled' : false; ?>" href="<? echo _MANAGE_DEFAULT ?>/category/category_edit/<?= $item['category_id'] ?>">Edit</a>
                                     <form method="post" class="m-0">
                                         <input type="hidden" name="category_id" value="<?= $item['category_id'] ?>">
-                                        <button type="submit" class="badge badge-danger border-0 " onclick="return confirm('Delete category <?= $item['category_name'] ?>');">
-                                            Delete
-                                        </button>
+                                        <button type="submit" name="<?= $item['is_delete'] == 0 ? 'deleteCategory' : 'restoreCategory' ?>" class="badge badge-<?= $item['is_delete'] == 0 ? 'danger' : 'success' ?> border-0" 
+                                        onclick="return confirm('<?= $item['is_delete'] == 0 ? 'Delete' : 'Restore' ?> Category <?= $item['category_name'] ?>');"><?= $item['is_delete'] == 0 ? 'Delete' : 'Restore' ?></button>
                                     </form>
                                 </td>
                             </tr>

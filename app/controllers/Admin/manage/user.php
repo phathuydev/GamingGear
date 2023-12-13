@@ -25,7 +25,7 @@ class User extends Controller
     $title = 'List User';
     $this->data['sub_content']['listUser'] = $listUser;
     $this->data['pages_title'] = $title;
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['deleteUser'])) {
       $user_id = $_POST['user_id'];
       if (
         $this->model('CheckForeignkeyModel')->isForeignKeyExist('comments', 'user_id', $user_id) == true || $this->model('CheckForeignkeyModel')->isForeignKeyExist('orders', 'user_id', $user_id) == true
@@ -34,14 +34,21 @@ class User extends Controller
       } else {
         $data = [
           'is_delete' => 1,
-          'user_delete' => Session::data('admin_login'),
-          'update_at' => date("Y-m-d H:i:s"),
-          'user_update' => Session::data('admin_login')
+          'user_delete' => Session::data('admin_login')
         ];
         $this->province->updateIsdelete($data, $user_id);
         $response = new Response();
-        $response->redirect('admin/manage/user/list/8/1');
+        $response->redirect('admin/manage/user/list/8/' . $pages . '');
       }
+    } elseif (isset($_POST['restoreUser'])) {
+      $user_id = $_POST['user_id'];
+      $data = [
+        'is_delete' => 0,
+        'user_delete' => 0
+      ];
+      $this->province->updateIsdelete($data, $user_id);
+      $response = new Response();
+      $response->redirect('admin/manage/user/list/8/' . $pages . '');
     }
     $this->data['sub_content']['checkForeignkey'] = Session::flash('checkForeignkey');
     $this->data['body'] = 'admin/user/list';

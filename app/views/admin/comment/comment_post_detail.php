@@ -26,13 +26,11 @@
                                 <td class="text-white"><?= $item['parent_id'] ?></td>
                                 <td class="text-white"><?= formatTimeAgo(strtotime($item['create_at'])); ?></td>
                                 <td class="text-white"><?= formatTimeAgo(strtotime($item['update_at'])); ?></td>
-                                <td class="d-flex align-items-center">
+                                <td class="d-flex align-items-center pt-4">
                                     <form method="post" class="m-0">
                                         <input type="hidden" name="comment_id" value="<?= $item['comment_id'] ?>">
                                         <input type="hidden" name="post_id" value="<?= $item['post_id'] ?>">
-                                        <button type="submit" class="badge badge-danger border-0" onclick="return confirm('Delete Comment <?= $item['comment_content'] ?>');">
-                                            Delete Comment
-                                        </button>
+                                        <button type="submit" name="<?= $item['is_delete'] == 0 ? 'deleteCommentPost' : 'restoreCommentPost' ?>" class="badge badge-<?= $item['is_delete'] == 0 ? 'danger' : 'success' ?> border-0" onclick="return confirm('<?= $item['is_delete'] == 0 ? 'Delete' : 'Restore' ?> Comment <?= $item['comment_content'] ?>');"><?= $item['is_delete'] == 0 ? 'Delete' : 'Restore' ?></button>
                                     </form>
                                 </td>
                             </tr>

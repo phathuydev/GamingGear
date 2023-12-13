@@ -24,7 +24,7 @@ class Category extends Controller
     $this->data['sub_content']['listCategory'] = $listCategory;
     $title = 'List Category';
     $this->data['pages_title'] = $title;
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['deleteCategory'])) {
       $category_id = $_POST['category_id'];
       if (
         $this->model('CheckForeignkeyModel')->isForeignKeyExist('posts', 'category_id', $category_id) == true
@@ -34,14 +34,21 @@ class Category extends Controller
       } else {
         $data = [
           'is_delete' => 1,
-          'user_delete' => Session::data('admin_login'),
-          'update_at' => date('Y-m-d H:i:s'),
-          'user_update' => Session::data('admin_login')
+          'user_delete' => Session::data('admin_login')
         ];
         $this->province->updateCategory($data, $category_id);
         $response = new Response();
-        $response->redirect('admin/manage/category/list/8/1');
+        $response->redirect('admin/manage/category/list/8/' . $pages . '');
       }
+    } elseif (isset($_POST['restoreCategory'])) {
+      $category_id = $_POST['category_id'];
+      $data = [
+        'is_delete' => 0,
+        'user_delete' => 0
+      ];
+      $this->province->updateCategory($data, $category_id);
+      $response = new Response();
+      $response->redirect('admin/manage/category/list/8/' . $pages . '');
     }
     $this->data['sub_content']['checkForeignkey'] = Session::flash('checkForeignkey');
     $this->data['body'] = 'admin/category/list';

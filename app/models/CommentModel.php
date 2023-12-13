@@ -20,7 +20,6 @@ class CommentModel extends Model
       ->join('products', 'comments.product_id = products.product_id')
       ->select('products.product_id as product_id, products.product_name AS product_name, products.product_image_path AS 
       product_image_path, products.product_image AS product_image, COUNT(comments.product_id) AS count_comment_product')
-      ->where('comments.is_delete', '=', 0)
       ->groupBy('products.product_id, products.product_name, products.product_image_path, products.product_image')
       ->get();
     return $data;
@@ -31,7 +30,6 @@ class CommentModel extends Model
       ->join('posts', 'comments.post_id = posts.post_id')
       ->select('posts.post_id as post_id, posts.post_image_path AS 
       post_image_path, posts.post_image AS post_image, COUNT(comments.post_id) AS count_comment_post')
-      ->where('comments.is_delete', '=', 0)
       ->groupBy('posts.post_id, posts.post_image_path, posts.post_image')
       ->get();
     return $data;
@@ -41,7 +39,6 @@ class CommentModel extends Model
   {
     $data = $this->db->table('comments')
       ->select('COUNT(comment_id) as countCommentProductId')
-      ->where('is_delete', '=', 0)
       ->where('product_id', '=', $product_id)
       ->first();
     return $data;
@@ -51,7 +48,6 @@ class CommentModel extends Model
   {
     $data = $this->db->table('comments')
       ->select('COUNT(comment_id) as countCommentProductReplyId')
-      ->where('is_delete', '=', 0)
       ->where('comment_id', '=', $comment_id)
       ->first();
     return $data;
@@ -61,7 +57,6 @@ class CommentModel extends Model
   {
     $data = $this->db->table('replies_post')
       ->select('COUNT(reply_post_id) as countCommentPostReplyId')
-      ->where('is_delete', '=', 0)
       ->where('comment_id', '=', $comment_id)
       ->first();
     return $data;
@@ -71,13 +66,12 @@ class CommentModel extends Model
   {
     $data = $this->db->table('comments')
       ->join('users', 'comments.user_id = users.user_id')
-      ->select('comments.product_id AS product_id, comments.comment_id AS comment_id, comments.user_id AS user_id, 
+      ->select('comments.product_id AS product_id, comments.comment_id AS comment_id, comments.user_id AS user_id, comments.is_delete AS is_delete,
       comments.comment_content AS comment_content, comments.create_at AS create_at, comments.parent_id AS parent_id,
       users.user_name AS user_name, users.user_email AS user_email, users.user_image_path AS user_image_path, 
       users.user_image AS user_image')
       ->where('comments.product_id', '=', $product_id)
       ->limit($per_pages, $pages)
-      ->where('comments.is_delete', '=', 0)
       ->orderBy('comments.create_at', 'DESC')
       ->get();
     return $data;
@@ -135,12 +129,11 @@ class CommentModel extends Model
   {
     $data = $this->db->table('comments')
       ->join('users', 'comments.user_id = users.user_id')
-      ->select('comments.post_id AS post_id, comments.comment_id AS comment_id, comments.user_id AS user_id, 
+      ->select('comments.post_id AS post_id, comments.comment_id AS comment_id, comments.user_id AS user_id, comments.is_delete AS is_delete,
       comments.comment_content AS comment_content, comments.create_at AS create_at, comments.update_at AS update_at,
       comments.parent_id AS parent_id, users.user_name AS user_name, users.user_email AS user_email, users.user_image_path AS 
       user_image_path, users.user_image AS user_image')
       ->where('comments.post_id', '=', $post_id)
-      ->where('comments.is_delete', '=', 0)
       ->limit($per_pages, $pages)
       ->orderBy('comments.create_at', 'ASC')
       ->get();
@@ -167,7 +160,6 @@ class CommentModel extends Model
   {
     $data = $this->db->table('comments')
       ->select('COUNT(comment_id) as countCommentPostId')
-      ->where('is_delete', '=', 0)
       ->where('post_id', '=', $post_id)
       ->first();
     return $data;

@@ -19,8 +19,7 @@ class UserModel extends Model
   {
     $data = $this->db->table('users')
       ->select('user_id, user_name, user_email, user_phone, user_image, user_image_path, 
-    user_address, user_locked, user_role, create_at, update_at, user_create, user_update, user_delete')
-      ->where('is_delete', '=', '0')
+    user_address, user_locked, user_role, create_at, update_at, user_create, user_update, user_delete, is_delete')
       ->limit($per_pages, $pages)
       ->get();
     return $data;

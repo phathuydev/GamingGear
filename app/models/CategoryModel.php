@@ -19,8 +19,7 @@ class CategoryModel extends Model
     public function getAllCategory($per_pages, $pages)
     {
         $data = $this->db->table('categories')
-            ->select('category_id, category_name, category_image_path, create_at, update_at, user_create, user_update, category_image')
-            ->where('categories.is_delete', '=', 0)
+            ->select('category_id, category_name, category_image_path, create_at, update_at, user_create, user_update, category_image, is_delete')
             ->limit($per_pages, $pages)
             ->get();
         return $data;

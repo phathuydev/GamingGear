@@ -24,17 +24,24 @@ class Post extends Controller
     $this->data['sub_content']['listPost'] = $listPost;
     $title = 'List Post';
     $this->data['pages_title'] = $title;
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['deletePost'])) {
       $post_id = $_POST['post_id'];
-      $post_detail_id = $_POST['post_detail_id'];
       $data = [
         'is_delete' => 1,
         'user_delete' => Session::data('admin_login'),
-        'update_at' => date("Y-m-d H:i:s")
       ];
-      $this->province->updateIsDelete($data, $post_id, $post_detail_id);
+      $this->province->updateIsDelete($data, $post_id);
       $response = new Response();
-      $response->redirect('admin/manage/post/list/8/1');
+      $response->redirect('admin/manage/post/list/8/' . $pages . '');
+    } elseif (isset($_POST['restorePost'])) {
+      $post_id = $_POST['post_id'];
+      $data = [
+        'is_delete' => 0,
+        'user_delete' => 0
+      ];
+      $this->province->updateIsDelete($data, $post_id);
+      $response = new Response();
+      $response->redirect('admin/manage/post/list/8/' . $pages . '');
     }
     $this->data['body'] = 'admin/post/list';
     $this->render('admin/layoutAdmin/admin_layout', $this->data);

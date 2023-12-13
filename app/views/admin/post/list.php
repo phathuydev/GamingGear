@@ -36,15 +36,12 @@
                                     <td class="text-white"><?= !empty($data2['user_name']) == null ? $data2['user_email'] : $data2['user_name'] ?></td>
                                 <?php } ?>
                                 <td class="d-flex align-items-center pt-4">
-                                    <a class="badge badge-primary mr-2" href="<? echo _MANAGE_DEFAULT ?>/post/post_detail/<?= $item['post_id'] ?>">See
+                                    <a class="badge badge-primary mr-2 <?= $item['is_delete'] == 1 ? 'disabled' : false ?>" href="<? echo _MANAGE_DEFAULT ?>/post/post_detail/<?= $item['post_id'] ?>">See
                                         Detail</a>
-                                    <a class="badge badge-primary mr-2" href="<? echo _MANAGE_DEFAULT ?>/post/post_edit/<?= $item['post_id'] ?>/<?= $item['post_detail_id'] ?>">Edit</a>
+                                    <a class="badge badge-primary mr-2 <?= $item['is_delete'] == 1 ? 'disabled' : false ?>" href="<? echo _MANAGE_DEFAULT ?>/post/post_edit/<?= $item['post_id'] ?>/<?= $item['post_detail_id'] ?>">Edit</a>
                                     <form method="post" class="m-0">
                                         <input type="hidden" name="post_id" value="<?= $item['post_id'] ?>">
-                                        <input type="hidden" name="post_detail_id" value="<?= $item['post_detail_id'] ?>">
-                                        <button type="submit" name="updateIsdelete" class="badge badge-danger border-0" onclick="return confirm('Delete post <?= '#' . $item['post_id'] ?>');">
-                                            Delete
-                                        </button>
+                                        <button type="submit" name="<?= $item['is_delete'] == 0 ? 'deletePost' : 'restorePost' ?>" class="badge badge-<?= $item['is_delete'] == 0 ? 'danger' : 'success' ?> border-0" onclick="return confirm('<?= $item['is_delete'] == 0 ? 'Delete' : 'Restore' ?> Post <?= $item['product_name'] ?>');"><?= $item['is_delete'] == 0 ? 'Delete' : 'Restore' ?></button>
                                     </form>
                                 </td>
                             </tr>

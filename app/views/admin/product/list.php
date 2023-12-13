@@ -57,13 +57,12 @@
                                     <?= $item['product_special'] == 0 ? 'Nornal' : 'Special' ?>
                                 </td>
                                 <td class="d-flex align-items-center pt-4">
-                                    <a class="badge badge-primary mr-2" href="<? echo _MANAGE_DEFAULT ?>/product/product_edit/<?= $item['product_id'] ?>/<?= $per_pages ?>/<?= $pages ?>">Edit</a>
+                                    <a class="badge badge-primary mr-2 <?= $item['is_delete'] == 1 ? 'disabled' : false; ?>" href="<? echo _MANAGE_DEFAULT ?>/product/product_edit/<?= $item['product_id'] ?>/<?= $per_pages ?>/<?= $pages ?>">Edit</a>
                                     <form action="" method="post" class="m-0">
                                         <input type="hidden" name="product_id" value="<?= $item['product_id'] ?>">
                                         <input type="hidden" name="create_at" value="<?= $item['create_at'] ?>">
-                                        <button type="submit" class="badge badge-danger border-0 " onclick="return confirm('Delete product <?= $item['product_name'] ?>');">
-                                            Delete
-                                        </button>
+                                        <button type="submit" name="<?= $item['is_delete'] == 0 ? 'deleteProduct' : 'restoreProduct' ?>" class="badge badge-<?= $item['is_delete'] == 0 ? 'danger' : 'success' ?> border-0" 
+                                        onclick="return confirm('<?= $item['is_delete'] == 0 ? 'Delete' : 'Restore' ?> Product <?= $item['product_name'] ?>');"><?= $item['is_delete'] == 0 ? 'Delete' : 'Restore' ?></button>
                                     </form>
                                 </td>
                             </tr>

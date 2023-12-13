@@ -35,12 +35,20 @@ class Comment extends Controller
     $getCommentProduct = $this->province->getCommentProduct($product_id, $per_pages, $offset);
     $this->data['sub_content']['getCommentProduct'] = $getCommentProduct;
     $this->data['sub_content']['product_id'] = $product_id;
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['deleteCommentProduct'])) {
       $comment_id = $_POST['comment_id'];
       $data = [
         'is_delete' => 1,
-        'user_delete' => Session::data('admin_login'),
-        'update_at' => date("Y-m-d H:i:s"),
+        'user_delete' => Session::data('admin_login')
+      ];
+      $this->province->updateIsdeleteCommentProduct($data, $comment_id);
+      $response = new Response();
+      $response->redirect('admin/manage/comment/comment_product_detail/' . $product_id . '/' . $per_pages . '/' . $pages . '');
+    } elseif (isset($_POST['restoreCommentProduct'])) {
+      $comment_id = $_POST['comment_id'];
+      $data = [
+        'is_delete' => 0,
+        'user_delete' => 0
       ];
       $this->province->updateIsdeleteCommentProduct($data, $comment_id);
       $response = new Response();
@@ -64,16 +72,24 @@ class Comment extends Controller
     $getCommentPost = $this->province->getCommentPost($post_id, $per_pages, $offset);
     $this->data['sub_content']['getCommentPost'] = $getCommentPost;
     $this->data['sub_content']['post_id'] = $post_id;
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['deleteCommentPost'])) {
       $comment_id = $_POST['comment_id'];
       $data = [
         'is_delete' => 1,
-        'user_delete' => Session::data('admin_login'),
-        'update_at' => date("Y-m-d H:i:s")
+        'user_delete' => Session::data('admin_login')
       ];
       $this->province->updateIsdeleteCommentPost($data, $comment_id);
       $response = new Response();
-      $response->redirect('admin/manage/comment/comment_post_detail/' . $post_id . '/8/1');
+      $response->redirect('admin/manage/comment/comment_post_detail/' . $post_id . '/8/' . $pages . '');
+    } elseif (isset($_POST['restoreCommentPost'])) {
+      $comment_id = $_POST['comment_id'];
+      $data = [
+        'is_delete' => 0,
+        'user_delete' => 0
+      ];
+      $this->province->updateIsdeleteCommentPost($data, $comment_id);
+      $response = new Response();
+      $response->redirect('admin/manage/comment/comment_post_detail/' . $post_id . '/8/' . $pages . '');
     }
     $title = 'Comment Post Detail';
     $this->data['pages_title'] = $title;

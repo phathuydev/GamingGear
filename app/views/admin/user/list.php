@@ -35,28 +35,27 @@
                 <td class="text-white"><?= $item['user_locked'] == 0 ? 'Action' : 'Locked' ?></td>
 
                 <?php $getUserCreate = $this->model('UserModel')->getUserCreate($item['user_create']);
-                  $data = $getUserCreate;
-                  if (isset($data)) {
+                $data = $getUserCreate;
+                if (isset($data)) {
                 ?>
-                <td class="text-white"><?= !empty($data['user_name']) ? $data['user_name'] : false; ?></td>
+                  <td class="text-white"><?= !empty($data['user_name']) ? $data['user_name'] : false; ?></td>
                 <?php } ?>
                 <?php $getUserUpdate = $this->model('UserModel')->getUserUpdate($item['user_update']);
-                  $data2 = $getUserUpdate;
-                  if (isset($data2)) {
+                $data2 = $getUserUpdate;
+                if (isset($data2)) {
                 ?>
-                <td class="text-white"><?= !empty($data2['user_name']) ? $data2['user_name'] : false; ?></td>
+                  <td class="text-white"><?= !empty($data2['user_name']) ? $data2['user_name'] : false; ?></td>
                 <?php } ?>
 
                 <td class="d-flex align-items-center pt-4">
                   <?php $checkGoogle = $this->model('UserModel')->getUserGoogle($item['user_id']); ?>
                   <?php $data = $checkGoogle;
                   if (isset($data)) { ?>
-                    <a class="badge badge-primary mr-2 <?= ($data['google_account'] == 1 || $data['user_role'] == 1) ? 'disabled' : false ?>" href="<? echo _MANAGE_DEFAULT ?>/user/user_edit/<?= $item['user_id'] ?>">Edit</a>
+                    <a class="badge badge-primary mr-2 <?= $item['is_delete'] == 1 ? 'disabled' : false; ?> <?= $data['user_role'] == 1 ? 'disabled' : false ?>" href="<? echo _MANAGE_DEFAULT ?>/user/user_edit/<?= $item['user_id'] ?>">Edit</a>
                     <form method="post" class="m-0">
                       <input type="hidden" name="user_id" value="<?= $item['user_id'] ?>">
                       <input type="hidden" name="create_at" value="<?= $item['create_at'] ?>">
-                      <button type="submit" class="badge badge-danger border-0" onclick="return confirm('Delete user <?= $item['user_email'] ?>');">Delete
-                      </button>
+                      <button type="submit" name="<?= $item['is_delete'] == 0 ? 'deleteUser' : 'restoreUser' ?>" class="badge badge-<?= $item['is_delete'] == 0 ? 'danger' : 'success' ?> border-0" onclick="return confirm('<?= $item['is_delete'] == 0 ? 'Delete' : 'Restore' ?> user <?= $item['user_name'] ?>');"><?= $item['is_delete'] == 0 ? 'Delete' : 'Restore' ?></button>
                     </form>
                   <?php }; ?>
                 </td>
