@@ -38,13 +38,13 @@
                   $data = $getUserCreate;
                   if (isset($data)) {
                 ?>
-                <td class="text-white"><?= !empty($data['user_name']) == null ? $data['user_email'] : $data['user_name'] ?></td>
+                <td class="text-white"><?= !empty($data['user_name']) ? $data['user_name'] : false; ?></td>
                 <?php } ?>
                 <?php $getUserUpdate = $this->model('UserModel')->getUserUpdate($item['user_update']);
                   $data2 = $getUserUpdate;
                   if (isset($data2)) {
                 ?>
-                <td class="text-white"><?= !empty($data2['user_name']) == null ? $data2['user_email'] : $data2['user_name'] ?></td>
+                <td class="text-white"><?= !empty($data2['user_name']) ? $data2['user_name'] : false; ?></td>
                 <?php } ?>
 
                 <td class="d-flex align-items-center pt-4">

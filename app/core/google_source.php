@@ -80,7 +80,9 @@ if (!isset($authUrl)) {
                 'user_name' => $user_name,
                 'user_email' => $user_email,
                 'user_image' => $user_image,
-                'google_account' => 1
+                'google_account' => 1,
+                'user_create' => 1,
+                'user_update' => 1
             ];
             $insertUserGoogle = $this->model('UserModel')->insertUser($data);
             if ($insertUserGoogle) {
